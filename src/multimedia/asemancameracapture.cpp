@@ -1,0 +1,53 @@
+/*
+    Copyright (C) 2017 Aseman Team
+    http://aseman.co
+
+    AsemanQtTools is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AsemanQtTools is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#include "asemancameracapture.h"
+
+#ifdef Q_OS_ANDROID
+#include "private/asemanandroidcameracapturecore.h"
+typedef AsemanAndroidCameraCaptureCore CameraCaptureCore;
+#else
+#include "private/asemannullcameracapturecore.h"
+typedef AsemanNullCameraCaptureCore CameraCaptureCore;
+#endif
+
+class AsemanCameraCapturePrivate
+{
+public:
+    AsemanAbstractCameraCaptureCore *core;
+};
+
+AsemanCameraCapture::AsemanCameraCapture(QObject *parent) :
+    QObject(parent)
+{
+    p = new AsemanCameraCapturePrivate;
+    p->core = new CameraCaptureCore(this);
+
+    connect(p->core, &AsemanAbstractCameraCaptureCore::imageCaptured,
+            this, &AsemanCameraCapture::imageCaptured, Qt::QueuedConnection);
+}
+
+int AsemanCameraCapture::capture(const QString &dest, AsemanCameraCapture::CameraFace face)
+{
+    return p->core->capture(dest, face);
+}
+
+AsemanCameraCapture::~AsemanCameraCapture()
+{
+    delete p;
+}

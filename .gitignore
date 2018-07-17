@@ -1,4 +1,5 @@
 # C++ objects and libs
+
 *.slo
 *.lo
 *.o
@@ -10,9 +11,8 @@
 *.dylib
 
 # Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
+
+/old
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -24,20 +24,17 @@ moc_*.cpp
 moc_*.h
 qrc_*.cpp
 ui_*.h
-*.qmlc
-*.jsc
 Makefile*
 *build-*
 
-# Qt unit tests
-target_wrapper.*
-
 # QtCreator
+
 *.autosave
 
-# QtCreator Qml
+# QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
-# QtCreator CMake
+# QtCtreator CMake
 CMakeLists.txt.user*
+

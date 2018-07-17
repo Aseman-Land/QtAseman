@@ -1,0 +1,5 @@
+module AsemanQml.MaterialIcons
+classname AsemanMaterialIconsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlmaterialicons
+

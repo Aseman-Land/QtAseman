@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+<!--    
+    <style name="AppTheme" parent="@android:style/Theme.Material">
+        <item name="android:colorPrimary">#efefef</item>
+        <item name="android:colorPrimaryDark">#333333</item>
+        <item name="android:colorAccent">#F44336</item> 
+    </style>
+-->
+</resources>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/asemantools">
+        <file>files/countries.csv</file>
+    </qresource>
+</RCC>
