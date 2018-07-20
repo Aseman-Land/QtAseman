@@ -20,6 +20,7 @@
 #include "asemandevicesitem.h"
 #include "asemanqttools.h"
 #include "asemantoolsitem.h"
+#include "aseman_macros.h"
 #ifdef Q_OS_ANDROID
 #include "asemanjavalayer.h"
 #endif
