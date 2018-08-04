@@ -30,6 +30,7 @@ Item {
     property alias textColor: label.color
     property alias font: label.font
     property bool blockBack: false
+    property alias scene: scene_prv
 
     NullMouseArea { anchors.fill: parent }
 
@@ -58,12 +59,12 @@ Item {
 
     Item {
         id: shadowSource
-        width: scene.width + 60*Devices.density
-        height: scene.height + 60*Devices.density
+        width: scene_prv.width + 60*Devices.density
+        height: scene_prv.height + 60*Devices.density
         anchors.centerIn: parent
 
         Rectangle {
-            id: scene
+            id: scene_prv
             color: gbDialog.color
             anchors.centerIn: parent
             width: row.width + 40*Devices.density

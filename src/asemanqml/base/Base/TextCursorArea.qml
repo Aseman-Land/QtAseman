@@ -22,7 +22,7 @@ import QtQuick.Controls 2.0 as QtControls
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.2
 import QtQuick.Controls.Private 1.0
-import AsemanQml.MaterialIcons 1.0
+import AsemanQml.MaterialIcons 2.0
 
 Item {
     id: tcarea

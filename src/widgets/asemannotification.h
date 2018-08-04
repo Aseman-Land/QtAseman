@@ -19,22 +19,21 @@
 #ifndef ASEMANNOTIFICATION_H
 #define ASEMANNOTIFICATION_H
 
-#ifdef LINUX_NATIVE_ASEMAN_NOTIFICATION
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
 #include "asemanlinuxnativenotification.h"
 typedef AsemanLinuxNativeNotification AsemanNotification;
-#else
-#ifdef MAC_NATIVE_ASEMAN_NOTIFICATION
+#elif defined(Q_OS_OSX) && !defined(Q_OS_IOS)
 #include "asemanmacnativenotification.h"
 typedef AsemanMacNativeNotification AsemanNotification;
-#else
-#ifdef NATIVE_ASEMAN_NOTIFICATION
+#elif defined(Q_OS_WIN)
 #include "asemannativenotification.h"
 typedef AsemanNativeNotification AsemanNotification;
+#elif defined(Q_OS_ANDROID)
+#include "asemanandroidnativenotification.h"
+typedef AsemanAndroidNativeNotification AsemanNotification;
 #else
 #include <QObject>
 typedef QObject AsemanNotification;
-#endif
-#endif
 #endif
 
 #endif // ASEMANNOTIFICATION_H

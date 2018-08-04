@@ -44,12 +44,30 @@ import android.app.PendingIntent;
 import android.app.Notification;
 import android.content.res.Resources;
 import land.aseman.android.AsemanActivity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.res.Resources;
+import android.content.Context;
 
 import org.qtproject.qt5.android.bindings.QtService;
 
 public class AsemanQtService extends QtService {
 
-    public void foreground(String title, String msg, String icon) {
+    private static NotificationManager m_notificationManager;
+    private static Notification.Builder m_builder;
+    private static AsemanQtService m_instance = null;
+
+    public static AsemanQtService getServiceInstance() {
+        return AsemanQtService.m_instance;
+    }
+
+    @Override
+    public void onCreate() {
+        m_instance = this;
+        super.onCreate();
+    }
+
+    public boolean startForeground(int id, String title, String msg, String iconPath, String icon) {
         Intent notificationIntent = new Intent(this, AsemanActivity.class);
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -60,10 +78,44 @@ public class AsemanQtService extends QtService {
                   new Notification.Builder(this)
             .setContentTitle(title)
             .setContentText(msg)
-            .setSmallIcon(R.getIdentifier(icon, "drawable", getPackageName()))
+            .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
             .setContentIntent(pendingIntent)
             .build();
 
-        startForeground(1000, notification);
+        startForeground(id, notification);
+        return true;
+    }
+
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon)
+    {
+        Resources R = getResources();
+        if (m_notificationManager == null) {
+            m_notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+
+        Intent notificationIntent = new Intent(this, AsemanActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification =
+                  new Notification.Builder(this)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build();
+
+        m_notificationManager.notify(id, notification);
+        return true;
+    }
+
+    public boolean stopNotification(int id)
+    {
+        if (m_notificationManager == null) {
+            m_notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        m_notificationManager.cancel(id);
+        return true;
     }
 }

@@ -45,6 +45,13 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Iterator;
 import android.graphics.Color;
+import android.os.IBinder;
+import android.content.res.Configuration;
+import android.app.PendingIntent;
+import android.app.Notification;
+import android.content.res.Resources;
+import android.app.Notification;
+import android.app.NotificationManager;
 
 //import com.google.android.gms.common.api.GoogleApiClient;
 //import com.google.android.gms.common.api.GoogleSignInOptions;
@@ -60,6 +67,9 @@ public class AsemanActivity extends QtActivity
     public boolean _transparentStatusBar = false;
     public boolean _transparentNavigationBar = false;
     public static final int SELECT_IMAGE = 1;
+
+    private static NotificationManager m_notificationManager;
+    private static Notification.Builder m_builder;
 
     boolean _storeHasFound;
     String _storeManagerLastPurchaseSku;
@@ -92,6 +102,39 @@ public class AsemanActivity extends QtActivity
 
     public boolean transparentNavigationBar() {
         return _transparentNavigationBar;
+    }
+
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon)
+    {
+        Resources R = getResources();
+        if (m_notificationManager == null) {
+            m_notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+
+        Intent notificationIntent = new Intent(this, AsemanActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification =
+                  new Notification.Builder(this)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build();
+
+        m_notificationManager.notify(id, notification);
+        return true;
+    }
+
+    public boolean stopNotification(int id)
+    {
+        if (m_notificationManager == null) {
+            m_notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        m_notificationManager.cancel(id);
+        return true;
     }
 
     boolean setLayoutNoLimit(boolean stt)

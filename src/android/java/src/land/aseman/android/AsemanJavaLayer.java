@@ -20,7 +20,6 @@ package land.aseman.android;
 
 import land.aseman.android.AsemanApplication;
 import land.aseman.android.AsemanActivity;
-import land.aseman.android.AsemanService;
 import land.aseman.android.AsemanQtService;
 
 import org.qtproject.qt5.android.bindings.QtService;
@@ -215,38 +214,10 @@ public class AsemanJavaLayer
         if(AsemanActivity.getActivityInstance() != null)
             return AsemanActivity.getActivityInstance();
         else
-        if(AsemanService.getServiceInstance() != null)
-            return AsemanService.getServiceInstance();
+        if(AsemanQtService.getServiceInstance() != null)
+            return AsemanQtService.getServiceInstance();
         else
             return AsemanApplication.getAppContext();
-    }
-
-    boolean startService()
-    {
-        Context oContext;
-        oContext = AsemanApplication.getAppContext();
-        Intent i = new Intent(oContext, AsemanService.class);
-        i.putExtra("name", "SurvivingwithAndroid");
-        try {
-            oContext.startService(i);
-        } catch(Exception e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    boolean stopService()
-    {
-        Context oContext;
-        oContext = AsemanApplication.getAppContext();
-        Intent i = new Intent(oContext, AsemanService.class);
-        try {
-        oContext.stopService(i);
-        } catch(Exception e) {
-            return false;
-        }
-        return true;
     }
 
     boolean killService(String serviceName)
@@ -527,6 +498,42 @@ public class AsemanJavaLayer
         };
         mainHandler.post(myRunnable);
         return true;
+    }
+
+    boolean startForeground(int id, String title, String body, String iconPath, String icon)
+    {
+        if(AsemanQtService.getServiceInstance() != null)
+            return AsemanQtService.getServiceInstance().startForeground(id, title, body, iconPath, icon);
+        return false;
+    }
+
+    boolean stopForeground(boolean removeNotification)
+    {
+        if(AsemanQtService.getServiceInstance() != null) {
+            AsemanQtService.getServiceInstance().stopForeground(removeNotification);
+            return true;
+        }
+        return false;
+    }
+
+    boolean startNotification(int id, String title, String body, String iconPath, String icon)
+    {
+        if(AsemanActivity.getActivityInstance() != null)
+            return AsemanActivity.getActivityInstance().startNotification(id, title, body, iconPath, icon);
+        else
+        if(AsemanQtService.getServiceInstance() != null)
+            return AsemanQtService.getServiceInstance().startNotification(id, title, body, iconPath, icon);
+        return false;
+    }
+
+    boolean stopNotification(int id)
+    {
+        if(AsemanActivity.getActivityInstance() != null)
+            return AsemanActivity.getActivityInstance().stopNotification(id);
+        else
+        if(AsemanQtService.getServiceInstance() != null)
+            return AsemanQtService.getServiceInstance().stopNotification(id);
+        return false;
     }
 
 //    public static String getUniquePsuedoID() {

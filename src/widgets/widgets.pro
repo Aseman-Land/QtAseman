@@ -64,6 +64,13 @@ macx {
         $$PWD/private/asemanunitytaskbarbuttonengine.h \
         $$PWD/asemankdewallet.h
 }
+android {
+    DEFINES += ANDROID_NATIVE_ASEMAN_NOTIFICATION
+    HEADERS += \
+        $$PWD/asemanandroidnativenotification.h
+    SOURCES += \
+        $$PWD/asemanandroidnativenotification.cpp
+}
 win {
     QT += winextras
     SOURCES += \

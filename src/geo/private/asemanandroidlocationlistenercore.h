@@ -39,6 +39,6 @@ private:
     AsemanAndroidLocationListenerPrivate *p;
 };
 
-Q_DECLARE_METATYPE(QGeoPositionInfo)
+//Q_DECLARE_METATYPE(QGeoPositionInfo)
 
 #endif // ASEMANANDROIDLOCATIONLISTENERCORE_H

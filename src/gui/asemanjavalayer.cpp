@@ -120,6 +120,46 @@ bool AsemanJavaLayer::getOpenPictures()
     return res;
 }
 
+bool AsemanJavaLayer::startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon)
+{
+    jint jid = id;
+    QAndroidJniObject jtitle = QAndroidJniObject::fromString(title);
+    QAndroidJniObject jmsg = QAndroidJniObject::fromString(msg);
+    QAndroidJniObject jicon = QAndroidJniObject::fromString(icon);
+    QAndroidJniObject jiconPath = QAndroidJniObject::fromString(iconPath);
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z",
+                                                  jid, jtitle.object<jstring>(), jmsg.object<jstring>(),
+                                                  jiconPath.object<jstring>(), jicon.object<jstring>());
+    return res;
+}
+
+bool AsemanJavaLayer::stopForeground(bool removeNotification)
+{
+    jboolean jremoveNotification = removeNotification;
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(Z)Z", jremoveNotification);
+    return res;
+}
+
+bool AsemanJavaLayer::startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon)
+{
+    jint jid = id;
+    QAndroidJniObject jtitle = QAndroidJniObject::fromString(title);
+    QAndroidJniObject jmsg = QAndroidJniObject::fromString(msg);
+    QAndroidJniObject jicon = QAndroidJniObject::fromString(icon);
+    QAndroidJniObject jiconPath = QAndroidJniObject::fromString(iconPath);
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z",
+                                                  jid, jtitle.object<jstring>(), jmsg.object<jstring>(),
+                                                  jiconPath.object<jstring>(), jicon.object<jstring>());
+    return res;
+}
+
+bool AsemanJavaLayer::stopNotification(qint32 id)
+{
+    jint jid = id;
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(I)Z", jid);
+    return res;
+}
+
 bool AsemanJavaLayer::transparentStatusBar()
 {
     jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "()Z");
@@ -134,14 +174,12 @@ bool AsemanJavaLayer::transparentNavigationBar()
 
 bool AsemanJavaLayer::startService()
 {
-    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "()Z" );
-    return res;
+    return startQtService();
 }
 
 bool AsemanJavaLayer::stopService()
 {
-    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "()Z" );
-    return res;
+    return stopQtService();
 }
 
 bool AsemanJavaLayer::killService(const QString &serviceName)
