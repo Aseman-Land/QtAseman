@@ -31,7 +31,7 @@ Item {
     property color color: "#03A9F4"
     property color backgroundColor: "#ffffff"
 
-    property Item textItem
+    property Item textItem: parent
     property Item cursorParent: Window.contentItem
 
     readonly property bool selected: textItem && textItem.selectionStart != textItem.selectionEnd
@@ -65,6 +65,11 @@ Item {
 
     onCursorParentChanged: if(menuRect.visible) menuRect.showCursor()
 
+    Connections {
+        target: textItem
+        onActiveFocusChanged: if(!textItem.activeFocus) hideMenu()
+    }
+
     QtObject {
         id: prv
         property Item cursor0
@@ -84,6 +89,15 @@ Item {
     }
 
     PointMapListener { id: mapListener; source: tcarea; dest: cursorParent }
+
+    Item {
+        id: simulatedPadding
+        anchors.margins: textItem.padding? textItem.padding : 0
+        anchors.leftMargin: textItem.leftPadding? textItem.leftPadding : 0
+        anchors.rightMargin: textItem.rightPadding? textItem.rightPadding : 0
+        anchors.topMargin: textItem.topPadding? textItem.topPadding : 0
+        anchors.bottomMargin: textItem.bottomPadding? textItem.bottomPadding : 0
+    }
 
     Item {
         id: menuRect
@@ -119,6 +133,7 @@ Item {
             samples: 16
             color: "#80000000"
             source: menuItem
+            cached: true
         }
 
         Item {
@@ -155,6 +170,7 @@ Item {
                         text: data.name
                         flat: true
                         width: 128*Devices.density
+                        focusPolicy: Qt.NoFocus
                         onClicked: data.action()
 
                         property variant data: menuMoreMap[index]
@@ -178,6 +194,7 @@ Item {
                     delegate: QtControls.Button {
                         text: data.name
                         flat: true
+                        focusPolicy: Qt.NoFocus
                         anchors.verticalCenter: parent.verticalCenter
                         onClicked: data.action()
 
@@ -240,10 +257,12 @@ Item {
     MouseArea {
         anchors.fill: parent
         onPressAndHold: {
+            textItem.focus = true
+            textItem.forceActiveFocus()
             prv.forceHidden = false
             menuRect.visible = false
             textItem.cursorVisible = false
-            textItem.focus = false
+//            textItem.focus = false
             var pos = textItem.positionAt(mouseX, mouseY)
             textItem.cursorPosition = pos
             textItem.selectWord()
@@ -276,7 +295,7 @@ Item {
         x: mapListener.result.x
         y: mapListener.result.y
         z: 1000001
-        visible: textItem && textItem.visible
+        visible: textItem && textItem.visible && textItem.activeFocus
     }
 
     Component {
