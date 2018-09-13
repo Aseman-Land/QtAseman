@@ -24,7 +24,7 @@
 #include <QtQml>
 
 #ifdef ASEMAN_STATIC_BUILD
-bool AsemanAwesomePlugin::static_types_registered = false;//AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome");
+bool AsemanAwesomePlugin::static_types_registered = AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome");
 #endif
 
 bool AsemanAwesomePlugin::registerStaticTypes(const char *uri)

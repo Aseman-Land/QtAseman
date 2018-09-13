@@ -26,7 +26,7 @@
 #include <QtQml>
 
 #ifdef ASEMAN_STATIC_BUILD
-bool AsemanMultimediaPlugin::static_types_registered = false;//AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multiemedia");
+bool AsemanMultimediaPlugin::static_types_registered = AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multimedia");
 #endif
 
 bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)

@@ -24,7 +24,7 @@
 #include <QtQml>
 
 #ifdef ASEMAN_STATIC_BUILD
-bool AsemanMaterialIconsPlugin::static_types_registered = false;//AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons");
+bool AsemanMaterialIconsPlugin::static_types_registered = AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons");
 #endif
 
 bool AsemanMaterialIconsPlugin::registerStaticTypes(const char *uri)
