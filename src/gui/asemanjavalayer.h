@@ -73,7 +73,7 @@ public Q_SLOTS:
 
     bool startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon);
     bool stopForeground(bool removeNotification);
-    bool startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon);
+    bool startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, bool sound = false, bool vibrate = false);
     bool stopNotification(qint32 id);
 
 Q_SIGNALS:

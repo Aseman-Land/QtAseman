@@ -37,6 +37,8 @@ Item {
     readonly property bool selected: textItem && textItem.selectionStart != textItem.selectionEnd
     property alias menuMore: menuRect.more
 
+    property real topPadding: 20
+
     property variant menuMap: {
         if(selected)
             return [
@@ -89,15 +91,6 @@ Item {
     }
 
     PointMapListener { id: mapListener; source: tcarea; dest: cursorParent }
-
-    Item {
-        id: simulatedPadding
-        anchors.margins: textItem.padding? textItem.padding : 0
-        anchors.leftMargin: textItem.leftPadding? textItem.leftPadding : 0
-        anchors.rightMargin: textItem.rightPadding? textItem.rightPadding : 0
-        anchors.topMargin: textItem.topPadding? textItem.topPadding : 0
-        anchors.bottomMargin: textItem.bottomPadding? textItem.bottomPadding : 0
-    }
 
     Item {
         id: menuRect
@@ -304,8 +297,8 @@ Item {
             id: cursorHandle
             width: 24*Devices.density
             height: width
-            x: customPoint.x? customPoint.x : pnt.x - width/2
-            y: customPoint.y? customPoint.y : pnt.y
+            x: customPoint.x? customPoint.x : pnt.x - width/2 + leftPadding
+            y: customPoint.y? customPoint.y : pnt.y + topPadding
             visible: {
                 if(prv.forceHidden)
                     return false
@@ -317,6 +310,9 @@ Item {
                     return true
                 return false
             }
+
+            property real topPadding: textItem.topPadding? textItem.topPadding : 0
+            property real leftPadding: textItem.leftPadding? textItem.leftPadding : 0
 
             Behavior on x {
                 NumberAnimation { easing.type: Easing.OutCubic; duration: customPoint.x? 0 : 300 }

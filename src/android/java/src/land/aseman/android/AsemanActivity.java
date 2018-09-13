@@ -104,7 +104,7 @@ public class AsemanActivity extends QtActivity
         return _transparentNavigationBar;
     }
 
-    public boolean startNotification(int id, String title, String body, String iconPath, String icon)
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
     {
         Resources R = getResources();
         if (m_notificationManager == null) {
@@ -123,6 +123,9 @@ public class AsemanActivity extends QtActivity
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build();
+
+        if(sound) notification.defaults |= Notification.DEFAULT_SOUND;
+        if(vibrate) notification.defaults |= Notification.DEFAULT_VIBRATE;
 
         m_notificationManager.notify(id, notification);
         return true;

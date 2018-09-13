@@ -40,7 +40,7 @@ quint32 AsemanAndroidNativeNotification::sendNotify(const QString &title, const 
     QString iconName = icon.mid(iconPathIdx+1);
 
     qint32 id = replace_id? replace_id : p->id;
-    if(!AsemanJavaLayer::instance()->startNotification(id, title, body, iconPath, iconName) )
+    if(!AsemanJavaLayer::instance()->startNotification(id, title, body, iconPath, iconName, true) )
         return -1;
 
     if(replace_id == 0) p->id++;

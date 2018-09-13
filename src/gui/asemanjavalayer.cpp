@@ -140,16 +140,18 @@ bool AsemanJavaLayer::stopForeground(bool removeNotification)
     return res;
 }
 
-bool AsemanJavaLayer::startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon)
+bool AsemanJavaLayer::startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, bool sound, bool vibrate)
 {
     jint jid = id;
     QAndroidJniObject jtitle = QAndroidJniObject::fromString(title);
     QAndroidJniObject jmsg = QAndroidJniObject::fromString(msg);
     QAndroidJniObject jicon = QAndroidJniObject::fromString(icon);
     QAndroidJniObject jiconPath = QAndroidJniObject::fromString(iconPath);
-    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z",
+    jboolean jsound = sound;
+    jboolean jvibrate = vibrate;
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)Z",
                                                   jid, jtitle.object<jstring>(), jmsg.object<jstring>(),
-                                                  jiconPath.object<jstring>(), jicon.object<jstring>());
+                                                  jiconPath.object<jstring>(), jicon.object<jstring>(), jsound, jvibrate);
     return res;
 }
 

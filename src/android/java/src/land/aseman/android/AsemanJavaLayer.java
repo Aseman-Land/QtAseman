@@ -516,13 +516,13 @@ public class AsemanJavaLayer
         return false;
     }
 
-    boolean startNotification(int id, String title, String body, String iconPath, String icon)
+    boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
     {
         if(AsemanActivity.getActivityInstance() != null)
-            return AsemanActivity.getActivityInstance().startNotification(id, title, body, iconPath, icon);
+            return AsemanActivity.getActivityInstance().startNotification(id, title, body, iconPath, icon, sound, vibrate);
         else
         if(AsemanQtService.getServiceInstance() != null)
-            return AsemanQtService.getServiceInstance().startNotification(id, title, body, iconPath, icon);
+            return AsemanQtService.getServiceInstance().startNotification(id, title, body, iconPath, icon, sound, vibrate);
         return false;
     }
 
