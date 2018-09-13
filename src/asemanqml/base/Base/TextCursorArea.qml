@@ -37,6 +37,7 @@ Item {
     readonly property bool selected: textItem && textItem.selectionStart != textItem.selectionEnd
     property alias menuMore: menuRect.more
 
+    property alias active: marea.visible
     property real topPadding: 20
 
     property variant menuMap: {
@@ -69,7 +70,16 @@ Item {
 
     Connections {
         target: textItem
-        onActiveFocusChanged: if(!textItem.activeFocus) hideMenu()
+        onActiveFocusChanged: {
+            if(!textItem.activeFocus) {
+                hideMenu()
+                AsemanApp.qpaNoTextHandles = false
+            }
+            else
+            if(active) {
+                AsemanApp.qpaNoTextHandles = true
+            }
+        }
     }
 
     QtObject {
@@ -248,8 +258,11 @@ Item {
     }
 
     MouseArea {
+        id: marea
         anchors.fill: parent
+        visible: Devices.isAndroid
         onPressAndHold: {
+            AsemanApp.qpaNoTextHandles = true
             textItem.focus = true
             textItem.forceActiveFocus()
             prv.forceHidden = false
@@ -262,6 +275,7 @@ Item {
             menuRect.showCursor()
         }
         onClicked: {
+            AsemanApp.qpaNoTextHandles = true
             prv.forceHidden = false
             var pos = textItem.positionAt(mouseX, mouseY)
             if(textItem.selectionStart != textItem.selectionEnd &&

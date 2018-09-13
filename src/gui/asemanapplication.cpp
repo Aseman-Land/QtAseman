@@ -442,6 +442,25 @@ QString AsemanApplication::applicationAbout()
         return QString();
 }
 
+void AsemanApplication::setQpaNoTextHandles(bool stt)
+{
+    bool currentResult = qpaNoTextHandles();
+    if(currentResult == stt)
+        return;
+
+    if(stt)
+        qputenv("QT_QPA_NO_TEXT_HANDLES", "1");
+    else
+        qunsetenv("QT_QPA_NO_TEXT_HANDLES");
+
+    Q_EMIT aseman_app_singleton->qpaNoTextHandlesChanged();
+}
+
+bool AsemanApplication::qpaNoTextHandles()
+{
+    return qgetenv("QT_QPA_NO_TEXT_HANDLES") == "1";
+}
+
 QString AsemanApplication::platformName()
 {
     READ_DEFINITION(platformName, QString())

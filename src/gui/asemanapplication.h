@@ -70,6 +70,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanApplication : public QObject
     Q_PROPERTY(QString organizationName READ organizationName WRITE setOrganizationName NOTIFY organizationNameChanged)
     Q_PROPERTY(QString organizationDomain READ organizationDomain WRITE setOrganizationDomain NOTIFY organizationDomainChanged)
     Q_PROPERTY(QString applicationAbout READ applicationAbout WRITE setApplicationAbout NOTIFY applicationAboutChanged)
+    Q_PROPERTY(bool qpaNoTextHandles READ qpaNoTextHandles WRITE setQpaNoTextHandles NOTIFY qpaNoTextHandlesChanged)
     Q_PROPERTY(QUrl windowIcon READ windowIcon WRITE setWindowIcon NOTIFY windowIconChanged)
 
     Q_PROPERTY(int applicationState READ applicationState NOTIFY applicationStateChanged)
@@ -130,6 +131,9 @@ public:
     static QString applicationDisplayName();
     static void setApplicationAbout(const QString &desc);
     static QString applicationAbout();
+
+    static void setQpaNoTextHandles(bool stt);
+    static bool qpaNoTextHandles();
 
     static QString platformName();
 
@@ -198,6 +202,7 @@ Q_SIGNALS:
     void applicationStateChanged();
     void applicationAboutChanged();
     void windowIconChanged();
+    void qpaNoTextHandlesChanged();
 
     void lastWindowClosed();
 
