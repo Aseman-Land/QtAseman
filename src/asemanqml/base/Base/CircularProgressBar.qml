@@ -53,7 +53,6 @@ Item {
             anchors.fill: parent
             antialiasing: true
             renderStrategy: Canvas.Threaded
-            renderTarget: Canvas.FramebufferObject
             onPaint: {
                 var ctx = getContext("2d");
                 ctx.strokeStyle = cpbar.color

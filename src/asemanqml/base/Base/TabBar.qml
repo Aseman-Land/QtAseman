@@ -21,6 +21,7 @@ import AsemanQml.Base 2.0
 import QtQuick.Controls 2.0 as QtControls
 
 Item {
+    id: tbar
     height: 50*Devices.density
 
     property alias color: back.color
@@ -31,6 +32,7 @@ Item {
     property color highlightColor: "#03A9F4"
     property color textColor: "#333333"
     property real fontSize: 12*Devices.fontDensity
+    property string fontFamily: AsemanApp.globalFont.family
     property string displayRole
 
     Rectangle {
@@ -63,6 +65,7 @@ Item {
                 maximumLineCount: 1
                 elide: Text.ElideRight
                 font.pixelSize: fontSize
+                font.family: tbar.fontFamily
                 color: tabBar.currentIndex==index? highlightColor : textColor
                 text: displayRole.length? model[displayRole] : tabBar.model[index]
             }
