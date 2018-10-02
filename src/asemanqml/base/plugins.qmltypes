@@ -67,6 +67,7 @@ Module {
         Property { name: "organizationName"; type: "string" }
         Property { name: "organizationDomain"; type: "string" }
         Property { name: "applicationAbout"; type: "string" }
+        Property { name: "qpaNoTextHandles"; type: "bool" }
         Property { name: "windowIcon"; type: "QUrl" }
         Property { name: "applicationState"; type: "int"; isReadonly: true }
         Property { name: "applicationDisplayName"; type: "string" }
@@ -2134,6 +2135,7 @@ Module {
         Property { name: "organizationName"; type: "string" }
         Property { name: "organizationDomain"; type: "string" }
         Property { name: "applicationAbout"; type: "string" }
+        Property { name: "qpaNoTextHandles"; type: "bool" }
         Property { name: "windowIcon"; type: "QUrl" }
         Property { name: "applicationState"; type: "int"; isReadonly: true }
         Property { name: "applicationDisplayName"; type: "string" }
@@ -2196,14 +2198,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_40"
+            type: "SlidePageManager_QMLTYPE_24"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_38"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_36"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_47"
+            type: "HeaderMenuButton_QMLTYPE_23"
             isReadonly: true
             isPointer: true
         }
@@ -2215,7 +2217,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2238,8 +2240,6 @@ Module {
         Property { name: "overlay"; type: "QQuickOverlay"; isReadonly: true; isPointer: true }
         Property { name: "font"; type: "QFont" }
         Property { name: "locale"; type: "QLocale" }
-        Property { name: "palette"; revision: 3; type: "QPalette" }
-        Property { name: "menuBar"; revision: 3; type: "QQuickItem"; isPointer: true }
         Property { name: "visible"; type: "bool" }
         Property { name: "visibility"; type: "Visibility" }
         Property { name: "screen"; revision: 2; type: "QObject"; isPointer: true }
@@ -2400,17 +2400,6 @@ Module {
         Method {
             name: "setHeight"
             Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setGeometry"
-            Parameter { name: "posx"; type: "int" }
-            Parameter { name: "posy"; type: "int" }
-            Parameter { name: "w"; type: "int" }
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "setGeometry"
-            Parameter { name: "rect"; type: "QRect" }
         }
         Method {
             name: "setMinimumWidth"
@@ -2487,7 +2476,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2510,8 +2499,6 @@ Module {
         Property { name: "overlay"; type: "QQuickOverlay"; isReadonly: true; isPointer: true }
         Property { name: "font"; type: "QFont" }
         Property { name: "locale"; type: "QLocale" }
-        Property { name: "palette"; revision: 3; type: "QPalette" }
-        Property { name: "menuBar"; revision: 3; type: "QQuickItem"; isPointer: true }
         Property { name: "visible"; type: "bool" }
         Property { name: "visibility"; type: "Visibility" }
         Property { name: "screen"; revision: 2; type: "QObject"; isPointer: true }
@@ -2672,17 +2659,6 @@ Module {
         Method {
             name: "setHeight"
             Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setGeometry"
-            Parameter { name: "posx"; type: "int" }
-            Parameter { name: "posy"; type: "int" }
-            Parameter { name: "w"; type: "int" }
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "setGeometry"
-            Parameter { name: "rect"; type: "QRect" }
         }
         Method {
             name: "setMinimumWidth"
@@ -2870,55 +2846,6 @@ Module {
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/CursorPicker 2.0"
-        exports: ["AsemanQml.Base/CursorPicker 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "pickerWidth"; type: "double" }
-        Property { name: "pickerHeight"; type: "double" }
-        Property { name: "moving"; type: "bool" }
-        Property { name: "press"; type: "bool" }
-        Property { name: "commitBlocker"; type: "bool" }
-        Property { name: "pickersVisible"; type: "bool" }
-        Property { name: "pickersColor"; type: "QColor" }
-        Property { name: "pickersStrokeColor"; type: "QColor" }
-        Property { name: "textItem"; type: "QVariant" }
-        Property { name: "cursorPosition"; type: "int" }
-        Method {
-            name: "isPointOnPickers"
-            type: "QVariant"
-            Parameter { name: "x"; type: "QVariant" }
-            Parameter { name: "y"; type: "QVariant" }
-        }
-        Method { name: "refresh"; type: "QVariant" }
-        Method {
-            name: "commited"
-            type: "QVariant"
-            Parameter { name: "item"; type: "QVariant" }
-        }
-        Method {
-            name: "commitedTwo"
-            type: "QVariant"
-            Parameter { name: "item"; type: "QVariant" }
-            Parameter { name: "baseItem"; type: "QVariant" }
-        }
-        Method { name: "hide"; type: "QVariant" }
-        Method { name: "show"; type: "QVariant" }
-        Method { name: "commitFaders"; type: "QVariant" }
-        Method {
-            name: "getItemPosition"
-            type: "QVariant"
-            Parameter { name: "item"; type: "QVariant" }
-        }
-        Method { name: "calculateSelection"; type: "QVariant" }
-        Method { name: "selectedText"; type: "QVariant" }
-        Method { name: "deleteSelectedText"; type: "QVariant" }
-        Method { name: "declareSelectedText"; type: "QVariant" }
-        Method { name: "initTranslations"; type: "QVariant" }
-    }
-    Component {
         prototype: "QQuickMouseArea"
         name: "AsemanQml.Base/CursorShapeArea 2.0"
         exports: ["AsemanQml.Base/CursorShapeArea 2.0"]
@@ -3003,27 +2930,6 @@ Module {
         Property { name: "tabBarHeight"; type: "double" }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/GetPassDialog 2.0"
-        exports: ["AsemanQml.Base/GetPassDialog 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "password"; type: "string" }
-        Property { name: "getPassOnly"; type: "bool" }
-        Property { name: "backBlur"; type: "QVariant" }
-        Property { name: "parentItem"; type: "QVariant" }
-        Property { name: "allowBack"; type: "bool" }
-        Property { name: "inputMethodHints"; type: "int" }
-        Signal { name: "success" }
-        Signal {
-            name: "passGiven"
-            Parameter { name: "pass"; type: "string" }
-        }
-        Method { name: "done"; type: "QVariant" }
-        Method { name: "initTranslations"; type: "QVariant" }
-    }
-    Component {
         prototype: "QQuickRectangle"
         name: "AsemanQml.Base/Header 2.0"
         exports: ["AsemanQml.Base/Header 2.0"]
@@ -3073,29 +2979,6 @@ Module {
         Property { name: "running"; type: "bool" }
         Method { name: "start"; type: "QVariant" }
         Method { name: "stop"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/LineEdit 2.0"
-        exports: ["AsemanQml.Base/LineEdit 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "textSideMargins"; type: "double" }
-        Property { name: "clearButton"; type: "bool" }
-        Property { name: "placeholder"; type: "string" }
-        Property { name: "placeholderColor"; type: "QColor" }
-        Property { name: "text"; type: "string" }
-        Property { name: "textColor"; type: "QColor" }
-        Property { name: "font"; type: "QFont" }
-        Property { name: "echoMode"; type: "int" }
-        Property { name: "lineFocus"; type: "bool" }
-        Property { name: "pickerEnable"; type: "bool" }
-        Property { name: "validator"; type: "QValidator"; isPointer: true }
-        Signal { name: "accepted" }
-        Method { name: "paste"; type: "QVariant" }
-        Method { name: "copy"; type: "QVariant" }
-        Method { name: "cut"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickItem"
@@ -3277,27 +3160,6 @@ Module {
         Method { name: "size"; type: "QVariant" }
     }
     Component {
-        prototype: "QQuickCanvasItem"
-        name: "AsemanQml.Base/Picker 2.0"
-        exports: ["AsemanQml.Base/Picker 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "fillColor"; type: "QColor" }
-        Property { name: "strokeColor"; type: "QColor" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/PickerHandler 2.0"
-        exports: ["AsemanQml.Base/PickerHandler 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "press"; type: "bool"; isReadonly: true }
-        Signal { name: "commited" }
-        Signal { name: "moved" }
-    }
-    Component {
         prototype: "QObject"
         name: "AsemanQml.Base/PointMapListener 2.0"
         exports: ["AsemanQml.Base/PointMapListener 2.0"]
@@ -3403,22 +3265,6 @@ Module {
         Property { name: "verticalAlignment"; type: "int" }
     }
     Component {
-        prototype: "QQuickTextEdit"
-        name: "AsemanQml.Base/STextEdit 2.0"
-        exports: ["AsemanQml.Base/STextEdit 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
-        prototype: "QQuickTextInput"
-        name: "AsemanQml.Base/STextInput 2.0"
-        exports: ["AsemanQml.Base/STextInput 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
         prototype: "QQuickItem"
         name: "AsemanQml.Base/ScrollBar 2.0"
         exports: ["AsemanQml.Base/ScrollBar 2.0"]
@@ -3431,6 +3277,35 @@ Module {
         Property { name: "color"; type: "QColor" }
         Method { name: "position"; type: "QVariant" }
         Method { name: "size"; type: "QVariant" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/SearchBar 2.0"
+        exports: ["AsemanQml.Base/SearchBar 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "show"; type: "bool" }
+        Property { name: "pointX"; type: "double" }
+        Property { name: "pointY"; type: "double" }
+        Property { name: "ratio"; type: "double" }
+        Property { name: "background"; type: "QColor" }
+        Property { name: "styleAndroid"; type: "int"; isReadonly: true }
+        Property { name: "styleIOS"; type: "int"; isReadonly: true }
+        Property { name: "styleType"; type: "int" }
+        Property { name: "text"; type: "string" }
+        Property { name: "font"; type: "QFont" }
+        Property { name: "color"; type: "QColor" }
+        Property { name: "placeholder"; type: "string" }
+        Property { name: "inputMethodHints"; type: "int" }
+        Property { name: "validator"; type: "QValidator"; isPointer: true }
+        Property { name: "verticalAlignment"; type: "int" }
+        Property { name: "horizontalAlignment"; type: "int" }
+        Property { name: "selectionColor"; type: "QColor" }
+        Property { name: "selectionTextColor"; type: "QColor" }
+        Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
+        Method { name: "open"; type: "QVariant" }
+        Method { name: "close"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickRectangle"
@@ -3585,6 +3460,7 @@ Module {
         Property { name: "highlightColor"; type: "QColor" }
         Property { name: "textColor"; type: "QColor" }
         Property { name: "fontSize"; type: "double" }
+        Property { name: "fontFamily"; type: "string" }
         Property { name: "displayRole"; type: "string" }
         Property { name: "color"; type: "QColor" }
         Property { name: "model"; type: "QVariant" }
@@ -3605,51 +3481,24 @@ Module {
         Property { name: "currentIndex"; type: "int" }
     }
     Component {
-        prototype: "QQuickTextEdit"
-        name: "AsemanQml.Base/TextAreaCore 2.0"
-        exports: ["AsemanQml.Base/TextAreaCore 2.0"]
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/TextCursorArea 2.0"
+        exports: ["AsemanQml.Base/TextCursorArea 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "press"; type: "bool" }
-        Property { name: "commitBlocker"; type: "bool" }
-        Property { name: "pickersVisible"; type: "bool" }
-        Property { name: "pickerEnable"; type: "bool" }
-        Property { name: "placeholder"; type: "string" }
-        Property { name: "placeholderColor"; type: "QColor" }
-        Property { name: "pickersColor"; type: "QColor" }
-        Property { name: "pickersStrokeColor"; type: "QColor" }
-        Method {
-            name: "isPointOnPickers"
-            type: "QVariant"
-            Parameter { name: "x"; type: "QVariant" }
-            Parameter { name: "y"; type: "QVariant" }
-        }
-        Method { name: "commitFaders"; type: "QVariant" }
-        Method { name: "showPicker"; type: "QVariant" }
-        Method { name: "hidePicker"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickTextInput"
-        name: "AsemanQml.Base/TextLineCore 2.0"
-        exports: ["AsemanQml.Base/TextLineCore 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "press"; type: "bool" }
-        Property { name: "commitBlocker"; type: "bool" }
-        Property { name: "pickerEnable"; type: "bool" }
-        Property { name: "pickersColor"; type: "QColor" }
-        Property { name: "pickersStrokeColor"; type: "QColor" }
-        Method {
-            name: "isPointOnPickers"
-            type: "QVariant"
-            Parameter { name: "x"; type: "QVariant" }
-            Parameter { name: "y"; type: "QVariant" }
-        }
-        Method { name: "commitFaders"; type: "QVariant" }
-        Method { name: "showPicker"; type: "QVariant" }
-        Method { name: "hidePicker"; type: "QVariant" }
+        Property { name: "color"; type: "QColor" }
+        Property { name: "backgroundColor"; type: "QColor" }
+        Property { name: "textItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
+        Property { name: "selected"; type: "bool"; isReadonly: true }
+        Property { name: "topPadding"; type: "double" }
+        Property { name: "menuMap"; type: "QVariant" }
+        Property { name: "menuMoreMap"; type: "QVariant" }
+        Property { name: "menuMore"; type: "bool" }
+        Property { name: "active"; type: "bool" }
+        Method { name: "hideMenu"; type: "QVariant" }
+        Method { name: "close"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickItem"
