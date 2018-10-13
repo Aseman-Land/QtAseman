@@ -7,7 +7,11 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Base 2.0'
 
 Module {
-    dependencies: ["QtQuick 2.8"]
+    dependencies: [
+        "QtGraphicalEffects 1.0",
+        "QtQuick 2.0",
+        "QtQuick.Window 2.1"
+    ]
     Component {
         name: "AsemanAbstractListModel"
         prototype: "QAbstractListModel"
@@ -2189,7 +2193,7 @@ Module {
         Property { name: "tabBarHeight"; type: "double" }
     }
     Component {
-        prototype: "QObject"
+        prototype: "QQuickWindowQmlImpl"
         name: "AsemanQml.Base/AsemanFullWindow 2.0"
         exports: ["AsemanQml.Base/AsemanFullWindow 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2198,14 +2202,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_24"
+            type: "SlidePageManager_QMLTYPE_30"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_36"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_28"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_23"
+            type: "HeaderMenuButton_QMLTYPE_37"
             isReadonly: true
             isPointer: true
         }
@@ -2217,7 +2221,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_44"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2240,189 +2244,6 @@ Module {
         Property { name: "overlay"; type: "QQuickOverlay"; isReadonly: true; isPointer: true }
         Property { name: "font"; type: "QFont" }
         Property { name: "locale"; type: "QLocale" }
-        Property { name: "visible"; type: "bool" }
-        Property { name: "visibility"; type: "Visibility" }
-        Property { name: "screen"; revision: 2; type: "QObject"; isPointer: true }
-        Signal {
-            name: "visibleChanged"
-            Parameter { name: "arg"; type: "bool" }
-        }
-        Signal {
-            name: "visibilityChanged"
-            Parameter { name: "visibility"; type: "QWindow::Visibility" }
-        }
-        Property { name: "data"; type: "QObject"; isList: true; isReadonly: true }
-        Property { name: "color"; type: "QColor" }
-        Property {
-            name: "activeFocusItem"
-            revision: 1
-            type: "QQuickItem"
-            isReadonly: true
-            isPointer: true
-        }
-        Signal { name: "frameSwapped" }
-        Signal {
-            name: "openglContextCreated"
-            revision: 2
-            Parameter { name: "context"; type: "QOpenGLContext"; isPointer: true }
-        }
-        Signal { name: "sceneGraphInitialized" }
-        Signal { name: "sceneGraphInvalidated" }
-        Signal { name: "beforeSynchronizing" }
-        Signal { name: "afterSynchronizing"; revision: 2 }
-        Signal { name: "beforeRendering" }
-        Signal { name: "afterRendering" }
-        Signal { name: "afterAnimating"; revision: 2 }
-        Signal { name: "sceneGraphAboutToStop"; revision: 2 }
-        Signal {
-            name: "closing"
-            revision: 1
-            Parameter { name: "close"; type: "QQuickCloseEvent"; isPointer: true }
-        }
-        Signal {
-            name: "colorChanged"
-            Parameter { type: "QColor" }
-        }
-        Signal {
-            name: "sceneGraphError"
-            revision: 2
-            Parameter { name: "error"; type: "QQuickWindow::SceneGraphError" }
-            Parameter { name: "message"; type: "string" }
-        }
-        Method { name: "update" }
-        Method { name: "releaseResources" }
-        Property { name: "title"; type: "string" }
-        Property { name: "modality"; type: "Qt::WindowModality" }
-        Property { name: "flags"; type: "Qt::WindowFlags" }
-        Property { name: "x"; type: "int" }
-        Property { name: "y"; type: "int" }
-        Property { name: "width"; type: "int" }
-        Property { name: "height"; type: "int" }
-        Property { name: "minimumWidth"; type: "int" }
-        Property { name: "minimumHeight"; type: "int" }
-        Property { name: "maximumWidth"; type: "int" }
-        Property { name: "maximumHeight"; type: "int" }
-        Property { name: "active"; revision: 1; type: "bool"; isReadonly: true }
-        Property { name: "contentOrientation"; type: "Qt::ScreenOrientation" }
-        Property { name: "opacity"; revision: 1; type: "double" }
-        Signal {
-            name: "screenChanged"
-            Parameter { name: "screen"; type: "QScreen"; isPointer: true }
-        }
-        Signal {
-            name: "modalityChanged"
-            Parameter { name: "modality"; type: "Qt::WindowModality" }
-        }
-        Signal {
-            name: "windowStateChanged"
-            Parameter { name: "windowState"; type: "Qt::WindowState" }
-        }
-        Signal {
-            name: "windowTitleChanged"
-            revision: 2
-            Parameter { name: "title"; type: "string" }
-        }
-        Signal {
-            name: "xChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "yChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "widthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "heightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "minimumWidthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "minimumHeightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "maximumWidthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "maximumHeightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "contentOrientationChanged"
-            Parameter { name: "orientation"; type: "Qt::ScreenOrientation" }
-        }
-        Signal {
-            name: "focusObjectChanged"
-            Parameter { name: "object"; type: "QObject"; isPointer: true }
-        }
-        Signal {
-            name: "opacityChanged"
-            revision: 1
-            Parameter { name: "opacity"; type: "double" }
-        }
-        Method { name: "requestActivate"; revision: 1 }
-        Method {
-            name: "setVisible"
-            Parameter { name: "visible"; type: "bool" }
-        }
-        Method { name: "show" }
-        Method { name: "hide" }
-        Method { name: "showMinimized" }
-        Method { name: "showMaximized" }
-        Method { name: "showFullScreen" }
-        Method { name: "showNormal" }
-        Method { name: "close"; type: "bool" }
-        Method { name: "raise" }
-        Method { name: "lower" }
-        Method {
-            name: "setTitle"
-            Parameter { type: "string" }
-        }
-        Method {
-            name: "setX"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setY"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setWidth"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setHeight"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setMinimumWidth"
-            Parameter { name: "w"; type: "int" }
-        }
-        Method {
-            name: "setMinimumHeight"
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "setMaximumWidth"
-            Parameter { name: "w"; type: "int" }
-        }
-        Method {
-            name: "setMaximumHeight"
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "alert"
-            revision: 1
-            Parameter { name: "msec"; type: "int" }
-        }
-        Method { name: "requestUpdate"; revision: 3 }
     }
     Component {
         prototype: "QQuickGridView"
@@ -2466,7 +2287,7 @@ Module {
         Property { name: "source"; type: "QUrl" }
     }
     Component {
-        prototype: "QObject"
+        prototype: "QQuickWindowQmlImpl"
         name: "AsemanQml.Base/AsemanWindow 2.0"
         exports: ["AsemanQml.Base/AsemanWindow 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2476,7 +2297,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_44"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2499,189 +2320,6 @@ Module {
         Property { name: "overlay"; type: "QQuickOverlay"; isReadonly: true; isPointer: true }
         Property { name: "font"; type: "QFont" }
         Property { name: "locale"; type: "QLocale" }
-        Property { name: "visible"; type: "bool" }
-        Property { name: "visibility"; type: "Visibility" }
-        Property { name: "screen"; revision: 2; type: "QObject"; isPointer: true }
-        Signal {
-            name: "visibleChanged"
-            Parameter { name: "arg"; type: "bool" }
-        }
-        Signal {
-            name: "visibilityChanged"
-            Parameter { name: "visibility"; type: "QWindow::Visibility" }
-        }
-        Property { name: "data"; type: "QObject"; isList: true; isReadonly: true }
-        Property { name: "color"; type: "QColor" }
-        Property {
-            name: "activeFocusItem"
-            revision: 1
-            type: "QQuickItem"
-            isReadonly: true
-            isPointer: true
-        }
-        Signal { name: "frameSwapped" }
-        Signal {
-            name: "openglContextCreated"
-            revision: 2
-            Parameter { name: "context"; type: "QOpenGLContext"; isPointer: true }
-        }
-        Signal { name: "sceneGraphInitialized" }
-        Signal { name: "sceneGraphInvalidated" }
-        Signal { name: "beforeSynchronizing" }
-        Signal { name: "afterSynchronizing"; revision: 2 }
-        Signal { name: "beforeRendering" }
-        Signal { name: "afterRendering" }
-        Signal { name: "afterAnimating"; revision: 2 }
-        Signal { name: "sceneGraphAboutToStop"; revision: 2 }
-        Signal {
-            name: "closing"
-            revision: 1
-            Parameter { name: "close"; type: "QQuickCloseEvent"; isPointer: true }
-        }
-        Signal {
-            name: "colorChanged"
-            Parameter { type: "QColor" }
-        }
-        Signal {
-            name: "sceneGraphError"
-            revision: 2
-            Parameter { name: "error"; type: "QQuickWindow::SceneGraphError" }
-            Parameter { name: "message"; type: "string" }
-        }
-        Method { name: "update" }
-        Method { name: "releaseResources" }
-        Property { name: "title"; type: "string" }
-        Property { name: "modality"; type: "Qt::WindowModality" }
-        Property { name: "flags"; type: "Qt::WindowFlags" }
-        Property { name: "x"; type: "int" }
-        Property { name: "y"; type: "int" }
-        Property { name: "width"; type: "int" }
-        Property { name: "height"; type: "int" }
-        Property { name: "minimumWidth"; type: "int" }
-        Property { name: "minimumHeight"; type: "int" }
-        Property { name: "maximumWidth"; type: "int" }
-        Property { name: "maximumHeight"; type: "int" }
-        Property { name: "active"; revision: 1; type: "bool"; isReadonly: true }
-        Property { name: "contentOrientation"; type: "Qt::ScreenOrientation" }
-        Property { name: "opacity"; revision: 1; type: "double" }
-        Signal {
-            name: "screenChanged"
-            Parameter { name: "screen"; type: "QScreen"; isPointer: true }
-        }
-        Signal {
-            name: "modalityChanged"
-            Parameter { name: "modality"; type: "Qt::WindowModality" }
-        }
-        Signal {
-            name: "windowStateChanged"
-            Parameter { name: "windowState"; type: "Qt::WindowState" }
-        }
-        Signal {
-            name: "windowTitleChanged"
-            revision: 2
-            Parameter { name: "title"; type: "string" }
-        }
-        Signal {
-            name: "xChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "yChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "widthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "heightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "minimumWidthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "minimumHeightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "maximumWidthChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "maximumHeightChanged"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Signal {
-            name: "contentOrientationChanged"
-            Parameter { name: "orientation"; type: "Qt::ScreenOrientation" }
-        }
-        Signal {
-            name: "focusObjectChanged"
-            Parameter { name: "object"; type: "QObject"; isPointer: true }
-        }
-        Signal {
-            name: "opacityChanged"
-            revision: 1
-            Parameter { name: "opacity"; type: "double" }
-        }
-        Method { name: "requestActivate"; revision: 1 }
-        Method {
-            name: "setVisible"
-            Parameter { name: "visible"; type: "bool" }
-        }
-        Method { name: "show" }
-        Method { name: "hide" }
-        Method { name: "showMinimized" }
-        Method { name: "showMaximized" }
-        Method { name: "showFullScreen" }
-        Method { name: "showNormal" }
-        Method { name: "close"; type: "bool" }
-        Method { name: "raise" }
-        Method { name: "lower" }
-        Method {
-            name: "setTitle"
-            Parameter { type: "string" }
-        }
-        Method {
-            name: "setX"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setY"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setWidth"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setHeight"
-            Parameter { name: "arg"; type: "int" }
-        }
-        Method {
-            name: "setMinimumWidth"
-            Parameter { name: "w"; type: "int" }
-        }
-        Method {
-            name: "setMinimumHeight"
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "setMaximumWidth"
-            Parameter { name: "w"; type: "int" }
-        }
-        Method {
-            name: "setMaximumHeight"
-            Parameter { name: "h"; type: "int" }
-        }
-        Method {
-            name: "alert"
-            revision: 1
-            Parameter { name: "msec"; type: "int" }
-        }
-        Method { name: "requestUpdate"; revision: 3 }
     }
     Component {
         prototype: "QObject"
@@ -2964,6 +2602,47 @@ Module {
         Property { name: "ratio"; type: "double" }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
         Signal { name: "clicked" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/Helper 2.0"
+        exports: ["AsemanQml.Base/Helper 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "borderPadding"; type: "double" }
+        Property { name: "currentIndex"; type: "int" }
+        Property {
+            name: "currentItem"
+            type: "HelperPoint_QMLTYPE_99"
+            isReadonly: true
+            isPointer: true
+        }
+        Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "ratio"; type: "double"; isReadonly: true }
+        Property { name: "duration"; type: "int" }
+        Signal { name: "finished" }
+        Method { name: "next"; type: "QVariant" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/HelperPoint 2.0"
+        exports: ["AsemanQml.Base/HelperPoint 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "title"; type: "string" }
+        Property { name: "description"; type: "string" }
+        Property { name: "icon"; type: "string" }
+        Property { name: "color"; type: "QColor" }
+        Property { name: "titleColor"; type: "QColor" }
+        Property { name: "descriptionColor"; type: "QColor" }
+        Property { name: "iconColor"; type: "QColor" }
+        Property { name: "titleFont"; type: "QFont" }
+        Property { name: "descriptionFont"; type: "QFont" }
+        Property { name: "iconFont"; type: "QFont" }
+        Property { name: "buttonText"; type: "string" }
+        Property { name: "classId"; type: "string"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"

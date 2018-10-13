@@ -66,4 +66,5 @@ Drawer 2.0 Drawer.qml
 SideMenu 2.0 SideMenu.qml
 Button 2.0 Button.qml
 AsemanFullWindow 2.0 AsemanFullWindow.qml
-
+Helper 2.0 Helper.qml
+HelperPoint 2.0 HelperPoint.qml
