@@ -1,3 +1,4 @@
+CONFIG += no_app_extension_api_only
 load(qt_build_config)
 
 INCLUDEPATH += $$PWD
