@@ -68,3 +68,5 @@ Button 2.0 Button.qml
 AsemanFullWindow 2.0 AsemanFullWindow.qml
 Helper 2.0 Helper.qml
 HelperPoint 2.0 HelperPoint.qml
+ItemBackable 2.0 ItemBackable.qml
+AsemanPage 2.0 AsemanPage.qml
