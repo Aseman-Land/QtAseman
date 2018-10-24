@@ -35,6 +35,7 @@ Item {
     property int animationDuration: 400
     property int easingType: Easing.OutCubic
     property alias count: list.count
+    property bool gestureBackable: Devices.isIOS
 
     property int layoutDirection: View.layoutDirection
     property int direction: Qt.Horizontal
@@ -142,7 +143,7 @@ Item {
                 id: itemBackable
                 width: parent.width
                 height: parent.height
-                active: pmanager.direction == Qt.Horizontal
+                active: pmanager.direction == Qt.Horizontal && gestureBackable
                 animationDuration: pmanager.animationDuration
                 onOpenedChanged: {
                     if(opened)
