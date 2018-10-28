@@ -32,21 +32,35 @@ Item {
         id: marea
         x: layoutDirection == Qt.RightToLeft? parent.width - width : 0
         z: 10000
-        width: 50*Devices.density
+        width: 30*Devices.density
         height: parent.height
         onPressed: {
             pinX = mouseX
+            breakThePoint = false
         }
         onMouseXChanged: {
-            itemb.x += mouseX - pinX
-            marea.ratio = itemb.x/itemb.width
+            var delta = mouseX - pinX
+            if(Math.abs(delta) > 20*Devices.density)
+                breakThePoint = true
+            if(!breakThePoint)
+                return
+
+            var newX = itemb.x + delta
+            if(layoutDirection == Qt.RightToLeft) {
+                if(newX > 0) newX = 0
+            } else {
+                if(newX < 0) newX = 0
+            }
+
+            itemb.x = newX
+            marea.ratio = getNewRatio()
         }
         onReleased: {
             var absX = itemb.x
             if(layoutDirection == Qt.RightToLeft)
                 absX = -absX
 
-            xAnim.from = itemb.x/itemb.width
+            xAnim.from = getNewRatio()
             if(absX < itemb.width/4)
                 xAnim.to = 0
             else {
@@ -56,6 +70,16 @@ Item {
             xAnim.start()
         }
 
+        function getNewRatio() {
+            var newRatio = itemb.x/itemb.width
+            if(layoutDirection == Qt.RightToLeft)
+                newRatio = -newRatio
+            if(newRatio < 0)
+                newRatio = 0
+            return newRatio
+        }
+
+        property bool breakThePoint: false
         property bool opened: true
         property real ratio: 0
         property real pinX

@@ -63,6 +63,7 @@ Item {
         width: parent.width
         height: parent.height
 
+        property bool stopXAnim: false
         property real xPadding: 0
 
         x: {
@@ -90,7 +91,7 @@ Item {
         clip: true
 
         Behavior on x {
-            NumberAnimation{easing.type: easingType; duration: animationDuration}
+            NumberAnimation{easing.type: easingType; duration: scene.stopXAnim? 0 : animationDuration}
         }
         Behavior on scale {
             NumberAnimation{easing.type: easingType; duration: animationDuration}
@@ -152,10 +153,12 @@ Item {
                     item.back()
                 }
                 onXChanged: {
+                    scene.stopXAnim = true
                     if(list.count > 1)
                         list.at(list.count-2).xPadding = x
                     else
                         scene.xPadding = x
+                    scene.stopXAnim = false
                 }
 
                 Rectangle {
@@ -196,7 +199,7 @@ Item {
                     }
 
                     Behavior on x {
-                        NumberAnimation{easing.type: easingType; duration: animationDuration}
+                        NumberAnimation{easing.type: easingType; duration: scene.stopXAnim? 0 : animationDuration}
                     }
                     Behavior on y {
                         NumberAnimation{easing.type: easingType; duration: animationDuration}
