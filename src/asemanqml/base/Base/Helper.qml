@@ -240,7 +240,6 @@ Item {
             }
 
             QtControls.Button {
-                anchors.horizontalCenter: parent.horizontalCenter
                 visible: text.length
                 text: prv.lastItem? prv.lastItem.buttonText : ""
                 onClicked: next()
