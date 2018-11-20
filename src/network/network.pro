@@ -21,7 +21,8 @@ HEADERS += \
     $$PWD/asemannetworkmanageritem.h \
     $$PWD/asemannetworkproxy.h \
     $$PWD/asemannetworksleepmanager.h \
-    $$PWD/asemannetwork_global.h
+    $$PWD/asemannetwork_global.h \
+    asemansocketinterface.h
 
 SOURCES += \
     $$PWD/asemandownloader.cpp \
@@ -31,4 +32,5 @@ SOURCES += \
     $$PWD/asemannetworkmanager.cpp \
     $$PWD/asemannetworkmanageritem.cpp \
     $$PWD/asemannetworkproxy.cpp \
-    $$PWD/asemannetworksleepmanager.cpp
+    $$PWD/asemannetworksleepmanager.cpp \
+    asemansocketinterface.cpp

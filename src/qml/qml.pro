@@ -31,7 +31,8 @@ HEADERS += \
     $$PWD/qtsingleapplication/qtlockedfile.h \
     $$PWD/asemantools_global.h \
     $$PWD/asemandevicesitem.h \
-    asemantoolsitem.h
+    asemantoolsitem.h \
+    asemanprocess.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -53,7 +54,8 @@ SOURCES += \
     $$PWD/qtsingleapplication/qtlockedfile_win.cpp \
     $$PWD/qtsingleapplication/qtlockedfile.cpp \
     $$PWD/asemandevicesitem.cpp \
-    asemantoolsitem.cpp
+    asemantoolsitem.cpp \
+    asemanprocess.cpp
 
 android {
     QT += androidextras

@@ -1252,6 +1252,17 @@ Module {
         Signal { name: "sleep" }
     }
     Component {
+        name: "AsemanProcess"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/Process 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "arguments"; type: "QStringList" }
+        Property { name: "command"; type: "string" }
+        Property { name: "running"; type: "bool"; isReadonly: true }
+        Method { name: "start" }
+        Method { name: "terminate" }
+    }
+    Component {
         name: "AsemanQmlImage"
         defaultProperty: "data"
         prototype: "QQuickPaintedItem"
@@ -2198,14 +2209,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_44"
+            type: "SlidePageManager_QMLTYPE_32"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_40"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_28"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_33"
+            type: "HeaderMenuButton_QMLTYPE_49"
             isReadonly: true
             isPointer: true
         }
@@ -2217,7 +2228,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2513,7 +2524,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_45"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -3013,7 +3024,7 @@ Module {
         Property { name: "currentIndex"; type: "int" }
         Property {
             name: "currentItem"
-            type: "HelperPoint_QMLTYPE_106"
+            type: "HelperPoint_QMLTYPE_100"
             isReadonly: true
             isPointer: true
         }
@@ -3487,6 +3498,7 @@ Module {
         Property { name: "currentItem"; type: "QVariant"; isReadonly: true }
         Property { name: "animationDuration"; type: "int" }
         Property { name: "easingType"; type: "int" }
+        Property { name: "gestureBackable"; type: "bool" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "direction"; type: "int" }
         Property { name: "mainItem"; type: "QVariant" }

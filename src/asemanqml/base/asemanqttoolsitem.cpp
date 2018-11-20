@@ -54,6 +54,7 @@
 #include "asemancalendarmodel.h"
 #include "asemanmixedlistmodel.h"
 #include "asemanencrypter.h"
+#include "asemanprocess.h"
 #include "asemanquickviewwrapper.h"
 #include "asemanqmlsmartcomponent.h"
 #include "asemanmouseeventlistener.h"
@@ -144,6 +145,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanItemGrabber>(uri, 2, 0, "ItemGrabber", exportMode);
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
     registerType<AsemanQmlImage>(uri, 2, 0, "AsemanImage", exportMode);
+    registerType<AsemanProcess>(uri, 2, 0, "Process", exportMode);
     registerType<AsemanTranslationManager>(uri, 2, 0, "TranslationManager", exportMode);
     registerType<AsemanQmlSmartComponent>(uri, 2, 0, "SmartComponentCore", exportMode);
 #ifdef DESKTOP_LINUX
