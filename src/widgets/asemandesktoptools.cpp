@@ -82,6 +82,7 @@ int AsemanDesktopTools::desktopSession()
     if( desktop_session->contains(QStringLiteral("gnome-fallback"),Qt::CaseInsensitive) )
         result = AsemanDesktopTools::GnomeFallBack;
     else
+    if( desktop_session->contains(QStringLiteral("gnome"),Qt::CaseInsensitive) )
         result = AsemanDesktopTools::Gnome;
 #endif
 #endif
