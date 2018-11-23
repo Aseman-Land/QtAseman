@@ -1,0 +1,4 @@
+usr/lib/x86_64-linux-gnu/libQt5AsemanCore*
+usr/lib/x86_64-linux-gnu/cmake/Qt5AsemanCore/*
+usr/lib/x86_64-linux-gnu/pkgconfig/Qt5AsemanCore.pc
+usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_asemancore*
