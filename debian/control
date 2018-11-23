@@ -1,0 +1,55 @@
+Source: asemanqttools
+Section: libs
+Priority: optional
+Maintainer: Aseman Team <contact@aseman.co>
+Build-Depends:
+ debhelper (>= 8.0.0),
+ g++ (>= 4:4.7),
+ gcc (>= 4:4.7),
+ qtbase5-dev (>= 5.2.0),
+ libqt5sql5-sqlite (>= 5.2.0),
+ libqt5multimediaquick-p5 (>= 5.2.0),
+ libqt5multimedia5-plugins (>= 5.2.0),
+ libqt5multimedia5 (>= 5.2.0),
+ qtpositioning5-dev (>= 5.2.0),
+ libqt5sensors5-dev (>= 5.2.0),
+ qtchooser,
+ qt5keychain-dev,
+ qt5-qmake,
+ qt5-default,
+ libqt5qml5 (>= 5.2.0),
+ libqt5qml-graphicaleffects (>= 5.2.0) | qml-module-qtgraphicaleffects,
+ qtdeclarative5-controls-plugin (>= 5.2.0) | qml-module-qtquick-controls,
+ qtdeclarative5-dev (>= 5.2.0),
+ libqt5quick5 (>= 5.2.0),
+ qtmultimedia5-dev (>= 5.2.0),
+ libqt5webkit5-dev (>= 5.1.0),
+ libappindicator-dev,
+ libssl-dev
+Standards-Version: 3.9.5
+Homepage: http://aseman.co/telegramqml
+Vcs-Git: https://github.com/Aseman-Land/TelegramQML
+
+Package: asemanqttools
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+  qtdeclarative5-controls-plugin (>= 5.2.0) | qml-module-qtquick-controls,
+  qtdeclarative5-dialogs-plugin (>= 5.2.0) | qml-module-qtquick-dialogs, 
+  qtdeclarative5-qtquick2-plugin (>= 5.2.0) |  qml-module-qtquick2, 
+  qtdeclarative5-window-plugin (>= 5.2.0) | qml-module-qtquick-window2, 
+  qtdeclarative5-qtmultimedia-plugin (>= 5.2.0) | qml-module-qtmultimedia, 
+  qtdeclarative5-qtsensors-plugin (>= 5.2.0) | qml-module-qtsensors,
+  qtdeclarative5-qtpositioning-plugin (>= 5.2.0) | qml-module-qtpositioning,
+  libqt5qml-graphicaleffects (>= 5.2.0) | qml-module-qtgraphicaleffects, 
+  libqt5multimedia5 (>= 5.2.0),
+  libqt5multimedia5-plugins (>= 5.2.0), 
+  libqt5multimediaquick-p5 (>= 5.2.0), 
+  libqt5sql5-sqlite (>= 5.2.0), 
+  qt5-image-formats-plugins,
+  dconf-tools, 
+  libav-tools, 
+  gstreamer0.10-plugins-bad,
+  gstreamer0.10-plugins-ugly
+Description: Aseman tools for QtQML and Qml, 
+ It's free and released under the GPLv3 license.
