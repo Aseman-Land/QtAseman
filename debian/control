@@ -159,10 +159,40 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: QtQml Aseman Font Awesome components for the Qml, 
  It's free and released under the GPLv3 license.
 
-Package: qml-module-asemanamaterial
+Package: qml-module-asemanmaterial
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  qml-module-asemanbase
 Description: QtQml Material font icons components for the Qml, 
+ It's free and released under the GPLv3 license.
+
+Package: qt5aseman
+Section: libs
+Architecture: any
+Depends: libqt5asemancore (= ${binary:Version}),
+ libqt5asemangui (= ${binary:Version}),
+ libqt5asemanwidgets (= ${binary:Version}),
+ libqt5asemannetwork (= ${binary:Version}),
+ libqt5asemangeo (= ${binary:Version}),
+ libqt5asemanmultimedia (= ${binary:Version}),
+ libqt5asemanqml (= ${binary:Version}),
+ qml-module-asemanbase, qml-module-asemanwidgets,
+ qml-module-asemanmultimedia, qml-module-asemanawesome,
+ qml-module-asemanmaterial
+Description: Qt Aseman full package, 
+ It's free and released under the GPLv3 license.
+
+Package: qt5aseman-dev
+Section: libs
+Architecture: any
+Depends: libqt5asemancore-dev (= ${binary:Version}),
+ libqt5asemangui-dev (= ${binary:Version}),
+ libqt5asemanwidgets-dev (= ${binary:Version}),
+ libqt5asemannetwork-dev (= ${binary:Version}),
+ libqt5asemangeo-dev (= ${binary:Version}),
+ libqt5asemanmultimedia-dev (= ${binary:Version}),
+ libqt5asemanqml-dev (= ${binary:Version}),
+ qt5aseman (= ${binary:Version})
+Description: Qt Aseman full development package, 
  It's free and released under the GPLv3 license.
