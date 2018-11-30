@@ -3,7 +3,8 @@ TARGETPATH = AsemanQml/Base
 IMPORT_VERSION = 2.0
 VERSION_REVISION = 2
 
-QT += core gui network asemanqml asemangui asemancore
+INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../network
+QT += core gui network asemanqml asemangui asemancore asemannetwork
 
 HEADERS += \
     $$PWD/asemanqmlplugin.h \

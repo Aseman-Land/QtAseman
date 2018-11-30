@@ -2,6 +2,7 @@ TARGET  = asemanqmlwidgets
 TARGETPATH = AsemanQml/Widgets
 IMPORT_VERSION = 2.0
 
+INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../widgets
 QT += core gui network asemanqml asemangui asemancore asemanwidgets
 
 HEADERS += \

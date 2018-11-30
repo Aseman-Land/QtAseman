@@ -1,6 +1,6 @@
 load(qt_build_config)
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui
 DEPENDPATH += $$PWD
 
 TARGET = QtAsemanWidgets
