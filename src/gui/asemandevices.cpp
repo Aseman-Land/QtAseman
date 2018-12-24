@@ -962,17 +962,14 @@ QVariantMap AsemanDevices::deviceDetails()
 
 void AsemanDevices::hideKeyboard()
 {
-#ifndef DESKTOP_DEVICE
     if( p->hide_keyboard_timer )
         killTimer(p->hide_keyboard_timer);
 
     p->hide_keyboard_timer = startTimer(250);
-#endif
 }
 
 void AsemanDevices::showKeyboard()
 {
-#ifndef DESKTOP_DEVICE
     if( p->hide_keyboard_timer )
     {
         killTimer(p->hide_keyboard_timer);
@@ -983,7 +980,6 @@ void AsemanDevices::showKeyboard()
     p->keyboard_stt = true;
 
     Q_EMIT keyboardChanged();
-#endif
 }
 
 void AsemanDevices::share(const QString &subject, const QString &message)

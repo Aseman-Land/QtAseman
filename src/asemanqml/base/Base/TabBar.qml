@@ -35,6 +35,8 @@ Item {
     property string fontFamily: AsemanApp.globalFont.family
     property string displayRole
 
+    signal clicked(int index)
+
     Rectangle {
         id: back
         anchors.fill: tabBar
@@ -55,7 +57,10 @@ Item {
                 return res
             }
             hoverEnabled: false
-            onClicked: tabBar.currentIndex = index
+            onClicked: {
+                tabBar.currentIndex = index
+                tbar.clicked(model.index)
+            }
 
             Text {
                 width: parent.width
