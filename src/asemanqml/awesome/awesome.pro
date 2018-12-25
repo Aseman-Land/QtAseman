@@ -10,7 +10,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/awesomeplugin.cpp
 
-static: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Awesome/*.*)
 

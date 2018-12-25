@@ -13,7 +13,7 @@ SOURCES += \
     $$PWD/asemanwidgetsplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
 
-static: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Widgets/*.*) $$PWD/Widgets/qmldir
 
