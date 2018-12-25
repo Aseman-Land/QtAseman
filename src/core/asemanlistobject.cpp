@@ -163,6 +163,11 @@ bool AsemanListObject::contains(const QVariant &v) const
     return p->list.contains(v);
 }
 
+void AsemanListObject::sort()
+{
+    std::stable_sort(p->list.begin(), p->list.end());
+}
+
 AsemanListObject::~AsemanListObject()
 {
     delete p;

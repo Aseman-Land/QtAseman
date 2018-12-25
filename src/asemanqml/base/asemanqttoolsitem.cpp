@@ -31,6 +31,7 @@
 #include "asemandesktoptools.h"
 #include "asemansettings.h"
 #include "asemanmimedata.h"
+#include "asemanmapobject.h"
 #include "asemandragobject.h"
 #include "asemanbackhandler.h"
 #include "aseman_macros.h"
@@ -127,6 +128,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanMimeData>(uri, 2, 0, "MimeData", exportMode);
     registerType<AsemanDragObject>(uri, 2, 0, "DragObject", exportMode);
     registerType<AsemanHashObject>(uri, 2, 0, "HashObject", exportMode);
+    registerType<AsemanMapObject>(uri, 2, 0, "MapObject", exportMode);
     registerType<AsemanListObject>(uri, 2, 0, "ListObject", exportMode);
     registerType<AsemanDownloader>(uri, 2, 0, "Downloader", exportMode);
     registerType<AsemanEncrypter>(uri, 2, 0, "Encrypter", exportMode);

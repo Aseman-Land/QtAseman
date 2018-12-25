@@ -62,6 +62,7 @@ public Q_SLOTS:
     QVariantList toList() const;
 
     bool contains( const QVariant & v ) const;
+    void sort();
 
 Q_SIGNALS:
     void countChanged();

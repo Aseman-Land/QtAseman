@@ -33,7 +33,8 @@ HEADERS += \
     $$PWD/asemansysteminfo.h \
     $$PWD/asemancore_global.h \
     $$PWD/aseman_macros.h \
-    private/serpent_sbox.h
+    $$PWD/private/serpent_sbox.h \
+    $$PWD/asemanmapobject.h
 
 SOURCES += \
     $$PWD/asemanabstractlistmodel.cpp \
@@ -52,7 +53,8 @@ SOURCES += \
     $$PWD/asemanqtlogger.cpp \
     $$PWD/asemansettings.cpp \
     $$PWD/asemansimpleqtcryptor.cpp \
-    $$PWD/asemansysteminfo.cpp
+    $$PWD/asemansysteminfo.cpp \
+    $$PWD/asemanmapobject.cpp
 
 RESOURCES += \
     asemancoreresource_lib.qrc
@@ -67,3 +69,5 @@ macx {
         LIBS +=  -framework CoreFoundation -framework Carbon -lobjc
     }
 }
+
+DISTFILES +=
