@@ -52,6 +52,9 @@ public Q_SLOTS:
     void append( const QVariant & v );
     void prepend( const QVariant & v );
 
+    void replace(int index, const QVariant &v);
+    void swap(int idx0, int idx1);
+
     int count() const;
     bool isEmpty() const;
 

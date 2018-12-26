@@ -121,6 +121,16 @@ void AsemanListObject::prepend(const QVariant &v)
     Q_EMIT countChanged();
 }
 
+void AsemanListObject::replace(int index, const QVariant &v)
+{
+    p->list.replace(index, v);
+}
+
+void AsemanListObject::swap(int idx0, int idx1)
+{
+    p->list.swap(idx0, idx1);
+}
+
 int AsemanListObject::count() const
 {
     return p->list.count();

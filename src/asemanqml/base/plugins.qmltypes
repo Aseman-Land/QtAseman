@@ -1065,6 +1065,16 @@ Module {
             name: "prepend"
             Parameter { name: "v"; type: "QVariant" }
         }
+        Method {
+            name: "replace"
+            Parameter { name: "index"; type: "int" }
+            Parameter { name: "v"; type: "QVariant" }
+        }
+        Method {
+            name: "swap"
+            Parameter { name: "idx0"; type: "int" }
+            Parameter { name: "idx1"; type: "int" }
+        }
         Method { name: "count"; type: "int" }
         Method { name: "isEmpty"; type: "bool" }
         Method {
@@ -2283,14 +2293,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_44"
+            type: "SlidePageManager_QMLTYPE_32"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_40"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_28"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_23"
+            type: "HeaderMenuButton_QMLTYPE_39"
             isReadonly: true
             isPointer: true
         }
@@ -2302,7 +2312,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_30"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2598,7 +2608,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_30"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
