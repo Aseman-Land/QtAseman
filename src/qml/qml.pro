@@ -31,8 +31,7 @@ HEADERS += \
     $$PWD/qtsingleapplication/qtlockedfile.h \
     $$PWD/asemantools_global.h \
     $$PWD/asemandevicesitem.h \
-    asemantoolsitem.h \
-    asemanprocess.h
+    $$PWD/asemantoolsitem.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -54,8 +53,7 @@ SOURCES += \
     $$PWD/qtsingleapplication/qtlockedfile_win.cpp \
     $$PWD/qtsingleapplication/qtlockedfile.cpp \
     $$PWD/asemandevicesitem.cpp \
-    asemantoolsitem.cpp \
-    asemanprocess.cpp
+    $$PWD/asemantoolsitem.cpp
 
 android {
     QT += androidextras
@@ -71,8 +69,10 @@ macx {
 }
 ios {
     HEADERS += \
-        $$PWD/private/osxviewcontroller.h
+        $$PWD/private/osxviewcontroller.h \
+        $$PWD/asemanprocess.h
     SOURCES += \
-        $$PWD/private/osxviewcontroller.mm
+        $$PWD/private/osxviewcontroller.mm \
+        $$PWD/asemanprocess.cpp
 }
 
