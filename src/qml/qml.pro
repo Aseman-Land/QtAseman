@@ -69,10 +69,13 @@ macx {
 }
 ios {
     HEADERS += \
-        $$PWD/private/osxviewcontroller.h \
+        $$PWD/private/osxviewcontroller.h
+    SOURCES += \
+        $$PWD/private/osxviewcontroller.mm
+} else {
+    HEADERS += \
         $$PWD/asemanprocess.h
     SOURCES += \
-        $$PWD/private/osxviewcontroller.mm \
         $$PWD/asemanprocess.cpp
 }
 
