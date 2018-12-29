@@ -1,8 +1,8 @@
 TEMPLATE = subdirs
 SUBDIRS = \
     core \
-    network \
     gui \
+    network \
     widgets \
     geo \
     multimedia \
