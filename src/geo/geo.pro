@@ -1,6 +1,6 @@
 load(qt_build_config)
 
-INCLUDEPATH += $$PWD $$PWD/../core
+INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TARGET = QtAsemanGeo

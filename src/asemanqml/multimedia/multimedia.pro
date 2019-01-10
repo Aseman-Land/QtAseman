@@ -2,7 +2,7 @@ TARGET  = asemanqmlmultimedia
 TARGETPATH = AsemanQml/Multimedia
 IMPORT_VERSION = 2.0
 
-INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../multimedia
+INCLUDEPATH += $$PWD
 QT += core gui network asemanqml asemangui asemancore asemanmultimedia
 
 HEADERS += \

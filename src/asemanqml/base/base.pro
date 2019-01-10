@@ -3,7 +3,7 @@ TARGETPATH = AsemanQml/Base
 IMPORT_VERSION = 2.0
 VERSION_REVISION = 2
 
-INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../network $$PWD/../../widgets
+INCLUDEPATH += $$PWD
 QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets
 
 HEADERS += \
