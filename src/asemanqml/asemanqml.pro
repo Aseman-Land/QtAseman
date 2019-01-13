@@ -5,4 +5,5 @@ SUBDIRS += \
     awesome \
     materialicons \
     multimedia \
-    widgets
+    widgets \
+    modern

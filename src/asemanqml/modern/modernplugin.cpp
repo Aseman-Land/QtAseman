@@ -16,8 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "asemanwidgetsplugin.h"
-
+#include "modernplugin.h"
 #include "asemanqttoolsitem.h"
 
 #include <QDebug>
@@ -26,27 +25,27 @@
 #include <QtQml>
 
 #ifdef ASEMAN_STATIC_BUILD
-bool AsemanWidgetsPlugin::static_types_registered = AsemanWidgetsPlugin::registerStaticTypes("AsemanQml.Widgets");
+bool AsemanModernPlugin::static_types_registered = AsemanModernPlugin::registerStaticTypes("AsemanQml.Modern");
 #endif
 
-bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
+bool AsemanModernPlugin::registerStaticTypes(const char *uri)
 {
 #ifdef ASEMAN_STATIC_BUILD
     if(static_types_registered)
         return true;
 #endif
+    Q_INIT_RESOURCE(qmake_asemanmodern);
     AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Widgets"), uri);
+    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Modern"), uri);
     return true;
 }
 
-void AsemanWidgetsPlugin::registerTypes(const char *uri)
+void AsemanModernPlugin::registerTypes(const char *uri)
 {
-    AsemanWidgetsPlugin::registerStaticTypes(uri);
+    AsemanModernPlugin::registerStaticTypes(uri);
 }
 
-void AsemanWidgetsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
+void AsemanModernPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
     QQmlExtensionPlugin::initializeEngine(engine, uri);
-    AsemanQtTools::initializeEngine(engine, uri);
 }

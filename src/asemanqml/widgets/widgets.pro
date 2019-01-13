@@ -15,14 +15,5 @@ SOURCES += \
 
 static: !linux: DEFINES += ASEMAN_STATIC_BUILD
 
-ASEMAN_QML_FILES += $$files($$PWD/Widgets/*.*) $$PWD/Widgets/qmldir
-
-INCLUDED_RESOURCE_FILES += \
-    $$ASEMAN_QML_FILES
-
-asemanwidgets.files = $$INCLUDED_RESOURCE_FILES
-asemanwidgets.prefix = /AsemanQml/
-RESOURCES += asemanwidgets
-
 load(qml_plugin)
 

@@ -2,6 +2,3 @@ module AsemanQml.Widgets
 classname AsemanWidgetsPlugin
 typeinfo plugins.qmltypes
 plugin declarative_asemanqmlwidgets
-depends QtMultimedia 5.8
-depends AsemanQml.Base 2.0
-depends AsemanQml.Awesome 2.0

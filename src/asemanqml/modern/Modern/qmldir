@@ -1,0 +1,6 @@
+module AsemanQml.Modern
+FancyNavigationBar 2.0 FancyNavigationBar.qml
+FancyPage 2.0 FancyPage.qml
+FancySearchBar 2.0 FancySearchBar.qml
+FastDropShadow 2.0 FastDropShadow.qml
+FastRectengleShadow 2.0 FastRectengleShadow.qml
