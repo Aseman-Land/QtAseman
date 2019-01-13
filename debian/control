@@ -184,7 +184,7 @@ Description: Qt Aseman full package,
  It's free and released under the GPLv3 license.
 
 Package: qt5aseman-dev
-Section: libs
+Section: libdevel
 Architecture: any
 Depends: libqt5asemancore-dev (= ${binary:Version}),
  libqt5asemangui-dev (= ${binary:Version}),
