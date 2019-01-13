@@ -31,6 +31,7 @@
 #include "asemandesktoptools.h"
 #include "asemansettings.h"
 #include "asemanmimedata.h"
+#include "asemannetworkrequest.h"
 #include "asemanmapobject.h"
 #include "asemandragobject.h"
 #include "asemanbackhandler.h"
@@ -146,6 +147,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanFileDownloaderQueueItem>(uri, 2, 0, "FileDownloaderQueueItem", exportMode);
     registerType<AsemanFileDownloaderQueue>(uri, 2, 0, "FileDownloaderQueue", exportMode);
     registerType<AsemanMouseEventListener>(uri, 2, 0, "MouseEventListener", exportMode);
+    registerType<AsemanNetworkRequest>(uri, 2, 0, "NetworkRequest", exportMode);
     registerType<AsemanItemGrabber>(uri, 2, 0, "ItemGrabber", exportMode);
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
     registerType<AsemanQmlImage>(uri, 2, 0, "AsemanImage", exportMode);

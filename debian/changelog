@@ -1,3 +1,9 @@
+qtaseman (1.0.1-1aseman-bionic) bionic; urgency=medium
+
+  * Add NetworkRequest component to the QML
+
+ -- Aseman Team <contact@aseman.co>  Sat, 12 Jan 2019 00:30:00 +0330
+
 qtaseman (1.0.0-6aseman-bionic) bionic; urgency=medium
 
   * Build bugfix
