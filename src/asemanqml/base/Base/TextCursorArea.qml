@@ -21,7 +21,7 @@ import AsemanQml.Base 2.0
 import QtQuick.Controls 2.0 as QtControls
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.2
-import AsemanQml.MaterialIcons 2.0
+import AsemanQml.Awesome 2.0
 
 Item {
     id: tcarea
@@ -44,7 +44,7 @@ Item {
             return [
                         {"name": qsTr("Copy"), "action": function() { textItem.copy(); hideMenu() }},
                         {"name": qsTr("Delete"), "action": function() { textItem.remove(textItem.selectionStart, textItem.selectionEnd); hideMenu() }},
-                        {"name": "<font family=\"%1\">%2</font>".arg(MaterialIcons.family).arg(MaterialIcons.mi_more_vert), "action": function() { menuMore = true }}
+                        {"name": "<font family=\"%1\">%2</font>".arg(Awesome.family).arg(Awesome.fa_ellipsis_v), "action": function() { menuMore = true }}
                     ]
         else
             return [
@@ -62,7 +62,7 @@ Item {
             hideMenu()
         }},
         {"name": qsTr("Select All"), "action": function() { textItem.selectAll(); menuRect.showCursor() }},
-        {"name": "<font family=\"%1\">%2</font>".arg(MaterialIcons.family).arg(MaterialIcons.mi_arrow_back), "action": function() { menuMore = false }}
+        {"name": "<font family=\"%1\">%2</font>".arg(Awesome.family).arg(Awesome.fa_angle_left), "action": function() { menuMore = false }}
     ]
 
     onCursorParentChanged: if(menuRect.visible) menuRect.showCursor()
@@ -177,7 +177,7 @@ Item {
 
                         property variant data: menuMoreMap[index]
                         Component.onCompleted: {
-                            if(text.indexOf(MaterialIcons.family) != -1) {
+                            if(text.indexOf(Awesome.family) != -1) {
                                 font.pixelSize = 13*Devices.fontDensity
                             }
                         }
@@ -202,7 +202,7 @@ Item {
 
                         property variant data: menuMap[index]
                         Component.onCompleted: {
-                            if(text.indexOf(MaterialIcons.family) != -1) {
+                            if(text.indexOf(Awesome.family) != -1) {
                                 font.pixelSize = 13*Devices.fontDensity
                                 width = height*0.75
                             }
