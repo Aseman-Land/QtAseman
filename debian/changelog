@@ -1,3 +1,9 @@
+qtaseman (1.0.4-1aseman-bionic) bionic; urgency=medium
+
+  * New version of the DateTimeChoose and SelectableList that is much better than old version in the look.
+
+ -- Aseman Team <contact@aseman.co>  Thu, 17 Jan 2019 19:00:00 +0330
+
 qtaseman (1.0.3-1aseman-bionic) bionic; urgency=medium
 
   * Change font of TextCursorArea to font awesome
