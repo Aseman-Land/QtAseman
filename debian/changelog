@@ -1,3 +1,9 @@
+qtaseman (1.0.5-1aseman-bionic) bionic; urgency=medium
+
+  * Introduce new QML component named PanelFlicker which is like Drawer, But goes visible from the bottom side.
+
+ -- Aseman Team <contact@aseman.co>  Sat, 19 Jan 2019 19:00:00 +0330
+
 qtaseman (1.0.4-1aseman-bionic) bionic; urgency=medium
 
   * New version of the DateTimeChoose and SelectableList that is much better than old version in the look.

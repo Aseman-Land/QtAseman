@@ -2320,14 +2320,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_44"
+            type: "SlidePageManager_QMLTYPE_24"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_40"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_36"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_33"
+            type: "HeaderMenuButton_QMLTYPE_39"
             isReadonly: true
             isPointer: true
         }
@@ -2339,7 +2339,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2635,7 +2635,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -3013,12 +3013,13 @@ Module {
         defaultProperty: "data"
     }
     Component {
-        prototype: "QQuickRectangle"
+        prototype: "QQuickItem"
         name: "AsemanQml.Base/DateTimeChooser 2.0"
         exports: ["AsemanQml.Base/DateTimeChooser 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
+        Property { name: "color"; type: "QColor" }
         Property { name: "textsColor"; type: "QColor" }
         Property { name: "dateVisible"; type: "bool" }
         Property { name: "timeVisible"; type: "bool" }
@@ -3135,7 +3136,7 @@ Module {
         Property { name: "currentIndex"; type: "int" }
         Property {
             name: "currentItem"
-            type: "HelperPoint_QMLTYPE_91"
+            type: "HelperPoint_QMLTYPE_105"
             isReadonly: true
             isPointer: true
         }
@@ -3324,6 +3325,24 @@ Module {
         Property { name: "fullscreenButton"; type: "bool" }
         Property { name: "fullscreened"; type: "bool" }
         Property { name: "hovered"; type: "bool" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/PanelFlicker 2.0"
+        exports: ["AsemanQml.Base/PanelFlicker 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "item"; type: "QVariant" }
+        Property { name: "handleHeight"; type: "double" }
+        Property { name: "percent"; type: "double"; isReadonly: true }
+        Property { name: "layoutDirection"; type: "int" }
+        Property { name: "showed"; type: "bool"; isReadonly: true }
+        Property { name: "menuHeight"; type: "double" }
+        Property { name: "pressed"; type: "bool"; isReadonly: true }
+        Method { name: "discard"; type: "QVariant" }
+        Method { name: "show"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickRectangle"
@@ -3524,12 +3543,13 @@ Module {
         Method { name: "close"; type: "QVariant" }
     }
     Component {
-        prototype: "QQuickRectangle"
+        prototype: "QQuickItem"
         name: "AsemanQml.Base/SelectableList 2.0"
         exports: ["AsemanQml.Base/SelectableList 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
+        Property { name: "color"; type: "QColor" }
         Property { name: "items"; type: "QVariant" }
         Property { name: "textsColor"; type: "QColor" }
         Property { name: "splitersColor"; type: "QColor" }
