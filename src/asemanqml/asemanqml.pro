@@ -6,4 +6,5 @@ SUBDIRS += \
     materialicons \
     multimedia \
     widgets \
-    modern
+    modern \
+    controls

@@ -1,10 +1,12 @@
 import QtQuick 2.7
 import AsemanQml.Base 2.0
+import AsemanQml.Awesome 2.0
 import QtGraphicalEffects 1.0
 
 Item {
     id: item
 
+    property int layoutDirection: View.layoutDirection
     property alias toolbarHeight: toolbar.height
     property alias toolbarTopMargin: toolbar.y
     property alias searchBarButton: searchIcon
@@ -13,16 +15,17 @@ Item {
     property alias panelColor: panelRect.color
     property alias searchBarColor: searchbarArea.color
 
-    property Item mainScene
     property Item mainList
 
-    property bool opened: false
+    property alias opened: openedAction.active
 
     readonly property real ratio: searchbar.ratio
     property alias textInput: text_input
     property alias placeholder: searchPlaceholder.text
 
     property string keyword
+
+    BackAction { id: openedAction }
 
     onMainListChanged: {
         if(!mainList)
@@ -48,18 +51,6 @@ Item {
             interval: 200
             repeat: false
             onTriggered: text_input.forceActiveFocus()
-        }
-
-        FastBlur {
-            anchors.centerIn: parent
-            width: mainScene? mainScene.width : parent.width
-            height: mainScene? mainScene.height : parent.height
-            source: mainScene
-            radius: keyword.length && opened? 64 : 0
-            visible: keyword.length && opened
-            opacity: item.ratio
-            cached: true
-            onSourceChanged: transform = mainScene? mainScene.transform : null
         }
 
         Rectangle {
@@ -90,7 +81,7 @@ Item {
         Item {
             id: searchbar
             width: parent.width
-            height: toolbarTopMargin + toolbarHeight*1.2
+            height: toolbarTopMargin + Devices.standardTitleBarHeight
             clip: true
             y: -height * (1-ratio)
 
@@ -104,22 +95,10 @@ Item {
                 anchors.fill: parent
             }
 
-            FastBlur {
-                source: mainScene
-                y: -searchbar.y - (mainScene? width - item.width : 0)/2
-                x: -searchbar.x - (mainScene? height - item.height : 0)/2
-                width: mainScene? mainScene.width : 0
-                height: mainScene? mainScene.height : 0
-                radius: searchbar.ratio == 0? 0 : 64
-                visible: searchbar.ratio != 0
-                cached: true
-                onSourceChanged: transform = mainScene? mainScene.transform : null
-            }
-
             Rectangle {
                 id: panelRect
                 anchors.fill: parent
-                opacity: mainScene? 0.7 : 1
+                opacity: 1
             }
 
             Item {
@@ -136,7 +115,7 @@ Item {
                     id: searchbarArea
                     anchors.fill: parent
                     anchors.topMargin: anchors.margins + toolbarTopMargin
-                    anchors.margins: 12 * Devices.density
+                    anchors.margins: 10 * Devices.density
                     radius: 8 * Devices.density
                     color: "#000"
                     opacity: 0.2
@@ -145,9 +124,15 @@ Item {
                 TextInput {
                     id: text_input
                     anchors.fill: searchbarArea
-                    anchors.margins: 10 * Devices.density
+                    leftPadding: Devices.isIOS || layoutDirection==Qt.RightToLeft? 0 : height
+                    rightPadding: Devices.isIOS || layoutDirection==Qt.LeftToRight? 0 : height
+                    selectedTextColor: "#fff"
+                    selectionColor: "#18f"
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: item.layoutDirection == Qt.LeftToRight? Text.AlignLeft : Text.AlignRight
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                    font.family: AsemanApp.globalFont.family
+                    font.pixelSize: 10*Devices.fontDensity
                     onTextChanged: searchTimer.restart()
 
                     Text {
@@ -161,6 +146,8 @@ Item {
                         visible: text_input.length == 0
                     }
 
+                    TextCursorArea { id: cursor; active: true; cursorParent: item}
+
                     Timer {
                         id: searchTimer
                         interval: 500
@@ -173,8 +160,9 @@ Item {
 
         Item {
             id: toolbar
+            y: Devices.statusBarHeight
             width: parent.width
-            height: 50 * Devices.density
+            height: Devices.standardTitleBarHeight
 
             Item {
                 width: height
@@ -212,12 +200,20 @@ Item {
                     id: searchIcon
                     anchors.centerIn: parent
                     scale: 1 - item.ratio
+                    font.family: Awesome.family
+                    font.pixelSize: 12*Devices.fontDensity
+                    text: Awesome.fa_search
+                    color: "#666"
                 }
 
                 Text {
                     id: clearIcon
                     anchors.centerIn: parent
                     scale: item.ratio
+                    font.family: Awesome.family
+                    font.pixelSize: 12*Devices.fontDensity
+                    text: Awesome.fa_close
+                    color: "#666"
                 }
             }
         }

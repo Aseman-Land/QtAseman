@@ -2320,14 +2320,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_24"
+            type: "SlidePageManager_QMLTYPE_43"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_36"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_39"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_39"
+            type: "HeaderMenuButton_QMLTYPE_32"
             isReadonly: true
             isPointer: true
         }
@@ -2339,7 +2339,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_28"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -2635,7 +2635,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_46"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_28"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -3136,7 +3136,7 @@ Module {
         Property { name: "currentIndex"; type: "int" }
         Property {
             name: "currentItem"
-            type: "HelperPoint_QMLTYPE_105"
+            type: "HelperPoint_QMLTYPE_96"
             isReadonly: true
             isPointer: true
         }

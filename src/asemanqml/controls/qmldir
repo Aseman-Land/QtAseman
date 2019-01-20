@@ -1,0 +1,4 @@
+module AsemanQml.Controls
+classname AsemanControlsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlcontrols
