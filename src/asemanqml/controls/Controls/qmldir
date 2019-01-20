@@ -22,3 +22,4 @@ TabView 2.0 TabView.qml
 TextCursorArea 2.0 TextCursorArea.qml
 TextField 2.0 TextField.qml
 Tooltip 2.0 Tooltip.qml
+AsemanAbout 2.0 AsemanAbout.qml

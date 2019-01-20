@@ -151,6 +151,22 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: QtQml Aseman Multimedia components for the Qml, 
  It's free and released under the GPLv3 license.
 
+Package: qml-module-asemanmodern
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ qml-module-asemanbase
+Description: QtQml Aseman Modern components for the Qml, 
+ It's free and released under the GPLv3 license.
+
+Package: qml-module-asemancontrols
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ qml-module-asemanbase
+Description: QtQml Aseman Controls components for the Qml, 
+ It's free and released under the GPLv3 license.
+
 Package: qml-module-asemanawesome
 Section: libs
 Architecture: any
@@ -179,7 +195,8 @@ Depends: libqt5asemancore (= ${binary:Version}),
  libqt5asemanqml (= ${binary:Version}),
  qml-module-asemanbase, qml-module-asemanwidgets,
  qml-module-asemanmultimedia, qml-module-asemanawesome,
- qml-module-asemanmaterial
+ qml-module-asemanmaterial, qml-module-asemanmodern,
+ qml-module-asemancontrols
 Description: Qt Aseman full package, 
  It's free and released under the GPLv3 license.
 

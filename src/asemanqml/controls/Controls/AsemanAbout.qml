@@ -105,7 +105,7 @@ Rectangle {
         textColor: "#ffffff"
         radius: 4*Devices.density
         text: qsTr("Home Page")
-        onClicked: Qt.openUrlExternally("http://aseman.co")
+        onClicked: Qt.openUrlExternally("http://aseman.io")
     }
 
     Header {

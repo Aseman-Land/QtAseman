@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import AsemanQml.Awesome 2.0
 import QtGraphicalEffects 1.0
 
