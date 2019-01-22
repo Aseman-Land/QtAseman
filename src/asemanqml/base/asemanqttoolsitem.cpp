@@ -32,6 +32,7 @@
 #include "asemansettings.h"
 #include "asemanmimedata.h"
 #include "asemannetworkrequest.h"
+#include "asemanfileresourcemanager.h"
 #include "asemanmapobject.h"
 #include "asemandragobject.h"
 #include "asemanbackhandler.h"
@@ -166,6 +167,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanTitleBarColorGrabber>(uri, 2, 0, "TitleBarColorGrabber", exportMode);
     registerType<AsemanDragArea>(uri, 2, 0, "MouseDragArea", exportMode);
     registerType<AsemanCalendarModel>(uri, 2, 0, "CalendarModel", exportMode);
+    registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
 
     registerModel<AsemanMixedListModel>(uri, 2, 0, "MixedListModel", exportMode);
     registerModel<AsemanCountriesModel>(uri, 2, 0, "CountriesModel", exportMode);

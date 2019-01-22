@@ -865,6 +865,28 @@ Module {
         Property { name: "result"; type: "string"; isReadonly: true }
     }
     Component {
+        name: "AsemanFileResourceManager"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/FileResourceManager 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "root"; type: "string" }
+        Method {
+            name: "insert"
+            Parameter { name: "file"; type: "string" }
+            Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Method {
+            name: "remove"
+            type: "bool"
+            Parameter { name: "id"; type: "string" }
+        }
+        Method {
+            name: "get"
+            type: "string"
+            Parameter { name: "id"; type: "string" }
+        }
+    }
+    Component {
         name: "AsemanFileSystemModel"
         prototype: "AsemanAbstractListModel"
         exports: ["AsemanQml.Base/FileSystemModel 2.0"]
