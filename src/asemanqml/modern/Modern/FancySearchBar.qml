@@ -15,6 +15,7 @@ Item {
 
     property alias panelColor: panelRect.color
     property alias searchBarColor: searchbarArea.color
+    property alias background: _background.color
 
     property Item mainList
 
@@ -55,9 +56,10 @@ Item {
         }
 
         Rectangle {
+            id: _background
             anchors.fill: parent
-            color: "#000"
-            opacity: searchbar.ratio * 0.6
+            color: "#99000000"
+            opacity: searchbar.ratio
         }
 
         MouseArea {
@@ -139,6 +141,8 @@ Item {
                     Text {
                         id: searchPlaceholder
                         anchors.fill: parent
+                        leftPadding: text_input.leftPadding
+                        rightPadding: text_input.rightPadding
                         verticalAlignment: text_input.verticalAlignment
                         horizontalAlignment: text_input.horizontalAlignment
                         font: text_input.font

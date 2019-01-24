@@ -63,6 +63,7 @@ Module {
         Property { name: "clearButton"; type: "QQuickText"; isReadonly: true; isPointer: true }
         Property { name: "panelColor"; type: "QColor" }
         Property { name: "searchBarColor"; type: "QColor" }
+        Property { name: "background"; type: "QColor" }
         Property { name: "opened"; type: "bool" }
         Property { name: "textInput"; type: "QQuickTextInput"; isReadonly: true; isPointer: true }
         Property { name: "placeholder"; type: "string" }
