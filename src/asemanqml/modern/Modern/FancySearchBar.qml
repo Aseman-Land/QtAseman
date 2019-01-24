@@ -118,7 +118,7 @@ Item {
                     id: searchbarArea
                     anchors.fill: parent
                     anchors.topMargin: anchors.margins + toolbarTopMargin
-                    anchors.margins: 10 * Devices.density
+                    anchors.margins: (Devices.isDesktop? 10 : 7) * Devices.density
                     radius: 8 * Devices.density
                     color: "#000"
                     opacity: 0.2
