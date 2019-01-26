@@ -684,6 +684,14 @@ Module {
             Parameter { name: "title"; type: "string" }
             Parameter { name: "msg"; type: "string" }
         }
+        Signal {
+            name: "incomingImage"
+            Parameter { name: "path"; type: "string" }
+        }
+        Signal {
+            name: "selectImageResult"
+            Parameter { name: "path"; type: "string" }
+        }
         Signal { name: "activityPaused" }
         Signal { name: "activityResumed" }
         Signal { name: "platformChanged" }
@@ -717,7 +725,7 @@ Module {
             name: "setClipboardData"
             Parameter { name: "mime"; type: "AsemanMimeData"; isPointer: true }
         }
-        Method { name: "startCameraPicture"; type: "bool" }
+        Method { name: "startCameraPicture"; type: "string" }
         Method { name: "getOpenPictures"; type: "bool" }
         Method {
             name: "setFlag"

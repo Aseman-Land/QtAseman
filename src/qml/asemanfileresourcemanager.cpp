@@ -56,9 +56,17 @@ void AsemanFileResourceManager::insert(const QString &file, const QJSValue &call
     copy->moveToThread(thread);
 
     connect(copy, &AsemanFileResourceManager::FileThread::copyProgress, this, [this, callback](const QString &id, qint64 bytes, qint64 total){
-        QJSValueList args = { p->engine->toScriptValue<QString>(id),
-                              p->engine->toScriptValue<qint64>(bytes),
-                              p->engine->toScriptValue<qint64>(total) };
+
+        QQmlEngine *engine = p->engine;
+        if(!engine)
+            engine = qmlEngine(this);
+
+        if(!engine)
+            return;
+
+        QJSValueList args = { engine->toScriptValue<QString>(id),
+                              engine->toScriptValue<qint64>(bytes),
+                              engine->toScriptValue<qint64>(total) };
 
         if(callback.isCallable())
             QJSValue(callback).call(args);

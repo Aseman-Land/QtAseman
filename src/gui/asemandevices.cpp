@@ -105,6 +105,8 @@ AsemanDevices::AsemanDevices(QObject *parent) :
     p->java_layer = AsemanJavaLayer::instance();
 
     connect( p->java_layer, &AsemanJavaLayer::incomingShare, this, &AsemanDevices::incoming_share, Qt::QueuedConnection );
+    connect( p->java_layer, &AsemanJavaLayer::incomingImage, this, &AsemanDevices::incomingImage, Qt::QueuedConnection );
+    connect( p->java_layer, &AsemanJavaLayer::selectImageResult, this, &AsemanDevices::selectImageResult, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityPaused, this, &AsemanDevices::activity_paused, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityResumed, this, &AsemanDevices::activity_resumed, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::keyboardVisiblityChanged, this, [this](qint32 height){
@@ -1050,12 +1052,16 @@ void AsemanDevices::setClipboardData(AsemanMimeData *mime)
     QGuiApplication::clipboard()->setMimeData(data);
 }
 
-bool AsemanDevices::startCameraPicture()
+QString AsemanDevices::startCameraPicture()
 {
 #ifdef Q_OS_ANDROID
-    return p->java_layer->startCamera( cameraLocation() + "/aseman_" + QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()) + ".jpg" );
+    QString output = cameraLocation() + "/aseman_" + QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()) + ".jpg";
+    if(!p->java_layer->startCamera(output))
+        output.clear();
+
+    return output;
 #else
-    return false;
+    return QString();
 #endif
 }
 

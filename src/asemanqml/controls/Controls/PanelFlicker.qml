@@ -155,8 +155,8 @@ Item {
             opacity: Math.pow(percent, 0.1)
             visible: !Devices.isIOS
             gradient: Gradient {
-                GradientStop { position: 1.0; color: "#33000000" }
-                GradientStop { position: 0.0; color: "#00000000" }
+                GradientStop { position: 1.0; color: "#00000000" }
+                GradientStop { position: 0.0; color: "#33000000" }
             }
         }
     }
