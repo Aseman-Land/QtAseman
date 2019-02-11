@@ -490,7 +490,7 @@ qreal AsemanDevices::standardTitleBarHeight() const
         return res;
 
     if(isDesktop())
-        res = 60*density();
+        res = 54*density();
     else
     if(isMobile())
         res = 56*density();
