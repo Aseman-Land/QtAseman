@@ -19,14 +19,30 @@ Module {
         defaultProperty: "items"
         Property { name: "family"; type: "string"; isReadonly: true }
         Property { name: "fa_500px"; type: "string"; isReadonly: true }
+        Property { name: "fa_accessible_ico"; type: "string"; isReadonly: true }
+        Property { name: "fa_accusoft"; type: "string"; isReadonly: true }
+        Property { name: "fa_acquisitions_incorporated"; type: "string"; isReadonly: true }
+        Property { name: "fa_ad"; type: "string"; isReadonly: true }
+        Property { name: "fa_address_book"; type: "string"; isReadonly: true }
+        Property { name: "fa_address_card"; type: "string"; isReadonly: true }
         Property { name: "fa_adjust"; type: "string"; isReadonly: true }
         Property { name: "fa_adn"; type: "string"; isReadonly: true }
+        Property { name: "fa_adobe"; type: "string"; isReadonly: true }
+        Property { name: "fa_adversal"; type: "string"; isReadonly: true }
+        Property { name: "fa_affiliatetheme"; type: "string"; isReadonly: true }
+        Property { name: "fa_air_freshener"; type: "string"; isReadonly: true }
+        Property { name: "fa_algolia"; type: "string"; isReadonly: true }
         Property { name: "fa_align_center"; type: "string"; isReadonly: true }
         Property { name: "fa_align_justify"; type: "string"; isReadonly: true }
         Property { name: "fa_align_left"; type: "string"; isReadonly: true }
         Property { name: "fa_align_right"; type: "string"; isReadonly: true }
+        Property { name: "fa_alipay"; type: "string"; isReadonly: true }
+        Property { name: "fa_allergies"; type: "string"; isReadonly: true }
         Property { name: "fa_amazon"; type: "string"; isReadonly: true }
+        Property { name: "fa_amazon_pay"; type: "string"; isReadonly: true }
         Property { name: "fa_ambulance"; type: "string"; isReadonly: true }
+        Property { name: "fa_american_sign_language_interpreting"; type: "string"; isReadonly: true }
+        Property { name: "fa_amilia"; type: "string"; isReadonly: true }
         Property { name: "fa_anchor"; type: "string"; isReadonly: true }
         Property { name: "fa_android"; type: "string"; isReadonly: true }
         Property { name: "fa_angellist"; type: "string"; isReadonly: true }
@@ -38,41 +54,62 @@ Module {
         Property { name: "fa_angle_left"; type: "string"; isReadonly: true }
         Property { name: "fa_angle_right"; type: "string"; isReadonly: true }
         Property { name: "fa_angle_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_angry"; type: "string"; isReadonly: true }
+        Property { name: "fa_angrycreative"; type: "string"; isReadonly: true }
+        Property { name: "fa_angular"; type: "string"; isReadonly: true }
+        Property { name: "fa_ankh"; type: "string"; isReadonly: true }
+        Property { name: "fa_app_store"; type: "string"; isReadonly: true }
+        Property { name: "fa_app_store_ios"; type: "string"; isReadonly: true }
+        Property { name: "fa_apper"; type: "string"; isReadonly: true }
         Property { name: "fa_apple"; type: "string"; isReadonly: true }
+        Property { name: "fa_apple_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_apple_pay"; type: "string"; isReadonly: true }
         Property { name: "fa_archive"; type: "string"; isReadonly: true }
-        Property { name: "fa_area_chart"; type: "string"; isReadonly: true }
+        Property { name: "fa_archway"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrow_alt_circle_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrow_alt_circle_left"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrow_alt_circle_right"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrow_alt_circle_up"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_circle_down"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_circle_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrow_circle_o_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrow_circle_o_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrow_circle_o_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrow_circle_o_up"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_circle_right"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_circle_up"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_down"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_left"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_right"; type: "string"; isReadonly: true }
         Property { name: "fa_arrow_up"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrows"; type: "string"; isReadonly: true }
         Property { name: "fa_arrows_alt"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrows_h"; type: "string"; isReadonly: true }
-        Property { name: "fa_arrows_v"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrows_alt_h"; type: "string"; isReadonly: true }
+        Property { name: "fa_arrows_alt_v"; type: "string"; isReadonly: true }
+        Property { name: "fa_artstation"; type: "string"; isReadonly: true }
+        Property { name: "fa_assistive_listening_systems"; type: "string"; isReadonly: true }
         Property { name: "fa_asterisk"; type: "string"; isReadonly: true }
+        Property { name: "fa_asymmetrik"; type: "string"; isReadonly: true }
         Property { name: "fa_at"; type: "string"; isReadonly: true }
-        Property { name: "fa_automobile"; type: "string"; isReadonly: true }
+        Property { name: "fa_atlas"; type: "string"; isReadonly: true }
+        Property { name: "fa_atlassian"; type: "string"; isReadonly: true }
+        Property { name: "fa_atom"; type: "string"; isReadonly: true }
+        Property { name: "fa_audible"; type: "string"; isReadonly: true }
+        Property { name: "fa_audio_description"; type: "string"; isReadonly: true }
+        Property { name: "fa_autoprefixer"; type: "string"; isReadonly: true }
+        Property { name: "fa_avianex"; type: "string"; isReadonly: true }
+        Property { name: "fa_aviato"; type: "string"; isReadonly: true }
+        Property { name: "fa_award"; type: "string"; isReadonly: true }
+        Property { name: "fa_aws"; type: "string"; isReadonly: true }
+        Property { name: "fa_baby"; type: "string"; isReadonly: true }
+        Property { name: "fa_baby_carriage"; type: "string"; isReadonly: true }
+        Property { name: "fa_backspace"; type: "string"; isReadonly: true }
         Property { name: "fa_backward"; type: "string"; isReadonly: true }
+        Property { name: "fa_bacon"; type: "string"; isReadonly: true }
         Property { name: "fa_balance_scale"; type: "string"; isReadonly: true }
         Property { name: "fa_ban"; type: "string"; isReadonly: true }
-        Property { name: "fa_bank"; type: "string"; isReadonly: true }
-        Property { name: "fa_bar_chart"; type: "string"; isReadonly: true }
-        Property { name: "fa_bar_chart_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_band_aid"; type: "string"; isReadonly: true }
+        Property { name: "fa_bandcamp"; type: "string"; isReadonly: true }
         Property { name: "fa_barcode"; type: "string"; isReadonly: true }
         Property { name: "fa_bars"; type: "string"; isReadonly: true }
-        Property { name: "fa_battery_0"; type: "string"; isReadonly: true }
-        Property { name: "fa_battery_1"; type: "string"; isReadonly: true }
-        Property { name: "fa_battery_2"; type: "string"; isReadonly: true }
-        Property { name: "fa_battery_3"; type: "string"; isReadonly: true }
-        Property { name: "fa_battery_4"; type: "string"; isReadonly: true }
+        Property { name: "fa_baseball_ball"; type: "string"; isReadonly: true }
+        Property { name: "fa_basketball_ball"; type: "string"; isReadonly: true }
+        Property { name: "fa_bath"; type: "string"; isReadonly: true }
         Property { name: "fa_battery_empty"; type: "string"; isReadonly: true }
         Property { name: "fa_battery_full"; type: "string"; isReadonly: true }
         Property { name: "fa_battery_half"; type: "string"; isReadonly: true }
@@ -83,56 +120,98 @@ Module {
         Property { name: "fa_behance"; type: "string"; isReadonly: true }
         Property { name: "fa_behance_square"; type: "string"; isReadonly: true }
         Property { name: "fa_bell"; type: "string"; isReadonly: true }
-        Property { name: "fa_bell_o"; type: "string"; isReadonly: true }
         Property { name: "fa_bell_slash"; type: "string"; isReadonly: true }
-        Property { name: "fa_bell_slash_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_bezier_curve"; type: "string"; isReadonly: true }
+        Property { name: "fa_bible"; type: "string"; isReadonly: true }
         Property { name: "fa_bicycle"; type: "string"; isReadonly: true }
+        Property { name: "fa_bimobject"; type: "string"; isReadonly: true }
         Property { name: "fa_binoculars"; type: "string"; isReadonly: true }
+        Property { name: "fa_biohazard"; type: "string"; isReadonly: true }
         Property { name: "fa_birthday_cake"; type: "string"; isReadonly: true }
         Property { name: "fa_bitbucket"; type: "string"; isReadonly: true }
-        Property { name: "fa_bitbucket_square"; type: "string"; isReadonly: true }
         Property { name: "fa_bitcoin"; type: "string"; isReadonly: true }
+        Property { name: "fa_bity"; type: "string"; isReadonly: true }
         Property { name: "fa_black_tie"; type: "string"; isReadonly: true }
+        Property { name: "fa_blackberry"; type: "string"; isReadonly: true }
+        Property { name: "fa_blender"; type: "string"; isReadonly: true }
+        Property { name: "fa_blender_phone"; type: "string"; isReadonly: true }
+        Property { name: "fa_blind"; type: "string"; isReadonly: true }
+        Property { name: "fa_blog"; type: "string"; isReadonly: true }
+        Property { name: "fa_blogger"; type: "string"; isReadonly: true }
+        Property { name: "fa_blogger_b"; type: "string"; isReadonly: true }
         Property { name: "fa_bluetooth"; type: "string"; isReadonly: true }
         Property { name: "fa_bluetooth_b"; type: "string"; isReadonly: true }
         Property { name: "fa_bold"; type: "string"; isReadonly: true }
         Property { name: "fa_bolt"; type: "string"; isReadonly: true }
         Property { name: "fa_bomb"; type: "string"; isReadonly: true }
+        Property { name: "fa_bone"; type: "string"; isReadonly: true }
+        Property { name: "fa_bong"; type: "string"; isReadonly: true }
         Property { name: "fa_book"; type: "string"; isReadonly: true }
+        Property { name: "fa_book_dead"; type: "string"; isReadonly: true }
+        Property { name: "fa_book_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_book_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_book_reader"; type: "string"; isReadonly: true }
         Property { name: "fa_bookmark"; type: "string"; isReadonly: true }
-        Property { name: "fa_bookmark_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_bowling_ball"; type: "string"; isReadonly: true }
+        Property { name: "fa_box"; type: "string"; isReadonly: true }
+        Property { name: "fa_box_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_boxes"; type: "string"; isReadonly: true }
+        Property { name: "fa_braille"; type: "string"; isReadonly: true }
+        Property { name: "fa_brain"; type: "string"; isReadonly: true }
+        Property { name: "fa_bread_slice"; type: "string"; isReadonly: true }
         Property { name: "fa_briefcase"; type: "string"; isReadonly: true }
+        Property { name: "fa_briefcase_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_broadcast_tower"; type: "string"; isReadonly: true }
+        Property { name: "fa_broom"; type: "string"; isReadonly: true }
+        Property { name: "fa_brush"; type: "string"; isReadonly: true }
         Property { name: "fa_btc"; type: "string"; isReadonly: true }
         Property { name: "fa_bug"; type: "string"; isReadonly: true }
         Property { name: "fa_building"; type: "string"; isReadonly: true }
-        Property { name: "fa_building_o"; type: "string"; isReadonly: true }
         Property { name: "fa_bullhorn"; type: "string"; isReadonly: true }
         Property { name: "fa_bullseye"; type: "string"; isReadonly: true }
+        Property { name: "fa_burn"; type: "string"; isReadonly: true }
+        Property { name: "fa_buromobelexperte"; type: "string"; isReadonly: true }
         Property { name: "fa_bus"; type: "string"; isReadonly: true }
+        Property { name: "fa_bus_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_business_time"; type: "string"; isReadonly: true }
         Property { name: "fa_buysellads"; type: "string"; isReadonly: true }
-        Property { name: "fa_cab"; type: "string"; isReadonly: true }
         Property { name: "fa_calculator"; type: "string"; isReadonly: true }
         Property { name: "fa_calendar"; type: "string"; isReadonly: true }
-        Property { name: "fa_calendar_check_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_calendar_minus_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_calendar_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_calendar_plus_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_calendar_times_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_check"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_day"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_minus"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_plus"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_times"; type: "string"; isReadonly: true }
+        Property { name: "fa_calendar_week"; type: "string"; isReadonly: true }
         Property { name: "fa_camera"; type: "string"; isReadonly: true }
         Property { name: "fa_camera_retro"; type: "string"; isReadonly: true }
+        Property { name: "fa_campground"; type: "string"; isReadonly: true }
+        Property { name: "fa_canadian_maple_leaf"; type: "string"; isReadonly: true }
+        Property { name: "fa_candy_cane"; type: "string"; isReadonly: true }
+        Property { name: "fa_cannabis"; type: "string"; isReadonly: true }
+        Property { name: "fa_capsules"; type: "string"; isReadonly: true }
         Property { name: "fa_car"; type: "string"; isReadonly: true }
+        Property { name: "fa_car_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_car_battery"; type: "string"; isReadonly: true }
+        Property { name: "fa_car_crash"; type: "string"; isReadonly: true }
+        Property { name: "fa_car_side"; type: "string"; isReadonly: true }
         Property { name: "fa_caret_down"; type: "string"; isReadonly: true }
         Property { name: "fa_caret_left"; type: "string"; isReadonly: true }
         Property { name: "fa_caret_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_caret_square_o_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_caret_square_o_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_caret_square_o_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_caret_square_o_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_caret_square_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_caret_square_left"; type: "string"; isReadonly: true }
+        Property { name: "fa_caret_square_right"; type: "string"; isReadonly: true }
+        Property { name: "fa_caret_square_up"; type: "string"; isReadonly: true }
         Property { name: "fa_caret_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_carrot"; type: "string"; isReadonly: true }
         Property { name: "fa_cart_arrow_down"; type: "string"; isReadonly: true }
         Property { name: "fa_cart_plus"; type: "string"; isReadonly: true }
-        Property { name: "fa_cc"; type: "string"; isReadonly: true }
+        Property { name: "fa_cash_register"; type: "string"; isReadonly: true }
+        Property { name: "fa_cat"; type: "string"; isReadonly: true }
+        Property { name: "fa_cc_amazon_pay"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_amex"; type: "string"; isReadonly: true }
+        Property { name: "fa_cc_apple_pay"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_diners_club"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_discover"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_jcb"; type: "string"; isReadonly: true }
@@ -140,14 +219,30 @@ Module {
         Property { name: "fa_cc_paypal"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_stripe"; type: "string"; isReadonly: true }
         Property { name: "fa_cc_visa"; type: "string"; isReadonly: true }
+        Property { name: "fa_centercode"; type: "string"; isReadonly: true }
+        Property { name: "fa_centos"; type: "string"; isReadonly: true }
         Property { name: "fa_certificate"; type: "string"; isReadonly: true }
-        Property { name: "fa_chain"; type: "string"; isReadonly: true }
-        Property { name: "fa_chain_broken"; type: "string"; isReadonly: true }
+        Property { name: "fa_chair"; type: "string"; isReadonly: true }
+        Property { name: "fa_chalkboard"; type: "string"; isReadonly: true }
+        Property { name: "fa_chalkboard_teacher"; type: "string"; isReadonly: true }
+        Property { name: "fa_charging_station"; type: "string"; isReadonly: true }
+        Property { name: "fa_chart_area"; type: "string"; isReadonly: true }
+        Property { name: "fa_chart_bar"; type: "string"; isReadonly: true }
+        Property { name: "fa_chart_line"; type: "string"; isReadonly: true }
+        Property { name: "fa_chart_pie"; type: "string"; isReadonly: true }
         Property { name: "fa_check"; type: "string"; isReadonly: true }
         Property { name: "fa_check_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_check_circle_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_check_double"; type: "string"; isReadonly: true }
         Property { name: "fa_check_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_check_square_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_cheese"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_bishop"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_board"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_king"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_knight"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_pawn"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_queen"; type: "string"; isReadonly: true }
+        Property { name: "fa_chess_rook"; type: "string"; isReadonly: true }
         Property { name: "fa_chevron_circle_down"; type: "string"; isReadonly: true }
         Property { name: "fa_chevron_circle_left"; type: "string"; isReadonly: true }
         Property { name: "fa_chevron_circle_right"; type: "string"; isReadonly: true }
@@ -158,560 +253,1121 @@ Module {
         Property { name: "fa_chevron_up"; type: "string"; isReadonly: true }
         Property { name: "fa_child"; type: "string"; isReadonly: true }
         Property { name: "fa_chrome"; type: "string"; isReadonly: true }
+        Property { name: "fa_church"; type: "string"; isReadonly: true }
         Property { name: "fa_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_circle_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_circle_o_notch"; type: "string"; isReadonly: true }
-        Property { name: "fa_circle_thin"; type: "string"; isReadonly: true }
+        Property { name: "fa_circle_notch"; type: "string"; isReadonly: true }
+        Property { name: "fa_city"; type: "string"; isReadonly: true }
+        Property { name: "fa_clinic_medical"; type: "string"; isReadonly: true }
         Property { name: "fa_clipboard"; type: "string"; isReadonly: true }
-        Property { name: "fa_clock_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_clipboard_check"; type: "string"; isReadonly: true }
+        Property { name: "fa_clipboard_list"; type: "string"; isReadonly: true }
+        Property { name: "fa_clock"; type: "string"; isReadonly: true }
         Property { name: "fa_clone"; type: "string"; isReadonly: true }
-        Property { name: "fa_close"; type: "string"; isReadonly: true }
+        Property { name: "fa_closed_captioning"; type: "string"; isReadonly: true }
         Property { name: "fa_cloud"; type: "string"; isReadonly: true }
-        Property { name: "fa_cloud_download"; type: "string"; isReadonly: true }
-        Property { name: "fa_cloud_upload"; type: "string"; isReadonly: true }
-        Property { name: "fa_cny"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_download_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_meatball"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_moon"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_moon_rain"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_rain"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_showers_heavy"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_sun"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_sun_rain"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloud_upload_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloudscale"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloudsmith"; type: "string"; isReadonly: true }
+        Property { name: "fa_cloudversify"; type: "string"; isReadonly: true }
+        Property { name: "fa_cocktail"; type: "string"; isReadonly: true }
         Property { name: "fa_code"; type: "string"; isReadonly: true }
-        Property { name: "fa_code_fork"; type: "string"; isReadonly: true }
+        Property { name: "fa_code_branch"; type: "string"; isReadonly: true }
         Property { name: "fa_codepen"; type: "string"; isReadonly: true }
         Property { name: "fa_codiepie"; type: "string"; isReadonly: true }
         Property { name: "fa_coffee"; type: "string"; isReadonly: true }
         Property { name: "fa_cog"; type: "string"; isReadonly: true }
         Property { name: "fa_cogs"; type: "string"; isReadonly: true }
+        Property { name: "fa_coins"; type: "string"; isReadonly: true }
         Property { name: "fa_columns"; type: "string"; isReadonly: true }
         Property { name: "fa_comment"; type: "string"; isReadonly: true }
-        Property { name: "fa_comment_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_commenting"; type: "string"; isReadonly: true }
-        Property { name: "fa_commenting_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_comment_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_comment_dollar"; type: "string"; isReadonly: true }
+        Property { name: "fa_comment_dots"; type: "string"; isReadonly: true }
+        Property { name: "fa_comment_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_comment_slash"; type: "string"; isReadonly: true }
         Property { name: "fa_comments"; type: "string"; isReadonly: true }
-        Property { name: "fa_comments_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_comments_dollar"; type: "string"; isReadonly: true }
+        Property { name: "fa_compact_disc"; type: "string"; isReadonly: true }
         Property { name: "fa_compass"; type: "string"; isReadonly: true }
         Property { name: "fa_compress"; type: "string"; isReadonly: true }
+        Property { name: "fa_compress_arrows_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_concierge_bell"; type: "string"; isReadonly: true }
+        Property { name: "fa_confluence"; type: "string"; isReadonly: true }
         Property { name: "fa_connectdevelop"; type: "string"; isReadonly: true }
         Property { name: "fa_contao"; type: "string"; isReadonly: true }
+        Property { name: "fa_cookie"; type: "string"; isReadonly: true }
+        Property { name: "fa_cookie_bite"; type: "string"; isReadonly: true }
         Property { name: "fa_copy"; type: "string"; isReadonly: true }
         Property { name: "fa_copyright"; type: "string"; isReadonly: true }
+        Property { name: "fa_couch"; type: "string"; isReadonly: true }
+        Property { name: "fa_cpanel"; type: "string"; isReadonly: true }
         Property { name: "fa_creative_commons"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_by"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_nc"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_nc_eu"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_nc_jp"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_nd"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_pd"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_pd_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_remix"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_sa"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_sampling"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_sampling_plus"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_share"; type: "string"; isReadonly: true }
+        Property { name: "fa_creative_commons_zero"; type: "string"; isReadonly: true }
         Property { name: "fa_credit_card"; type: "string"; isReadonly: true }
-        Property { name: "fa_credit_card_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_critical_role"; type: "string"; isReadonly: true }
         Property { name: "fa_crop"; type: "string"; isReadonly: true }
+        Property { name: "fa_crop_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_cross"; type: "string"; isReadonly: true }
         Property { name: "fa_crosshairs"; type: "string"; isReadonly: true }
+        Property { name: "fa_crow"; type: "string"; isReadonly: true }
+        Property { name: "fa_crown"; type: "string"; isReadonly: true }
+        Property { name: "fa_crutch"; type: "string"; isReadonly: true }
         Property { name: "fa_css3"; type: "string"; isReadonly: true }
+        Property { name: "fa_css3_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_cube"; type: "string"; isReadonly: true }
         Property { name: "fa_cubes"; type: "string"; isReadonly: true }
         Property { name: "fa_cut"; type: "string"; isReadonly: true }
-        Property { name: "fa_cutlery"; type: "string"; isReadonly: true }
-        Property { name: "fa_dashboard"; type: "string"; isReadonly: true }
+        Property { name: "fa_cuttlefish"; type: "string"; isReadonly: true }
+        Property { name: "fa_d_and_d"; type: "string"; isReadonly: true }
+        Property { name: "fa_d_and_d_beyond"; type: "string"; isReadonly: true }
         Property { name: "fa_dashcube"; type: "string"; isReadonly: true }
         Property { name: "fa_database"; type: "string"; isReadonly: true }
-        Property { name: "fa_dedent"; type: "string"; isReadonly: true }
+        Property { name: "fa_deaf"; type: "string"; isReadonly: true }
         Property { name: "fa_delicious"; type: "string"; isReadonly: true }
+        Property { name: "fa_democrat"; type: "string"; isReadonly: true }
+        Property { name: "fa_deploydog"; type: "string"; isReadonly: true }
+        Property { name: "fa_deskpro"; type: "string"; isReadonly: true }
         Property { name: "fa_desktop"; type: "string"; isReadonly: true }
+        Property { name: "fa_dev"; type: "string"; isReadonly: true }
         Property { name: "fa_deviantart"; type: "string"; isReadonly: true }
-        Property { name: "fa_diamond"; type: "string"; isReadonly: true }
+        Property { name: "fa_dharmachakra"; type: "string"; isReadonly: true }
+        Property { name: "fa_dhl"; type: "string"; isReadonly: true }
+        Property { name: "fa_diagnoses"; type: "string"; isReadonly: true }
+        Property { name: "fa_diaspora"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_d20"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_d6"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_five"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_four"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_one"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_six"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_three"; type: "string"; isReadonly: true }
+        Property { name: "fa_dice_two"; type: "string"; isReadonly: true }
         Property { name: "fa_digg"; type: "string"; isReadonly: true }
-        Property { name: "fa_dollar"; type: "string"; isReadonly: true }
-        Property { name: "fa_dot_circle_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_digital_ocean"; type: "string"; isReadonly: true }
+        Property { name: "fa_digital_tachograph"; type: "string"; isReadonly: true }
+        Property { name: "fa_directions"; type: "string"; isReadonly: true }
+        Property { name: "fa_discord"; type: "string"; isReadonly: true }
+        Property { name: "fa_discourse"; type: "string"; isReadonly: true }
+        Property { name: "fa_divide"; type: "string"; isReadonly: true }
+        Property { name: "fa_dizzy"; type: "string"; isReadonly: true }
+        Property { name: "fa_dna"; type: "string"; isReadonly: true }
+        Property { name: "fa_dochub"; type: "string"; isReadonly: true }
+        Property { name: "fa_docker"; type: "string"; isReadonly: true }
+        Property { name: "fa_dog"; type: "string"; isReadonly: true }
+        Property { name: "fa_dollar_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_dolly"; type: "string"; isReadonly: true }
+        Property { name: "fa_dolly_flatbed"; type: "string"; isReadonly: true }
+        Property { name: "fa_donate"; type: "string"; isReadonly: true }
+        Property { name: "fa_door_closed"; type: "string"; isReadonly: true }
+        Property { name: "fa_door_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_dot_circle"; type: "string"; isReadonly: true }
+        Property { name: "fa_dove"; type: "string"; isReadonly: true }
         Property { name: "fa_download"; type: "string"; isReadonly: true }
+        Property { name: "fa_draft2digital"; type: "string"; isReadonly: true }
+        Property { name: "fa_drafting_compass"; type: "string"; isReadonly: true }
+        Property { name: "fa_dragon"; type: "string"; isReadonly: true }
+        Property { name: "fa_draw_polygon"; type: "string"; isReadonly: true }
         Property { name: "fa_dribbble"; type: "string"; isReadonly: true }
+        Property { name: "fa_dribbble_square"; type: "string"; isReadonly: true }
         Property { name: "fa_dropbox"; type: "string"; isReadonly: true }
+        Property { name: "fa_drum"; type: "string"; isReadonly: true }
+        Property { name: "fa_drum_steelpan"; type: "string"; isReadonly: true }
+        Property { name: "fa_drumstick_bite"; type: "string"; isReadonly: true }
         Property { name: "fa_drupal"; type: "string"; isReadonly: true }
+        Property { name: "fa_dumbbell"; type: "string"; isReadonly: true }
+        Property { name: "fa_dumpster"; type: "string"; isReadonly: true }
+        Property { name: "fa_dumpster_fire"; type: "string"; isReadonly: true }
+        Property { name: "fa_dungeon"; type: "string"; isReadonly: true }
+        Property { name: "fa_dyalog"; type: "string"; isReadonly: true }
+        Property { name: "fa_earlybirds"; type: "string"; isReadonly: true }
+        Property { name: "fa_ebay"; type: "string"; isReadonly: true }
         Property { name: "fa_edge"; type: "string"; isReadonly: true }
         Property { name: "fa_edit"; type: "string"; isReadonly: true }
+        Property { name: "fa_egg"; type: "string"; isReadonly: true }
         Property { name: "fa_eject"; type: "string"; isReadonly: true }
+        Property { name: "fa_elementor"; type: "string"; isReadonly: true }
         Property { name: "fa_ellipsis_h"; type: "string"; isReadonly: true }
         Property { name: "fa_ellipsis_v"; type: "string"; isReadonly: true }
+        Property { name: "fa_ello"; type: "string"; isReadonly: true }
+        Property { name: "fa_ember"; type: "string"; isReadonly: true }
         Property { name: "fa_empire"; type: "string"; isReadonly: true }
         Property { name: "fa_envelope"; type: "string"; isReadonly: true }
-        Property { name: "fa_envelope_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_envelope_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_envelope_open_text"; type: "string"; isReadonly: true }
         Property { name: "fa_envelope_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_envira"; type: "string"; isReadonly: true }
+        Property { name: "fa_equals"; type: "string"; isReadonly: true }
         Property { name: "fa_eraser"; type: "string"; isReadonly: true }
-        Property { name: "fa_eur"; type: "string"; isReadonly: true }
-        Property { name: "fa_euro"; type: "string"; isReadonly: true }
-        Property { name: "fa_exchange"; type: "string"; isReadonly: true }
+        Property { name: "fa_erlang"; type: "string"; isReadonly: true }
+        Property { name: "fa_ethereum"; type: "string"; isReadonly: true }
+        Property { name: "fa_ethernet"; type: "string"; isReadonly: true }
+        Property { name: "fa_etsy"; type: "string"; isReadonly: true }
+        Property { name: "fa_euro_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_exchange_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_exclamation"; type: "string"; isReadonly: true }
         Property { name: "fa_exclamation_circle"; type: "string"; isReadonly: true }
         Property { name: "fa_exclamation_triangle"; type: "string"; isReadonly: true }
         Property { name: "fa_expand"; type: "string"; isReadonly: true }
+        Property { name: "fa_expand_arrows_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_expeditedssl"; type: "string"; isReadonly: true }
-        Property { name: "fa_external_link"; type: "string"; isReadonly: true }
-        Property { name: "fa_external_link_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_external_link_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_external_link_square_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_eye"; type: "string"; isReadonly: true }
+        Property { name: "fa_eye_dropper"; type: "string"; isReadonly: true }
         Property { name: "fa_eye_slash"; type: "string"; isReadonly: true }
-        Property { name: "fa_eyedropper"; type: "string"; isReadonly: true }
         Property { name: "fa_facebook"; type: "string"; isReadonly: true }
         Property { name: "fa_facebook_f"; type: "string"; isReadonly: true }
-        Property { name: "fa_facebook_official"; type: "string"; isReadonly: true }
+        Property { name: "fa_facebook_messenger"; type: "string"; isReadonly: true }
         Property { name: "fa_facebook_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_fantasy_flight_games"; type: "string"; isReadonly: true }
         Property { name: "fa_fast_backward"; type: "string"; isReadonly: true }
         Property { name: "fa_fast_forward"; type: "string"; isReadonly: true }
         Property { name: "fa_fax"; type: "string"; isReadonly: true }
-        Property { name: "fa_feed"; type: "string"; isReadonly: true }
+        Property { name: "fa_feather"; type: "string"; isReadonly: true }
+        Property { name: "fa_feather_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_fedex"; type: "string"; isReadonly: true }
+        Property { name: "fa_fedora"; type: "string"; isReadonly: true }
         Property { name: "fa_female"; type: "string"; isReadonly: true }
         Property { name: "fa_fighter_jet"; type: "string"; isReadonly: true }
+        Property { name: "fa_figma"; type: "string"; isReadonly: true }
         Property { name: "fa_file"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_archive_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_audio_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_code_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_excel_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_image_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_movie_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_pdf_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_photo_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_picture_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_powerpoint_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_sound_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_text"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_text_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_video_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_word_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_file_zip_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_files_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_archive"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_audio"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_code"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_contract"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_csv"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_download"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_excel"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_export"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_image"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_import"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_invoice"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_invoice_dollar"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_medical_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_pdf"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_powerpoint"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_prescription"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_signature"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_upload"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_video"; type: "string"; isReadonly: true }
+        Property { name: "fa_file_word"; type: "string"; isReadonly: true }
+        Property { name: "fa_fill"; type: "string"; isReadonly: true }
+        Property { name: "fa_fill_drip"; type: "string"; isReadonly: true }
         Property { name: "fa_film"; type: "string"; isReadonly: true }
         Property { name: "fa_filter"; type: "string"; isReadonly: true }
+        Property { name: "fa_fingerprint"; type: "string"; isReadonly: true }
         Property { name: "fa_fire"; type: "string"; isReadonly: true }
+        Property { name: "fa_fire_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_fire_extinguisher"; type: "string"; isReadonly: true }
         Property { name: "fa_firefox"; type: "string"; isReadonly: true }
+        Property { name: "fa_first_aid"; type: "string"; isReadonly: true }
+        Property { name: "fa_first_order"; type: "string"; isReadonly: true }
+        Property { name: "fa_first_order_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_firstdraft"; type: "string"; isReadonly: true }
+        Property { name: "fa_fish"; type: "string"; isReadonly: true }
+        Property { name: "fa_fist_raised"; type: "string"; isReadonly: true }
         Property { name: "fa_flag"; type: "string"; isReadonly: true }
         Property { name: "fa_flag_checkered"; type: "string"; isReadonly: true }
-        Property { name: "fa_flag_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_flash"; type: "string"; isReadonly: true }
+        Property { name: "fa_flag_usa"; type: "string"; isReadonly: true }
         Property { name: "fa_flask"; type: "string"; isReadonly: true }
         Property { name: "fa_flickr"; type: "string"; isReadonly: true }
-        Property { name: "fa_floppy_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_flipboard"; type: "string"; isReadonly: true }
+        Property { name: "fa_flushed"; type: "string"; isReadonly: true }
+        Property { name: "fa_fly"; type: "string"; isReadonly: true }
         Property { name: "fa_folder"; type: "string"; isReadonly: true }
-        Property { name: "fa_folder_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_folder_minus"; type: "string"; isReadonly: true }
         Property { name: "fa_folder_open"; type: "string"; isReadonly: true }
-        Property { name: "fa_folder_open_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_folder_plus"; type: "string"; isReadonly: true }
         Property { name: "fa_font"; type: "string"; isReadonly: true }
+        Property { name: "fa_font_awesome"; type: "string"; isReadonly: true }
+        Property { name: "fa_font_awesome_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_font_awesome_flag"; type: "string"; isReadonly: true }
+        Property { name: "fa_font_awesome_logo_full"; type: "string"; isReadonly: true }
         Property { name: "fa_fonticons"; type: "string"; isReadonly: true }
+        Property { name: "fa_fonticons_fi"; type: "string"; isReadonly: true }
+        Property { name: "fa_football_ball"; type: "string"; isReadonly: true }
         Property { name: "fa_fort_awesome"; type: "string"; isReadonly: true }
+        Property { name: "fa_fort_awesome_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_forumbee"; type: "string"; isReadonly: true }
         Property { name: "fa_forward"; type: "string"; isReadonly: true }
         Property { name: "fa_foursquare"; type: "string"; isReadonly: true }
-        Property { name: "fa_frown_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_futbol_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_free_code_camp"; type: "string"; isReadonly: true }
+        Property { name: "fa_freebsd"; type: "string"; isReadonly: true }
+        Property { name: "fa_frog"; type: "string"; isReadonly: true }
+        Property { name: "fa_frown"; type: "string"; isReadonly: true }
+        Property { name: "fa_frown_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_fulcrum"; type: "string"; isReadonly: true }
+        Property { name: "fa_funnel_dollar"; type: "string"; isReadonly: true }
+        Property { name: "fa_futbol"; type: "string"; isReadonly: true }
+        Property { name: "fa_galactic_republic"; type: "string"; isReadonly: true }
+        Property { name: "fa_galactic_senate"; type: "string"; isReadonly: true }
         Property { name: "fa_gamepad"; type: "string"; isReadonly: true }
+        Property { name: "fa_gas_pump"; type: "string"; isReadonly: true }
         Property { name: "fa_gavel"; type: "string"; isReadonly: true }
-        Property { name: "fa_gbp"; type: "string"; isReadonly: true }
-        Property { name: "fa_ge"; type: "string"; isReadonly: true }
-        Property { name: "fa_gear"; type: "string"; isReadonly: true }
-        Property { name: "fa_gears"; type: "string"; isReadonly: true }
+        Property { name: "fa_gem"; type: "string"; isReadonly: true }
         Property { name: "fa_genderless"; type: "string"; isReadonly: true }
         Property { name: "fa_get_pocket"; type: "string"; isReadonly: true }
         Property { name: "fa_gg"; type: "string"; isReadonly: true }
         Property { name: "fa_gg_circle"; type: "string"; isReadonly: true }
+        Property { name: "fa_ghost"; type: "string"; isReadonly: true }
         Property { name: "fa_gift"; type: "string"; isReadonly: true }
+        Property { name: "fa_gifts"; type: "string"; isReadonly: true }
         Property { name: "fa_git"; type: "string"; isReadonly: true }
         Property { name: "fa_git_square"; type: "string"; isReadonly: true }
         Property { name: "fa_github"; type: "string"; isReadonly: true }
         Property { name: "fa_github_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_github_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_gittip"; type: "string"; isReadonly: true }
-        Property { name: "fa_glass"; type: "string"; isReadonly: true }
+        Property { name: "fa_gitkraken"; type: "string"; isReadonly: true }
+        Property { name: "fa_gitlab"; type: "string"; isReadonly: true }
+        Property { name: "fa_gitter"; type: "string"; isReadonly: true }
+        Property { name: "fa_glass_cheers"; type: "string"; isReadonly: true }
+        Property { name: "fa_glass_martini"; type: "string"; isReadonly: true }
+        Property { name: "fa_glass_martini_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_glass_whiskey"; type: "string"; isReadonly: true }
+        Property { name: "fa_glasses"; type: "string"; isReadonly: true }
+        Property { name: "fa_glide"; type: "string"; isReadonly: true }
+        Property { name: "fa_glide_g"; type: "string"; isReadonly: true }
         Property { name: "fa_globe"; type: "string"; isReadonly: true }
+        Property { name: "fa_globe_africa"; type: "string"; isReadonly: true }
+        Property { name: "fa_globe_americas"; type: "string"; isReadonly: true }
+        Property { name: "fa_globe_asia"; type: "string"; isReadonly: true }
+        Property { name: "fa_globe_europe"; type: "string"; isReadonly: true }
+        Property { name: "fa_gofore"; type: "string"; isReadonly: true }
+        Property { name: "fa_golf_ball"; type: "string"; isReadonly: true }
+        Property { name: "fa_goodreads"; type: "string"; isReadonly: true }
+        Property { name: "fa_goodreads_g"; type: "string"; isReadonly: true }
         Property { name: "fa_google"; type: "string"; isReadonly: true }
+        Property { name: "fa_google_drive"; type: "string"; isReadonly: true }
+        Property { name: "fa_google_play"; type: "string"; isReadonly: true }
         Property { name: "fa_google_plus"; type: "string"; isReadonly: true }
+        Property { name: "fa_google_plus_g"; type: "string"; isReadonly: true }
         Property { name: "fa_google_plus_square"; type: "string"; isReadonly: true }
         Property { name: "fa_google_wallet"; type: "string"; isReadonly: true }
+        Property { name: "fa_gopuram"; type: "string"; isReadonly: true }
         Property { name: "fa_graduation_cap"; type: "string"; isReadonly: true }
         Property { name: "fa_gratipay"; type: "string"; isReadonly: true }
-        Property { name: "fa_group"; type: "string"; isReadonly: true }
+        Property { name: "fa_grav"; type: "string"; isReadonly: true }
+        Property { name: "fa_greater_than"; type: "string"; isReadonly: true }
+        Property { name: "fa_greater_than_equal"; type: "string"; isReadonly: true }
+        Property { name: "fa_grimace"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_beam"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_beam_sweat"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_hearts"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_squint"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_squint_tears"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_stars"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_tears"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_tongue"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_tongue_squint"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_tongue_wink"; type: "string"; isReadonly: true }
+        Property { name: "fa_grin_wink"; type: "string"; isReadonly: true }
+        Property { name: "fa_grip_horizontal"; type: "string"; isReadonly: true }
+        Property { name: "fa_grip_lines"; type: "string"; isReadonly: true }
+        Property { name: "fa_grip_lines_vertical"; type: "string"; isReadonly: true }
+        Property { name: "fa_grip_vertical"; type: "string"; isReadonly: true }
+        Property { name: "fa_gripfire"; type: "string"; isReadonly: true }
+        Property { name: "fa_grunt"; type: "string"; isReadonly: true }
+        Property { name: "fa_guitar"; type: "string"; isReadonly: true }
+        Property { name: "fa_gulp"; type: "string"; isReadonly: true }
         Property { name: "fa_h_square"; type: "string"; isReadonly: true }
         Property { name: "fa_hacker_news"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_grab_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_lizard_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_o_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_o_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_o_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_o_up"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_paper_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_peace_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_pointer_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_rock_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_scissors_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_spock_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_hand_stop_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_hacker_news_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_hackerrank"; type: "string"; isReadonly: true }
+        Property { name: "fa_hamburger"; type: "string"; isReadonly: true }
+        Property { name: "fa_hammer"; type: "string"; isReadonly: true }
+        Property { name: "fa_hamsa"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_holding"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_holding_heart"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_holding_usd"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_lizard"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_middle_finger"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_paper"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_peace"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_point_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_point_left"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_point_right"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_point_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_pointer"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_rock"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_scissors"; type: "string"; isReadonly: true }
+        Property { name: "fa_hand_spock"; type: "string"; isReadonly: true }
+        Property { name: "fa_hands"; type: "string"; isReadonly: true }
+        Property { name: "fa_hands_helping"; type: "string"; isReadonly: true }
+        Property { name: "fa_handshake"; type: "string"; isReadonly: true }
+        Property { name: "fa_hanukiah"; type: "string"; isReadonly: true }
+        Property { name: "fa_hard_hat"; type: "string"; isReadonly: true }
         Property { name: "fa_hashtag"; type: "string"; isReadonly: true }
-        Property { name: "fa_hdd_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_header"; type: "string"; isReadonly: true }
+        Property { name: "fa_hat_wizard"; type: "string"; isReadonly: true }
+        Property { name: "fa_haykal"; type: "string"; isReadonly: true }
+        Property { name: "fa_hdd"; type: "string"; isReadonly: true }
+        Property { name: "fa_heading"; type: "string"; isReadonly: true }
         Property { name: "fa_headphones"; type: "string"; isReadonly: true }
+        Property { name: "fa_headphones_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_headset"; type: "string"; isReadonly: true }
         Property { name: "fa_heart"; type: "string"; isReadonly: true }
-        Property { name: "fa_heart_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_heart_broken"; type: "string"; isReadonly: true }
         Property { name: "fa_heartbeat"; type: "string"; isReadonly: true }
+        Property { name: "fa_helicopter"; type: "string"; isReadonly: true }
+        Property { name: "fa_highlighter"; type: "string"; isReadonly: true }
+        Property { name: "fa_hiking"; type: "string"; isReadonly: true }
+        Property { name: "fa_hippo"; type: "string"; isReadonly: true }
+        Property { name: "fa_hips"; type: "string"; isReadonly: true }
+        Property { name: "fa_hire_a_helper"; type: "string"; isReadonly: true }
         Property { name: "fa_history"; type: "string"; isReadonly: true }
+        Property { name: "fa_hockey_puck"; type: "string"; isReadonly: true }
+        Property { name: "fa_holly_berry"; type: "string"; isReadonly: true }
         Property { name: "fa_home"; type: "string"; isReadonly: true }
-        Property { name: "fa_hospital_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_hooli"; type: "string"; isReadonly: true }
+        Property { name: "fa_hornbill"; type: "string"; isReadonly: true }
+        Property { name: "fa_horse"; type: "string"; isReadonly: true }
+        Property { name: "fa_horse_head"; type: "string"; isReadonly: true }
+        Property { name: "fa_hospital"; type: "string"; isReadonly: true }
+        Property { name: "fa_hospital_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_hospital_symbol"; type: "string"; isReadonly: true }
+        Property { name: "fa_hot_tub"; type: "string"; isReadonly: true }
+        Property { name: "fa_hotdog"; type: "string"; isReadonly: true }
         Property { name: "fa_hotel"; type: "string"; isReadonly: true }
+        Property { name: "fa_hotjar"; type: "string"; isReadonly: true }
         Property { name: "fa_hourglass"; type: "string"; isReadonly: true }
-        Property { name: "fa_hourglass_1"; type: "string"; isReadonly: true }
-        Property { name: "fa_hourglass_2"; type: "string"; isReadonly: true }
-        Property { name: "fa_hourglass_3"; type: "string"; isReadonly: true }
         Property { name: "fa_hourglass_end"; type: "string"; isReadonly: true }
         Property { name: "fa_hourglass_half"; type: "string"; isReadonly: true }
-        Property { name: "fa_hourglass_o"; type: "string"; isReadonly: true }
         Property { name: "fa_hourglass_start"; type: "string"; isReadonly: true }
+        Property { name: "fa_house_damage"; type: "string"; isReadonly: true }
         Property { name: "fa_houzz"; type: "string"; isReadonly: true }
+        Property { name: "fa_hryvnia"; type: "string"; isReadonly: true }
         Property { name: "fa_html5"; type: "string"; isReadonly: true }
+        Property { name: "fa_hubspot"; type: "string"; isReadonly: true }
         Property { name: "fa_i_cursor"; type: "string"; isReadonly: true }
-        Property { name: "fa_ils"; type: "string"; isReadonly: true }
+        Property { name: "fa_ice_cream"; type: "string"; isReadonly: true }
+        Property { name: "fa_icicles"; type: "string"; isReadonly: true }
+        Property { name: "fa_id_badge"; type: "string"; isReadonly: true }
+        Property { name: "fa_id_card"; type: "string"; isReadonly: true }
+        Property { name: "fa_id_card_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_igloo"; type: "string"; isReadonly: true }
         Property { name: "fa_image"; type: "string"; isReadonly: true }
+        Property { name: "fa_images"; type: "string"; isReadonly: true }
+        Property { name: "fa_imdb"; type: "string"; isReadonly: true }
         Property { name: "fa_inbox"; type: "string"; isReadonly: true }
         Property { name: "fa_indent"; type: "string"; isReadonly: true }
         Property { name: "fa_industry"; type: "string"; isReadonly: true }
+        Property { name: "fa_infinity"; type: "string"; isReadonly: true }
         Property { name: "fa_info"; type: "string"; isReadonly: true }
         Property { name: "fa_info_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_inr"; type: "string"; isReadonly: true }
         Property { name: "fa_instagram"; type: "string"; isReadonly: true }
-        Property { name: "fa_institution"; type: "string"; isReadonly: true }
+        Property { name: "fa_intercom"; type: "string"; isReadonly: true }
         Property { name: "fa_internet_explorer"; type: "string"; isReadonly: true }
-        Property { name: "fa_intersex"; type: "string"; isReadonly: true }
+        Property { name: "fa_invision"; type: "string"; isReadonly: true }
         Property { name: "fa_ioxhost"; type: "string"; isReadonly: true }
         Property { name: "fa_italic"; type: "string"; isReadonly: true }
+        Property { name: "fa_itunes"; type: "string"; isReadonly: true }
+        Property { name: "fa_itunes_note"; type: "string"; isReadonly: true }
+        Property { name: "fa_java"; type: "string"; isReadonly: true }
+        Property { name: "fa_jedi"; type: "string"; isReadonly: true }
+        Property { name: "fa_jedi_order"; type: "string"; isReadonly: true }
+        Property { name: "fa_jenkins"; type: "string"; isReadonly: true }
+        Property { name: "fa_jira"; type: "string"; isReadonly: true }
+        Property { name: "fa_joget"; type: "string"; isReadonly: true }
+        Property { name: "fa_joint"; type: "string"; isReadonly: true }
         Property { name: "fa_joomla"; type: "string"; isReadonly: true }
-        Property { name: "fa_jpy"; type: "string"; isReadonly: true }
+        Property { name: "fa_journal_whills"; type: "string"; isReadonly: true }
+        Property { name: "fa_js"; type: "string"; isReadonly: true }
+        Property { name: "fa_js_square"; type: "string"; isReadonly: true }
         Property { name: "fa_jsfiddle"; type: "string"; isReadonly: true }
+        Property { name: "fa_kaaba"; type: "string"; isReadonly: true }
+        Property { name: "fa_kaggle"; type: "string"; isReadonly: true }
         Property { name: "fa_key"; type: "string"; isReadonly: true }
-        Property { name: "fa_keyboard_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_krw"; type: "string"; isReadonly: true }
+        Property { name: "fa_keybase"; type: "string"; isReadonly: true }
+        Property { name: "fa_keyboard"; type: "string"; isReadonly: true }
+        Property { name: "fa_keycdn"; type: "string"; isReadonly: true }
+        Property { name: "fa_khanda"; type: "string"; isReadonly: true }
+        Property { name: "fa_kickstarter"; type: "string"; isReadonly: true }
+        Property { name: "fa_kickstarter_k"; type: "string"; isReadonly: true }
+        Property { name: "fa_kiss"; type: "string"; isReadonly: true }
+        Property { name: "fa_kiss_beam"; type: "string"; isReadonly: true }
+        Property { name: "fa_kiss_wink_heart"; type: "string"; isReadonly: true }
+        Property { name: "fa_kiwi_bird"; type: "string"; isReadonly: true }
+        Property { name: "fa_korvue"; type: "string"; isReadonly: true }
+        Property { name: "fa_landmark"; type: "string"; isReadonly: true }
         Property { name: "fa_language"; type: "string"; isReadonly: true }
         Property { name: "fa_laptop"; type: "string"; isReadonly: true }
+        Property { name: "fa_laptop_code"; type: "string"; isReadonly: true }
+        Property { name: "fa_laptop_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_laravel"; type: "string"; isReadonly: true }
         Property { name: "fa_lastfm"; type: "string"; isReadonly: true }
         Property { name: "fa_lastfm_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_laugh"; type: "string"; isReadonly: true }
+        Property { name: "fa_laugh_beam"; type: "string"; isReadonly: true }
+        Property { name: "fa_laugh_squint"; type: "string"; isReadonly: true }
+        Property { name: "fa_laugh_wink"; type: "string"; isReadonly: true }
+        Property { name: "fa_layer_group"; type: "string"; isReadonly: true }
         Property { name: "fa_leaf"; type: "string"; isReadonly: true }
         Property { name: "fa_leanpub"; type: "string"; isReadonly: true }
-        Property { name: "fa_legal"; type: "string"; isReadonly: true }
-        Property { name: "fa_lemon_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_level_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_level_up"; type: "string"; isReadonly: true }
-        Property { name: "fa_life_bouy"; type: "string"; isReadonly: true }
-        Property { name: "fa_life_buoy"; type: "string"; isReadonly: true }
+        Property { name: "fa_lemon"; type: "string"; isReadonly: true }
+        Property { name: "fa_less"; type: "string"; isReadonly: true }
+        Property { name: "fa_less_than"; type: "string"; isReadonly: true }
+        Property { name: "fa_less_than_equal"; type: "string"; isReadonly: true }
+        Property { name: "fa_level_down_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_level_up_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_life_ring"; type: "string"; isReadonly: true }
-        Property { name: "fa_life_saver"; type: "string"; isReadonly: true }
-        Property { name: "fa_lightbulb_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_line_chart"; type: "string"; isReadonly: true }
+        Property { name: "fa_lightbulb"; type: "string"; isReadonly: true }
+        Property { name: "fa_line"; type: "string"; isReadonly: true }
         Property { name: "fa_link"; type: "string"; isReadonly: true }
         Property { name: "fa_linkedin"; type: "string"; isReadonly: true }
-        Property { name: "fa_linkedin_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_linkedin_in"; type: "string"; isReadonly: true }
+        Property { name: "fa_linode"; type: "string"; isReadonly: true }
         Property { name: "fa_linux"; type: "string"; isReadonly: true }
+        Property { name: "fa_lira_sign"; type: "string"; isReadonly: true }
         Property { name: "fa_list"; type: "string"; isReadonly: true }
         Property { name: "fa_list_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_list_ol"; type: "string"; isReadonly: true }
         Property { name: "fa_list_ul"; type: "string"; isReadonly: true }
         Property { name: "fa_location_arrow"; type: "string"; isReadonly: true }
         Property { name: "fa_lock"; type: "string"; isReadonly: true }
-        Property { name: "fa_long_arrow_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_long_arrow_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_long_arrow_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_long_arrow_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_lock_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_long_arrow_alt_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_long_arrow_alt_left"; type: "string"; isReadonly: true }
+        Property { name: "fa_long_arrow_alt_right"; type: "string"; isReadonly: true }
+        Property { name: "fa_long_arrow_alt_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_low_vision"; type: "string"; isReadonly: true }
+        Property { name: "fa_luggage_cart"; type: "string"; isReadonly: true }
+        Property { name: "fa_lyft"; type: "string"; isReadonly: true }
+        Property { name: "fa_magento"; type: "string"; isReadonly: true }
         Property { name: "fa_magic"; type: "string"; isReadonly: true }
         Property { name: "fa_magnet"; type: "string"; isReadonly: true }
-        Property { name: "fa_mail_forward"; type: "string"; isReadonly: true }
-        Property { name: "fa_mail_reply"; type: "string"; isReadonly: true }
-        Property { name: "fa_mail_reply_all"; type: "string"; isReadonly: true }
+        Property { name: "fa_mail_bulk"; type: "string"; isReadonly: true }
+        Property { name: "fa_mailchimp"; type: "string"; isReadonly: true }
         Property { name: "fa_male"; type: "string"; isReadonly: true }
+        Property { name: "fa_mandalorian"; type: "string"; isReadonly: true }
         Property { name: "fa_map"; type: "string"; isReadonly: true }
+        Property { name: "fa_map_marked"; type: "string"; isReadonly: true }
+        Property { name: "fa_map_marked_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_map_marker"; type: "string"; isReadonly: true }
-        Property { name: "fa_map_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_map_marker_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_map_pin"; type: "string"; isReadonly: true }
         Property { name: "fa_map_signs"; type: "string"; isReadonly: true }
+        Property { name: "fa_markdown"; type: "string"; isReadonly: true }
+        Property { name: "fa_marker"; type: "string"; isReadonly: true }
         Property { name: "fa_mars"; type: "string"; isReadonly: true }
         Property { name: "fa_mars_double"; type: "string"; isReadonly: true }
         Property { name: "fa_mars_stroke"; type: "string"; isReadonly: true }
         Property { name: "fa_mars_stroke_h"; type: "string"; isReadonly: true }
         Property { name: "fa_mars_stroke_v"; type: "string"; isReadonly: true }
+        Property { name: "fa_mask"; type: "string"; isReadonly: true }
+        Property { name: "fa_mastodon"; type: "string"; isReadonly: true }
         Property { name: "fa_maxcdn"; type: "string"; isReadonly: true }
-        Property { name: "fa_meanpath"; type: "string"; isReadonly: true }
+        Property { name: "fa_medal"; type: "string"; isReadonly: true }
+        Property { name: "fa_medapps"; type: "string"; isReadonly: true }
         Property { name: "fa_medium"; type: "string"; isReadonly: true }
+        Property { name: "fa_medium_m"; type: "string"; isReadonly: true }
         Property { name: "fa_medkit"; type: "string"; isReadonly: true }
-        Property { name: "fa_meh_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_medrt"; type: "string"; isReadonly: true }
+        Property { name: "fa_meetup"; type: "string"; isReadonly: true }
+        Property { name: "fa_megaport"; type: "string"; isReadonly: true }
+        Property { name: "fa_meh"; type: "string"; isReadonly: true }
+        Property { name: "fa_meh_blank"; type: "string"; isReadonly: true }
+        Property { name: "fa_meh_rolling_eyes"; type: "string"; isReadonly: true }
+        Property { name: "fa_memory"; type: "string"; isReadonly: true }
+        Property { name: "fa_mendeley"; type: "string"; isReadonly: true }
+        Property { name: "fa_menorah"; type: "string"; isReadonly: true }
         Property { name: "fa_mercury"; type: "string"; isReadonly: true }
+        Property { name: "fa_meteor"; type: "string"; isReadonly: true }
+        Property { name: "fa_microchip"; type: "string"; isReadonly: true }
         Property { name: "fa_microphone"; type: "string"; isReadonly: true }
+        Property { name: "fa_microphone_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_microphone_alt_slash"; type: "string"; isReadonly: true }
         Property { name: "fa_microphone_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_microscope"; type: "string"; isReadonly: true }
+        Property { name: "fa_microsoft"; type: "string"; isReadonly: true }
         Property { name: "fa_minus"; type: "string"; isReadonly: true }
         Property { name: "fa_minus_circle"; type: "string"; isReadonly: true }
         Property { name: "fa_minus_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_minus_square_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_mitten"; type: "string"; isReadonly: true }
+        Property { name: "fa_mix"; type: "string"; isReadonly: true }
         Property { name: "fa_mixcloud"; type: "string"; isReadonly: true }
+        Property { name: "fa_mizuni"; type: "string"; isReadonly: true }
         Property { name: "fa_mobile"; type: "string"; isReadonly: true }
-        Property { name: "fa_mobile_phone"; type: "string"; isReadonly: true }
+        Property { name: "fa_mobile_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_modx"; type: "string"; isReadonly: true }
-        Property { name: "fa_money"; type: "string"; isReadonly: true }
-        Property { name: "fa_moon_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_mortar_board"; type: "string"; isReadonly: true }
+        Property { name: "fa_monero"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_bill"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_bill_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_bill_wave"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_bill_wave_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_check"; type: "string"; isReadonly: true }
+        Property { name: "fa_money_check_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_monument"; type: "string"; isReadonly: true }
+        Property { name: "fa_moon"; type: "string"; isReadonly: true }
+        Property { name: "fa_mortar_pestle"; type: "string"; isReadonly: true }
+        Property { name: "fa_mosque"; type: "string"; isReadonly: true }
         Property { name: "fa_motorcycle"; type: "string"; isReadonly: true }
+        Property { name: "fa_mountain"; type: "string"; isReadonly: true }
         Property { name: "fa_mouse_pointer"; type: "string"; isReadonly: true }
+        Property { name: "fa_mug_hot"; type: "string"; isReadonly: true }
         Property { name: "fa_music"; type: "string"; isReadonly: true }
-        Property { name: "fa_navicon"; type: "string"; isReadonly: true }
+        Property { name: "fa_napster"; type: "string"; isReadonly: true }
+        Property { name: "fa_neos"; type: "string"; isReadonly: true }
+        Property { name: "fa_network_wired"; type: "string"; isReadonly: true }
         Property { name: "fa_neuter"; type: "string"; isReadonly: true }
-        Property { name: "fa_newspaper_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_newspaper"; type: "string"; isReadonly: true }
+        Property { name: "fa_nimblr"; type: "string"; isReadonly: true }
+        Property { name: "fa_nintendo_switch"; type: "string"; isReadonly: true }
+        Property { name: "fa_node"; type: "string"; isReadonly: true }
+        Property { name: "fa_node_js"; type: "string"; isReadonly: true }
+        Property { name: "fa_not_equal"; type: "string"; isReadonly: true }
+        Property { name: "fa_notes_medical"; type: "string"; isReadonly: true }
+        Property { name: "fa_npm"; type: "string"; isReadonly: true }
+        Property { name: "fa_ns8"; type: "string"; isReadonly: true }
+        Property { name: "fa_nutritionix"; type: "string"; isReadonly: true }
         Property { name: "fa_object_group"; type: "string"; isReadonly: true }
         Property { name: "fa_object_ungroup"; type: "string"; isReadonly: true }
         Property { name: "fa_odnoklassniki"; type: "string"; isReadonly: true }
         Property { name: "fa_odnoklassniki_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_oil_can"; type: "string"; isReadonly: true }
+        Property { name: "fa_old_republic"; type: "string"; isReadonly: true }
+        Property { name: "fa_om"; type: "string"; isReadonly: true }
         Property { name: "fa_opencart"; type: "string"; isReadonly: true }
         Property { name: "fa_openid"; type: "string"; isReadonly: true }
         Property { name: "fa_opera"; type: "string"; isReadonly: true }
         Property { name: "fa_optin_monster"; type: "string"; isReadonly: true }
+        Property { name: "fa_osi"; type: "string"; isReadonly: true }
+        Property { name: "fa_otter"; type: "string"; isReadonly: true }
         Property { name: "fa_outdent"; type: "string"; isReadonly: true }
+        Property { name: "fa_page4"; type: "string"; isReadonly: true }
         Property { name: "fa_pagelines"; type: "string"; isReadonly: true }
+        Property { name: "fa_pager"; type: "string"; isReadonly: true }
         Property { name: "fa_paint_brush"; type: "string"; isReadonly: true }
+        Property { name: "fa_paint_roller"; type: "string"; isReadonly: true }
+        Property { name: "fa_palette"; type: "string"; isReadonly: true }
+        Property { name: "fa_palfed"; type: "string"; isReadonly: true }
+        Property { name: "fa_pallet"; type: "string"; isReadonly: true }
         Property { name: "fa_paper_plane"; type: "string"; isReadonly: true }
-        Property { name: "fa_paper_plane_o"; type: "string"; isReadonly: true }
         Property { name: "fa_paperclip"; type: "string"; isReadonly: true }
+        Property { name: "fa_parachute_box"; type: "string"; isReadonly: true }
         Property { name: "fa_paragraph"; type: "string"; isReadonly: true }
+        Property { name: "fa_parking"; type: "string"; isReadonly: true }
+        Property { name: "fa_passport"; type: "string"; isReadonly: true }
+        Property { name: "fa_pastafarianism"; type: "string"; isReadonly: true }
         Property { name: "fa_paste"; type: "string"; isReadonly: true }
+        Property { name: "fa_patreon"; type: "string"; isReadonly: true }
         Property { name: "fa_pause"; type: "string"; isReadonly: true }
         Property { name: "fa_pause_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_pause_circle_o"; type: "string"; isReadonly: true }
         Property { name: "fa_paw"; type: "string"; isReadonly: true }
         Property { name: "fa_paypal"; type: "string"; isReadonly: true }
-        Property { name: "fa_pencil"; type: "string"; isReadonly: true }
-        Property { name: "fa_pencil_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_pencil_square_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_peace"; type: "string"; isReadonly: true }
+        Property { name: "fa_pen"; type: "string"; isReadonly: true }
+        Property { name: "fa_pen_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_pen_fancy"; type: "string"; isReadonly: true }
+        Property { name: "fa_pen_nib"; type: "string"; isReadonly: true }
+        Property { name: "fa_pen_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_pencil_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_pencil_ruler"; type: "string"; isReadonly: true }
+        Property { name: "fa_penny_arcade"; type: "string"; isReadonly: true }
+        Property { name: "fa_people_carry"; type: "string"; isReadonly: true }
+        Property { name: "fa_pepper_hot"; type: "string"; isReadonly: true }
         Property { name: "fa_percent"; type: "string"; isReadonly: true }
+        Property { name: "fa_percentage"; type: "string"; isReadonly: true }
+        Property { name: "fa_periscope"; type: "string"; isReadonly: true }
+        Property { name: "fa_person_booth"; type: "string"; isReadonly: true }
+        Property { name: "fa_phabricator"; type: "string"; isReadonly: true }
+        Property { name: "fa_phoenix_framework"; type: "string"; isReadonly: true }
+        Property { name: "fa_phoenix_squadron"; type: "string"; isReadonly: true }
         Property { name: "fa_phone"; type: "string"; isReadonly: true }
+        Property { name: "fa_phone_slash"; type: "string"; isReadonly: true }
         Property { name: "fa_phone_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_photo"; type: "string"; isReadonly: true }
-        Property { name: "fa_picture_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_pie_chart"; type: "string"; isReadonly: true }
+        Property { name: "fa_phone_volume"; type: "string"; isReadonly: true }
+        Property { name: "fa_php"; type: "string"; isReadonly: true }
         Property { name: "fa_pied_piper"; type: "string"; isReadonly: true }
         Property { name: "fa_pied_piper_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_pied_piper_hat"; type: "string"; isReadonly: true }
+        Property { name: "fa_pied_piper_pp"; type: "string"; isReadonly: true }
+        Property { name: "fa_piggy_bank"; type: "string"; isReadonly: true }
+        Property { name: "fa_pills"; type: "string"; isReadonly: true }
         Property { name: "fa_pinterest"; type: "string"; isReadonly: true }
         Property { name: "fa_pinterest_p"; type: "string"; isReadonly: true }
         Property { name: "fa_pinterest_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_pizza_slice"; type: "string"; isReadonly: true }
+        Property { name: "fa_place_of_worship"; type: "string"; isReadonly: true }
         Property { name: "fa_plane"; type: "string"; isReadonly: true }
+        Property { name: "fa_plane_arrival"; type: "string"; isReadonly: true }
+        Property { name: "fa_plane_departure"; type: "string"; isReadonly: true }
         Property { name: "fa_play"; type: "string"; isReadonly: true }
         Property { name: "fa_play_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_play_circle_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_playstation"; type: "string"; isReadonly: true }
         Property { name: "fa_plug"; type: "string"; isReadonly: true }
         Property { name: "fa_plus"; type: "string"; isReadonly: true }
         Property { name: "fa_plus_circle"; type: "string"; isReadonly: true }
         Property { name: "fa_plus_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_plus_square_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_podcast"; type: "string"; isReadonly: true }
+        Property { name: "fa_poll"; type: "string"; isReadonly: true }
+        Property { name: "fa_poll_h"; type: "string"; isReadonly: true }
+        Property { name: "fa_poo"; type: "string"; isReadonly: true }
+        Property { name: "fa_poo_storm"; type: "string"; isReadonly: true }
+        Property { name: "fa_poop"; type: "string"; isReadonly: true }
+        Property { name: "fa_portrait"; type: "string"; isReadonly: true }
+        Property { name: "fa_pound_sign"; type: "string"; isReadonly: true }
         Property { name: "fa_power_off"; type: "string"; isReadonly: true }
+        Property { name: "fa_pray"; type: "string"; isReadonly: true }
+        Property { name: "fa_praying_hands"; type: "string"; isReadonly: true }
+        Property { name: "fa_prescription"; type: "string"; isReadonly: true }
+        Property { name: "fa_prescription_bottle"; type: "string"; isReadonly: true }
+        Property { name: "fa_prescription_bottle_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_print"; type: "string"; isReadonly: true }
+        Property { name: "fa_procedures"; type: "string"; isReadonly: true }
         Property { name: "fa_product_hunt"; type: "string"; isReadonly: true }
+        Property { name: "fa_project_diagram"; type: "string"; isReadonly: true }
+        Property { name: "fa_pushed"; type: "string"; isReadonly: true }
         Property { name: "fa_puzzle_piece"; type: "string"; isReadonly: true }
+        Property { name: "fa_python"; type: "string"; isReadonly: true }
         Property { name: "fa_qq"; type: "string"; isReadonly: true }
         Property { name: "fa_qrcode"; type: "string"; isReadonly: true }
         Property { name: "fa_question"; type: "string"; isReadonly: true }
         Property { name: "fa_question_circle"; type: "string"; isReadonly: true }
+        Property { name: "fa_quidditch"; type: "string"; isReadonly: true }
+        Property { name: "fa_quinscape"; type: "string"; isReadonly: true }
+        Property { name: "fa_quora"; type: "string"; isReadonly: true }
         Property { name: "fa_quote_left"; type: "string"; isReadonly: true }
         Property { name: "fa_quote_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_ra"; type: "string"; isReadonly: true }
+        Property { name: "fa_quran"; type: "string"; isReadonly: true }
+        Property { name: "fa_r_project"; type: "string"; isReadonly: true }
+        Property { name: "fa_radiation"; type: "string"; isReadonly: true }
+        Property { name: "fa_radiation_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_rainbow"; type: "string"; isReadonly: true }
         Property { name: "fa_random"; type: "string"; isReadonly: true }
+        Property { name: "fa_raspberry_pi"; type: "string"; isReadonly: true }
+        Property { name: "fa_ravelry"; type: "string"; isReadonly: true }
+        Property { name: "fa_react"; type: "string"; isReadonly: true }
+        Property { name: "fa_reacteurope"; type: "string"; isReadonly: true }
+        Property { name: "fa_readme"; type: "string"; isReadonly: true }
         Property { name: "fa_rebel"; type: "string"; isReadonly: true }
+        Property { name: "fa_receipt"; type: "string"; isReadonly: true }
         Property { name: "fa_recycle"; type: "string"; isReadonly: true }
+        Property { name: "fa_red_river"; type: "string"; isReadonly: true }
         Property { name: "fa_reddit"; type: "string"; isReadonly: true }
         Property { name: "fa_reddit_alien"; type: "string"; isReadonly: true }
         Property { name: "fa_reddit_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_refresh"; type: "string"; isReadonly: true }
+        Property { name: "fa_redhat"; type: "string"; isReadonly: true }
+        Property { name: "fa_redo"; type: "string"; isReadonly: true }
+        Property { name: "fa_redo_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_registered"; type: "string"; isReadonly: true }
-        Property { name: "fa_remove"; type: "string"; isReadonly: true }
         Property { name: "fa_renren"; type: "string"; isReadonly: true }
-        Property { name: "fa_reorder"; type: "string"; isReadonly: true }
-        Property { name: "fa_repeat"; type: "string"; isReadonly: true }
         Property { name: "fa_reply"; type: "string"; isReadonly: true }
         Property { name: "fa_reply_all"; type: "string"; isReadonly: true }
+        Property { name: "fa_replyd"; type: "string"; isReadonly: true }
+        Property { name: "fa_republican"; type: "string"; isReadonly: true }
+        Property { name: "fa_researchgate"; type: "string"; isReadonly: true }
+        Property { name: "fa_resolving"; type: "string"; isReadonly: true }
+        Property { name: "fa_restroom"; type: "string"; isReadonly: true }
         Property { name: "fa_retweet"; type: "string"; isReadonly: true }
-        Property { name: "fa_rmb"; type: "string"; isReadonly: true }
+        Property { name: "fa_rev"; type: "string"; isReadonly: true }
+        Property { name: "fa_ribbon"; type: "string"; isReadonly: true }
+        Property { name: "fa_ring"; type: "string"; isReadonly: true }
         Property { name: "fa_road"; type: "string"; isReadonly: true }
+        Property { name: "fa_robot"; type: "string"; isReadonly: true }
         Property { name: "fa_rocket"; type: "string"; isReadonly: true }
-        Property { name: "fa_rotate_left"; type: "string"; isReadonly: true }
-        Property { name: "fa_rotate_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_rouble"; type: "string"; isReadonly: true }
+        Property { name: "fa_rocketchat"; type: "string"; isReadonly: true }
+        Property { name: "fa_rockrms"; type: "string"; isReadonly: true }
+        Property { name: "fa_route"; type: "string"; isReadonly: true }
         Property { name: "fa_rss"; type: "string"; isReadonly: true }
         Property { name: "fa_rss_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_rub"; type: "string"; isReadonly: true }
-        Property { name: "fa_ruble"; type: "string"; isReadonly: true }
-        Property { name: "fa_rupee"; type: "string"; isReadonly: true }
+        Property { name: "fa_ruble_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_ruler"; type: "string"; isReadonly: true }
+        Property { name: "fa_ruler_combined"; type: "string"; isReadonly: true }
+        Property { name: "fa_ruler_horizontal"; type: "string"; isReadonly: true }
+        Property { name: "fa_ruler_vertical"; type: "string"; isReadonly: true }
+        Property { name: "fa_running"; type: "string"; isReadonly: true }
+        Property { name: "fa_rupee_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_sad_cry"; type: "string"; isReadonly: true }
+        Property { name: "fa_sad_tear"; type: "string"; isReadonly: true }
         Property { name: "fa_safari"; type: "string"; isReadonly: true }
+        Property { name: "fa_sass"; type: "string"; isReadonly: true }
+        Property { name: "fa_satellite"; type: "string"; isReadonly: true }
+        Property { name: "fa_satellite_dish"; type: "string"; isReadonly: true }
         Property { name: "fa_save"; type: "string"; isReadonly: true }
-        Property { name: "fa_scissors"; type: "string"; isReadonly: true }
+        Property { name: "fa_schlix"; type: "string"; isReadonly: true }
+        Property { name: "fa_school"; type: "string"; isReadonly: true }
+        Property { name: "fa_screwdriver"; type: "string"; isReadonly: true }
         Property { name: "fa_scribd"; type: "string"; isReadonly: true }
+        Property { name: "fa_scroll"; type: "string"; isReadonly: true }
+        Property { name: "fa_sd_card"; type: "string"; isReadonly: true }
         Property { name: "fa_search"; type: "string"; isReadonly: true }
+        Property { name: "fa_search_dollar"; type: "string"; isReadonly: true }
+        Property { name: "fa_search_location"; type: "string"; isReadonly: true }
         Property { name: "fa_search_minus"; type: "string"; isReadonly: true }
         Property { name: "fa_search_plus"; type: "string"; isReadonly: true }
+        Property { name: "fa_searchengin"; type: "string"; isReadonly: true }
+        Property { name: "fa_seedling"; type: "string"; isReadonly: true }
+        Property { name: "fa_sellcast"; type: "string"; isReadonly: true }
         Property { name: "fa_sellsy"; type: "string"; isReadonly: true }
-        Property { name: "fa_send"; type: "string"; isReadonly: true }
-        Property { name: "fa_send_o"; type: "string"; isReadonly: true }
         Property { name: "fa_server"; type: "string"; isReadonly: true }
+        Property { name: "fa_servicestack"; type: "string"; isReadonly: true }
+        Property { name: "fa_shapes"; type: "string"; isReadonly: true }
         Property { name: "fa_share"; type: "string"; isReadonly: true }
         Property { name: "fa_share_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_share_alt_square"; type: "string"; isReadonly: true }
         Property { name: "fa_share_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_share_square_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_shekel"; type: "string"; isReadonly: true }
-        Property { name: "fa_sheqel"; type: "string"; isReadonly: true }
-        Property { name: "fa_shield"; type: "string"; isReadonly: true }
+        Property { name: "fa_shekel_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_shield_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_ship"; type: "string"; isReadonly: true }
+        Property { name: "fa_shipping_fast"; type: "string"; isReadonly: true }
         Property { name: "fa_shirtsinbulk"; type: "string"; isReadonly: true }
+        Property { name: "fa_shoe_prints"; type: "string"; isReadonly: true }
         Property { name: "fa_shopping_bag"; type: "string"; isReadonly: true }
         Property { name: "fa_shopping_basket"; type: "string"; isReadonly: true }
         Property { name: "fa_shopping_cart"; type: "string"; isReadonly: true }
-        Property { name: "fa_sign_in"; type: "string"; isReadonly: true }
-        Property { name: "fa_sign_out"; type: "string"; isReadonly: true }
+        Property { name: "fa_shopware"; type: "string"; isReadonly: true }
+        Property { name: "fa_shower"; type: "string"; isReadonly: true }
+        Property { name: "fa_shuttle_van"; type: "string"; isReadonly: true }
+        Property { name: "fa_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_sign_in_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_sign_language"; type: "string"; isReadonly: true }
+        Property { name: "fa_sign_out_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_signal"; type: "string"; isReadonly: true }
+        Property { name: "fa_signature"; type: "string"; isReadonly: true }
+        Property { name: "fa_sim_card"; type: "string"; isReadonly: true }
         Property { name: "fa_simplybuilt"; type: "string"; isReadonly: true }
+        Property { name: "fa_sistrix"; type: "string"; isReadonly: true }
         Property { name: "fa_sitemap"; type: "string"; isReadonly: true }
+        Property { name: "fa_sith"; type: "string"; isReadonly: true }
+        Property { name: "fa_skating"; type: "string"; isReadonly: true }
+        Property { name: "fa_sketch"; type: "string"; isReadonly: true }
+        Property { name: "fa_skiing"; type: "string"; isReadonly: true }
+        Property { name: "fa_skiing_nordic"; type: "string"; isReadonly: true }
+        Property { name: "fa_skull"; type: "string"; isReadonly: true }
+        Property { name: "fa_skull_crossbones"; type: "string"; isReadonly: true }
         Property { name: "fa_skyatlas"; type: "string"; isReadonly: true }
         Property { name: "fa_skype"; type: "string"; isReadonly: true }
         Property { name: "fa_slack"; type: "string"; isReadonly: true }
-        Property { name: "fa_sliders"; type: "string"; isReadonly: true }
+        Property { name: "fa_slack_hash"; type: "string"; isReadonly: true }
+        Property { name: "fa_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_sleigh"; type: "string"; isReadonly: true }
+        Property { name: "fa_sliders_h"; type: "string"; isReadonly: true }
         Property { name: "fa_slideshare"; type: "string"; isReadonly: true }
-        Property { name: "fa_smile_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_soccer_ball_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_smile"; type: "string"; isReadonly: true }
+        Property { name: "fa_smile_beam"; type: "string"; isReadonly: true }
+        Property { name: "fa_smile_wink"; type: "string"; isReadonly: true }
+        Property { name: "fa_smog"; type: "string"; isReadonly: true }
+        Property { name: "fa_smoking"; type: "string"; isReadonly: true }
+        Property { name: "fa_smoking_ban"; type: "string"; isReadonly: true }
+        Property { name: "fa_sms"; type: "string"; isReadonly: true }
+        Property { name: "fa_snapchat"; type: "string"; isReadonly: true }
+        Property { name: "fa_snapchat_ghost"; type: "string"; isReadonly: true }
+        Property { name: "fa_snapchat_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_snowboarding"; type: "string"; isReadonly: true }
+        Property { name: "fa_snowflake"; type: "string"; isReadonly: true }
+        Property { name: "fa_snowman"; type: "string"; isReadonly: true }
+        Property { name: "fa_snowplow"; type: "string"; isReadonly: true }
+        Property { name: "fa_socks"; type: "string"; isReadonly: true }
+        Property { name: "fa_solar_panel"; type: "string"; isReadonly: true }
         Property { name: "fa_sort"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_alpha_asc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_alpha_desc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_amount_asc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_amount_desc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_asc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_desc"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_alpha_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_alpha_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_amount_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_amount_up"; type: "string"; isReadonly: true }
         Property { name: "fa_sort_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_numeric_asc"; type: "string"; isReadonly: true }
-        Property { name: "fa_sort_numeric_desc"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_numeric_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_sort_numeric_up"; type: "string"; isReadonly: true }
         Property { name: "fa_sort_up"; type: "string"; isReadonly: true }
         Property { name: "fa_soundcloud"; type: "string"; isReadonly: true }
+        Property { name: "fa_sourcetree"; type: "string"; isReadonly: true }
+        Property { name: "fa_spa"; type: "string"; isReadonly: true }
         Property { name: "fa_space_shuttle"; type: "string"; isReadonly: true }
+        Property { name: "fa_speakap"; type: "string"; isReadonly: true }
+        Property { name: "fa_spider"; type: "string"; isReadonly: true }
         Property { name: "fa_spinner"; type: "string"; isReadonly: true }
-        Property { name: "fa_spoon"; type: "string"; isReadonly: true }
+        Property { name: "fa_splotch"; type: "string"; isReadonly: true }
         Property { name: "fa_spotify"; type: "string"; isReadonly: true }
+        Property { name: "fa_spray_can"; type: "string"; isReadonly: true }
         Property { name: "fa_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_square_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_square_full"; type: "string"; isReadonly: true }
+        Property { name: "fa_square_root_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_squarespace"; type: "string"; isReadonly: true }
         Property { name: "fa_stack_exchange"; type: "string"; isReadonly: true }
         Property { name: "fa_stack_overflow"; type: "string"; isReadonly: true }
+        Property { name: "fa_stamp"; type: "string"; isReadonly: true }
         Property { name: "fa_star"; type: "string"; isReadonly: true }
+        Property { name: "fa_star_and_crescent"; type: "string"; isReadonly: true }
         Property { name: "fa_star_half"; type: "string"; isReadonly: true }
-        Property { name: "fa_star_half_empty"; type: "string"; isReadonly: true }
-        Property { name: "fa_star_half_full"; type: "string"; isReadonly: true }
-        Property { name: "fa_star_half_o"; type: "string"; isReadonly: true }
-        Property { name: "fa_star_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_star_half_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_star_of_david"; type: "string"; isReadonly: true }
+        Property { name: "fa_star_of_life"; type: "string"; isReadonly: true }
+        Property { name: "fa_staylinked"; type: "string"; isReadonly: true }
         Property { name: "fa_steam"; type: "string"; isReadonly: true }
         Property { name: "fa_steam_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_steam_symbol"; type: "string"; isReadonly: true }
         Property { name: "fa_step_backward"; type: "string"; isReadonly: true }
         Property { name: "fa_step_forward"; type: "string"; isReadonly: true }
         Property { name: "fa_stethoscope"; type: "string"; isReadonly: true }
+        Property { name: "fa_sticker_mule"; type: "string"; isReadonly: true }
         Property { name: "fa_sticky_note"; type: "string"; isReadonly: true }
-        Property { name: "fa_sticky_note_o"; type: "string"; isReadonly: true }
         Property { name: "fa_stop"; type: "string"; isReadonly: true }
         Property { name: "fa_stop_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_stop_circle_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_stopwatch"; type: "string"; isReadonly: true }
+        Property { name: "fa_store"; type: "string"; isReadonly: true }
+        Property { name: "fa_store_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_strava"; type: "string"; isReadonly: true }
+        Property { name: "fa_stream"; type: "string"; isReadonly: true }
         Property { name: "fa_street_view"; type: "string"; isReadonly: true }
         Property { name: "fa_strikethrough"; type: "string"; isReadonly: true }
+        Property { name: "fa_stripe"; type: "string"; isReadonly: true }
+        Property { name: "fa_stripe_s"; type: "string"; isReadonly: true }
+        Property { name: "fa_stroopwafel"; type: "string"; isReadonly: true }
+        Property { name: "fa_studiovinari"; type: "string"; isReadonly: true }
         Property { name: "fa_stumbleupon"; type: "string"; isReadonly: true }
         Property { name: "fa_stumbleupon_circle"; type: "string"; isReadonly: true }
         Property { name: "fa_subscript"; type: "string"; isReadonly: true }
         Property { name: "fa_subway"; type: "string"; isReadonly: true }
         Property { name: "fa_suitcase"; type: "string"; isReadonly: true }
-        Property { name: "fa_sun_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_suitcase_rolling"; type: "string"; isReadonly: true }
+        Property { name: "fa_sun"; type: "string"; isReadonly: true }
+        Property { name: "fa_superpowers"; type: "string"; isReadonly: true }
         Property { name: "fa_superscript"; type: "string"; isReadonly: true }
-        Property { name: "fa_support"; type: "string"; isReadonly: true }
+        Property { name: "fa_supple"; type: "string"; isReadonly: true }
+        Property { name: "fa_surprise"; type: "string"; isReadonly: true }
+        Property { name: "fa_suse"; type: "string"; isReadonly: true }
+        Property { name: "fa_swatchbook"; type: "string"; isReadonly: true }
+        Property { name: "fa_swimmer"; type: "string"; isReadonly: true }
+        Property { name: "fa_swimming_pool"; type: "string"; isReadonly: true }
+        Property { name: "fa_synagogue"; type: "string"; isReadonly: true }
+        Property { name: "fa_sync"; type: "string"; isReadonly: true }
+        Property { name: "fa_sync_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_syringe"; type: "string"; isReadonly: true }
         Property { name: "fa_table"; type: "string"; isReadonly: true }
+        Property { name: "fa_table_tennis"; type: "string"; isReadonly: true }
         Property { name: "fa_tablet"; type: "string"; isReadonly: true }
-        Property { name: "fa_tachometer"; type: "string"; isReadonly: true }
+        Property { name: "fa_tablet_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_tablets"; type: "string"; isReadonly: true }
+        Property { name: "fa_tachometer_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_tag"; type: "string"; isReadonly: true }
         Property { name: "fa_tags"; type: "string"; isReadonly: true }
+        Property { name: "fa_tape"; type: "string"; isReadonly: true }
         Property { name: "fa_tasks"; type: "string"; isReadonly: true }
         Property { name: "fa_taxi"; type: "string"; isReadonly: true }
-        Property { name: "fa_television"; type: "string"; isReadonly: true }
+        Property { name: "fa_teamspeak"; type: "string"; isReadonly: true }
+        Property { name: "fa_teeth"; type: "string"; isReadonly: true }
+        Property { name: "fa_teeth_open"; type: "string"; isReadonly: true }
+        Property { name: "fa_telegram"; type: "string"; isReadonly: true }
+        Property { name: "fa_telegram_plane"; type: "string"; isReadonly: true }
+        Property { name: "fa_temperature_high"; type: "string"; isReadonly: true }
+        Property { name: "fa_temperature_low"; type: "string"; isReadonly: true }
         Property { name: "fa_tencent_weibo"; type: "string"; isReadonly: true }
+        Property { name: "fa_tenge"; type: "string"; isReadonly: true }
         Property { name: "fa_terminal"; type: "string"; isReadonly: true }
         Property { name: "fa_text_height"; type: "string"; isReadonly: true }
         Property { name: "fa_text_width"; type: "string"; isReadonly: true }
         Property { name: "fa_th"; type: "string"; isReadonly: true }
         Property { name: "fa_th_large"; type: "string"; isReadonly: true }
         Property { name: "fa_th_list"; type: "string"; isReadonly: true }
-        Property { name: "fa_thumb_tack"; type: "string"; isReadonly: true }
+        Property { name: "fa_the_red_yeti"; type: "string"; isReadonly: true }
+        Property { name: "fa_theater_masks"; type: "string"; isReadonly: true }
+        Property { name: "fa_themeco"; type: "string"; isReadonly: true }
+        Property { name: "fa_themeisle"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer_empty"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer_full"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer_half"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer_quarter"; type: "string"; isReadonly: true }
+        Property { name: "fa_thermometer_three_quarters"; type: "string"; isReadonly: true }
+        Property { name: "fa_think_peaks"; type: "string"; isReadonly: true }
         Property { name: "fa_thumbs_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_thumbs_o_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_thumbs_o_up"; type: "string"; isReadonly: true }
         Property { name: "fa_thumbs_up"; type: "string"; isReadonly: true }
-        Property { name: "fa_ticket"; type: "string"; isReadonly: true }
+        Property { name: "fa_thumbtack"; type: "string"; isReadonly: true }
+        Property { name: "fa_ticket_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_times"; type: "string"; isReadonly: true }
         Property { name: "fa_times_circle"; type: "string"; isReadonly: true }
-        Property { name: "fa_times_circle_o"; type: "string"; isReadonly: true }
         Property { name: "fa_tint"; type: "string"; isReadonly: true }
-        Property { name: "fa_toggle_down"; type: "string"; isReadonly: true }
-        Property { name: "fa_toggle_left"; type: "string"; isReadonly: true }
+        Property { name: "fa_tint_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_tired"; type: "string"; isReadonly: true }
         Property { name: "fa_toggle_off"; type: "string"; isReadonly: true }
         Property { name: "fa_toggle_on"; type: "string"; isReadonly: true }
-        Property { name: "fa_toggle_right"; type: "string"; isReadonly: true }
-        Property { name: "fa_toggle_up"; type: "string"; isReadonly: true }
+        Property { name: "fa_toilet"; type: "string"; isReadonly: true }
+        Property { name: "fa_toilet_paper"; type: "string"; isReadonly: true }
+        Property { name: "fa_toolbox"; type: "string"; isReadonly: true }
+        Property { name: "fa_tools"; type: "string"; isReadonly: true }
+        Property { name: "fa_tooth"; type: "string"; isReadonly: true }
+        Property { name: "fa_torah"; type: "string"; isReadonly: true }
+        Property { name: "fa_torii_gate"; type: "string"; isReadonly: true }
+        Property { name: "fa_tractor"; type: "string"; isReadonly: true }
+        Property { name: "fa_trade_federation"; type: "string"; isReadonly: true }
         Property { name: "fa_trademark"; type: "string"; isReadonly: true }
+        Property { name: "fa_traffic_light"; type: "string"; isReadonly: true }
         Property { name: "fa_train"; type: "string"; isReadonly: true }
+        Property { name: "fa_tram"; type: "string"; isReadonly: true }
         Property { name: "fa_transgender"; type: "string"; isReadonly: true }
         Property { name: "fa_transgender_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_trash"; type: "string"; isReadonly: true }
-        Property { name: "fa_trash_o"; type: "string"; isReadonly: true }
+        Property { name: "fa_trash_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_trash_restore"; type: "string"; isReadonly: true }
+        Property { name: "fa_trash_restore_alt"; type: "string"; isReadonly: true }
         Property { name: "fa_tree"; type: "string"; isReadonly: true }
         Property { name: "fa_trello"; type: "string"; isReadonly: true }
         Property { name: "fa_tripadvisor"; type: "string"; isReadonly: true }
         Property { name: "fa_trophy"; type: "string"; isReadonly: true }
         Property { name: "fa_truck"; type: "string"; isReadonly: true }
-        Property { name: "fa_try"; type: "string"; isReadonly: true }
+        Property { name: "fa_truck_loading"; type: "string"; isReadonly: true }
+        Property { name: "fa_truck_monster"; type: "string"; isReadonly: true }
+        Property { name: "fa_truck_moving"; type: "string"; isReadonly: true }
+        Property { name: "fa_truck_pickup"; type: "string"; isReadonly: true }
+        Property { name: "fa_tshirt"; type: "string"; isReadonly: true }
         Property { name: "fa_tty"; type: "string"; isReadonly: true }
         Property { name: "fa_tumblr"; type: "string"; isReadonly: true }
         Property { name: "fa_tumblr_square"; type: "string"; isReadonly: true }
-        Property { name: "fa_turkish_lira"; type: "string"; isReadonly: true }
         Property { name: "fa_tv"; type: "string"; isReadonly: true }
         Property { name: "fa_twitch"; type: "string"; isReadonly: true }
         Property { name: "fa_twitter"; type: "string"; isReadonly: true }
         Property { name: "fa_twitter_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_typo3"; type: "string"; isReadonly: true }
+        Property { name: "fa_uber"; type: "string"; isReadonly: true }
+        Property { name: "fa_ubuntu"; type: "string"; isReadonly: true }
+        Property { name: "fa_uikit"; type: "string"; isReadonly: true }
         Property { name: "fa_umbrella"; type: "string"; isReadonly: true }
+        Property { name: "fa_umbrella_beach"; type: "string"; isReadonly: true }
         Property { name: "fa_underline"; type: "string"; isReadonly: true }
         Property { name: "fa_undo"; type: "string"; isReadonly: true }
+        Property { name: "fa_undo_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_uniregistry"; type: "string"; isReadonly: true }
+        Property { name: "fa_universal_access"; type: "string"; isReadonly: true }
         Property { name: "fa_university"; type: "string"; isReadonly: true }
         Property { name: "fa_unlink"; type: "string"; isReadonly: true }
         Property { name: "fa_unlock"; type: "string"; isReadonly: true }
         Property { name: "fa_unlock_alt"; type: "string"; isReadonly: true }
-        Property { name: "fa_unsorted"; type: "string"; isReadonly: true }
+        Property { name: "fa_untappd"; type: "string"; isReadonly: true }
         Property { name: "fa_upload"; type: "string"; isReadonly: true }
+        Property { name: "fa_ups"; type: "string"; isReadonly: true }
         Property { name: "fa_usb"; type: "string"; isReadonly: true }
-        Property { name: "fa_usd"; type: "string"; isReadonly: true }
         Property { name: "fa_user"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_alt_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_astronaut"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_check"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_circle"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_clock"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_cog"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_edit"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_friends"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_graduate"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_injured"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_lock"; type: "string"; isReadonly: true }
         Property { name: "fa_user_md"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_minus"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_ninja"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_nurse"; type: "string"; isReadonly: true }
         Property { name: "fa_user_plus"; type: "string"; isReadonly: true }
         Property { name: "fa_user_secret"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_shield"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_tag"; type: "string"; isReadonly: true }
+        Property { name: "fa_user_tie"; type: "string"; isReadonly: true }
         Property { name: "fa_user_times"; type: "string"; isReadonly: true }
         Property { name: "fa_users"; type: "string"; isReadonly: true }
+        Property { name: "fa_users_cog"; type: "string"; isReadonly: true }
+        Property { name: "fa_usps"; type: "string"; isReadonly: true }
+        Property { name: "fa_ussunnah"; type: "string"; isReadonly: true }
+        Property { name: "fa_utensil_spoon"; type: "string"; isReadonly: true }
+        Property { name: "fa_utensils"; type: "string"; isReadonly: true }
+        Property { name: "fa_vaadin"; type: "string"; isReadonly: true }
+        Property { name: "fa_vector_square"; type: "string"; isReadonly: true }
         Property { name: "fa_venus"; type: "string"; isReadonly: true }
         Property { name: "fa_venus_double"; type: "string"; isReadonly: true }
         Property { name: "fa_venus_mars"; type: "string"; isReadonly: true }
         Property { name: "fa_viacoin"; type: "string"; isReadonly: true }
-        Property { name: "fa_video_camera"; type: "string"; isReadonly: true }
+        Property { name: "fa_viadeo"; type: "string"; isReadonly: true }
+        Property { name: "fa_viadeo_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_vial"; type: "string"; isReadonly: true }
+        Property { name: "fa_vials"; type: "string"; isReadonly: true }
+        Property { name: "fa_viber"; type: "string"; isReadonly: true }
+        Property { name: "fa_video"; type: "string"; isReadonly: true }
+        Property { name: "fa_video_slash"; type: "string"; isReadonly: true }
+        Property { name: "fa_vihara"; type: "string"; isReadonly: true }
         Property { name: "fa_vimeo"; type: "string"; isReadonly: true }
         Property { name: "fa_vimeo_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_vimeo_v"; type: "string"; isReadonly: true }
         Property { name: "fa_vine"; type: "string"; isReadonly: true }
         Property { name: "fa_vk"; type: "string"; isReadonly: true }
+        Property { name: "fa_vnv"; type: "string"; isReadonly: true }
+        Property { name: "fa_volleyball_ball"; type: "string"; isReadonly: true }
         Property { name: "fa_volume_down"; type: "string"; isReadonly: true }
+        Property { name: "fa_volume_mute"; type: "string"; isReadonly: true }
         Property { name: "fa_volume_off"; type: "string"; isReadonly: true }
         Property { name: "fa_volume_up"; type: "string"; isReadonly: true }
-        Property { name: "fa_warning"; type: "string"; isReadonly: true }
-        Property { name: "fa_wechat"; type: "string"; isReadonly: true }
+        Property { name: "fa_vote_yea"; type: "string"; isReadonly: true }
+        Property { name: "fa_vr_cardboard"; type: "string"; isReadonly: true }
+        Property { name: "fa_vuejs"; type: "string"; isReadonly: true }
+        Property { name: "fa_walking"; type: "string"; isReadonly: true }
+        Property { name: "fa_wallet"; type: "string"; isReadonly: true }
+        Property { name: "fa_warehouse"; type: "string"; isReadonly: true }
+        Property { name: "fa_water"; type: "string"; isReadonly: true }
+        Property { name: "fa_weebly"; type: "string"; isReadonly: true }
         Property { name: "fa_weibo"; type: "string"; isReadonly: true }
+        Property { name: "fa_weight"; type: "string"; isReadonly: true }
+        Property { name: "fa_weight_hanging"; type: "string"; isReadonly: true }
         Property { name: "fa_weixin"; type: "string"; isReadonly: true }
         Property { name: "fa_whatsapp"; type: "string"; isReadonly: true }
+        Property { name: "fa_whatsapp_square"; type: "string"; isReadonly: true }
         Property { name: "fa_wheelchair"; type: "string"; isReadonly: true }
+        Property { name: "fa_whmcs"; type: "string"; isReadonly: true }
         Property { name: "fa_wifi"; type: "string"; isReadonly: true }
         Property { name: "fa_wikipedia_w"; type: "string"; isReadonly: true }
+        Property { name: "fa_wind"; type: "string"; isReadonly: true }
+        Property { name: "fa_window_close"; type: "string"; isReadonly: true }
+        Property { name: "fa_window_maximize"; type: "string"; isReadonly: true }
+        Property { name: "fa_window_minimize"; type: "string"; isReadonly: true }
+        Property { name: "fa_window_restore"; type: "string"; isReadonly: true }
         Property { name: "fa_windows"; type: "string"; isReadonly: true }
-        Property { name: "fa_won"; type: "string"; isReadonly: true }
+        Property { name: "fa_wine_bottle"; type: "string"; isReadonly: true }
+        Property { name: "fa_wine_glass"; type: "string"; isReadonly: true }
+        Property { name: "fa_wine_glass_alt"; type: "string"; isReadonly: true }
+        Property { name: "fa_wix"; type: "string"; isReadonly: true }
+        Property { name: "fa_wizards_of_the_coast"; type: "string"; isReadonly: true }
+        Property { name: "fa_wolf_pack_battalion"; type: "string"; isReadonly: true }
+        Property { name: "fa_won_sign"; type: "string"; isReadonly: true }
         Property { name: "fa_wordpress"; type: "string"; isReadonly: true }
+        Property { name: "fa_wordpress_simple"; type: "string"; isReadonly: true }
+        Property { name: "fa_wpbeginner"; type: "string"; isReadonly: true }
+        Property { name: "fa_wpexplorer"; type: "string"; isReadonly: true }
+        Property { name: "fa_wpforms"; type: "string"; isReadonly: true }
+        Property { name: "fa_wpressr"; type: "string"; isReadonly: true }
         Property { name: "fa_wrench"; type: "string"; isReadonly: true }
+        Property { name: "fa_x_ray"; type: "string"; isReadonly: true }
+        Property { name: "fa_xbox"; type: "string"; isReadonly: true }
         Property { name: "fa_xing"; type: "string"; isReadonly: true }
         Property { name: "fa_xing_square"; type: "string"; isReadonly: true }
         Property { name: "fa_y_combinator"; type: "string"; isReadonly: true }
-        Property { name: "fa_y_combinator_square"; type: "string"; isReadonly: true }
         Property { name: "fa_yahoo"; type: "string"; isReadonly: true }
-        Property { name: "fa_yc"; type: "string"; isReadonly: true }
-        Property { name: "fa_yc_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_yandex"; type: "string"; isReadonly: true }
+        Property { name: "fa_yandex_international"; type: "string"; isReadonly: true }
+        Property { name: "fa_yarn"; type: "string"; isReadonly: true }
         Property { name: "fa_yelp"; type: "string"; isReadonly: true }
-        Property { name: "fa_yen"; type: "string"; isReadonly: true }
+        Property { name: "fa_yen_sign"; type: "string"; isReadonly: true }
+        Property { name: "fa_yin_yang"; type: "string"; isReadonly: true }
+        Property { name: "fa_yoast"; type: "string"; isReadonly: true }
         Property { name: "fa_youtube"; type: "string"; isReadonly: true }
-        Property { name: "fa_youtube_play"; type: "string"; isReadonly: true }
         Property { name: "fa_youtube_square"; type: "string"; isReadonly: true }
+        Property { name: "fa_zhihu"; type: "string"; isReadonly: true }
         Method { name: "init"; type: "QVariant" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
