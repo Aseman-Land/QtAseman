@@ -17,20 +17,21 @@
 */
 
 import QtQuick 2.7
-import AsemanTools 1.0
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.0
 
 Item {
 
-    MapDownloader {
-        id: mapDownloader
-        destination: Devices.localFilesPrePath + AsemanApp.tempPath
-        mapProvider: mapProviderCombo.currentIndex
-        size: Qt.size(img.width, img.height)
-        zoom: 16
-    }
+//    MapDownloader {
+//        id: mapDownloader
+//        destination: Devices.localFilesPrePath + AsemanApp.tempPath
+//        mapProvider: mapProviderCombo.currentIndex
+//        size: Qt.size(img.width, img.height)
+//        zoom: 16
+//    }
 
     Item {
         id: listv
@@ -81,13 +82,13 @@ Item {
             verticalAlignment: Image.AlignTop
             horizontalAlignment: Image.AlignHCenter
             fillMode: Image.PreserveAspectFit
-            source: mapDownloader.image
+//            source: mapDownloader.image
 
             BusyIndicator {
                 anchors.centerIn: parent
                 width: 40*Devices.density
                 height: width
-                running: mapDownloader.downloading
+                running: false //mapDownloader.downloading
             }
         }
     }

@@ -1,0 +1,5 @@
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:src="@drawable/splash_image"
+        android:gravity="center"
+        tools:ignore="ResourceCycle"/>

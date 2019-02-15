@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>main.qml</file>
+        <file>AppWindow.qml</file>
+        <file>static/AsemanAppExample.qml</file>
+        <file>static/BackHandlerExample.qml</file>
+        <file>static/DesktopExample.qml</file>
+        <file>static/DevicesExample.qml</file>
+        <file>static/StaticComponentsExample.qml</file>
+        <file>static/TextToolsExample.qml</file>
+        <file>static/ToolsExample.qml</file>
+        <file>static/ViewExample.qml</file>
+        <file>nongraphical/DownloaderExample.qml</file>
+        <file>nongraphical/EncrypterExample.qml</file>
+        <file>nongraphical/ImageColorAnalizorExample.qml</file>
+        <file>nongraphical/MapDownloaderExample.qml</file>
+        <file>nongraphical/NetworkSleepManagerExample.qml</file>
+        <file>nongraphical/NonGraphicalComponentsExample.qml</file>
+        <file>nongraphical/NotificationExample.qml</file>
+        <file>nongraphical/SettingsExample.qml</file>
+        <file>models/CountriesModelExample.qml</file>
+        <file>models/FileSystemModelExample.qml</file>
+        <file>models/ModelComponentExamples.qml</file>
+        <file>graphical/GraphicalComponentsExample.qml</file>
+        <file>graphical/MaterialButtonExample.qml</file>
+        <file>graphical/MenuControllerExample.qml</file>
+        <file>graphical/SideMenuExample.qml</file>
+        <file>global/MainMenuItem.qml</file>
+        <file>global/MainPage.qml</file>
+        <file>global/QmlControls.qml</file>
+    </qresource>
+</RCC>

@@ -18,7 +18,8 @@
 
 import QtQuick 2.7
 import QtQuick.Window 2.2
-import AsemanTools 1.1
+import AsemanQml.Base 2.0
+import AsemanQml.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
