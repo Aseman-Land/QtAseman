@@ -13,7 +13,7 @@ SOURCES += \
     $$PWD/modernplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
 
-static: !linux: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Modern/*.*) $$PWD/Modern/qmldir
 

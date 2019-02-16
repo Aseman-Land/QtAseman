@@ -14,7 +14,7 @@ SOURCES += \
     $$PWD/asemanqmlplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
 
-static: !linux: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Base/*.*) $$PWD/Base/qmldir
 ASEMAN_QML_PRIVATES += $$files($$PWD/Base/private/*)
