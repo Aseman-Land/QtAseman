@@ -1,0 +1,4 @@
+module AsemanQml.Modern
+classname AsemanModernPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlmodern

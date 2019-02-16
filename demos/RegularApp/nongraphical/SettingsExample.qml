@@ -18,7 +18,8 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.0
-import AsemanTools 1.0
+import AsemanQml.Controls 2.0
+import AsemanQml.Base 2.0
 
 Item {
 

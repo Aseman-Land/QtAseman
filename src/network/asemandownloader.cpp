@@ -121,7 +121,9 @@ void AsemanDownloader::start()
     QNetworkRequest request = QNetworkRequest(QUrl(p->path));
     p->reply = p->manager->get(request);
 
+#ifndef QT_NO_SSL
     connect(p->reply, &QNetworkReply::sslErrors, this, &AsemanDownloader::sslErrors);
+#endif
     connect(p->reply, &QNetworkReply::downloadProgress, this, &AsemanDownloader::downloadProgress);
 
     Q_EMIT downloadingChanged();
@@ -195,8 +197,10 @@ void AsemanDownloader::sslErrors(const QList<QSslError> &list)
 {
     QStringList res;
 #ifndef Q_OS_IOS
+#ifndef QT_NO_SSL
     for(const QSslError &error: list)
         res << error.errorString();
+#endif
 #endif
     Q_EMIT error(res);
 }

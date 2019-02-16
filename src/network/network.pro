@@ -1,6 +1,6 @@
 load(qt_build_config)
 
-INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui
+INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TARGET = QtAsemanNetwork
@@ -22,7 +22,7 @@ HEADERS += \
     $$PWD/asemannetworkproxy.h \
     $$PWD/asemannetworksleepmanager.h \
     $$PWD/asemannetwork_global.h \
-    asemansocketinterface.h
+    $$PWD/asemansocketinterface.h
 
 SOURCES += \
     $$PWD/asemandownloader.cpp \
@@ -33,4 +33,4 @@ SOURCES += \
     $$PWD/asemannetworkmanageritem.cpp \
     $$PWD/asemannetworkproxy.cpp \
     $$PWD/asemannetworksleepmanager.cpp \
-    asemansocketinterface.cpp
+    $$PWD/asemansocketinterface.cpp

@@ -33,6 +33,7 @@ Item {
     property variant list: new Array
     property int rotateCount: 0
     property alias icon: btn_img.source
+    property alias textItem: btnText
 
     property alias color: btn_back.color
     property alias background: back_rct.color
@@ -247,6 +248,11 @@ Item {
             Behavior on rotation {
                 NumberAnimation{easing.type: Easing.OutBack; duration: 300}
             }
+        }
+
+        Text {
+            id: btnText
+            anchors.centerIn: btn_rect
         }
     }
 

@@ -1,3 +1,75 @@
+qtaseman (1.0.10-1aseman-bionic) bionic; urgency=medium
+
+  * Add Slider component and Add support of the Font Awesome to the MaterialDesignButton component
+
+ -- Aseman Team <contact@aseman.co>  Sat, 26 Jan 2019 19:10:00 +0330
+
+qtaseman (1.0.9-1aseman-bionic) bionic; urgency=medium
+
+  * Bugfix on the PanelFlicker shadow
+
+ -- Aseman Team <contact@aseman.co>  Fri, 25 Jan 2019 19:10:00 +0330
+
+qtaseman (1.0.8-1aseman-bionic) bionic; urgency=medium
+
+  * Many updates and Improvements on the FancySearchBar component.
+
+ -- Aseman Team <contact@aseman.co>  Fri, 25 Jan 2019 19:00:00 +0330
+
+qtaseman (1.0.7-1aseman-bionic) bionic; urgency=medium
+
+  * Introduce new QML component named FileResourceManager which is manage files in the resource.
+
+ -- Aseman Team <contact@aseman.co>  Tue, 22 Jan 2019 19:00:00 +0330
+
+qtaseman (1.0.6-1aseman-bionic) bionic; urgency=medium
+
+  * Add Controls and Modern plugin and move all related components to them.
+
+ -- Aseman Team <contact@aseman.co>  Sat, 19 Jan 2019 19:02:00 +0330
+
+qtaseman (1.0.5-2aseman-bionic) bionic; urgency=medium
+
+  * Improvement on the FancySearchBar component
+
+ -- Aseman Team <contact@aseman.co>  Sat, 19 Jan 2019 19:01:00 +0330
+
+qtaseman (1.0.5-1aseman-bionic) bionic; urgency=medium
+
+  * Introduce new QML component named PanelFlicker which is like Drawer, But goes visible from the bottom side.
+
+ -- Aseman Team <contact@aseman.co>  Sat, 19 Jan 2019 19:00:00 +0330
+
+qtaseman (1.0.4-1aseman-bionic) bionic; urgency=medium
+
+  * New version of the DateTimeChoose and SelectableList that is much better than old version in the look.
+
+ -- Aseman Team <contact@aseman.co>  Thu, 17 Jan 2019 19:00:00 +0330
+
+qtaseman (1.0.3-1aseman-bionic) bionic; urgency=medium
+
+  * Change font of TextCursorArea to font awesome
+
+ -- Aseman Team <contact@aseman.co>  Tue, 15 Jan 2019 19:00:00 +0330
+
+qtaseman (1.0.0-6aseman-bionic) bionic; urgency=medium
+
+  * Build bugfix
+
+ -- Aseman Team <contact@aseman.co>  Sat, 12 Jan 2019 00:30:00 +0330
+
+qtaseman (1.0.0-5aseman-bionic) bionic; urgency=medium
+
+  * Build bugfix
+
+ -- Aseman Team <contact@aseman.co>  Thu, 10 Jan 2019 00:30:00 +0330
+
+qtaseman (1.0.0-4aseman-bionic) bionic; urgency=medium
+
+  * Build bugfix
+
+ -- Aseman Team <contact@aseman.co>  Sat, 29 Dec 2018 00:30:00 +0330
+
 qtaseman (1.0.0-3aseman-bionic) bionic; urgency=medium
 
   * Build bugfix

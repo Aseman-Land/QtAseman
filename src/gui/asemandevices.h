@@ -205,11 +205,13 @@ public Q_SLOTS:
     void setClipboard( const QString & text );
     void setClipboardData(AsemanMimeData *mime);
 
-    virtual bool startCameraPicture();
+    virtual QString startCameraPicture();
     virtual bool getOpenPictures();
 
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
+    void incomingImage( const QString & path );
+    void selectImageResult( const QString & path );
     void activityPaused();
     void activityResumed();
 

@@ -2,7 +2,7 @@ TARGET  = asemanqmlmultimedia
 TARGETPATH = AsemanQml/Multimedia
 IMPORT_VERSION = 2.0
 
-INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../multimedia
+INCLUDEPATH += $$PWD
 QT += core gui network asemanqml asemangui asemancore asemanmultimedia
 
 HEADERS += \
@@ -13,7 +13,7 @@ SOURCES += \
     $$PWD/asemanmultimediaplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
 
-static: !linux: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Multimedia/*.*) $$PWD/Multimedia/qmldir
 

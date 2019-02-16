@@ -3,8 +3,8 @@ TARGETPATH = AsemanQml/Base
 IMPORT_VERSION = 2.0
 VERSION_REVISION = 2
 
-INCLUDEPATH += $$PWD $$PWD/../../core $$PWD/../../gui $$PWD/../../qml $$PWD/../../network
-QT += core gui network asemanqml asemangui asemancore asemannetwork
+INCLUDEPATH += $$PWD
+QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets
 
 HEADERS += \
     $$PWD/asemanqmlplugin.h \
@@ -14,7 +14,7 @@ SOURCES += \
     $$PWD/asemanqmlplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
 
-static: !linux: DEFINES += ASEMAN_STATIC_BUILD
+static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Base/*.*) $$PWD/Base/qmldir
 ASEMAN_QML_PRIVATES += $$files($$PWD/Base/private/*)

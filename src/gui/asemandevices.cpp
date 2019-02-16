@@ -105,6 +105,8 @@ AsemanDevices::AsemanDevices(QObject *parent) :
     p->java_layer = AsemanJavaLayer::instance();
 
     connect( p->java_layer, &AsemanJavaLayer::incomingShare, this, &AsemanDevices::incoming_share, Qt::QueuedConnection );
+    connect( p->java_layer, &AsemanJavaLayer::incomingImage, this, &AsemanDevices::incomingImage, Qt::QueuedConnection );
+    connect( p->java_layer, &AsemanJavaLayer::selectImageResult, this, &AsemanDevices::selectImageResult, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityPaused, this, &AsemanDevices::activity_paused, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityResumed, this, &AsemanDevices::activity_resumed, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::keyboardVisiblityChanged, this, [this](qint32 height){
@@ -417,13 +419,13 @@ QString AsemanDevices::platformCpuArchitecture()
 
 QString AsemanDevices::qtVersion()
 {
-    return QT_VERSION_STR;
+    return QStringLiteral(QT_VERSION_STR);
 }
 
 qreal AsemanDevices::qtMajorVersion()
 {
     static qreal result = 0;
-    if(result)
+    if(result != 0.0)
         return result;
 
     const QString &qv = qtVersion();
@@ -488,7 +490,7 @@ qreal AsemanDevices::standardTitleBarHeight() const
         return res;
 
     if(isDesktop())
-        res = 60*density();
+        res = 54*density();
     else
     if(isMobile())
         res = 56*density();
@@ -504,7 +506,7 @@ qreal AsemanDevices::statusBarHeight()
         return 0;
 
     static qreal result = 0;
-    if(!result)
+    if(result == 0.0)
     {
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->statusBarHeight()/deviceDensity());
@@ -525,7 +527,7 @@ qreal AsemanDevices::navigationBarHeight()
         return 0;
 
     static qreal result = 0;
-    if(!result)
+    if(result == 0.0)
     {
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->navigationBarHeight()/deviceDensity());
@@ -1050,12 +1052,16 @@ void AsemanDevices::setClipboardData(AsemanMimeData *mime)
     QGuiApplication::clipboard()->setMimeData(data);
 }
 
-bool AsemanDevices::startCameraPicture()
+QString AsemanDevices::startCameraPicture()
 {
 #ifdef Q_OS_ANDROID
-    return p->java_layer->startCamera( cameraLocation() + "/aseman_" + QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()) + ".jpg" );
+    QString output = cameraLocation() + "/aseman_" + QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()) + ".jpg";
+    if(!p->java_layer->startCamera(output))
+        output.clear();
+
+    return output;
 #else
-    return false;
+    return QString();
 #endif
 }
 

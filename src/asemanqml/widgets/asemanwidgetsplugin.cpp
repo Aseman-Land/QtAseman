@@ -26,7 +26,7 @@
 #include <QtQml>
 
 #ifdef ASEMAN_STATIC_BUILD
-bool AsemanWidgetsPlugin::static_types_registered = AsemanWidgetsPlugin::registerStaticTypes("AsemanQml.Multiemedia");
+bool AsemanWidgetsPlugin::static_types_registered = AsemanWidgetsPlugin::registerStaticTypes("AsemanQml.Widgets");
 #endif
 
 bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
@@ -35,7 +35,6 @@ bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
     if(static_types_registered)
         return true;
 #endif
-    Q_INIT_RESOURCE(qmake_asemanwidgets);
     AsemanQtToolsItem::registerTypes(uri);
     AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Widgets"), uri);
     return true;

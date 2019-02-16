@@ -18,13 +18,15 @@
 
 import QtQuick 2.0
 import AsemanQml.Base 2.0
+import "."
 
-Rectangle {
+Item {
     id: dt_chooser
     width: 400*Devices.density
     height: 150*Devices.density
     clip: true
 
+    property color color: "transparent"
     property color textsColor
     property bool dateVisible: true
     property bool timeVisible: true

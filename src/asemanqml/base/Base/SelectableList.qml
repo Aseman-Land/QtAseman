@@ -20,12 +20,13 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 import AsemanQml.Base 2.0
 
-Rectangle {
+Item {
     id: seletable_list
     width: 100
     height: 62
     clip: true
 
+    property color color: "transparent"
     property alias currentIndex: list.currentIndex
     property variant items: new Array
     property color textsColor
@@ -41,12 +42,12 @@ Rectangle {
         list.refresh()
     }
 
-    Rectangle {
+    Item {
         id: background
         width: parent.width
         height: parent.height*2
         anchors.centerIn: parent
-        color: parent.color
+        opacity: 0
 
         AsemanListView {
             id: list
@@ -91,68 +92,98 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: top_part
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: parent.height/2 - 1.3*itemsHeight/2
-        clip: true
-        color: parent.color
-
-        Desaturate {
-            source: background
-            width: background.width
-            height: background.height
-            y: -0.25*height
-            transformOrigin: Item.Center
-            scale: 0.8
-            opacity: 0.7
-        }
-    }
-
-    Rectangle {
-        id: bottom_part
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        height: parent.height/2 - 1.3*itemsHeight/2
-        clip: true
-        color: parent.color
-
-        Desaturate {
-            source: background
-            width: background.width
-            height: background.height
-            y: parent.height - 0.75*height
-            transformOrigin: Item.Center
-            scale: 0.8
-            opacity: 0.7
-        }
-    }
-
-    Rectangle {
+    Item {
+        id: scene
         anchors.fill: parent
-        gradient: Gradient{
-            GradientStop { position: 0.00; color: seletable_list.color }
-            GradientStop { position: 0.22; color: "#00000000" }
-            GradientStop { position: 0.77; color: "#00000000" }
-            GradientStop { position: 1.00; color: seletable_list.color }
+        visible: false
+
+        Item {
+            id: top_part
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            height: parent.height/2 - 1.3*itemsHeight/2
+            clip: true
+
+            Desaturate {
+                source: background
+                width: background.width
+                height: background.height
+                y: -0.25*height
+                transformOrigin: Item.Center
+                scale: 0.8
+                opacity: 0.7
+            }
+        }
+
+        Rectangle {
+            id: center_part
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: top_part.bottom
+            anchors.bottom: bottom_part.top
+            clip: true
+            color: seletable_list.color
+
+            Desaturate {
+                source: background
+                width: background.width
+                height: background.height
+                anchors.centerIn: parent
+                transformOrigin: Item.Center
+            }
+        }
+
+        Item {
+            id: bottom_part
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            height: parent.height/2 - 1.3*itemsHeight/2
+            clip: true
+
+            Desaturate {
+                source: background
+                width: background.width
+                height: background.height
+                y: parent.height - 0.75*height
+                transformOrigin: Item.Center
+                scale: 0.8
+                opacity: 0.7
+            }
+        }
+
+        Rectangle {
+            height: 1*Devices.density
+            width: parent.width
+            anchors.top: top_part.bottom
+            color: splitersColor
+        }
+
+        Rectangle {
+            height: 1*Devices.density
+            width: parent.width
+            anchors.bottom: bottom_part.top
+            color: splitersColor
         }
     }
 
     Rectangle {
-        height: 1*Devices.density
-        width: parent.width
-        anchors.top: top_part.bottom
-        color: splitersColor
+        id: mask
+        anchors.fill: parent
+        visible: false
+        gradient: Gradient{
+            GradientStop { position: 0.00; color: "#00000000" }
+            GradientStop { position: 0.22; color: "#fff" }
+            GradientStop { position: 0.77; color: "#fff" }
+            GradientStop { position: 1.00; color: "#00000000" }
+        }
     }
 
-    Rectangle {
-        height: 1*Devices.density
-        width: parent.width
-        anchors.bottom: bottom_part.top
-        color: splitersColor
+    OpacityMask {
+        maskSource: mask
+        source: scene
+        anchors.fill: parent
     }
 
     function positionViewAtIndex( index, force ) {

@@ -1,0 +1,26 @@
+module AsemanQml.Controls
+AsemanApplication 2.0 AsemanApplication.qml
+AsemanFullWindow 2.0 AsemanFullWindow.qml
+AsemanPage 2.0 AsemanPage.qml
+AsemanWindow 2.0 AsemanWindow.qml
+CircularProgressBar 2.0 CircularProgressBar.qml
+DateTimeChooser 2.0 DateTimeChooser.qml
+Drawer 2.0 Drawer.qml
+Header 2.0 Header.qml
+HeaderMenuButton 2.0 HeaderMenuButton.qml
+Helper 2.0 Helper.qml
+HelperPoint 2.0 HelperPoint.qml
+MaterialDesignButton 2.0 MaterialDesignButton.qml
+MenuController 2.0 MenuController.qml
+MenuIcon 2.0 MenuIcon.qml
+PanelFlicker 2.0 PanelFlicker.qml
+ScrollBar 2.0 ScrollBar.qml
+SideMenu 2.0 SideMenu.qml
+SlidePageManager 2.0 SlidePageManager.qml
+TabBar 2.0 TabBar.qml
+TabView 2.0 TabView.qml
+TextCursorArea 2.0 TextCursorArea.qml
+TextField 2.0 TextField.qml
+Tooltip 2.0 Tooltip.qml
+AsemanAbout 2.0 AsemanAbout.qml
+Slider 2.0 Slider.qml

@@ -1,4 +1,4 @@
-usr/lib/x86_64-linux-gnu/libQt5AsemanGui*
-usr/lib/x86_64-linux-gnu/cmake/Qt5AsemanGui/*
-usr/lib/x86_64-linux-gnu/pkgconfig/Qt5AsemanGui.pc
-usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_asemangui*
+usr/lib/*-linux-gnu/libQt5AsemanGui*
+usr/lib/*-linux-gnu/cmake/Qt5AsemanGui/*
+usr/lib/*-linux-gnu/pkgconfig/Qt5AsemanGui.pc
+usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemangui*

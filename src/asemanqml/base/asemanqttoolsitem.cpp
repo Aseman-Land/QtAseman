@@ -31,6 +31,8 @@
 #include "asemandesktoptools.h"
 #include "asemansettings.h"
 #include "asemanmimedata.h"
+#include "asemannetworkrequest.h"
+#include "asemanfileresourcemanager.h"
 #include "asemanmapobject.h"
 #include "asemandragobject.h"
 #include "asemanbackhandler.h"
@@ -146,6 +148,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanFileDownloaderQueueItem>(uri, 2, 0, "FileDownloaderQueueItem", exportMode);
     registerType<AsemanFileDownloaderQueue>(uri, 2, 0, "FileDownloaderQueue", exportMode);
     registerType<AsemanMouseEventListener>(uri, 2, 0, "MouseEventListener", exportMode);
+    registerType<AsemanNetworkRequest>(uri, 2, 0, "NetworkRequest", exportMode);
     registerType<AsemanItemGrabber>(uri, 2, 0, "ItemGrabber", exportMode);
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
     registerType<AsemanQmlImage>(uri, 2, 0, "AsemanImage", exportMode);
@@ -164,6 +167,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanTitleBarColorGrabber>(uri, 2, 0, "TitleBarColorGrabber", exportMode);
     registerType<AsemanDragArea>(uri, 2, 0, "MouseDragArea", exportMode);
     registerType<AsemanCalendarModel>(uri, 2, 0, "CalendarModel", exportMode);
+    registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
 
     registerModel<AsemanMixedListModel>(uri, 2, 0, "MixedListModel", exportMode);
     registerModel<AsemanCountriesModel>(uri, 2, 0, "CountriesModel", exportMode);

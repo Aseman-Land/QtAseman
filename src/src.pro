@@ -1,8 +1,9 @@
 TEMPLATE = subdirs
+CONFIG += ordered
 SUBDIRS = \
     core \
-    network \
     gui \
+    network \
     widgets \
     geo \
     multimedia \
