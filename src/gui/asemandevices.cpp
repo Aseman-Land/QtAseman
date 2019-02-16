@@ -419,13 +419,13 @@ QString AsemanDevices::platformCpuArchitecture()
 
 QString AsemanDevices::qtVersion()
 {
-    return QT_VERSION_STR;
+    return QStringLiteral(QT_VERSION_STR);
 }
 
 qreal AsemanDevices::qtMajorVersion()
 {
     static qreal result = 0;
-    if(result)
+    if(result != 0.0)
         return result;
 
     const QString &qv = qtVersion();
@@ -506,7 +506,7 @@ qreal AsemanDevices::statusBarHeight()
         return 0;
 
     static qreal result = 0;
-    if(!result)
+    if(result == 0.0)
     {
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->statusBarHeight()/deviceDensity());
@@ -527,7 +527,7 @@ qreal AsemanDevices::navigationBarHeight()
         return 0;
 
     static qreal result = 0;
-    if(!result)
+    if(result == 0.0)
     {
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->navigationBarHeight()/deviceDensity());

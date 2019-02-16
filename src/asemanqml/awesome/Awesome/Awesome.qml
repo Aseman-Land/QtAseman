@@ -21,18 +21,26 @@ import QtQuick 2.4
 import AsemanQml.Base 2.0
 
 AsemanObject {
-    readonly property string family: "Font Awesome 5 Brands Regular, Font Awesome 5 Free Regular, Font Awesome 5 Free Solid"
+    readonly property string family: reguler.name + ", " + solid.name + ", " + brands.name + ", " + fallback.name
 
     FontLoader {
+        id: brands
         source: "fa-brands-400.ttf"
     }
 	
 	FontLoader {
+        id: reguler
         source: "fa-regular-400.ttf"
     }
-	
-	FontLoader {
+
+    FontLoader {
+        id: solid
         source: "fa-solid-900.ttf"
+    }
+
+    FontLoader {
+        id: fallback
+        source: "fontawesome-webfont.ttf"
     }
 
     function init() {}

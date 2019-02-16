@@ -13,10 +13,10 @@ QtControls.TextField {
 
     QtControls.Label {
         id: pholder
-        opacity: field.text.length? 1 : 0.6
-        scale: field.text.length? 0.7 : 1
+        opacity: field.text.length || field.preeditText.length? 1 : 0.6
+        scale: field.text.length || field.preeditText.length? 0.7 : 1
         transformOrigin: View.defaultLayout? Item.Left : Item.Right
-        y: field.text.length? -height/2 : parent.height/2 - height/2 - 4*Devices.density
+        y: field.text.length || field.preeditText.length? -height/2 : parent.height/2 - height/2 - 4*Devices.density
         x: View.defaultLayout? 0 : parent.width - width
 
         Behavior on opacity {
