@@ -212,7 +212,7 @@ void AsemanQtToolsItem::registerFiles(const QString &filesLocation, const char *
 
         for(const QString &l: lines)
         {
-            QStringList parts = l.split(QStringLiteral(" "), QString::SkipEmptyParts);
+            QStringList parts = l.trimmed().split(QStringLiteral(" "), QString::SkipEmptyParts);
             bool singleton = false;
             if(parts.count() && parts.first() == "singleton")
                 singleton = parts.takeFirst().count();
