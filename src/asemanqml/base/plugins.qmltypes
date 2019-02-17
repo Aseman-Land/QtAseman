@@ -1431,6 +1431,14 @@ Module {
         Method { name: "terminate" }
     }
     Component {
+        name: "AsemanProxyComponent"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/ProxyComponent 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "source"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "object"; type: "QObject"; isReadonly: true; isPointer: true }
+    }
+    Component {
         name: "AsemanQmlImage"
         defaultProperty: "data"
         prototype: "QQuickPaintedItem"

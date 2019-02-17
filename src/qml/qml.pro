@@ -33,7 +33,8 @@ HEADERS += \
     $$PWD/asemandevicesitem.h \
     $$PWD/asemannetworkrequest.h \
     $$PWD/asemantoolsitem.h \
-    asemanfileresourcemanager.h
+    $$PWD/asemanfileresourcemanager.h \
+    $$PWD/asemanproxycomponent.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -57,7 +58,8 @@ SOURCES += \
     $$PWD/asemandevicesitem.cpp \
     $$PWD/asemannetworkrequest.cpp \
     $$PWD/asemantoolsitem.cpp \
-    asemanfileresourcemanager.cpp
+    $$PWD/asemanfileresourcemanager.cpp \
+    $$PWD/asemanproxycomponent.cpp
 
 android {
     QT += androidextras

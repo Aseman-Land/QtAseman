@@ -52,6 +52,7 @@
 #include "asemanfiledownloaderqueueitem.h"
 #include "asemanquickitemimagegrabber.h"
 #include "asemantitlebarcolorgrabber.h"
+#include "asemanproxycomponent.h"
 #include "asemanfiledownloaderqueue.h"
 #include "asemandragarea.h"
 #include "asemanapplicationitem.h"
@@ -170,6 +171,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanCalendarModel>(uri, 2, 0, "CalendarModel", exportMode);
     registerType<AsemanListModel>(uri, 2, 0, "AsemanListModel", exportMode);
     registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
+    registerType<AsemanProxyComponent>(uri, 2, 0, "ProxyComponent", exportMode);
 
     registerModel<AsemanMixedListModel>(uri, 2, 0, "MixedListModel", exportMode);
     registerModel<AsemanCountriesModel>(uri, 2, 0, "CountriesModel", exportMode);
