@@ -1054,6 +1054,33 @@ Module {
         }
     }
     Component {
+        name: "AsemanListModel"
+        prototype: "AsemanAbstractListModel"
+        exports: ["AsemanQml.Base/AsemanListModel 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "cachePath"; type: "string" }
+        Signal { name: "listChanged" }
+        Method {
+            name: "insert"
+            Parameter { name: "row"; type: "int" }
+            Parameter { name: "map"; type: "QVariantMap" }
+        }
+        Method {
+            name: "append"
+            Parameter { name: "map"; type: "QVariantMap" }
+        }
+        Method {
+            name: "remove"
+            Parameter { name: "row"; type: "int" }
+        }
+        Method {
+            name: "move"
+            Parameter { name: "from"; type: "int" }
+            Parameter { name: "to"; type: "int" }
+        }
+    }
+    Component {
         name: "AsemanListObject"
         prototype: "QObject"
         exports: ["AsemanQml.Base/ListObject 2.0"]
