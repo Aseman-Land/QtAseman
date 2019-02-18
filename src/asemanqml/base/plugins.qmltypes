@@ -1054,6 +1054,25 @@ Module {
         }
     }
     Component {
+        name: "AsemanKeyHandler"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/KeyHandler 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "window"; type: "QWindow"; isPointer: true }
+        Property { name: "modifiers"; type: "int" }
+        Property { name: "key"; type: "int" }
+        Signal {
+            name: "pressed"
+            Parameter { name: "modifiers"; type: "int" }
+            Parameter { name: "key"; type: "int" }
+        }
+        Signal {
+            name: "released"
+            Parameter { name: "modifiers"; type: "int" }
+            Parameter { name: "key"; type: "int" }
+        }
+    }
+    Component {
         name: "AsemanListModel"
         prototype: "AsemanAbstractListModel"
         exports: ["AsemanQml.Base/AsemanListModel 2.0"]

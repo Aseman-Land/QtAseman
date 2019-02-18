@@ -47,6 +47,7 @@
 #include "asemannetworksleepmanager.h"
 #include "asemannetworkproxy.h"
 #include "asemanquickobject.h"
+#include "asemankeyhandler.h"
 #include "asemantexttools.h"
 #include "asemanlistmodel.h"
 #include "asemanfiledownloaderqueueitem.h"
@@ -153,6 +154,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanNetworkRequest>(uri, 2, 0, "NetworkRequest", exportMode);
     registerType<AsemanItemGrabber>(uri, 2, 0, "ItemGrabber", exportMode);
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
+    registerType<AsemanKeyHandler>(uri, 2, 0, "KeyHandler", exportMode);
     registerType<AsemanQmlImage>(uri, 2, 0, "AsemanImage", exportMode);
 #ifndef Q_OS_IOS
     registerType<AsemanProcess>(uri, 2, 0, "Process", exportMode);
