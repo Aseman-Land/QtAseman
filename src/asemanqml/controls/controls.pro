@@ -12,7 +12,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/controlsplugin.cpp \
     $$PWD/asemanqttoolsitem.cpp
- 
+
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
 ASEMAN_QML_FILES += $$files($$PWD/Controls/*.*) $$PWD/Controls/qmldir

@@ -1,3 +1,9 @@
+qtaseman (1.0.11-1aseman-bionic) bionic; urgency=medium
+
+  * There are many changes.
+
+ -- Aseman Team <contact@aseman.co>  Tue, 19 Feb 2019 19:10:00 +0330
+
 qtaseman (1.0.10-1aseman-bionic) bionic; urgency=medium
 
   * Add Slider component and Add support of the Font Awesome to the MaterialDesignButton component

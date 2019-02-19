@@ -9,7 +9,8 @@ QtControls.TextField {
     implicitWidth: -1
 
     property alias placeholder: pholder.text
-    property alias cursorParent: cursor.cursorParent
+    property alias cursorParent: _cursor.cursorParent
+    property alias cursor: _cursor
 
     QtControls.Label {
         id: pholder
@@ -30,5 +31,5 @@ QtControls.TextField {
         }
     }
 
-    TextCursorArea { id: cursor; active: true}
+    TextCursorArea { id: _cursor }
 }

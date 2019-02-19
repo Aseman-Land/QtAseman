@@ -117,14 +117,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_22"
+            type: "SlidePageManager_QMLTYPE_33"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_18"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_29"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_29"
+            type: "HeaderMenuButton_QMLTYPE_22"
             isReadonly: true
             isPointer: true
         }
@@ -136,7 +136,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_36"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_18"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -391,7 +391,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_36"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_18"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -971,6 +971,7 @@ Module {
         defaultProperty: "data"
         Property { name: "placeholder"; type: "string" }
         Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
+        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_83"; isReadonly: true; isPointer: true }
         Property { name: "font"; type: "QFont" }
         Property { name: "implicitWidth"; type: "double" }
         Property { name: "implicitHeight"; type: "double" }
