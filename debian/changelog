@@ -1,3 +1,9 @@
+qtaseman (1.0.12-1aseman-bionic) bionic; urgency=medium
+
+  * Add TextArea component
+
+ -- Aseman Team <contact@aseman.co>  Wed, 20 Feb 2019 19:10:00 +0330
+
 qtaseman (1.0.11-1aseman-bionic) bionic; urgency=medium
 
   * There are many changes.
