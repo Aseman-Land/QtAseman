@@ -47,6 +47,7 @@ public Q_SLOTS:
     static QDateTime mSecToDate(const QString &ms);
     static qint64 dateToSec(const QDateTime &dt);
     static QString dateToString(const QDateTime &dt, const QString &format = QString());
+    static QDateTime datefromString(const QString &dt, const QString &format = QString());
     static QDate dateAddDays(const QDate &date, int days);
 
     static QStringList toStringList(const QVariant &value);
@@ -109,6 +110,7 @@ public Q_SLOTS:
 
     static void copyDirectory( const QString & src, const QString & dst );
     static bool copy( const QString & src, const QString & dst );
+    static bool rename( const QString & src, const QString & dst );
     static void deleteFile(const QString &file);
     static void clearDirectory(const QString &dir);
 

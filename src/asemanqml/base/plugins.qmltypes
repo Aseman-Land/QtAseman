@@ -1699,6 +1699,17 @@ Module {
             Parameter { name: "dt"; type: "QDateTime" }
         }
         Method {
+            name: "datefromString"
+            type: "QDateTime"
+            Parameter { name: "dt"; type: "string" }
+            Parameter { name: "format"; type: "string" }
+        }
+        Method {
+            name: "datefromString"
+            type: "QDateTime"
+            Parameter { name: "dt"; type: "string" }
+        }
+        Method {
             name: "dateAddDays"
             type: "QDate"
             Parameter { name: "date"; type: "QDate" }
@@ -1930,6 +1941,12 @@ Module {
         }
         Method {
             name: "copy"
+            type: "bool"
+            Parameter { name: "src"; type: "string" }
+            Parameter { name: "dst"; type: "string" }
+        }
+        Method {
+            name: "rename"
             type: "bool"
             Parameter { name: "src"; type: "string" }
             Parameter { name: "dst"; type: "string" }

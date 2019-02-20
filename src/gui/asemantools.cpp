@@ -88,6 +88,14 @@ QString AsemanTools::dateToString(const QDateTime &dt, const QString & format)
         return dt.toString(format);
 }
 
+QDateTime AsemanTools::datefromString(const QString &dt, const QString &format)
+{
+    if(format.isEmpty())
+        return QDateTime::fromString(dt);
+    else
+        return QDateTime::fromString(dt, format);
+}
+
 QDate AsemanTools::dateAddDays(const QDate &date, int days)
 {
     return date.addDays(days);
@@ -501,6 +509,18 @@ bool AsemanTools::copy(const QString &_src, const QString &_dst)
         dst = dst.mid(AsemanDevices::localFilesPrePath().size());
 
     return QFile::copy(src, dst);
+}
+
+bool AsemanTools::rename(const QString &_src, const QString &_dst)
+{
+    QString src = _src;
+    if(src.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
+        src = src.mid(AsemanDevices::localFilesPrePath().size());
+    QString dst = _dst;
+    if(dst.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
+        dst = dst.mid(AsemanDevices::localFilesPrePath().size());
+
+    return QFile::rename(src, dst);
 }
 
 void AsemanTools::deleteFile(const QString &pt)
