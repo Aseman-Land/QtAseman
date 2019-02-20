@@ -24,3 +24,4 @@ TextField 2.0 TextField.qml
 Tooltip 2.0 Tooltip.qml
 AsemanAbout 2.0 AsemanAbout.qml
 Slider 2.0 Slider.qml
+TextArea 2.0 TextArea.qml

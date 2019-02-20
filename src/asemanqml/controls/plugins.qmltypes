@@ -117,14 +117,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_33"
+            type: "SlidePageManager_QMLTYPE_25"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_29"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_37"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_22"
+            type: "HeaderMenuButton_QMLTYPE_13"
             isReadonly: true
             isPointer: true
         }
@@ -136,7 +136,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_18"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_20"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -391,7 +391,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_18"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_20"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -941,6 +941,41 @@ Module {
         Property { name: "tabsHeight"; type: "double" }
         Property { name: "model"; type: "QVariant" }
         Property { name: "currentIndex"; type: "int" }
+    }
+    Component {
+        prototype: "QQuickTextEdit"
+        name: "AsemanQml.Controls/TextArea 2.0"
+        exports: ["AsemanQml.Controls/TextArea 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "placeholder"; type: "string" }
+        Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
+        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_83"; isReadonly: true; isPointer: true }
+        Property { name: "font"; type: "QFont" }
+        Property { name: "implicitWidth"; type: "double" }
+        Property { name: "implicitHeight"; type: "double" }
+        Property { name: "background"; type: "QQuickItem"; isPointer: true }
+        Property { name: "placeholderText"; type: "string" }
+        Property { name: "focusReason"; type: "Qt::FocusReason" }
+        Property { name: "hovered"; revision: 1; type: "bool"; isReadonly: true }
+        Property { name: "hoverEnabled"; revision: 1; type: "bool" }
+        Signal { name: "implicitWidthChanged3" }
+        Signal { name: "implicitHeightChanged3" }
+        Signal {
+            name: "pressAndHold"
+            Parameter { name: "event"; type: "QQuickMouseEvent"; isPointer: true }
+        }
+        Signal {
+            name: "pressed"
+            revision: 1
+            Parameter { name: "event"; type: "QQuickMouseEvent"; isPointer: true }
+        }
+        Signal {
+            name: "released"
+            revision: 1
+            Parameter { name: "event"; type: "QQuickMouseEvent"; isPointer: true }
+        }
     }
     Component {
         prototype: "QQuickItem"
