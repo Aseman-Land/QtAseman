@@ -175,6 +175,11 @@ void AsemanApplication::init()
     if(!qgetenv("QT_SCALE_FACTOR").isNull())
         AsemanDevices::setFlag(AsemanDevices::DisableDensities);
 #endif
+#ifdef Q_OS_WIN
+    else
+    if(QGuiApplication::testAttribute(Qt::AA_EnableHighDpiScaling))
+        AsemanDevices::setFlag(AsemanDevices::DisableDensities);
+#endif
 
     switch(p->appType)
     {
