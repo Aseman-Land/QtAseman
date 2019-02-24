@@ -7,7 +7,7 @@ QT += qml
 HEADERS += \
     $$PWD/materialiconsplugin.h
 
-SOURCES += \
+SOURCES += \ 
     $$PWD/materialiconsplugin.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
