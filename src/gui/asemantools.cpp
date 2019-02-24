@@ -182,7 +182,18 @@ QString AsemanTools::fileMime(const QString &path)
 
 QString AsemanTools::fileParent(const QString &path)
 {
-    return path.mid(0, path.lastIndexOf(QStringLiteral("/")));
+    if(path.count() == 1 && path[0] == '/')
+        return path;
+#ifdef Q_OS_WIN
+    if(path.count() == 3 && path[0].isLetter() && path[1] == ':')
+        return path;
+#endif
+    QString res = path.mid(0, path.lastIndexOf(QStringLiteral("/")));
+#ifndef Q_OS_WIN
+    if(res.isEmpty())
+        res += "/";
+#endif
+    return res;
 }
 
 QString AsemanTools::readText(const QString &path)
