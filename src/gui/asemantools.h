@@ -79,6 +79,9 @@ public Q_SLOTS:
     static QString className(QObject *obj);
 
     static QStringList stringLinks(const QString &str);
+    static QString stringRemove(QString str, const QString &text, bool regExp = false);
+    static QString stringReplace(QString str, const QString &text, const QString &replace, bool regExp = false);
+    static QVariantList stringRegExp(QString str, const QString &regExp, bool minimal = true);
 
     static QUrl stringToUrl(const QString &path);
     static QString urlToLocalPath(const QUrl &url);
@@ -103,8 +106,6 @@ public Q_SLOTS:
     static QString passToMd5( const QString & pass );
     static QString md5(const QString & str );
     static QString createUuid();
-
-    static QString stringRemove(QString str, const QString &text, bool regExp = false);
 
     static QString htmlToPlaintText(const QString &html);
 

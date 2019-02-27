@@ -1842,6 +1842,47 @@ Module {
             Parameter { name: "str"; type: "string" }
         }
         Method {
+            name: "stringRemove"
+            type: "string"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "text"; type: "string" }
+            Parameter { name: "regExp"; type: "bool" }
+        }
+        Method {
+            name: "stringRemove"
+            type: "string"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "text"; type: "string" }
+        }
+        Method {
+            name: "stringReplace"
+            type: "string"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "text"; type: "string" }
+            Parameter { name: "replace"; type: "string" }
+            Parameter { name: "regExp"; type: "bool" }
+        }
+        Method {
+            name: "stringReplace"
+            type: "string"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "text"; type: "string" }
+            Parameter { name: "replace"; type: "string" }
+        }
+        Method {
+            name: "stringRegExp"
+            type: "QVariantList"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "regExp"; type: "string" }
+            Parameter { name: "minimal"; type: "bool" }
+        }
+        Method {
+            name: "stringRegExp"
+            type: "QVariantList"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "regExp"; type: "string" }
+        }
+        Method {
             name: "stringToUrl"
             type: "QUrl"
             Parameter { name: "path"; type: "string" }
@@ -1916,19 +1957,6 @@ Module {
             Parameter { name: "str"; type: "string" }
         }
         Method { name: "createUuid"; type: "string" }
-        Method {
-            name: "stringRemove"
-            type: "string"
-            Parameter { name: "str"; type: "string" }
-            Parameter { name: "text"; type: "string" }
-            Parameter { name: "regExp"; type: "bool" }
-        }
-        Method {
-            name: "stringRemove"
-            type: "string"
-            Parameter { name: "str"; type: "string" }
-            Parameter { name: "text"; type: "string" }
-        }
         Method {
             name: "htmlToPlaintText"
             type: "string"

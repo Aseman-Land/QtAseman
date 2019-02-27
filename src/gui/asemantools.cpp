@@ -483,6 +483,30 @@ QString AsemanTools::stringRemove(QString str, const QString &text, bool regExp)
         return str.remove(text);
 }
 
+QString AsemanTools::stringReplace(QString str, const QString &text, const QString &replace, bool regExp)
+{
+    if(regExp)
+        return str.replace(QRegExp(text), replace);
+    else
+        return str.replace(text, replace);
+}
+
+QVariantList AsemanTools::stringRegExp(QString str, const QString &regExp, bool minimal)
+{
+    QRegExp rx(regExp);
+    rx.setMinimal(minimal);
+
+    QVariantList res;
+    int pos = 0;
+
+    while ((pos = rx.indexIn(str, pos)) != -1) {
+        res << rx.capturedTexts();
+        pos += rx.matchedLength();
+    }
+
+    return res;
+}
+
 QString AsemanTools::htmlToPlaintText(const QString &html)
 {
     QTextDocument doc;
