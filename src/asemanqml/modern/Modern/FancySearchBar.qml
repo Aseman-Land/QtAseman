@@ -217,7 +217,7 @@ Item {
                     scale: item.ratio
                     font.family: Awesome.family
                     font.pixelSize: 12*Devices.fontDensity
-                    text: Awesome.fa_close
+                    text: Awesome.fa_times
                     color: "#666"
                 }
             }
