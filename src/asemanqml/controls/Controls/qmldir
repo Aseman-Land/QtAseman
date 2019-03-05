@@ -6,6 +6,7 @@ AsemanWindow 2.0 AsemanWindow.qml
 CircularProgressBar 2.0 CircularProgressBar.qml
 DateTimeChooser 2.0 DateTimeChooser.qml
 Drawer 2.0 Drawer.qml
+ExtendedFab 2.0 ExtendedFab.qml
 Header 2.0 Header.qml
 HeaderMenuButton 2.0 HeaderMenuButton.qml
 Helper 2.0 Helper.qml
