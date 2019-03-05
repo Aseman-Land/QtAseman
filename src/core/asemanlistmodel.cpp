@@ -96,6 +96,7 @@ void AsemanListModel::insert(int row, const QVariantMap &map)
     p->list.insert(row, map);
     saveCache();
     endInsertRows();
+    Q_EMIT countChanged();
 }
 
 void AsemanListModel::append(const QVariantMap &map)
@@ -112,6 +113,7 @@ void AsemanListModel::remove(int row)
     p->list.removeAt(row);
     saveCache();
     endRemoveRows();
+    Q_EMIT countChanged();
 }
 
 void AsemanListModel::move(int from, int to)

@@ -320,7 +320,7 @@ QUrl AsemanTools::stringToUrl(const QString &path)
 QString AsemanTools::urlToLocalPath(const QUrl &url)
 {
     QString res = url.toLocalFile();
-    if(res.isEmpty())
+    if(res.isEmpty() || url.toString().contains(QStringLiteral("#")))
         res = url.toString();
 
     int idx1 = res.indexOf(QStringLiteral(":/"));
@@ -335,6 +335,13 @@ QString AsemanTools::urlToLocalPath(const QUrl &url)
         res = res.mid(AsemanDevices::localFilesPrePath().size());
     if(res.left(5) == QStringLiteral("qrc:/"))
         res = res.mid(3);
+
+#ifdef Q_OS_WIN
+    while(res.count() && res[0] == '/')
+#else
+    while(res.count() > 1 && res[0] == '/' && res[1] == '/')
+#endif
+          res = res.mid(1);
 
     return res;
 }
