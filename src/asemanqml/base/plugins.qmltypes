@@ -1691,6 +1691,11 @@ Module {
             Parameter { name: "dt"; type: "QDateTime" }
         }
         Method {
+            name: "dateFromSec"
+            type: "QDateTime"
+            Parameter { name: "date"; type: "qlonglong" }
+        }
+        Method {
             name: "dateToString"
             type: "string"
             Parameter { name: "dt"; type: "QDateTime" }

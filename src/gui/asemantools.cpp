@@ -80,6 +80,11 @@ qint64 AsemanTools::dateToSec(const QDateTime &dt)
 #endif
 }
 
+QDateTime AsemanTools::dateFromSec(qint64 date)
+{
+    return QDateTime::fromSecsSinceEpoch(date);
+}
+
 QString AsemanTools::dateToString(const QDateTime &dt, const QString & format)
 {
     if(format.isEmpty())
