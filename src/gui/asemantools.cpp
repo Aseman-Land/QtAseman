@@ -322,6 +322,8 @@ QString AsemanTools::urlToLocalPath(const QUrl &url)
     QString res = url.toLocalFile();
     if(res.isEmpty() || url.toString().contains(QStringLiteral("#")))
         res = url.toString();
+    if(res.left(6) == QStringLiteral("file:/"))
+        res = res.mid(6);
 
     int idx1 = res.indexOf(QStringLiteral(":/"));
     if(idx1 != -1)
