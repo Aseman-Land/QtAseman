@@ -1059,17 +1059,20 @@ Module {
         exports: ["AsemanQml.Base/KeyHandler 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "window"; type: "QWindow"; isPointer: true }
-        Property { name: "modifiers"; type: "int" }
+        Property { name: "modifiers"; type: "int"; isReadonly: true }
+        Property { name: "scanCode"; type: "int" }
         Property { name: "key"; type: "int" }
         Signal {
             name: "pressed"
             Parameter { name: "modifiers"; type: "int" }
             Parameter { name: "key"; type: "int" }
+            Parameter { name: "scanCode"; type: "int" }
         }
         Signal {
             name: "released"
             Parameter { name: "modifiers"; type: "int" }
             Parameter { name: "key"; type: "int" }
+            Parameter { name: "scanCode"; type: "int" }
         }
     }
     Component {
