@@ -54,7 +54,7 @@ AboutPageItem {
                     anchors.horizontalCenter: parent.horizontalCenter
                     color: "#333333"
                     font.family: AsemanApp.globalFont.family
-                    font.pixelSize: 17*fontRatio*Devices.fontDensity
+                    font.pixelSize: 17*Devices.fontDensity
                     text: qsTr("Aseman Team")
                 }
 

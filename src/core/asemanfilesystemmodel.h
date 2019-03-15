@@ -37,8 +37,10 @@ class LIBQTASEMAN_CORE_EXPORT AsemanFileSystemModel : public AsemanAbstractListM
     Q_PROPERTY(bool showDirsFirst READ showDirsFirst WRITE setShowDirsFirst NOTIFY showDirsFirstChanged)
     Q_PROPERTY(bool showFiles READ showFiles WRITE setShowFiles NOTIFY showFilesChanged)
     Q_PROPERTY(bool showHidden READ showHidden WRITE setShowHidden NOTIFY showHiddenChanged)
+    Q_PROPERTY(bool recursive READ recursive WRITE setRecursive NOTIFY recursiveChanged)
     Q_PROPERTY(QStringList nameFilters READ nameFilters WRITE setNameFilters NOTIFY nameFiltersChanged)
     Q_PROPERTY(QString folder READ folder WRITE setFolder NOTIFY folderChanged)
+    Q_PROPERTY(qint32 limit READ limit WRITE setLimit NOTIFY limitChanged)
     Q_PROPERTY(QString parentFolder READ parentFolder NOTIFY parentFolderChanged)
     Q_PROPERTY(int sortField READ sortField WRITE setSortField NOTIFY sortFieldChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
@@ -90,6 +92,12 @@ public:
     void setSortField(int field);
     int sortField() const;
 
+    void setRecursive(bool recursive);
+    bool recursive() const;
+
+    void setLimit(qint32 limit);
+    qint32 limit() const;
+
     QString parentFolder() const;
 
     const QFileInfo &id( const QModelIndex &index ) const;
@@ -115,11 +123,14 @@ Q_SIGNALS:
     void parentFolderChanged();
     void sortFieldChanged();
     void listChanged();
+    void recursiveChanged();
+    void limitChanged();
 
 private Q_SLOTS:
     void reinit_buffer();
 
 private:
+    QList<QFileInfo> ls(const QString &path, qint32 filter, bool recursive, qint32 &limit);
     void changed(const QList<QFileInfo> &list);
 
 private:

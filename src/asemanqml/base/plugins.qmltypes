@@ -927,8 +927,10 @@ Module {
         Property { name: "showDirsFirst"; type: "bool" }
         Property { name: "showFiles"; type: "bool" }
         Property { name: "showHidden"; type: "bool" }
+        Property { name: "recursive"; type: "bool" }
         Property { name: "nameFilters"; type: "QStringList" }
         Property { name: "folder"; type: "string" }
+        Property { name: "limit"; type: "int" }
         Property { name: "parentFolder"; type: "string"; isReadonly: true }
         Property { name: "sortField"; type: "int" }
         Property { name: "count"; type: "int"; isReadonly: true }
@@ -1101,6 +1103,7 @@ Module {
             Parameter { name: "from"; type: "int" }
             Parameter { name: "to"; type: "int" }
         }
+        Method { name: "clear" }
     }
     Component {
         name: "AsemanListObject"
@@ -2806,6 +2809,16 @@ Module {
         Property { name: "sourceSize"; type: "QSize" }
         Property { name: "status"; type: "int"; isReadonly: true }
         Property { name: "verticalAlignment"; type: "int" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Base/RoundedItem 2.0"
+        exports: ["AsemanQml.Base/RoundedItem 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "sceneData"
+        Property { name: "radius"; type: "double" }
+        Property { name: "sceneData"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"

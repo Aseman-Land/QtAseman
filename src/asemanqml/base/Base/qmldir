@@ -48,3 +48,4 @@ CrashController 2.0 CrashController.qml
 ArrayTools 2.0 ArrayFunctions.js
 Button 2.0 Button.qml
 ItemBackable 2.0 ItemBackable.qml
+RoundedItem 2.0 RoundedItem.qml
