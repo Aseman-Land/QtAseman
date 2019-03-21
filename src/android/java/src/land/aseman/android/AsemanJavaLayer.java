@@ -43,6 +43,7 @@ import android.graphics.Rect;
 import android.provider.Settings.Secure;
 import java.lang.Runnable;
 import android.os.Handler;
+import android.database.Cursor;
 
 import java.io.File;
 import java.io.InputStream;
@@ -218,6 +219,33 @@ public class AsemanJavaLayer
             return AsemanQtService.getServiceInstance();
         else
             return AsemanApplication.getAppContext();
+    }
+
+    public String getLastImages(int offset, int count)
+    {
+        String result = new String();
+        final String[] imageColumns = { MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA };
+        final String imageOrderBy = MediaStore.Images.Media._ID + " DESC";
+        Cursor imageCursor = getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageColumns, null, null, imageOrderBy);
+        imageCursor.moveToFirst();
+        do {
+            String fullPath = imageCursor.getString(imageCursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            File imageFile = new File(fullPath);
+            if (imageFile.canRead() && imageFile.exists()) {
+                offset--;
+                if(offset >= 0) {
+                    imageCursor.moveToNext();
+                    continue;
+                }
+
+                result = result + fullPath + "\n";
+                count--;
+                if(count <= 0)
+                break;
+            }
+        } while (imageCursor.moveToNext());
+
+        return result;
     }
 
     boolean killService(String serviceName)

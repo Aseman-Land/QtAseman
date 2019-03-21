@@ -725,6 +725,12 @@ Module {
             name: "setClipboardData"
             Parameter { name: "mime"; type: "AsemanMimeData"; isPointer: true }
         }
+        Method {
+            name: "getLastImages"
+            type: "QStringList"
+            Parameter { name: "offset"; type: "int" }
+            Parameter { name: "count"; type: "int" }
+        }
         Method { name: "startCameraPicture"; type: "string" }
         Method { name: "getOpenPictures"; type: "bool" }
         Method {

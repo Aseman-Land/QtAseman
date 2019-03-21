@@ -308,6 +308,14 @@ QRect AsemanJavaLayer::keyboardRect()
     return final;
 }
 
+QString AsemanJavaLayer::getLastImages(qint32 offset, qint32 count)
+{
+    jint joffset = offset;
+    jint jcount = count;
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(II)Ljava/lang/String;", joffset, jcount).toString();
+    return res;
+}
+
 void AsemanJavaLayer::setKeepScreenOn(bool stt)
 {
     jboolean jstt = stt;
