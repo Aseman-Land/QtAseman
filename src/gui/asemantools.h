@@ -39,6 +39,8 @@ public:
     AsemanTools(QObject *parent = 0);
     virtual ~AsemanTools();
 
+    static void imageResize(const QString &path, const QSize &size, const QString &dest, QObject *base, std::function<void(bool)> callback);
+
 public Q_SLOTS:
     static void debug( const QVariant & var );
 

@@ -32,6 +32,13 @@ void AsemanToolsItem::jsDelayCall(int ms, const QJSValue &value)
     p->js_delay_call_timers[ startTimer(ms) ] = value;
 }
 
+void AsemanToolsItem::imageResize(const QString &path, const QSize &size, const QString &dest, const QJSValue &callback)
+{
+    AsemanTools::imageResize(path, size, dest, this, [callback](bool stt){
+        QJSValue(callback).call(QJSValueList() << stt);
+    });
+}
+
 void AsemanToolsItem::setInAppStoreProperty(QObject *store, const QString &propertyName, const QString &value)
 {
 #ifdef QT_PURCHASING_LIB

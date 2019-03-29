@@ -2177,6 +2177,13 @@ Module {
             Parameter { name: "value"; type: "QJSValue" }
         }
         Method {
+            name: "imageResize"
+            Parameter { name: "path"; type: "string" }
+            Parameter { name: "size"; type: "QSize" }
+            Parameter { name: "dest"; type: "string" }
+            Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Method {
             name: "setInAppStoreProperty"
             Parameter { name: "store"; type: "QObject"; isPointer: true }
             Parameter { name: "propertyName"; type: "string" }
