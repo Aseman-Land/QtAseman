@@ -8,11 +8,11 @@ QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidget
 
 HEADERS += \
     $$PWD/asemanqmlplugin.h \
-    $$PWD/asemanqttoolsitem.h
+    $$PWD/asemanqttoolsitembase.h
 
 SOURCES += \
     $$PWD/asemanqmlplugin.cpp \
-    $$PWD/asemanqttoolsitem.cpp
+    $$PWD/asemanqttoolsitembase.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 

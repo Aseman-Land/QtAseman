@@ -7,11 +7,11 @@ QT += qml core gui asemanqml asemancore
 
 HEADERS += \
     $$PWD/controlsplugin.h \
-    $$PWD/asemanqttoolsitem.h
+    $$PWD/asemanqttoolsitemcontrols.h
 
 SOURCES += \
     $$PWD/controlsplugin.cpp \
-    $$PWD/asemanqttoolsitem.cpp
+    $$PWD/asemanqttoolsitemcontrols.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 

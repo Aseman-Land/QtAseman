@@ -18,7 +18,7 @@
 
 #include "asemanmultimediaplugin.h"
 
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitemmultimedia.h"
 
 #include <QDebug>
 #include <QDir>
@@ -36,8 +36,8 @@ bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)
         return true;
 #endif
     Q_INIT_RESOURCE(qmake_asemanmultimedia);
-    AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Multimedia"), uri);
+    AsemanQtToolsItemMultimedia::registerTypes(uri);
+    AsemanQtToolsItemMultimedia::registerFiles(QStringLiteral(":/AsemanQml/Multimedia"), uri);
     return true;
 }
 

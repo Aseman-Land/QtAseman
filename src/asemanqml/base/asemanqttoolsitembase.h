@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ASEMANQTTOOLSITEM_H
-#define ASEMANQTTOOLSITEM_H
+#ifndef ASEMANQTTOOLSITEMBASE_H
+#define ASEMANQTTOOLSITEMBASE_H
 
 #include <QtGlobal>
 #include <QString>
@@ -27,7 +27,7 @@
 class QObject;
 class QQmlEngine;
 class QJSEngine;
-class AsemanQtToolsItem: public AsemanQtTools
+class AsemanQtToolsItemBase: public AsemanQtTools
 {
 public:
     static void registerTypes(const char *uri, bool exportMode = false);
@@ -57,4 +57,4 @@ protected:
     static QString fixType(const QString &type);
 };
 
-#endif // ASEMANQTTOOLSITEM_H
+#endif // ASEMANQTTOOLSITEMBASE_H
