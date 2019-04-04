@@ -92,6 +92,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void load_buffer();
+    void registerObject();
 
 protected:
     void setImplemented(bool stt);

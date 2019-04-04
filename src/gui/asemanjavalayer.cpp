@@ -35,12 +35,12 @@
 
 #include <jni.h>
 
-QSet<AsemanJavaLayer*> java_layers_objects;
-QList< QPair<QString,QString> > java_layer_inc_share_buffer;
-QList< QString > java_layer_inc_image_buffer;
+static QSet<AsemanJavaLayer*> java_layers_objects;
+static QList< QPair<QString,QString> > java_layer_inc_share_buffer;
+static QList< QString > java_layer_inc_image_buffer;
 
-bool aseman_jlayer_registerNativeMethods();
-bool aseman_jlayer_native_methods_registered = aseman_jlayer_registerNativeMethods();
+static bool aseman_jlayer_registerNativeMethods();
+static bool aseman_jlayer_native_methods_registered = aseman_jlayer_registerNativeMethods();
 
 class AsemanJavaLayerPrivate
 {
@@ -55,10 +55,20 @@ AsemanJavaLayer::AsemanJavaLayer() :
     p = new AsemanJavaLayerPrivate;
     p->object = QAndroidJniObject("land/aseman/android/AsemanJavaLayer");
 
-    java_layers_objects.insert(this);
+#if defined(Q_OS_ANDROID) && defined(ASEMAN_STATIC_BUILD)
+    QMetaObject::invokeMethod( this, "registerObject", Qt::QueuedConnection );
+#else
+    registerObject();
+#endif
+
     QMetaObject::invokeMethod( this, "load_buffer", Qt::QueuedConnection );
 
     setImplemented(true);
+}
+
+void AsemanJavaLayer::registerObject()
+{
+    java_layers_objects.insert(this);
 }
 
 AsemanJavaLayer *AsemanJavaLayer::instance()
@@ -70,7 +80,8 @@ AsemanJavaLayer *AsemanJavaLayer::instance()
     if( !java_layer_instance )
     {
         java_layer_instance = new AsemanJavaLayer();
-        QObject::connect(QCoreApplication::instance(), &QCoreApplication::destroyed, java_layer_instance, &AsemanJavaLayer::deleteLater);
+        if(QCoreApplication::instance())
+            QObject::connect(QCoreApplication::instance(), &QCoreApplication::destroyed, java_layer_instance, &AsemanJavaLayer::deleteLater);
     }
 
     return java_layer_instance;
