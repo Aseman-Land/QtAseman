@@ -38,6 +38,8 @@ void AsemanNetworkRequest::post(const QString &address, const QVariantMap &urlQu
     req.setHeader(QNetworkRequest::ContentTypeHeader, type);
 
     QNetworkReply *reply = am->post(req, data.toUtf8());
+    p->buffers[reply] = QByteArray();
+
     connect(reply, &QNetworkReply::readyRead, this, [this, reply](){
         p->buffers[reply] += reply->readAll();
     });
@@ -76,9 +78,23 @@ void AsemanNetworkRequest::get(const QString &address, const QVariantMap &urlQue
     QNetworkRequest req(url);
 
     QNetworkReply *reply = am->get(req);
+    p->buffers[reply] = QByteArray();
+
+    connect(reply, &QNetworkReply::readyRead, this, [this, reply](){
+        p->buffers[reply] += reply->readAll();
+    });
     connect(reply, &QNetworkReply::finished, this, [this, reply, callback](){
-        if(callback.isCallable())
-            QJSValue(callback).call();
+        QString result = p->buffers.take(reply);
+
+        QQmlEngine *engine = qmlEngine(this);
+        if(engine && callback.isCallable())
+        {
+
+            QJSValueList args;
+            args << engine->toScriptValue<QString>(result);
+
+            QJSValue(callback).call(args);
+        }
 
         reply->deleteLater();
     });
