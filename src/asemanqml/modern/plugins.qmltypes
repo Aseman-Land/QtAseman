@@ -96,4 +96,13 @@ Module {
         Property { name: "color"; type: "QColor" }
         Property { name: "roundRadius"; type: "double" }
     }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Modern/LazyList 2.0"
+        exports: ["AsemanQml.Modern/LazyList 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "contentItem"
+        Property { name: "contentItem"; type: "QQuickListView"; isPointer: true }
+    }
 }

@@ -18,7 +18,7 @@
 
 #include "asemanqmlplugin.h"
 
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitembase.h"
 
 #include <QDebug>
 #include <QDir>
@@ -36,8 +36,8 @@ bool AsemanQmlPlugin::registerStaticTypes(const char *uri)
         return true;
 #endif
     Q_INIT_RESOURCE(qmake_asemanqml);
-    AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Base"), uri);
+    AsemanQtToolsItemBase::registerTypes(uri);
+    AsemanQtToolsItemBase::registerFiles(QStringLiteral(":/AsemanQml/Base"), uri);
     return true;
 }
 

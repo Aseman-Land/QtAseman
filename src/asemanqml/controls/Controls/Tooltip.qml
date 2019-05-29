@@ -32,18 +32,6 @@ Item {
     property alias textColor: txt.color
     property alias color: tooltipRect.color
 
-    DropShadow {
-        anchors.fill: tooltipScene
-        horizontalOffset: 0
-        verticalOffset: 3*Devices.density
-        radius: 16*Devices.density
-        samples: 32
-        color: "#80000000"
-        source: tooltipScene
-        cached: true
-        opacity: tooltipScene.opacity
-    }
-
     Item {
         id: tooltipScene
         width: tooltipRect.width + 32*Devices.density
@@ -64,12 +52,12 @@ Item {
             radius: 3*Devices.density
             color: "#fefefe"
 
-            Text{
+            Text {
                 id: txt
                 anchors.centerIn: parent
-                font.pixelSize: Math.floor(10*Devices.fontDensity)
+                font.pixelSize: 10*Devices.fontDensity
                 font.family: AsemanApp.globalFont.family
-                color: "#333333"
+                color: "#333"
             }
         }
     }

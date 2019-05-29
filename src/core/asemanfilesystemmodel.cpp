@@ -39,9 +39,11 @@ public:
     bool showDirsFirst;
     bool showFiles;
     bool showHidden;
+    bool recursive;
     QStringList nameFilters;
     QString folder;
     int sortField;
+    qint32 limit;
 
     QList<QFileInfo> list;
     QMimeDatabase mdb;
@@ -84,9 +86,14 @@ QList<SortUnitType> aseman_analize_file_name(const QString &fileName)
     return res;
 }
 
-AsemanFileSystemModelPrivate *fileListSort_private_data = 0;
+AsemanFileSystemModelPrivate *fileListSort_private_data = Q_NULLPTR;
 bool aseman_fileListSort(const QFileInfo &f1, const QFileInfo &f2)
 {
+    if(fileListSort_private_data->sortField == AsemanFileSystemModel::Size)
+        return f1.size() < f2.size();
+    if(fileListSort_private_data->sortField == AsemanFileSystemModel::Date)
+        return f1.lastModified() > f2.lastModified();
+
     if(fileListSort_private_data->showDirsFirst)
     {
         if(f1.isDir() && !f2.isDir())
@@ -140,8 +147,10 @@ AsemanFileSystemModel::AsemanFileSystemModel(QObject *parent) :
     p->showDirsFirst = true;
     p->showFiles = true;
     p->showHidden = false;
-    p->sortField = AsemanFileSystemModel::Size;
-    p->refresh_timer = 0;
+    p->sortField = AsemanFileSystemModel::Name;
+    p->refresh_timer = Q_NULLPTR;
+    p->recursive = false;
+    p->limit = 0;
 
     p->watcher = new QFileSystemWatcher(this);
 
@@ -288,6 +297,36 @@ int AsemanFileSystemModel::sortField() const
     return p->sortField;
 }
 
+void AsemanFileSystemModel::setRecursive(bool recursive)
+{
+    if(p->recursive == recursive)
+        return;
+
+    p->recursive = recursive;
+    Q_EMIT recursiveChanged();
+
+    refresh();
+}
+
+bool AsemanFileSystemModel::recursive() const
+{
+    return p->recursive;
+}
+
+void AsemanFileSystemModel::setLimit(qint32 limit)
+{
+    if(p->limit == limit)
+        return;
+
+    p->limit = limit;
+    Q_EMIT limitChanged();
+}
+
+qint32 AsemanFileSystemModel::limit() const
+{
+    return p->limit;
+}
+
 QString AsemanFileSystemModel::parentFolder() const
 {
     return QFileInfo(p->folder).dir().absolutePath();
@@ -400,13 +439,8 @@ void AsemanFileSystemModel::reinit_buffer()
     if(p->showHidden)
         filter = filter | QDir::Hidden;
 
-    QStringList list;
-    if(filter && !p->folder.isEmpty())
-        list = QDir(p->folder).entryList(static_cast<QDir::Filter>(filter));
-
-    QList<QFileInfo> res;
-    for(const QString &fileName: list)
-        res << QFileInfo(p->folder + "/" + fileName);
+    qint32 limit = p->limit? p->limit : INT_MAX;
+    QList<QFileInfo> res = ls(p->folder, filter, p->recursive, limit);
 
     if(!p->nameFilters.isEmpty())
         for(int i=0; i<res.count(); i++)
@@ -438,6 +472,43 @@ void AsemanFileSystemModel::reinit_buffer()
     std::stable_sort(res.begin(), res.end(), aseman_fileListSort);
 
     changed(res);
+}
+
+QList<QFileInfo> AsemanFileSystemModel::ls(const QString &path, qint32 filter, bool recursive, qint32 &limit)
+{
+    QList<QFileInfo> res;
+
+    QDir::SortFlags sort = QDir::Name;
+    switch(p->sortField)
+    {
+    case Size:
+        sort = QDir::Size;
+        break;
+    case Date:
+        sort = (QDir::Time | QDir::Reversed);
+        break;
+    }
+
+    QStringList list;
+    if(filter && !path.isEmpty())
+        list = QDir(path).entryList(static_cast<QDir::Filter>(filter) | QDir::Dirs, sort);
+
+    for(const QString &fileName: list)
+    {
+        QFileInfo info(path + "/" + fileName);
+        if(!info.isDir() || (static_cast<QDir::Filter>(filter) & QDir::Dirs))
+        {
+            res << info;
+            limit--;
+        }
+        if(limit < 0)
+            return res;
+
+        if(info.isDir() && recursive)
+            res << ls(path + "/" + fileName, filter, recursive, limit);
+    }
+
+    return res;
 }
 
 void AsemanFileSystemModel::changed(const QList<QFileInfo> &list)

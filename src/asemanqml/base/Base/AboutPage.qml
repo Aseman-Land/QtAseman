@@ -77,7 +77,7 @@ Item {
             verticalAlignment: Text.AlignVCenter
             color: textsColor
             font.family: AsemanApp.globalFont.family
-            font.pixelSize: 14*fontRatio*Devices.fontDensity
+            font.pixelSize: 14*Devices.fontDensity
             text: main_listv.currentIndex<0? "" : list[main_listv.currentIndex].title
         }
 

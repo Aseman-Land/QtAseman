@@ -962,6 +962,15 @@ QVariantMap AsemanDevices::deviceDetails()
     return map;
 }
 
+QStringList AsemanDevices::getLastImages(qint32 offset, qint32 count)
+{
+#ifdef Q_OS_ANDROID
+    return p->java_layer->getLastImages(offset, count).split(QStringLiteral("\n"), QString::SkipEmptyParts);
+#else
+    return QStringList();
+#endif
+}
+
 void AsemanDevices::hideKeyboard()
 {
     if( p->hide_keyboard_timer )

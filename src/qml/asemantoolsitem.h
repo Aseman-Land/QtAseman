@@ -21,6 +21,7 @@ public Q_SLOTS:
     static QVariant jsonToVariant(const QString &json);
 
     void jsDelayCall(int ms, const QJSValue &value);
+    void imageResize(const QString &path, const QSize &size, const QString &dest, const QJSValue &callback);
 
     static void setInAppStoreProperty(QObject *store, const QString &propertyName, const QString &value);
 

@@ -2,12 +2,12 @@
     Copyright (C) 2017 Aseman Team
     http://aseman.co
 
-    AsemanQtToolsItem is free software: you can redistribute it and/or modify
+    AsemanQtToolsItemModern is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    AsemanQtToolsItem is distributed in the hope that it will be useful,
+    AsemanQtToolsItemModern is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitemmodern.h"
 
 #include <qqml.h>
 #include <QHash>
@@ -25,10 +25,10 @@
 #include <QDir>
 #include <QSet>
 
-QStringList aseman_qt_tools_indexCache;
-QString aseman_qt_tools_destination;
+static QStringList aseman_qt_tools_indexCache;
+static QString aseman_qt_tools_destination;
 
-void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
+void AsemanQtToolsItemModern::registerTypes(const char *uri, bool exportMode)
 {
     static QSet<QByteArray> register_list;
     if(register_list.contains(uri) && !exportMode)
@@ -37,7 +37,7 @@ void AsemanQtToolsItem::registerTypes(const char *uri, bool exportMode)
     register_list.insert(uri);
 }
 
-void AsemanQtToolsItem::registerFiles(const QString &filesLocation, const char *uri)
+void AsemanQtToolsItemModern::registerFiles(const QString &filesLocation, const char *uri)
 {
     QFile file(filesLocation + QStringLiteral("/qmldir"));
     if(file.open(QFile::ReadOnly))
@@ -69,7 +69,7 @@ void AsemanQtToolsItem::registerFiles(const QString &filesLocation, const char *
 }
 
 template<typename T>
-int AsemanQtToolsItem::registerType(const char *uri, int versionMajor, int versionMinor, const char *typeName, bool exportMode)
+int AsemanQtToolsItemModern::registerType(const char *uri, int versionMajor, int versionMinor, const char *typeName, bool exportMode)
 {
     if(exportMode)
         exportItem<T>(QString::fromUtf8(uri), versionMajor, versionMinor, QString::fromUtf8(typeName));
@@ -79,7 +79,7 @@ int AsemanQtToolsItem::registerType(const char *uri, int versionMajor, int versi
 }
 
 template<typename T>
-int AsemanQtToolsItem::registerModel(const char *uri, int versionMajor, int versionMinor, const char *typeName, bool exportMode)
+int AsemanQtToolsItemModern::registerModel(const char *uri, int versionMajor, int versionMinor, const char *typeName, bool exportMode)
 {
     if(exportMode)
         exportModel<T>(QString::fromUtf8(uri), versionMajor, versionMinor, QString::fromUtf8(typeName));
@@ -89,7 +89,7 @@ int AsemanQtToolsItem::registerModel(const char *uri, int versionMajor, int vers
 }
 
 template<typename T>
-int AsemanQtToolsItem::registerSingletonType(const char *uri, int versionMajor, int versionMinor, const char *typeName, QObject *(*callback)(QQmlEngine *, QJSEngine *), bool exportMode)
+int AsemanQtToolsItemModern::registerSingletonType(const char *uri, int versionMajor, int versionMinor, const char *typeName, QObject *(*callback)(QQmlEngine *, QJSEngine *), bool exportMode)
 {
     if(exportMode)
         exportItem<T>(QString::fromUtf8(uri), versionMajor, versionMinor, QString::fromUtf8(typeName));
@@ -99,7 +99,7 @@ int AsemanQtToolsItem::registerSingletonType(const char *uri, int versionMajor, 
 }
 
 template<typename T>
-int AsemanQtToolsItem::registerUncreatableType(const char *uri, int versionMajor, int versionMinor, const char *qmlName, const QString &reason, bool exportMode)
+int AsemanQtToolsItemModern::registerUncreatableType(const char *uri, int versionMajor, int versionMinor, const char *qmlName, const QString &reason, bool exportMode)
 {
     if(exportMode)
         exportItem<T>(QString::fromUtf8(uri), versionMajor, versionMinor, QString::fromUtf8(qmlName));
@@ -109,14 +109,14 @@ int AsemanQtToolsItem::registerUncreatableType(const char *uri, int versionMajor
 }
 
 
-void AsemanQtToolsItem::exportDocuments(const QString &destination)
+void AsemanQtToolsItemModern::exportDocuments(const QString &destination)
 {
     aseman_qt_tools_destination = destination;
 
     QDir().mkpath(aseman_qt_tools_destination);
     aseman_qt_tools_indexCache.clear();
 
-    AsemanQtToolsItem::registerTypes("AsemanToolsItem", true);
+    AsemanQtToolsItemModern::registerTypes("AsemanToolsItem", true);
 
     QString index = QStringLiteral("# AsemanToolsItem Documents\n\n");
     index += QStringLiteral("### [Getting Started](gettingstarted.md)\n\n");
@@ -147,7 +147,7 @@ void AsemanQtToolsItem::exportDocuments(const QString &destination)
     file.close();
 }
 
-QString AsemanQtToolsItem::fixType(const QString &type)
+QString AsemanQtToolsItemModern::fixType(const QString &type)
 {
     if(type == QStringLiteral("QSizeF") || type == QStringLiteral("QSize"))
         return QStringLiteral("size");
@@ -214,7 +214,7 @@ QString AsemanQtToolsItem::fixType(const QString &type)
 }
 
 template<typename T>
-QString AsemanQtToolsItem::exportItem(const QString &module, int major, int minor, const QString &component, bool store)
+QString AsemanQtToolsItemModern::exportItem(const QString &module, int major, int minor, const QString &component, bool store)
 {
     QString result;
     aseman_qt_tools_indexCache << component;
@@ -350,7 +350,7 @@ QString AsemanQtToolsItem::exportItem(const QString &module, int major, int mino
 }
 
 template<typename T>
-QString AsemanQtToolsItem::exportModel(const QString &module, int major, int minor, const QString &component)
+QString AsemanQtToolsItemModern::exportModel(const QString &module, int major, int minor, const QString &component)
 {
     QString result = exportItem<T>(module, major, minor, component, false);
     T *model = new T();

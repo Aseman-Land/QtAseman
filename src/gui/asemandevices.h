@@ -205,6 +205,8 @@ public Q_SLOTS:
     void setClipboard( const QString & text );
     void setClipboardData(AsemanMimeData *mime);
 
+    QStringList getLastImages(qint32 offset, qint32 count);
+
     virtual QString startCameraPicture();
     virtual bool getOpenPictures();
 

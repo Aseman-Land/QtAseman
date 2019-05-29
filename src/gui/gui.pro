@@ -9,6 +9,8 @@ QT = core gui asemancore
 
 MODULE = asemangui
 
+static: DEFINES += ASEMAN_STATIC_BUILD
+
 load(qt_module)
 
 DEFINES += LIBQTASEMAN_GUI_LIBRARY
@@ -26,7 +28,7 @@ HEADERS += \
     $$PWD/asemantranslationmanager.h \
     $$PWD/asemanwindowdetails.h \
     $$PWD/asemangui_global.h \
-    asemankeyhandler.h
+    $$PWD/asemankeyhandler.h
 
 SOURCES += \
     $$PWD/asemanabstractcolorfulllistmodel.cpp \
@@ -40,7 +42,7 @@ SOURCES += \
     $$PWD/asemantools.cpp \
     $$PWD/asemantranslationmanager.cpp \
     $$PWD/asemanwindowdetails.cpp \
-    asemankeyhandler.cpp
+    $$PWD/asemankeyhandler.cpp
 
 android: {
     QT += androidextras

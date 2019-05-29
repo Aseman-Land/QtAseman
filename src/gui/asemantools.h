@@ -39,6 +39,8 @@ public:
     AsemanTools(QObject *parent = 0);
     virtual ~AsemanTools();
 
+    static void imageResize(const QString &path, const QSize &size, const QString &dest, QObject *base, std::function<void(bool)> callback);
+
 public Q_SLOTS:
     static void debug( const QVariant & var );
 
@@ -46,6 +48,7 @@ public Q_SLOTS:
     static QString dateToMSec(const QDateTime &dt);
     static QDateTime mSecToDate(const QString &ms);
     static qint64 dateToSec(const QDateTime &dt);
+    static QDateTime dateFromSec(qint64 date);
     static QString dateToString(const QDateTime &dt, const QString &format = QString());
     static QDateTime datefromString(const QString &dt, const QString &format = QString());
     static QDate dateAddDays(const QDate &date, int days);

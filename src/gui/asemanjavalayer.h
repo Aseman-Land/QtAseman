@@ -61,6 +61,8 @@ public:
 
     QRect keyboardRect();
 
+    QString getLastImages(qint32 offset, qint32 count);
+
     void setKeepScreenOn(bool stt);
 
 public Q_SLOTS:
@@ -90,6 +92,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void load_buffer();
+    void registerObject();
 
 protected:
     void setImplemented(bool stt);

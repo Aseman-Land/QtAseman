@@ -17,7 +17,7 @@
 */
 
 #include "controlsplugin.h"
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitemcontrols.h"
 
 #include <QDebug>
 #include <QDir>
@@ -35,8 +35,8 @@ bool AsemanControlsPlugin::registerStaticTypes(const char *uri)
         return true;
 #endif
     Q_INIT_RESOURCE(qmake_asemancontrols);
-    AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Controls"), uri);
+    AsemanQtToolsItemControls::registerTypes(uri);
+    AsemanQtToolsItemControls::registerFiles(QStringLiteral(":/AsemanQml/Controls"), uri);
     return true;
 }
 

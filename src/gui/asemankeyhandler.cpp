@@ -11,6 +11,7 @@ class AsemanKeyHandler::Private
 public:
     QPointer<QWindow> window;
     qint32 key;
+    qint32 scanCode;
     qint32 modifiers;
 };
 
@@ -19,6 +20,7 @@ AsemanKeyHandler::AsemanKeyHandler(QObject *parent) :
 {
     p = new Private;
     p->key = 0;
+    p->scanCode = 0;
     p->modifiers = static_cast<qint32>(Qt::NoModifier);
 }
 
@@ -60,6 +62,20 @@ qint32 AsemanKeyHandler::modifiers() const
     return p->modifiers;
 }
 
+qint32 AsemanKeyHandler::scanCode() const
+{
+    return p->scanCode;
+}
+
+void AsemanKeyHandler::setScanCode(qint32 scanCode)
+{
+    if(p->scanCode == scanCode)
+        return;
+
+    p->scanCode = scanCode;
+    Q_EMIT scanCodeChanged();
+}
+
 void AsemanKeyHandler::setModifiers(qint32 modifiers)
 {
     if(p->modifiers == modifiers)
@@ -83,17 +99,20 @@ bool AsemanKeyHandler::eventFilter(QObject *watched, QEvent *ev)
             return QObject::eventFilter(watched, ev);
 
         qint32 key = e->key();
+        quint32 scanCode = e->nativeScanCode();
         switch (key) {
         case Qt::Key_Shift:
         case Qt::Key_Control:
         case Qt::Key_Meta:
             key = 0;
+            scanCode = 0;
             break;
         }
 
         setKey(key);
+        setScanCode(static_cast<qint32>(scanCode));
         setModifiers(static_cast<int>(e->modifiers()));
-        Q_EMIT pressed(static_cast<int>(e->modifiers()), key);
+        Q_EMIT pressed(static_cast<int>(e->modifiers()), key, static_cast<qint32>(scanCode));
     }
         break;
 
@@ -103,18 +122,22 @@ bool AsemanKeyHandler::eventFilter(QObject *watched, QEvent *ev)
             return QObject::eventFilter(watched, ev);
 
         qint32 key = e->key();
+        quint32 scanCode = e->nativeScanCode();
         switch (key) {
         case Qt::Key_Shift:
         case Qt::Key_Control:
         case Qt::Key_Meta:
             key = 0;
+            scanCode = 0;
             break;
         }
-        if(key == p->key)
+        if(key == p->key) {
             setKey(0);
+            setScanCode(0);
+        }
 
         setModifiers(static_cast<int>(e->modifiers()));
-        Q_EMIT released(static_cast<int>(e->modifiers()), key);
+        Q_EMIT released(static_cast<int>(e->modifiers()), key, static_cast<qint32>(scanCode));
     }
         break;
     }

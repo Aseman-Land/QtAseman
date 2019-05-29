@@ -39,6 +39,10 @@
 #include <QMimeDatabase>
 #include <QImageReader>
 #include <QJsonDocument>
+#include <QThread>
+#include <QRunnable>
+#include <QThreadPool>
+#include <QImageWriter>
 
 class AsemanToolsPrivate
 {
@@ -78,6 +82,11 @@ qint64 AsemanTools::dateToSec(const QDateTime &dt)
 #else
    return dt.toMSecsSinceEpoch()/1000;
 #endif
+}
+
+QDateTime AsemanTools::dateFromSec(qint64 date)
+{
+    return QDateTime::fromSecsSinceEpoch(date);
 }
 
 QString AsemanTools::dateToString(const QDateTime &dt, const QString & format)
@@ -241,6 +250,53 @@ QSize AsemanTools::imageSize(const QString &_path)
     return image.size();
 }
 
+void AsemanTools::imageResize(const QString &_path, const QSize &size, const QString &dest, QObject *base, std::function<void (bool)> callback)
+{
+    QString path = _path;
+    if(path.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
+        path = path.mid(AsemanDevices::localFilesPrePath().size());
+
+    class ResizeRunnable: public QRunnable {
+        void run() {
+            QImageReader reader(_path);
+            reader.setScaledSize(_size);
+
+            QImage img = reader.read();
+            QImageWriter writer(_dest);
+            bool res = writer.write(img);
+
+            if(!_base)
+                return;
+
+            QObject *obj = new QObject;
+
+            auto callback = _callback;
+            obj->connect(obj, &QObject::destroyed, _base, [callback, res](){
+                callback(res);
+            }, Qt::QueuedConnection);
+
+            delete obj;
+        }
+
+    public:
+        QString _path;
+        QSize _size;
+        QString _dest;
+        QPointer<QObject> _base;
+        std::function<void (bool)> _callback;
+    };
+
+    ResizeRunnable *run = new ResizeRunnable;
+    run->setAutoDelete(true);
+    run->_path = path;
+    run->_size = size;
+    run->_dest = dest;
+    run->_base = base;
+    run->_callback = callback;
+
+    QThreadPool::globalInstance()->start(run);
+}
+
 bool AsemanTools::writeFile(const QString &path, const QVariant &data, bool compress)
 {
     QString dir = path.left(path.lastIndexOf(QStringLiteral("/"))+1);
@@ -322,6 +378,8 @@ QString AsemanTools::urlToLocalPath(const QUrl &url)
     QString res = url.toLocalFile();
     if(res.isEmpty() || url.toString().contains(QStringLiteral("#")))
         res = url.toString();
+    if(res.left(6) == QStringLiteral("file:/"))
+        res = res.mid(6);
 
     int idx1 = res.indexOf(QStringLiteral(":/"));
     if(idx1 != -1)

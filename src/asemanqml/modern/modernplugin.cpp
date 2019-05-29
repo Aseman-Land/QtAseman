@@ -17,7 +17,7 @@
 */
 
 #include "modernplugin.h"
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitemmodern.h"
 
 #include <QDebug>
 #include <QDir>
@@ -35,8 +35,8 @@ bool AsemanModernPlugin::registerStaticTypes(const char *uri)
         return true;
 #endif
     Q_INIT_RESOURCE(qmake_asemanmodern);
-    AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Modern"), uri);
+    AsemanQtToolsItemModern::registerTypes(uri);
+    AsemanQtToolsItemModern::registerFiles(QStringLiteral(":/AsemanQml/Modern"), uri);
     return true;
 }
 

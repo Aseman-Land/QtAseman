@@ -18,7 +18,7 @@
 
 #include "asemanwidgetsplugin.h"
 
-#include "asemanqttoolsitem.h"
+#include "asemanqttoolsitemwidgets.h"
 
 #include <QDebug>
 #include <QDir>
@@ -35,8 +35,8 @@ bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
     if(static_types_registered)
         return true;
 #endif
-    AsemanQtToolsItem::registerTypes(uri);
-    AsemanQtToolsItem::registerFiles(QStringLiteral(":/AsemanQml/Widgets"), uri);
+    AsemanQtToolsItemWidgets::registerTypes(uri);
+    AsemanQtToolsItemWidgets::registerFiles(QStringLiteral(":/AsemanQml/Widgets"), uri);
     return true;
 }
 

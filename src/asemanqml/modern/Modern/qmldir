@@ -4,3 +4,4 @@ FancyPage 2.0 FancyPage.qml
 FancySearchBar 2.0 FancySearchBar.qml
 FastDropShadow 2.0 FastDropShadow.qml
 FastRectengleShadow 2.0 FastRectengleShadow.qml
+LazyList 2.0 LazyList.qml
