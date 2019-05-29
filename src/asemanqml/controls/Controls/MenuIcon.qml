@@ -42,29 +42,29 @@ Item {
         }
 
         Rectangle {
-            x: parent.width - width
+            x: parent.width - width + ratio*parent.width*0.1
             width: (1-ratio)*parent.width*0.25 + parent.width*0.75
             height: 2*Devices.density
             radius: height/2
             color: menu_icon.color
-            rotation: ratio*35
+            rotation: ratio*45
         }
 
         Rectangle {
             x: parent.width - width
-            width: parent.width + ratio*parent.width*0.1
+            width: parent.width + ratio*parent.width*0.2
             height: 2*Devices.density
             radius: height/2
             color: menu_icon.color
         }
 
         Rectangle {
-            x: parent.width - width
+            x: parent.width - width + ratio*parent.width*0.1
             width: (1-ratio)*parent.width*0.25 + parent.width*0.75
             height: 2*Devices.density
             radius: height/2
             color: menu_icon.color
-            rotation: -ratio*35
+            rotation: -ratio*45
         }
     }
 }
