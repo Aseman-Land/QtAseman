@@ -87,7 +87,7 @@ Item {
         property Item cursor1
         property bool forceHidden: true
 
-        property string itemText: textItem? textItem.preeditText : ""
+        property string itemText: textItem? (Devices.isDesktop? textItem.text : textItem.preeditText) : ""
 
         onItemTextChanged: forceHidden = true
         onForceHiddenChanged: if(forceHidden) menuRect.visible = false

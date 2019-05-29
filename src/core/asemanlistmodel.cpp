@@ -143,7 +143,7 @@ void AsemanListModel::clear()
 
 void AsemanListModel::changed(const QList<QVariantMap> &list)
 {
-    bool count_changed = (list.count()==p->list.count());
+    bool count_changed = (list.count()!=p->list.count());
 
     for( int i=0 ; i<p->list.count() ; i++ )
     {
