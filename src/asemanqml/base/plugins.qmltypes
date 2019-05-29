@@ -2476,21 +2476,6 @@ Module {
         Property { name: "verticalAlignment"; type: "int" }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/CoverList 2.0"
-        exports: ["AsemanQml.Base/CoverList 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "itemsWidth"; type: "double" }
-        Property { name: "itemsPadding"; type: "double" }
-        Property { name: "originY"; type: "double" }
-        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
-        Property { name: "internalDelegate"; type: "QQmlComponent"; isPointer: true }
-        Property { name: "model"; type: "QVariant" }
-        Property { name: "currentIndex"; type: "int" }
-    }
-    Component {
         prototype: "QQuickRectangle"
         name: "AsemanQml.Base/CradleBits 2.0"
         exports: ["AsemanQml.Base/CradleBits 2.0"]

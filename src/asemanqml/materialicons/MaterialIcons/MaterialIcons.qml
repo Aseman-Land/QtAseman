@@ -22,16 +22,16 @@ import AsemanQml.Base 2.0
 
 AsemanObject {
     readonly property string family: google.name + ", " + materialDesign.name
-
+	
     FontLoader {
-        id: google
+		id: google
         source: "MaterialIcons-Regular.ttf"
     }
-
-    FontLoader {
-        id: materialDesign
-        source: "materialdesignicons-webfont.ttf"
-    }
+	
+	FontLoader {
+		id: materialDesign
+		source: "materialdesignicons-webfont.ttf"
+	}
 
     function init() {}
 
