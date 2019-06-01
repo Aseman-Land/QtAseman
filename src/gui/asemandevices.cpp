@@ -362,19 +362,23 @@ QString AsemanDevices::deviceId()
 {
 #if defined(Q_OS_ANDROID)
     return AsemanJavaLayer::instance()->deviceId();
-#elif defined(Q_OS_LINUX)
+#elif defined(Q_OS_LINUX) || defined(Q_OS_WIN)
     static QString cg_hostId;
     if(!cg_hostId.isEmpty())
         return cg_hostId;
 
     QProcess prc;
+#ifdef Q_OS_WIN
     prc.start(QStringLiteral("hostid"));
+#else
+    prc.start(QStringLiteral("wmic"), {QStringLiteral("csproduct"), QStringLiteral("get"), QStringLiteral("UUID")});
+#endif
     prc.waitForStarted();
     prc.waitForReadyRead();
     prc.waitForFinished();
 
     cg_hostId = QString::fromUtf8(prc.readAll());
-    cg_hostId = cg_hostId.trimmed();
+    cg_hostId = cg_hostId.remove(QStringLiteral("UUID")).trimmed();
     return cg_hostId;
 #else
     return QString();
