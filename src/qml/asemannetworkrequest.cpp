@@ -11,6 +11,7 @@ class AsemanNetworkRequest::Private
 {
 public:
     QHash<QNetworkReply*, QByteArray> buffers;
+    qint32 httpStatusCode;
 };
 
 AsemanNetworkRequest::AsemanNetworkRequest(QObject *parent) :
@@ -42,6 +43,7 @@ void AsemanNetworkRequest::post(const QString &address, const QVariantMap &urlQu
 
     connect(reply, &QNetworkReply::readyRead, this, [this, reply](){
         p->buffers[reply] += reply->readAll();
+        p->httpStatusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     });
     connect(reply, &QNetworkReply::finished, this, [this, reply, callback](){
         QString result = p->buffers.take(reply);
@@ -52,6 +54,7 @@ void AsemanNetworkRequest::post(const QString &address, const QVariantMap &urlQu
 
             QJSValueList args;
             args << engine->toScriptValue<QString>(result);
+            args << p->httpStatusCode;
 
             QJSValue(callback).call(args);
         }
@@ -82,6 +85,7 @@ void AsemanNetworkRequest::get(const QString &address, const QVariantMap &urlQue
 
     connect(reply, &QNetworkReply::readyRead, this, [this, reply](){
         p->buffers[reply] += reply->readAll();
+        p->httpStatusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     });
     connect(reply, &QNetworkReply::finished, this, [this, reply, callback](){
         QString result = p->buffers.take(reply);
@@ -92,6 +96,7 @@ void AsemanNetworkRequest::get(const QString &address, const QVariantMap &urlQue
 
             QJSValueList args;
             args << engine->toScriptValue<QString>(result);
+            args << p->httpStatusCode;
 
             QJSValue(callback).call(args);
         }
