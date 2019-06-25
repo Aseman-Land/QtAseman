@@ -1789,6 +1789,11 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method {
+            name: "fileSize"
+            type: "string"
+            Parameter { name: "path"; type: "string" }
+        }
+        Method {
             name: "fileMime"
             type: "string"
             Parameter { name: "path"; type: "string" }

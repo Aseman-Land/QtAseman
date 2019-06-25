@@ -205,6 +205,14 @@ QString AsemanTools::fileParent(const QString &path)
     return res;
 }
 
+QString AsemanTools::fileSize(const QString &_path)
+{
+    QString path = _path;
+    if(path.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
+        path = path.mid(AsemanDevices::localFilesPrePath().size());
+    return QString::number(QFileInfo(path).size());
+}
+
 QString AsemanTools::readText(const QString &path)
 {
     QFile file(path);
