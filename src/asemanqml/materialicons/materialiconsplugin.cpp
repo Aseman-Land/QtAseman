@@ -41,7 +41,11 @@ bool AsemanMaterialIconsPlugin::registerStaticTypes(const char *uri)
 
 void AsemanMaterialIconsPlugin::registerTypes(const char *uri)
 {
+#ifdef ASEMAN_STATIC_BUILD
+    Q_UNUSED(uri)
+#else
     AsemanMaterialIconsPlugin::registerStaticTypes(uri);
+#endif
 }
 
 void AsemanMaterialIconsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

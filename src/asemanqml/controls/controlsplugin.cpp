@@ -42,7 +42,11 @@ bool AsemanControlsPlugin::registerStaticTypes(const char *uri)
 
 void AsemanControlsPlugin::registerTypes(const char *uri)
 {
+#ifdef ASEMAN_STATIC_BUILD
+    Q_UNUSED(uri)
+#else
     AsemanControlsPlugin::registerStaticTypes(uri);
+#endif
 }
 
 void AsemanControlsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
