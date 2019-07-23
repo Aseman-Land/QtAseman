@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import QtMultimedia 5.8
 import QtQuick.Controls 2.2 as QtControls
 import AsemanQml.Base 2.0
