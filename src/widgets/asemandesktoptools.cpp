@@ -25,10 +25,13 @@
 #include <QFontDatabase>
 #include <QDebug>
 
+#if defined(QT_WIDGETS_LIB)
+#include <QFileDialog>
+#endif
+
 #if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
 #include <QInputDialog>
 #include <QColorDialog>
-#include <QFileDialog>
 #include <QFontDialog>
 #include <QMenu>
 #include <QAction>
@@ -349,11 +352,15 @@ QString AsemanDesktopTools::getOpenFileName(QWindow *window, const QString & tit
 
     return QString();
 #else
+#if defined(QT_WIDGETS_LIB)
+    return QFileDialog::getOpenFileName(0, title, startPath, filter);
+#else
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
     Q_UNUSED(startPath)
     return QString();
+#endif
 #endif
 }
 
@@ -422,6 +429,10 @@ QStringList AsemanDesktopTools::getOpenFileNames(QWindow *window, const QString 
 
     return QStringList();
 #else
+#if defined(QT_WIDGETS_LIB)
+    return QFileDialog::getOpenFileNames(0, title, startPath, filter);
+#else
+#endif
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
@@ -497,11 +508,15 @@ QString AsemanDesktopTools::getSaveFileName(QWindow *window, const QString &titl
 
     return QString();
 #else
+#if defined(QT_WIDGETS_LIB)
+    return QFileDialog::getSaveFileName(0, title, startPath, filter);
+#else
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
     Q_UNUSED(startPath)
     return QString();
+#endif
 #endif
 }
 
@@ -570,10 +585,14 @@ QString AsemanDesktopTools::getExistingDirectory(QWindow *window, const QString 
 
     return QString();
 #else
+#if defined(QT_WIDGETS_LIB)
+    return QFileDialog::getExistingDirectory(0, title, startPath);
+#else
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(startPath)
     return QString();
+#endif
 #endif
 }
 

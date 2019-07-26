@@ -5,6 +5,7 @@ DEPENDPATH += $$PWD
 
 TARGET = QtAsemanQml
 QT = core gui asemancore asemangui asemannetwork network qml quick asemanwidgets
+ios: QT += widgets
 
 MODULE = asemanqml
 

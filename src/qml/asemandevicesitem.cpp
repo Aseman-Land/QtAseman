@@ -1,6 +1,11 @@
 #include "asemandevicesitem.h"
 #include "asemandesktoptools.h"
 
+#if defined(QT_WIDGETS_LIB)
+#include <QFileDialog>
+#include <QStandardPaths>
+#endif
+
 #ifdef Q_OS_ANDROID
 #include "asemanjavalayer.h"
 #endif
@@ -29,7 +34,11 @@ bool AsemanDevicesItem::getOpenPictures()
 #ifdef Q_OS_ANDROID
     return p->java_layer->getOpenPictures();
 #else
+#if defined(Q_OS_IOS) && defined(QT_WIDGETS_LIB)
+    QString path = QFileDialog::getOpenFileName(Q_NULLPTR, QStringLiteral(""), QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).last());
+#else
     QString path = AsemanDesktopTools::getOpenFileName();
+#endif
     if(path.isEmpty())
         return false;
 
