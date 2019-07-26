@@ -23,29 +23,16 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanAwesomePlugin::static_types_registered = AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome");
-#endif
-
 bool AsemanAwesomePlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     Q_INIT_RESOURCE(qmake_asemanawesome);
-
     qmlRegisterSingletonType(QUrl("qrc:/AsemanQml/Awesome/Awesome.qml"), uri, 2, 0, "Awesome");
     return true;
 }
 
 void AsemanAwesomePlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanAwesomePlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanAwesomePlugin::initializeEngine(QQmlEngine *engine, const char *uri)

@@ -24,16 +24,8 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanControlsPlugin::static_types_registered = AsemanControlsPlugin::registerStaticTypes("AsemanQml.Controls");
-#endif
-
 bool AsemanControlsPlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     Q_INIT_RESOURCE(qmake_asemancontrols);
     AsemanQtToolsItemControls::registerTypes(uri);
     AsemanQtToolsItemControls::registerFiles(QStringLiteral(":/AsemanQml/Controls"), uri);
@@ -42,11 +34,7 @@ bool AsemanControlsPlugin::registerStaticTypes(const char *uri)
 
 void AsemanControlsPlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanControlsPlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanControlsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

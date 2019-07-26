@@ -31,11 +31,6 @@ public:
 
     void registerTypes(const char *uri);
     void initializeEngine(QQmlEngine *engine, const char *uri);
-
-private:
-#ifdef ASEMAN_STATIC_BUILD
-    static bool static_types_registered;
-#endif
 };
 
 #endif // ASEMANWIDGETSPLUGIN_H

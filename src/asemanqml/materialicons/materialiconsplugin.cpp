@@ -23,29 +23,16 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanMaterialIconsPlugin::static_types_registered = AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons");
-#endif
-
 bool AsemanMaterialIconsPlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     Q_INIT_RESOURCE(qmake_asemanmaterialicons);
-
     qmlRegisterSingletonType(QUrl("qrc:/AsemanQml/MaterialIcons/MaterialIcons.qml"), uri, 2, 0, "MaterialIcons");
     return true;
 }
 
 void AsemanMaterialIconsPlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanMaterialIconsPlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanMaterialIconsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

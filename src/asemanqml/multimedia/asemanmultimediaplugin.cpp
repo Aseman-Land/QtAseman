@@ -25,16 +25,8 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanMultimediaPlugin::static_types_registered = AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multimedia");
-#endif
-
 bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     Q_INIT_RESOURCE(qmake_asemanmultimedia);
     AsemanQtToolsItemMultimedia::registerTypes(uri);
     AsemanQtToolsItemMultimedia::registerFiles(QStringLiteral(":/AsemanQml/Multimedia"), uri);
@@ -43,11 +35,7 @@ bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)
 
 void AsemanMultimediaPlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanMultimediaPlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanMultimediaPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

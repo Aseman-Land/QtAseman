@@ -25,16 +25,8 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanWidgetsPlugin::static_types_registered = AsemanWidgetsPlugin::registerStaticTypes("AsemanQml.Widgets");
-#endif
-
 bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     AsemanQtToolsItemWidgets::registerTypes(uri);
     AsemanQtToolsItemWidgets::registerFiles(QStringLiteral(":/AsemanQml/Widgets"), uri);
     return true;
@@ -42,11 +34,7 @@ bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
 
 void AsemanWidgetsPlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanWidgetsPlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanWidgetsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

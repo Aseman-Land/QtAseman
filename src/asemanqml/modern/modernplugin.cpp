@@ -24,16 +24,8 @@
 #include <QStringList>
 #include <QtQml>
 
-#ifdef ASEMAN_STATIC_BUILD
-bool AsemanModernPlugin::static_types_registered = AsemanModernPlugin::registerStaticTypes("AsemanQml.Modern");
-#endif
-
 bool AsemanModernPlugin::registerStaticTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    if(static_types_registered)
-        return true;
-#endif
     Q_INIT_RESOURCE(qmake_asemanmodern);
     AsemanQtToolsItemModern::registerTypes(uri);
     AsemanQtToolsItemModern::registerFiles(QStringLiteral(":/AsemanQml/Modern"), uri);
@@ -42,11 +34,7 @@ bool AsemanModernPlugin::registerStaticTypes(const char *uri)
 
 void AsemanModernPlugin::registerTypes(const char *uri)
 {
-#ifdef ASEMAN_STATIC_BUILD
-    Q_UNUSED(uri)
-#else
     AsemanModernPlugin::registerStaticTypes(uri);
-#endif
 }
 
 void AsemanModernPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
