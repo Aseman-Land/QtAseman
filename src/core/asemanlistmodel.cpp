@@ -141,6 +141,16 @@ void AsemanListModel::clear()
     Q_EMIT listChanged();
 }
 
+void AsemanListModel::change(const QVariantList &list)
+{
+    QList<QVariantMap> lst;
+    for (const QVariant &v: list)
+        lst << v.toMap();
+
+    changed(lst);
+    saveCache();
+}
+
 void AsemanListModel::changed(const QList<QVariantMap> &list)
 {
     bool count_changed = (list.count()!=p->list.count());

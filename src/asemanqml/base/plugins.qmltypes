@@ -1110,6 +1110,10 @@ Module {
             Parameter { name: "to"; type: "int" }
         }
         Method { name: "clear" }
+        Method {
+            name: "change"
+            Parameter { name: "list"; type: "QVariantList" }
+        }
     }
     Component {
         name: "AsemanListObject"

@@ -1,3 +1,15 @@
+qtaseman (1.0.16-1aseman-bionic) bionic; urgency=medium
+
+  * Add change function to the AsemanListModel
+
+ -- Aseman Team <contact@aseman.co>  Thu, 22 Aug 2019 10:10:00 +0330
+
+qtaseman (1.0.15-1aseman-bionic) bionic; urgency=medium
+
+  * Bugfixes
+
+ -- Aseman Team <contact@aseman.co>  Thu, 20 Aug 2019 10:10:00 +0330
+
 qtaseman (1.0.14-1aseman-bionic) bionic; urgency=medium
 
   * Add many new features

@@ -56,6 +56,7 @@ public Q_SLOTS:
     void remove(int row);
     void move(int from, int to);
     void clear();
+    void change(const QVariantList &list);
 
 private:
     void changed(const QList<QVariantMap> &list);
