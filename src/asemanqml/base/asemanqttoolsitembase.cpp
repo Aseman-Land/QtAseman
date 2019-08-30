@@ -70,7 +70,7 @@
 #ifndef Q_OS_IOS
 #include "asemanprocess.h"
 #endif
-#ifdef QT_WIDGETS_LIB
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
 #include "asemansystemtray.h"
 #endif
 #ifdef Q_OS_ANDROID
@@ -139,7 +139,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanListObject>(uri, 2, 0, "ListObject", exportMode);
     registerType<AsemanDownloader>(uri, 2, 0, "Downloader", exportMode);
     registerType<AsemanEncrypter>(uri, 2, 0, "Encrypter", exportMode);
-#ifdef QT_WIDGETS_LIB
+#if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
     registerType<AsemanSystemTray>(uri, 2, 0, "SystemTray", exportMode);
 #endif
     registerType<AsemanWindowDetails>(uri, 2, 0, "WindowDetails", exportMode);
