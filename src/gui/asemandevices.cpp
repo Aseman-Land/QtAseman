@@ -628,22 +628,22 @@ qreal AsemanDevices::fontDensity()
         return AsemanJavaLayer::instance()->density()*ratio;
 #else
 #ifdef Q_OS_IOS
-    return 1.4;
+    return AsemanDevicesPrivate::fontScale * 1.4;
 #else
 #if defined(Q_OS_LINUX) || defined(Q_OS_OPENBSD)
 #ifdef Q_OS_UBUNTUTOUCH
-    qreal ratio = 1.3;
+    qreal ratio = AsemanDevicesPrivate::fontScale * 1.3;
     return ratio*density();
 #else
-    qreal ratio = 1.3;
+    qreal ratio = AsemanDevicesPrivate::fontScale * 1.4;
     return ratio*density();
 #endif
 #else
 #ifdef Q_OS_WIN32
-    qreal ratio = 1.4;
+    qreal ratio = AsemanDevicesPrivate::fontScale * 1.4;
     return ratio*density();
 #else
-    qreal ratio = 1.3;
+    qreal ratio = AsemanDevicesPrivate::fontScale * 1.3;
     return ratio*density();
 #endif
 #endif
