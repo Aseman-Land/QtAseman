@@ -87,6 +87,27 @@ QString AsemanListModel::cachePath() const
     return p->cachePath;
 }
 
+QVariantList AsemanListModel::data() const
+{
+    QVariantList res;
+    for (const QVariantMap &m: p->list)
+        res << m;
+    return res;
+}
+
+void AsemanListModel::setData(const QVariantList &data)
+{
+    if (data == AsemanListModel::data())
+        return;
+
+    QList<QVariantMap> list;
+    for (const QVariant &d: data)
+        list << d.toMap();
+
+    changed(list);
+    Q_EMIT dataListChanged();
+}
+
 void AsemanListModel::insert(int row, const QVariantMap &map)
 {
     if(p->list.count() < row || row < 0)

@@ -1090,6 +1090,7 @@ Module {
         exportMetaObjectRevisions: [0]
         Property { name: "count"; type: "int"; isReadonly: true }
         Property { name: "cachePath"; type: "string" }
+        Property { name: "data"; type: "QVariantList" }
         Signal { name: "listChanged" }
         Method {
             name: "insert"

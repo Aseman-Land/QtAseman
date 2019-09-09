@@ -30,6 +30,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanListModel : public AsemanAbstractListModel
     class Private;
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QString cachePath READ cachePath WRITE setCachePath NOTIFY cachePathChanged)
+    Q_PROPERTY(QVariantList data READ data WRITE setData NOTIFY dataListChanged)
 
 public:
     AsemanListModel(QObject *parent = Q_NULLPTR);
@@ -45,10 +46,14 @@ public:
     void setCachePath(const QString &path);
     QString cachePath() const;
 
+    QVariantList data() const;
+    void setData(const QVariantList &data);
+
 Q_SIGNALS:
     void countChanged();
     void cachePathChanged();
     void listChanged();
+    void dataListChanged();
 
 public Q_SLOTS:
     void insert(int row, const QVariantMap &map);
