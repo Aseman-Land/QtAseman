@@ -37,6 +37,7 @@
 #include <qqml.h>
 #include <QHash>
 #include <QPointer>
+#include <asemanglobaltranslations.h>
 
 void AsemanQtTools::initializeEngine(QQmlEngine *engine, const char *uri)
 {
@@ -175,5 +176,17 @@ AsemanBackHandler *AsemanQtTools::backHandler(QQmlEngine *engine)
 
     res = new AsemanBackHandler();
     views[engine] = res;
+    return res;
+}
+
+AsemanGlobalTranslations *AsemanQtTools::globalTranslations(QQmlEngine *engine)
+{
+    static QHash<QQmlEngine*, QPointer<AsemanGlobalTranslations> > translations;
+    AsemanGlobalTranslations *res = translations.value(engine);
+    if(res)
+        return res;
+
+    res = new AsemanGlobalTranslations();
+    translations[engine] = res;
     return res;
 }

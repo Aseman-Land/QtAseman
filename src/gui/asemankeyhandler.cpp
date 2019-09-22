@@ -9,7 +9,7 @@
 class AsemanKeyHandler::Private
 {
 public:
-    QPointer<QWindow> window;
+    QPointer<QObject> window;
     qint32 key;
     qint32 scanCode;
     qint32 modifiers;
@@ -24,7 +24,7 @@ AsemanKeyHandler::AsemanKeyHandler(QObject *parent) :
     p->modifiers = static_cast<qint32>(Qt::NoModifier);
 }
 
-void AsemanKeyHandler::setWindow(QWindow *window)
+void AsemanKeyHandler::setWindow(QObject *window)
 {
     if(p->window == window)
         return;
@@ -38,7 +38,7 @@ void AsemanKeyHandler::setWindow(QWindow *window)
     Q_EMIT windowChanged();
 }
 
-QWindow *AsemanKeyHandler::window() const
+QObject *AsemanKeyHandler::window() const
 {
     return p->window;
 }

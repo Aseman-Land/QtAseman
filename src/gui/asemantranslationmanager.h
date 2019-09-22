@@ -35,7 +35,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanTranslationManager : public QObject
     Q_PROPERTY(QString delimiters READ delimiters WRITE setDelimiters NOTIFY delimitersChanged)
     Q_PROPERTY(QString refresher READ refresher NOTIFY refreshed)
     Q_PROPERTY(int textDirection READ textDirection NOTIFY textDirectionChanged)
-    Q_PROPERTY(QMap<QString,QVariant> translations READ translations NOTIFY translationsChanged)
+    Q_PROPERTY(QVariantMap translations READ translations NOTIFY translationsChanged)
 
     class Private;
 

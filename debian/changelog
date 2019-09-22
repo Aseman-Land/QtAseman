@@ -1,3 +1,10 @@
+qtaseman (1.0.17-1aseman-bionic) bionic; urgency=medium
+
+  * Add data function to the AsemanListModel
+  * Add custom scale property to the desktop
+
+ -- Aseman Team <contact@aseman.co>  Tue, 10 Sep 2019 10:10:00 +0330
+
 qtaseman (1.0.16-1aseman-bionic) bionic; urgency=medium
 
   * Add change function to the AsemanListModel

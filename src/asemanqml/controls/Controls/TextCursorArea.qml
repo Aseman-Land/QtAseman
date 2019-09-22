@@ -72,24 +72,31 @@ Item {
         onActiveFocusChanged: {
             if(!textItem.activeFocus) {
                 hideMenu()
-                AsemanApp.qpaNoTextHandles = false
             }
             else
             if(active) {
-                AsemanApp.qpaNoTextHandles = true
             }
         }
     }
 
-    QtObject {
+    AsemanObject {
         id: prv
         property Item cursor0
         property Item cursor1
         property bool forceHidden: true
 
-        property string itemText: textItem? (Devices.isDesktop? textItem.text : textItem.preeditText) : ""
+        property string itemText: textItem? textItem.text : ""
+        property string nonEmptyText
 
-        onItemTextChanged: forceHidden = true
+        onNonEmptyTextChanged: {
+            forceHidden = true
+        }
+        onItemTextChanged: {
+            if (itemText.length == 0)
+                return
+
+            nonEmptyText = itemText
+        }
         onForceHiddenChanged: if(forceHidden) menuRect.visible = false
 
         function switchCursors() {
@@ -259,9 +266,8 @@ Item {
     MouseArea {
         id: marea
         anchors.fill: parent
-        visible: Devices.isAndroid
+        visible: Devices.isAndroid && AsemanApp.qpaNoTextHandles
         onPressAndHold: {
-            AsemanApp.qpaNoTextHandles = true
             textItem.focus = true
             textItem.forceActiveFocus()
             prv.forceHidden = false
@@ -274,7 +280,6 @@ Item {
             menuRect.showCursor()
         }
         onClicked: {
-            AsemanApp.qpaNoTextHandles = true
             prv.forceHidden = false
             var pos = textItem.positionAt(mouseX, mouseY)
             if(textItem.selectionStart != textItem.selectionEnd &&

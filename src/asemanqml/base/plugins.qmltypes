@@ -944,6 +944,16 @@ Module {
         Method { name: "refresh" }
     }
     Component {
+        name: "AsemanGlobalTranslations"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/Translations 2.0"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [0]
+        Property { name: "refresher"; type: "string"; isReadonly: true }
+        Signal { name: "refreshed" }
+    }
+    Component {
         name: "AsemanHashObject"
         prototype: "QObject"
         exports: ["AsemanQml.Base/HashObject 2.0"]
@@ -1066,7 +1076,7 @@ Module {
         prototype: "QObject"
         exports: ["AsemanQml.Base/KeyHandler 2.0"]
         exportMetaObjectRevisions: [0]
-        Property { name: "window"; type: "QWindow"; isPointer: true }
+        Property { name: "window"; type: "QObject"; isPointer: true }
         Property { name: "modifiers"; type: "int"; isReadonly: true }
         Property { name: "scanCode"; type: "int" }
         Property { name: "key"; type: "int" }
@@ -1092,6 +1102,7 @@ Module {
         Property { name: "cachePath"; type: "string" }
         Property { name: "data"; type: "QVariantList" }
         Signal { name: "listChanged" }
+        Signal { name: "dataListChanged" }
         Method {
             name: "insert"
             Parameter { name: "row"; type: "int" }
@@ -1794,17 +1805,17 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method {
-            name: "fileSize"
-            type: "string"
-            Parameter { name: "path"; type: "string" }
-        }
-        Method {
             name: "fileMime"
             type: "string"
             Parameter { name: "path"; type: "string" }
         }
         Method {
             name: "fileParent"
+            type: "string"
+            Parameter { name: "path"; type: "string" }
+        }
+        Method {
+            name: "fileSize"
             type: "string"
             Parameter { name: "path"; type: "string" }
         }

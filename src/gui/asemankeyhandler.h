@@ -9,7 +9,7 @@
 class LIBQTASEMAN_GUI_EXPORT AsemanKeyHandler : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QWindow* window READ window WRITE setWindow NOTIFY windowChanged)
+    Q_PROPERTY(QObject* window READ window WRITE setWindow NOTIFY windowChanged)
     Q_PROPERTY(qint32 modifiers READ modifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qint32 scanCode READ scanCode WRITE setScanCode NOTIFY scanCodeChanged)
     Q_PROPERTY(qint32 key READ key WRITE setKey NOTIFY keyChanged)
@@ -20,8 +20,8 @@ public:
     AsemanKeyHandler(QObject *parent = Q_NULLPTR);
     virtual ~AsemanKeyHandler();
 
-    void setWindow(QWindow *window);
-    QWindow *window() const;
+    void setWindow(QObject *window);
+    QObject *window() const;
 
     qint32 key() const;
     qint32 modifiers() const;

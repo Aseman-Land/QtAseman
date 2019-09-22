@@ -454,9 +454,15 @@ void AsemanApplication::setQpaNoTextHandles(bool stt)
         return;
 
     if(stt)
+    {
+        qputenv("QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT", "1");
         qputenv("QT_QPA_NO_TEXT_HANDLES", "1");
+    }
     else
+    {
         qunsetenv("QT_QPA_NO_TEXT_HANDLES");
+        qunsetenv("QT_ANDROID_ENABLE_WORKAROUND_TO_DISABLE_PREDICTIVE_TEXT");
+    }
 
     Q_EMIT aseman_app_singleton->qpaNoTextHandlesChanged();
 }

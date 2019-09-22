@@ -46,6 +46,7 @@ public:
     static class AsemanTextTools *textTools();
     static class AsemanCalendarConverter *calendar(QQmlEngine *engine);
     static class AsemanBackHandler *backHandler(QQmlEngine *engine);
+    static class AsemanGlobalTranslations *globalTranslations(QQmlEngine *engine);
 
 protected:
     static QString fixType(const QString &type);

@@ -28,7 +28,8 @@ HEADERS += \
     $$PWD/asemantranslationmanager.h \
     $$PWD/asemanwindowdetails.h \
     $$PWD/asemangui_global.h \
-    $$PWD/asemankeyhandler.h
+    $$PWD/asemankeyhandler.h \
+    $$PWD/asemanglobaltranslations.h
 
 SOURCES += \
     $$PWD/asemanabstractcolorfulllistmodel.cpp \
@@ -42,7 +43,8 @@ SOURCES += \
     $$PWD/asemantools.cpp \
     $$PWD/asemantranslationmanager.cpp \
     $$PWD/asemanwindowdetails.cpp \
-    $$PWD/asemankeyhandler.cpp
+    $$PWD/asemankeyhandler.cpp \
+    $$PWD/asemanglobaltranslations.cpp
 
 android: {
     QT += androidextras

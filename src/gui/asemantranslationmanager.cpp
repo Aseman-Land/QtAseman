@@ -18,6 +18,7 @@
 
 #include "asemantranslationmanager.h"
 #include "asemantools.h"
+#include "asemanglobaltranslations.h"
 
 #include <QCoreApplication>
 #include <QLocale>
@@ -143,9 +144,11 @@ void AsemanTranslationManager::refresh()
     p->translator->load( QLocale(p->localeName), p->fileName, p->delimiters, path);
 
     QCoreApplication::installTranslator(p->translator);
+
     Q_EMIT refreshed();
     Q_EMIT textDirectionChanged();
     Q_EMIT translationsChanged();
+    AsemanGlobalTranslations::refresh();
 }
 
 AsemanTranslationManager::~AsemanTranslationManager()
