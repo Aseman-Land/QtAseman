@@ -18,6 +18,7 @@
 
 #include "asemanqttoolsitemwidgets.h"
 #include "asemannotification.h"
+#include "asemanfonthandler.h"
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
 #include "asemansystemtray.h"
 #endif
@@ -42,6 +43,7 @@ void AsemanQtToolsItemWidgets::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanSystemTray>(uri, 2, 0, "SystemTray", exportMode);
 #endif
     registerType<AsemanNotification>(uri, 2, 0, "Notification", exportMode);
+    registerType<AsemanFontHandler>(uri, 2, 0, "FontHandler", exportMode);
 
     register_list.insert(uri);
 }

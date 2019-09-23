@@ -43,12 +43,12 @@ void AsemanNetworkProxy::setHostName(const QString &hostName)
     Q_EMIT hostNameChanged();
 }
 
-quint16 AsemanNetworkProxy::port() const
+qint32 AsemanNetworkProxy::port() const
 {
     return p->proxy.port();
 }
 
-void AsemanNetworkProxy::setPort(const quint16 &port)
+void AsemanNetworkProxy::setPort(const qint32 &port)
 {
     if(p->proxy.port() == port)
         return;

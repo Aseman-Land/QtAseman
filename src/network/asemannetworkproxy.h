@@ -13,9 +13,9 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkProxy : public QObject
 
     class Private;
 
-    Q_PROPERTY(qint32 type READ type WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(qint32  type READ type WRITE setType NOTIFY typeChanged)
     Q_PROPERTY(QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged)
-    Q_PROPERTY(quint16 port READ port WRITE setPort NOTIFY portChanged)
+    Q_PROPERTY(qint32  port READ port WRITE setPort NOTIFY portChanged)
     Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
 
@@ -38,8 +38,8 @@ public:
     QString hostName() const;
     void setHostName(const QString &hostName);
 
-    quint16 port() const;
-    void setPort(const quint16 &port);
+    qint32 port() const;
+    void setPort(const qint32 &port);
 
     QString user() const;
     void setUser(const QString &user);

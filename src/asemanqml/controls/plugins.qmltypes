@@ -9,19 +9,19 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: [
         "QtGraphicalEffects 1.12",
-        "QtQuick 2.12",
+        "QtQuick 2.13",
         "QtQuick.Controls 2.5",
-        "QtQuick.Controls.Fusion 2.12",
+        "QtQuick.Controls.Fusion 2.13",
         "QtQuick.Controls.Fusion.impl 2.12",
-        "QtQuick.Controls.Imagine 2.12",
-        "QtQuick.Controls.Imagine.impl 2.12",
-        "QtQuick.Controls.Material 2.12",
+        "QtQuick.Controls.Imagine 2.13",
+        "QtQuick.Controls.Imagine.impl 2.13",
+        "QtQuick.Controls.Material 2.13",
         "QtQuick.Controls.Material.impl 2.12",
-        "QtQuick.Controls.Universal 2.12",
+        "QtQuick.Controls.Universal 2.13",
         "QtQuick.Controls.Universal.impl 2.12",
-        "QtQuick.Controls.impl 2.12",
+        "QtQuick.Controls.impl 2.13",
         "QtQuick.Layouts 1.2",
-        "QtQuick.Templates 2.12",
+        "QtQuick.Templates 2.13",
         "QtQuick.Window 2.2"
     ]
     Component {
@@ -63,6 +63,23 @@ Module {
             type: "QVariantMap"
             Parameter { name: "persmissions"; type: "QStringList" }
             Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Enum {
+            name: "ApplicationType"
+            values: {
+                "NoneApplication": 0,
+                "GuiApplication": 1,
+                "CoreApplication": 2
+            }
+        }
+        Enum {
+            name: "ApplicationState"
+            values: {
+                "ApplicationSuspended": 0,
+                "ApplicationHidden": 1,
+                "ApplicationInactive": 2,
+                "ApplicationActive": 4
+            }
         }
         Property { name: "homePath"; type: "string"; isReadonly: true }
         Property { name: "startPath"; type: "string"; isReadonly: true }
@@ -133,14 +150,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_23"
+            type: "SlidePageManager_QMLTYPE_21"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_19"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_17"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_12"
+            type: "HeaderMenuButton_QMLTYPE_28"
             isReadonly: true
             isPointer: true
         }
