@@ -1,3 +1,9 @@
+qtaseman (1.0.18-1aseman-bionic) bionic; urgency=medium
+
+  * Round Release
+
+ -- Aseman Team <contact@aseman.co>  Mon, 23 Sep 2019 10:10:00 +0330
+
 qtaseman (1.0.17-1aseman-bionic) bionic; urgency=medium
 
   * Add data function to the AsemanListModel

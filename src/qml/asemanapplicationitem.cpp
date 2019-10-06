@@ -77,7 +77,7 @@ bool AsemanApplicationItem::aseman_app_init()
 #ifndef FORCE_ASEMAN_DENSITY
 #ifdef Q_OS_ANDROID
     const bool nexus5X = (AsemanJavaLayer::instance()->deviceName() == "LGE Nexus 5X");
-    if(!nexus5X)
+//    if(!nexus5X)
         QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     if(!QGuiApplication::testAttribute(Qt::AA_EnableHighDpiScaling) && qgetenv("QT_SCALE_FACTOR").isNull() && qgetenv("ASEMAN_SCALE_FACTOR").isNull())
@@ -146,8 +146,7 @@ QVariantMap AsemanApplicationItem::requestPermissions(QStringList persmissions, 
 {
     QVariantMap _res;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-#ifdef Q_OS_ANDROID
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID)
     auto c_callback = [callback](const QtAndroid::PermissionResultMap &res) -> QVariantMap {
         QVariantMap map;
 
@@ -190,10 +189,15 @@ QVariantMap AsemanApplicationItem::requestPermissions(QStringList persmissions, 
                 callback.call(QJSValueList() << p->engine->toScriptValue<QVariant>(_res));
         }
     }
+#else
+    QVariantMap map;
+    for (const QString &perm: persmissions)
+        map[perm] = true;
+
+    QJSValue callbackCopy = callback;
+    if(p->engine)
+        callbackCopy.call(QJSValueList() << p->engine->toScriptValue<QVariant>(map));
 #endif
-#endif
-    Q_UNUSED(persmissions)
-    Q_UNUSED(callback)
     return _res;
 }
 #endif
