@@ -105,6 +105,11 @@ QDateTime AsemanTools::datefromString(const QString &dt, const QString &format)
         return QDateTime::fromString(dt, format);
 }
 
+QString AsemanTools::msecToTimeString(qint32 msec, const QString &format)
+{
+    return QTime::fromMSecsSinceStartOfDay(msec).toString(format);
+}
+
 QDate AsemanTools::dateAddDays(const QDate &date, int days)
 {
     return date.addDays(days);

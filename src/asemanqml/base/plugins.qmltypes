@@ -1732,6 +1732,17 @@ Module {
             Parameter { name: "dt"; type: "QDateTime" }
         }
         Method {
+            name: "msecToTimeString"
+            type: "string"
+            Parameter { name: "msec"; type: "int" }
+            Parameter { name: "format"; type: "string" }
+        }
+        Method {
+            name: "msecToTimeString"
+            type: "string"
+            Parameter { name: "msec"; type: "int" }
+        }
+        Method {
             name: "datefromString"
             type: "QDateTime"
             Parameter { name: "dt"; type: "string" }
