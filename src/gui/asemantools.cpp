@@ -171,7 +171,12 @@ QString AsemanTools::fileSuffix(const QString &_path)
     if(path.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
         path = path.mid(AsemanDevices::localFilesPrePath().size());
 
-    QString result = QFileInfo(path).suffix().toLower();
+    QString pathRight = path.right(10);
+    QString result = pathRight.mid(pathRight.lastIndexOf(QStringLiteral("."))+1);
+    if(!result.isEmpty())
+        return result;
+
+    result = QFileInfo(path).suffix().toLower();
     if(!result.isEmpty())
         return result;
 

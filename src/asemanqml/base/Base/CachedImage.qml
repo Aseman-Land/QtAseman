@@ -46,7 +46,12 @@ Item {
     property alias status: image.status
     property alias verticalAlignment: image.verticalAlignment
 
-    property string fileName: Tools.md5(source) + "." + Tools.fileSuffix(source)
+    property string fileName: {
+        var name = Tools.md5(source) + "." + Tools.fileSuffix(source)
+        var dir = AsemanApp.homePath + "/cache/"
+        Tools.mkDir(dir)
+        return dir + name
+    }
 
 
     Rectangle {
