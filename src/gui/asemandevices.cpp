@@ -118,6 +118,21 @@ AsemanDevices::AsemanDevices(QObject *parent) :
         Q_EMIT geometryChanged();
     });
 #endif
+#ifdef Q_OS_IOS
+   QTimer *intervalChecks = new QTimer(this);
+   intervalChecks->setInterval(1000);
+   intervalChecks->setSingleShot(false);
+   intervalChecks->connect(intervalChecks, &QTimer::timeout, this, [this](){
+       static qreal lastStatusBarHeight = AsemanObjectiveCLayer::statusBarHeight();
+       qreal newStatusBarHeight = AsemanObjectiveCLayer::statusBarHeight();
+       if (lastStatusBarHeight == newStatusBarHeight)
+           return;
+
+       lastStatusBarHeight = newStatusBarHeight;
+       Q_EMIT statusBarHeightChanged();
+   });
+   intervalChecks->start();
+#endif
 
     connect( QGuiApplication::inputMethod(), &QInputMethod::visibleChanged, this, &AsemanDevices::keyboard_changed);
     connect( static_cast<QGuiApplication*>(QCoreApplication::instance())->clipboard(), &QClipboard::dataChanged, this, &AsemanDevices::clipboardChanged);
@@ -511,20 +526,20 @@ qreal AsemanDevices::statusBarHeight()
     if(!transparentStatusBar())
         return 0;
 
+#ifdef Q_OS_IOS
+    return AsemanObjectiveCLayer::statusBarHeight()*density();
+#else
     static qreal result = 0;
     if(result == 0.0)
     {
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->statusBarHeight()/deviceDensity());
 #else
-#ifdef Q_OS_IOS
-        result = AsemanObjectiveCLayer::statusBarHeight()*density();
-#else
         result = 20*density();
-#endif
 #endif
     }
     return result;
+#endif
 }
 
 qreal AsemanDevices::navigationBarHeight()
