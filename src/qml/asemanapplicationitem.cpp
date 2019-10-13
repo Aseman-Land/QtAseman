@@ -76,21 +76,12 @@ bool AsemanApplicationItem::aseman_app_init()
 
 #ifndef FORCE_ASEMAN_DENSITY
 #ifdef Q_OS_ANDROID
-    const bool nexus5X = (AsemanJavaLayer::instance()->deviceName() == "LGE Nexus 5X");
-//    if(!nexus5X)
-        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     if(!QGuiApplication::testAttribute(Qt::AA_EnableHighDpiScaling) && qgetenv("QT_SCALE_FACTOR").isNull() && qgetenv("ASEMAN_SCALE_FACTOR").isNull())
     {
         qreal ratio = AsemanJavaLayer::instance()->density()*(AsemanDevices::isTablet()? 1.28 : 1);
-        if(nexus5X)
-        {
-            qreal newRatio = qRound((ratio*20) + 0.01)/20.0;
-            qputenv("QT_SCALE_FACTOR",QByteArray::number(newRatio));
-            qputenv("ASEMAN_SCALE_FACTOR",QByteArray::number(ratio/newRatio));
-        }
-        else
-            qputenv("QT_SCALE_FACTOR",QByteArray::number(ratio));
+        qputenv("QT_SCALE_FACTOR",QByteArray::number(ratio));
     }
 #endif
 #endif
