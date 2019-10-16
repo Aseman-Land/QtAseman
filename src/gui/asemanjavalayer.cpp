@@ -280,12 +280,6 @@ QString AsemanJavaLayer::deviceId()
     return res;
 }
 
-QString AsemanJavaLayer::getAllMusics()
-{
-    QString res = p->object.callObjectMethod(__FUNCTION__, "()Ljava/lang/String;" ).toString();
-    return res;
-}
-
 QRect AsemanJavaLayer::keyboardRect()
 {
     jint jheight = p->object.callMethod<jfloat>("menuHeight", "()I" );
