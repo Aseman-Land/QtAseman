@@ -20,6 +20,7 @@
 
 #include "asemanaudiorecorder.h"
 #include "asemanaudioencodersettings.h"
+#include "asemanmultimediadatabase.h"
 
 #include <qqml.h>
 #include <QHash>
@@ -30,6 +31,16 @@
 static QStringList aseman_qt_tools_indexCache;
 static QString aseman_qt_tools_destination;
 
+static QObject *aseman_multimedia_AsemanMultimediaDatabase(QQmlEngine *engine, QJSEngine *scriptEngine) {
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    static QPointer<AsemanMultimediaDatabase> singleton;
+    if (!singleton)
+        singleton = new AsemanMultimediaDatabase();
+
+    return singleton;
+}
+
 void AsemanQtToolsItemMultimedia::registerTypes(const char *uri, bool exportMode)
 {
     static QSet<QByteArray> register_list;
@@ -38,6 +49,7 @@ void AsemanQtToolsItemMultimedia::registerTypes(const char *uri, bool exportMode
 
     registerType<AsemanAudioRecorder>(uri, 2, 0, "AudioRecorder", exportMode);
     registerType<AsemanAudioEncoderSettings>(uri, 2, 0, "AudioEncoderSettings", exportMode);
+    registerSingletonType<AsemanMultimediaDatabase>(uri, 2, 0, "MultimediaDatabase", aseman_multimedia_AsemanMultimediaDatabase, exportMode);
 
     register_list.insert(uri);
 }

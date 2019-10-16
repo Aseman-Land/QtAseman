@@ -59,6 +59,8 @@ public:
     QString deviceName();
     QString deviceId();
 
+    Q_INVOKABLE QString getAllMusics();
+
     QRect keyboardRect();
 
     QString getLastImages(qint32 offset, qint32 count);
