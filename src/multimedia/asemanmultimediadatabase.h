@@ -38,6 +38,10 @@ Q_SIGNALS:
 public Q_SLOTS:
     QVariantList getAllMusics() const;
     QVariantList getAllAlbums() const;
+    QVariantList getAllArtists() const;
+    QVariantList getArtistAlbums(const QString &artistId) const;
+    QVariantList getArtistSongs(const QString &artistId) const;
+    QVariantList getAlbumSongs(const QString &albumId) const;
 
 private:
     Private *p;

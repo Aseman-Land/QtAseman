@@ -97,10 +97,37 @@ QString AsemanAndroidMultimedia::getAllAlbums()
     return res;
 }
 
+QString AsemanAndroidMultimedia::getAllArtists()
+{
+    QString res = p->object.callObjectMethod(__FUNCTION__, "()Ljava/lang/String;" ).toString();
+    return res;
+}
+
+QString AsemanAndroidMultimedia::getArtistAlbums(const QString &artistId)
+{
+    QAndroidJniObject jartistId = QAndroidJniObject::fromString(artistId);
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;)Ljava/lang/String;", jartistId.object<jstring>()).toString();
+    return res;
+}
+
+QString AsemanAndroidMultimedia::getArtistSongs(const QString &artistId)
+{
+    QAndroidJniObject jartistId = QAndroidJniObject::fromString(artistId);
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;)Ljava/lang/String;", jartistId.object<jstring>()).toString();
+    return res;
+}
+
+QString AsemanAndroidMultimedia::getAlbumSongs(const QString &albumId)
+{
+    QAndroidJniObject jalbumId = QAndroidJniObject::fromString(albumId);
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;)Ljava/lang/String;", jalbumId.object<jstring>()).toString();
+    return res;
+}
+
 void AsemanAndroidMultimedia::setImplemented(bool stt)
 {
     jboolean jstt = stt;
-    p->object.callMethod<jboolean>(__FUNCTION__, "(Z)Z", jstt );
+    p->object.callMethod<jboolean>(__FUNCTION__, "(Z)Z", jstt);
 }
 
 AsemanAndroidMultimedia::~AsemanAndroidMultimedia()

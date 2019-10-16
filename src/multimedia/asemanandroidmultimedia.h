@@ -36,6 +36,10 @@ public:
 public Q_SLOTS:
     QString getAllMusics();
     QString getAllAlbums();
+    QString getAllArtists();
+    QString getArtistAlbums(const QString &artistId);
+    QString getArtistSongs(const QString &artistId);
+    QString getAlbumSongs(const QString &albumId);
 
 private Q_SLOTS:
     void registerObject();

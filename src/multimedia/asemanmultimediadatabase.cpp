@@ -53,6 +53,42 @@ QVariantList AsemanMultimediaDatabase::getAllAlbums() const
 #endif
 }
 
+QVariantList AsemanMultimediaDatabase::getAllArtists() const
+{
+#ifdef Q_OS_ANDROID
+    return QJsonDocument::fromJson( AsemanAndroidMultimedia::instance()->getAllArtists().toUtf8() ).toVariant().toList();
+#else
+    return QVariantList();
+#endif
+}
+
+QVariantList AsemanMultimediaDatabase::getArtistAlbums(const QString &artistId) const
+{
+#ifdef Q_OS_ANDROID
+    return QJsonDocument::fromJson( AsemanAndroidMultimedia::instance()->getArtistAlbums(artistId).toUtf8() ).toVariant().toList();
+#else
+    return QVariantList();
+#endif
+}
+
+QVariantList AsemanMultimediaDatabase::getArtistSongs(const QString &artistId) const
+{
+#ifdef Q_OS_ANDROID
+    return QJsonDocument::fromJson( AsemanAndroidMultimedia::instance()->getArtistSongs(artistId).toUtf8() ).toVariant().toList();
+#else
+    return QVariantList();
+#endif
+}
+
+QVariantList AsemanMultimediaDatabase::getAlbumSongs(const QString &albumId) const
+{
+#ifdef Q_OS_ANDROID
+    return QJsonDocument::fromJson( AsemanAndroidMultimedia::instance()->getAlbumSongs(albumId).toUtf8() ).toVariant().toList();
+#else
+    return QVariantList();
+#endif
+}
+
 AsemanMultimediaDatabase::~AsemanMultimediaDatabase()
 {
     delete p;
