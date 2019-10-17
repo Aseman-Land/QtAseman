@@ -39,8 +39,7 @@ public class AsemanMultimedia
         MediaStore.Audio.Albums.ALBUM,
         MediaStore.Audio.Albums.ALBUM_ART,
         MediaStore.Audio.Albums.NUMBER_OF_SONGS,
-        MediaStore.Audio.Albums.ARTIST_ID,
-        MediaStore.Audio.Albums.ALBUM_KEY
+        MediaStore.Audio.Albums.ARTIST_ID
     };
     private static String[] musicsProjection = {
         MediaStore.Audio.Media._ID,
@@ -51,15 +50,12 @@ public class AsemanMultimedia
         MediaStore.Audio.Media.DATA,
         MediaStore.Audio.Media.DISPLAY_NAME,
         MediaStore.Audio.Media.DURATION,
-        MediaStore.Audio.Media.ALBUM_KEY,
-        MediaStore.Audio.Media.ARTIST_KEY,
         MediaStore.Audio.Media.ARTIST_ID,
         MediaStore.Audio.Media.ALBUM_ID
     };
     private static String[] artistsProjection = {
         MediaStore.Audio.Artists._ID,
-        MediaStore.Audio.Artists.ARTIST,
-        MediaStore.Audio.Artists.ARTIST_KEY
+        MediaStore.Audio.Artists.ARTIST
     };
 
     private String cursorToMusicJson(Cursor cursor) {
@@ -80,10 +76,8 @@ public class AsemanMultimedia
             result += "\"data\":\"" + cursor.getString(5) + "\",";
             result += "\"displayName\":\"" + cursor.getString(6) + "\",";
             result += "\"duration\":\"" + cursor.getString(7) + "\",";
-            result += "\"albumKey\":\"" + cursor.getString(8) + "\",";
-            result += "\"artistKey\":\"" + cursor.getString(9) + "\",";
-            result += "\"artistID\":\"" + cursor.getString(10) + "\",";
-            result += "\"albumID\":\"" + cursor.getString(11) + "\"}";
+            result += "\"artistID\":\"" + cursor.getString(8) + "\",";
+            result += "\"albumID\":\"" + cursor.getString(9) + "\"}";
         }
 
         result += "]";
@@ -105,8 +99,7 @@ public class AsemanMultimedia
             result += "\"album\":\"" + cursor.getString(2) + "\",";
             result += "\"art\":\"" + cursor.getString(3) + "\",";
             result += "\"songs\":\"" + cursor.getString(4) + "\",";
-            result += "\"artistId\":\"" + cursor.getString(5) + "\",";
-            result += "\"albumKey\":\"" + cursor.getString(6) + "\"}";
+            result += "\"artistId\":\"" + cursor.getString(5) + "\"}";
         }
 
         result += "]";
@@ -124,8 +117,7 @@ public class AsemanMultimedia
             }
             result += "{";
             result += "\"id\":\"" + cursor.getString(0) + "\",";
-            result += "\"artist\":\"" + cursor.getString(1) + "\",";
-            result += "\"artistKey\":\"" + cursor.getString(2) + "\"}";
+            result += "\"artist\":\"" + cursor.getString(1) + "\"}";
         }
 
         result += "]";
