@@ -40,6 +40,8 @@ Item {
     property int layoutDirection: View.layoutDirection
     property int direction: Qt.Horizontal
 
+    property bool disableBack: false
+
     onMainComponentChanged: {
         if(mainItem)
             mainItem.destroy()
@@ -125,6 +127,8 @@ Item {
             property variant itemObject
             property bool opened: false
             property bool closed: false
+
+            property bool disableBack: pmanager.disableBack
 
             MouseArea {
                 anchors.fill: parent

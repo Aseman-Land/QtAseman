@@ -62,6 +62,9 @@ private Q_SLOTS:
     void object_destroyed( QObject *obj );
 
 private:
+    void setupObject(QObject *obj);
+
+private:
     AsemanBackHandlerPrivate *p;
 };
 

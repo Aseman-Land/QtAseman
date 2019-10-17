@@ -482,6 +482,7 @@ Module {
         Property { name: "animationDuration"; type: "int" }
         Property { name: "easingType"; type: "int" }
         Property { name: "gestureBackable"; type: "bool" }
+        Property { name: "disableBack"; type: "bool" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "direction"; type: "int" }
         Property { name: "mainItem"; type: "QVariant" }

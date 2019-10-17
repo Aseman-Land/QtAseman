@@ -26,14 +26,34 @@
 class AsemanHandlerItem
 {
 public:
-    QObject *obj;
+    QObject *obj = Q_NULLPTR;
     QJSValue jsv;
 };
 
 class AsemanBackHandlerPrivate
 {
 public:
-    QStack<AsemanHandlerItem> stack;
+    QList<AsemanHandlerItem> stack;
+
+    AsemanHandlerItem lastActiveItem(qint32 *index = Q_NULLPTR) {
+        if (index)
+            *index = -1;
+
+        AsemanHandlerItem item;
+        for (qint32 i=stack.count()-1; i>=0; i--)
+        {
+            AsemanHandlerItem _itm = stack.at(i);
+            if (_itm.obj->property("disableBack").toBool() == false)
+            {
+                item = _itm;
+                if (index)
+                    *index = i;
+                break;
+            }
+        }
+
+        return item;
+    }
 };
 
 AsemanBackHandler::AsemanBackHandler(QObject *parent) :
@@ -45,9 +65,9 @@ AsemanBackHandler::AsemanBackHandler(QObject *parent) :
 QObject *AsemanBackHandler::topHandlerObject() const
 {
     if( p->stack.isEmpty() )
-        return 0;
+        return Q_NULLPTR;
 
-    return p->stack.top().obj;
+    return p->stack.last().obj;
 }
 
 QJSValue AsemanBackHandler::topHandlerMethod() const
@@ -55,12 +75,14 @@ QJSValue AsemanBackHandler::topHandlerMethod() const
     if( p->stack.isEmpty() )
         return QString();
 
-    return p->stack.top().jsv;
+    return p->stack.last().jsv;
 }
 
 int AsemanBackHandler::count()
 {
-    return p->stack.count();
+    qint32 index = 0;
+    AsemanHandlerItem item = p->lastActiveItem(&index);
+    return index+1;
 }
 
 void AsemanBackHandler::pushHandler(QObject *obj, QJSValue jsv)
@@ -69,10 +91,10 @@ void AsemanBackHandler::pushHandler(QObject *obj, QJSValue jsv)
     item.obj = obj;
     item.jsv = jsv;
 
-    p->stack.push( item );
+    p->stack.append( item );
     Q_EMIT countChanged();
 
-    connect( obj, &QObject::destroyed, this, &AsemanBackHandler::object_destroyed );
+    setupObject(obj);
 }
 
 void AsemanBackHandler::pushDownHandler(QObject *obj, QJSValue jsv)
@@ -84,7 +106,7 @@ void AsemanBackHandler::pushDownHandler(QObject *obj, QJSValue jsv)
     p->stack.prepend( item );
     Q_EMIT countChanged();
 
-    connect( obj, &QObject::destroyed, this, &AsemanBackHandler::object_destroyed );
+    setupObject(obj);
 }
 
 void AsemanBackHandler::removeHandler(QObject *obj)
@@ -102,17 +124,21 @@ void AsemanBackHandler::removeHandler(QObject *obj)
 QObject *AsemanBackHandler::tryPopHandler()
 {
     if( p->stack.isEmpty() )
-        return 0;
+        return Q_NULLPTR;
 
-    AsemanHandlerItem item = p->stack.top();
+    qint32 index = 0;
+    AsemanHandlerItem item = p->lastActiveItem(&index);
+    if (!item.obj)
+        return Q_NULLPTR;
+
     const int count = p->stack.count();
 
     const QJSValue & res = item.jsv.call();
     if( !res.isUndefined() && res.toBool() == false )
-        return 0;
+        return Q_NULLPTR;
 
     if( p->stack.count() == count )
-        p->stack.pop();
+        p->stack.takeAt(index);
 
     Q_EMIT countChanged();
     return item.obj;
@@ -121,14 +147,18 @@ QObject *AsemanBackHandler::tryPopHandler()
 QObject *AsemanBackHandler::forcePopHandler()
 {
     if( p->stack.isEmpty() )
-        return 0;
+        return Q_NULLPTR;
 
-    AsemanHandlerItem item = p->stack.top();
+    qint32 index = 0;
+    AsemanHandlerItem item = p->lastActiveItem(&index);
+    if (!item.obj)
+        return Q_NULLPTR;
+
     const int count = p->stack.count();
 
     item.jsv.call();
     if( p->stack.count() == count )
-        p->stack.pop();
+        p->stack.takeAt(index);
 
     Q_EMIT countChanged();
     return item.obj;
@@ -141,7 +171,7 @@ void AsemanBackHandler::clear()
 
 bool AsemanBackHandler::back()
 {
-    if( p->stack.isEmpty() )
+    if(count() == 0)
     {
         Q_EMIT backFinished();
         return false;
@@ -161,6 +191,12 @@ void AsemanBackHandler::object_destroyed(QObject *obj)
         }
 
     Q_EMIT countChanged();
+}
+
+void AsemanBackHandler::setupObject(QObject *obj)
+{
+    connect(obj, SIGNAL(disableBackChanged()), this, SIGNAL(countChanged()));
+    connect(obj, &QObject::destroyed, this, &AsemanBackHandler::object_destroyed );
 }
 
 AsemanBackHandler::~AsemanBackHandler()
