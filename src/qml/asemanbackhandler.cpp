@@ -195,7 +195,9 @@ void AsemanBackHandler::object_destroyed(QObject *obj)
 
 void AsemanBackHandler::setupObject(QObject *obj)
 {
-    connect(obj, SIGNAL(disableBackChanged()), this, SIGNAL(countChanged()));
+    if (!obj->property("disableBack").isNull())
+        connect(obj, SIGNAL(disableBackChanged()), this, SIGNAL(countChanged()));
+
     connect(obj, &QObject::destroyed, this, &AsemanBackHandler::object_destroyed );
 }
 

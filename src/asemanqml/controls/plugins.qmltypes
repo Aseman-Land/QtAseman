@@ -150,14 +150,14 @@ Module {
         Property { name: "backgroundColor"; type: "QColor" }
         Property {
             name: "pageManager"
-            type: "SlidePageManager_QMLTYPE_21"
+            type: "SlidePageManager_QMLTYPE_19"
             isReadonly: true
             isPointer: true
         }
-        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_17"; isReadonly: true; isPointer: true }
+        Property { name: "sidebar"; type: "SideMenu_QMLTYPE_31"; isReadonly: true; isPointer: true }
         Property {
             name: "headerButton"
-            type: "HeaderMenuButton_QMLTYPE_28"
+            type: "HeaderMenuButton_QMLTYPE_15"
             isReadonly: true
             isPointer: true
         }
@@ -169,7 +169,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_30"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_11"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -206,7 +206,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_30"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_11"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -418,6 +418,27 @@ Module {
     }
     Component {
         prototype: "QQuickItem"
+        name: "AsemanQml.Controls/PanelDrawer 2.0"
+        exports: ["AsemanQml.Controls/PanelDrawer 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "item"; type: "QQuickItem"; isPointer: true }
+        Property { name: "handleHeight"; type: "double" }
+        Property { name: "defaultHeight"; type: "double" }
+        Property { name: "percent"; type: "double"; isReadonly: true }
+        Property { name: "maximizable"; type: "bool" }
+        Property { name: "openFromTop"; type: "bool" }
+        Property { name: "showed"; type: "bool"; isReadonly: true }
+        Property { name: "menuHeight"; type: "double" }
+        Property { name: "pressed"; type: "bool"; isReadonly: true }
+        Property { name: "maximize"; type: "bool" }
+        Signal { name: "clicked" }
+        Method { name: "discard"; type: "QVariant" }
+        Method { name: "show"; type: "QVariant" }
+    }
+    Component {
+        prototype: "QQuickItem"
         name: "AsemanQml.Controls/PanelFlicker 2.0"
         exports: ["AsemanQml.Controls/PanelFlicker 2.0"]
         exportMetaObjectRevisions: [0]
@@ -482,9 +503,9 @@ Module {
         Property { name: "animationDuration"; type: "int" }
         Property { name: "easingType"; type: "int" }
         Property { name: "gestureBackable"; type: "bool" }
-        Property { name: "disableBack"; type: "bool" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "direction"; type: "int" }
+        Property { name: "disableBack"; type: "bool" }
         Property { name: "mainItem"; type: "QVariant" }
         Property { name: "count"; type: "int"; isReadonly: true }
         Method {
@@ -551,7 +572,7 @@ Module {
         defaultProperty: "data"
         Property { name: "placeholder"; type: "string" }
         Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
-        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_96"; isReadonly: true; isPointer: true }
+        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_99"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -582,7 +603,7 @@ Module {
         defaultProperty: "data"
         Property { name: "placeholder"; type: "string" }
         Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
-        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_96"; isReadonly: true; isPointer: true }
+        Property { name: "cursor"; type: "TextCursorArea_QMLTYPE_99"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
