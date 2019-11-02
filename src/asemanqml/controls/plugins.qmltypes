@@ -429,6 +429,7 @@ Module {
         Property { name: "percent"; type: "double"; isReadonly: true }
         Property { name: "maximizable"; type: "bool" }
         Property { name: "openFromTop"; type: "bool" }
+        Property { name: "disableBack"; type: "bool" }
         Property { name: "showed"; type: "bool"; isReadonly: true }
         Property { name: "menuHeight"; type: "double" }
         Property { name: "pressed"; type: "bool"; isReadonly: true }

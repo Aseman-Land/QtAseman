@@ -27,6 +27,8 @@ Item {
 
     property Item item
 
+    property bool disableBack: false
+
     property real handleHeight: 20*Devices.density
     property real defaultHeight: 400*Devices.density
 
@@ -54,7 +56,7 @@ Item {
         item.anchors.fill = item_parent
     }
 
-    BackAction { id: maximizeAction }
+    BackAction { id: maximizeAction; disableBack: sidemenu.disableBack }
 
     Item {
         id: main_frame
@@ -70,8 +72,12 @@ Item {
             y: item_frame.y
             onMouseYChanged: {
                 var newY = item_frame.y + mouseY-pinY
-                if( newY > 0 )
-                    newY = Math.pow(newY, 0.8)
+                if( newY > 0 ) {
+                    if (maximizable)
+                        newY = Math.pow(newY, 0.8)
+                    else
+                        newY = 0
+                }
                 if( Math.abs(y-startY) > 5*Devices.density )
                     movedY = true
 

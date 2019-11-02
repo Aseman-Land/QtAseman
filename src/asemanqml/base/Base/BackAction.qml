@@ -23,6 +23,8 @@ AsemanObject {
     id: backAction
     property bool active: false
     property var callback
+    property bool disableBack: false
+
     onActiveChanged: {
         if(active)
             BackHandler.pushHandler(backAction, function(){

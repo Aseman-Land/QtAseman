@@ -2436,6 +2436,7 @@ Module {
         isComposite: true
         defaultProperty: "items"
         Property { name: "active"; type: "bool" }
+        Property { name: "disableBack"; type: "bool" }
         Property { name: "callback"; type: "QVariant" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
