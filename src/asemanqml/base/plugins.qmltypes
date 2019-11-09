@@ -133,6 +133,10 @@ Module {
             Parameter { name: "msg"; type: "string" }
         }
         Method {
+            name: "checkPermissions"
+            Parameter { name: "persmission"; type: "string" }
+        }
+        Method {
             name: "requestPermissions"
             type: "QVariantMap"
             Parameter { name: "persmissions"; type: "QStringList" }

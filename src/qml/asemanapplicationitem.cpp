@@ -133,6 +133,21 @@ void AsemanApplicationItem::sendMessage(const QString &msg)
 }
 
 #ifdef QT_QML_LIB
+bool AsemanApplicationItem::checkPermissions(const QString &persmission)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID)
+    if (QtAndroid::checkPermission(persmission) == QtAndroid::PermissionResult::Granted)
+        return true;
+    else
+        return false;
+#else
+    Q_UNUSED(persmission)
+    return true;
+#endif
+}
+#endif
+
+#ifdef QT_QML_LIB
 QVariantMap AsemanApplicationItem::requestPermissions(QStringList persmissions, QJSValue callback)
 {
     QVariantMap _res;
