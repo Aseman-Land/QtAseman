@@ -68,6 +68,7 @@
 #include "asemantranslationmanager.h"
 #include "asemansysteminfo.h"
 #include "asemanitemgrabber.h"
+#include "asemanquicklistmodel.h"
 #ifndef Q_OS_IOS
 #include "asemanprocess.h"
 #endif
@@ -173,7 +174,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanTitleBarColorGrabber>(uri, 2, 0, "TitleBarColorGrabber", exportMode);
     registerType<AsemanDragArea>(uri, 2, 0, "MouseDragArea", exportMode);
     registerType<AsemanCalendarModel>(uri, 2, 0, "CalendarModel", exportMode);
-    registerType<AsemanListModel>(uri, 2, 0, "AsemanListModel", exportMode);
+    registerType<AsemanQuickListModel>(uri, 2, 0, "AsemanListModel", exportMode);
     registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
     registerType<AsemanProxyComponent>(uri, 2, 0, "ProxyComponent", exportMode);
 

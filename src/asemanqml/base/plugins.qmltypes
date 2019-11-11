@@ -7,7 +7,7 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Base 2.0'
 
 Module {
-    dependencies: ["QtQuick 2.8"]
+    dependencies: ["QtQuick 2.0"]
     Component {
         name: "AsemanAbstractListModel"
         prototype: "QAbstractListModel"
@@ -134,6 +134,7 @@ Module {
         }
         Method {
             name: "checkPermissions"
+            type: "bool"
             Parameter { name: "persmission"; type: "string" }
         }
         Method {
@@ -1100,8 +1101,6 @@ Module {
     Component {
         name: "AsemanListModel"
         prototype: "AsemanAbstractListModel"
-        exports: ["AsemanQml.Base/AsemanListModel 2.0"]
-        exportMetaObjectRevisions: [0]
         Property { name: "count"; type: "int"; isReadonly: true }
         Property { name: "cachePath"; type: "string" }
         Property { name: "data"; type: "QVariantList" }
@@ -1426,7 +1425,7 @@ Module {
         }
         Property { name: "type"; type: "int" }
         Property { name: "hostName"; type: "string" }
-        Property { name: "port"; type: "ushort" }
+        Property { name: "port"; type: "int" }
         Property { name: "user"; type: "string" }
         Property { name: "password"; type: "string" }
     }
@@ -1556,6 +1555,14 @@ Module {
         Property { name: "image"; type: "QImage"; isReadonly: true }
         Property { name: "defaultImage"; type: "QUrl" }
         Method { name: "start" }
+    }
+    Component {
+        name: "AsemanQuickListModel"
+        defaultProperty: "items"
+        prototype: "AsemanListModel"
+        exports: ["AsemanQml.Base/AsemanListModel 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
         name: "AsemanQuickObject"
@@ -1736,17 +1743,6 @@ Module {
             Parameter { name: "dt"; type: "QDateTime" }
         }
         Method {
-            name: "msecToTimeString"
-            type: "string"
-            Parameter { name: "msec"; type: "int" }
-            Parameter { name: "format"; type: "string" }
-        }
-        Method {
-            name: "msecToTimeString"
-            type: "string"
-            Parameter { name: "msec"; type: "int" }
-        }
-        Method {
             name: "datefromString"
             type: "QDateTime"
             Parameter { name: "dt"; type: "string" }
@@ -1756,6 +1752,17 @@ Module {
             name: "datefromString"
             type: "QDateTime"
             Parameter { name: "dt"; type: "string" }
+        }
+        Method {
+            name: "msecToTimeString"
+            type: "string"
+            Parameter { name: "msec"; type: "int" }
+            Parameter { name: "format"; type: "string" }
+        }
+        Method {
+            name: "msecToTimeString"
+            type: "string"
+            Parameter { name: "msec"; type: "int" }
         }
         Method {
             name: "dateAddDays"
@@ -2440,8 +2447,8 @@ Module {
         isComposite: true
         defaultProperty: "items"
         Property { name: "active"; type: "bool" }
-        Property { name: "disableBack"; type: "bool" }
         Property { name: "callback"; type: "QVariant" }
+        Property { name: "disableBack"; type: "bool" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
