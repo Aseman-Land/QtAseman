@@ -1,6 +1,8 @@
 #include "asemandevicesitem.h"
 #include "asemandesktoptools.h"
 
+#include <QQmlEngine>
+
 #if defined(QT_WIDGETS_LIB)
 #include <QFileDialog>
 #include <QStandardPaths>
@@ -45,6 +47,24 @@ bool AsemanDevicesItem::getOpenPictures()
     Q_EMIT selectImageResult(path);
     return true;
 #endif
+}
+
+QVariantList AsemanDevicesItem::getContactList(QJSValue asyncCallback)
+{
+    return AsemanDevices::getContactList([this, asyncCallback](const QVariantList &res){
+        if (!asyncCallback.isCallable())
+            return;
+
+        QQmlEngine *engine = qmlEngine(this);
+
+        if(!engine)
+            return;
+
+        QJSValueList args = { engine->toScriptValue(res) };
+
+        QJSValue callback = asyncCallback;
+        callback.call(args);
+    });
 }
 
 void AsemanDevicesItem::incoming_image(const QString &path)

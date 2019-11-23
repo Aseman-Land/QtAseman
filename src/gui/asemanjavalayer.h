@@ -62,6 +62,7 @@ public:
     QRect keyboardRect();
 
     QString getLastImages(qint32 offset, qint32 count);
+    QString getContactList();
 
     void setKeepScreenOn(bool stt);
 

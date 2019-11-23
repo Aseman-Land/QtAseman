@@ -55,6 +55,8 @@
 #include <QTimer>
 #include <QVariantMap>
 #include <QSysInfo>
+#include <QJsonDocument>
+#include <QThread>
 
 #ifdef ASEMAN_MULTIMEDIA
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
@@ -1102,6 +1104,44 @@ bool AsemanDevices::getOpenPictures()
 #else
     return false;
 #endif
+}
+
+QVariantList AsemanDevices::getContactList(std::function<void(const QVariantList &)> asyncCallback)
+{
+    QVariantList res;
+#ifdef Q_OS_ANDROID
+    if (asyncCallback)
+    {
+        class ContactThreaded: public QThread
+        {
+        protected:
+            void run() {
+                result = QJsonDocument::fromJson(AsemanJavaLayer::instance()->getContactList().toUtf8()).toVariant().toList();
+            }
+
+        public:
+            ContactThreaded(QObject *parent): QThread(parent) {}
+            virtual ~ContactThreaded() {}
+            QVariantList result;
+        };
+
+        ContactThreaded *thread = new ContactThreaded(this);
+        connect(thread, &ContactThreaded::finished, this, [thread, asyncCallback](){
+            asyncCallback(thread->result);
+            thread->deleteLater();
+        });
+        thread->start();
+
+        return res;
+    }
+    else
+        res = QJsonDocument::fromJson(p->java_layer->getContactList().toUtf8()).toVariant().toList();
+#endif
+
+    if (asyncCallback)
+        asyncCallback(res);
+
+    return res;
 }
 
 void AsemanDevices::incoming_share(const QString &title, const QString &msg)

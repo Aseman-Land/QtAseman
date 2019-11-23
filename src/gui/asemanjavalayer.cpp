@@ -327,6 +327,12 @@ QString AsemanJavaLayer::getLastImages(qint32 offset, qint32 count)
     return res;
 }
 
+QString AsemanJavaLayer::getContactList()
+{
+    QString res = p->object.callObjectMethod(__FUNCTION__, "()Ljava/lang/String;").toString();
+    return res;
+}
+
 void AsemanJavaLayer::setKeepScreenOn(bool stt)
 {
     jboolean jstt = stt;

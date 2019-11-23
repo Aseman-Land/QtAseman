@@ -25,6 +25,7 @@
 #include <QVariantMap>
 
 #include "asemangui_global.h"
+#include <functional>
 
 class AsemanMimeData;
 class QScreen;
@@ -193,6 +194,8 @@ public:
     static QString libsPath();
 
     QVariantMap deviceDetails();
+
+    QVariantList getContactList(std::function<void(const QVariantList &res)> asyncCallback = Q_NULLPTR);
 
 public Q_SLOTS:
     void hideKeyboard();

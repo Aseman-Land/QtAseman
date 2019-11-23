@@ -26,6 +26,8 @@ import android.database.Cursor;
 import android.graphics.Rect ;
 import android.util.Log;
 import java.util.Iterator;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import land.aseman.android.AsemanActivity;
 
@@ -59,69 +61,66 @@ public class AsemanMultimedia
     };
 
     private String cursorToMusicJson(Cursor cursor) {
-        String result = "[";
-        boolean firstItem = true;
+        JSONArray jsonArray = new JSONArray();
         while(cursor.moveToNext()){
-            if (!firstItem) {
-                result += ",";
-            } else {
-                firstItem = false;
+
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("id", cursor.getString(0));
+                obj.put("artist", cursor.getString(1));
+                obj.put("album", cursor.getString(2));
+                obj.put("art", cursor.getString(3));
+                obj.put("title", cursor.getString(4));
+                obj.put("data", cursor.getString(5));
+                obj.put("displayName", cursor.getString(6));
+                obj.put("duration", cursor.getString(7));
+                obj.put("artistID", cursor.getString(8));
+                obj.put("albumID", cursor.getString(9));
+
+                jsonArray.put(obj);
+            } catch (Exception e) {
             }
-            result += "{";
-            result += "\"id\":\"" + cursor.getString(0) + "\",";
-            result += "\"artist\":\"" + cursor.getString(1) + "\",";
-            result += "\"album\":\"" + cursor.getString(2) + "\",";
-            result += "\"art\":\"" + cursor.getString(3) + "\",";
-            result += "\"title\":\"" + cursor.getString(4) + "\",";
-            result += "\"data\":\"" + cursor.getString(5) + "\",";
-            result += "\"displayName\":\"" + cursor.getString(6) + "\",";
-            result += "\"duration\":\"" + cursor.getString(7) + "\",";
-            result += "\"artistID\":\"" + cursor.getString(8) + "\",";
-            result += "\"albumID\":\"" + cursor.getString(9) + "\"}";
         }
 
-        result += "]";
-        return result;
+        return jsonArray.toString();
     }
 
     private String cursorToAlbumJson(Cursor cursor) {
-        String result = "[";
-        boolean firstItem = true;
+        JSONArray jsonArray = new JSONArray();
         while(cursor.moveToNext()){
-            if (!firstItem) {
-                result += ",";
-            } else {
-                firstItem = false;
+
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("id", cursor.getString(0));
+                obj.put("artist", cursor.getString(1));
+                obj.put("album", cursor.getString(2));
+                obj.put("art", cursor.getString(3));
+                obj.put("songs", cursor.getString(4));
+                obj.put("artistId", cursor.getString(5));
+
+                jsonArray.put(obj);
+            } catch (Exception e) {
             }
-            result += "{";
-            result += "\"id\":\"" + cursor.getString(0) + "\",";
-            result += "\"artist\":\"" + cursor.getString(1) + "\",";
-            result += "\"album\":\"" + cursor.getString(2) + "\",";
-            result += "\"art\":\"" + cursor.getString(3) + "\",";
-            result += "\"songs\":\"" + cursor.getString(4) + "\",";
-            result += "\"artistId\":\"" + cursor.getString(5) + "\"}";
         }
 
-        result += "]";
-        return result;
+        return jsonArray.toString();
     }
 
     private String cursorToArtistJson(Cursor cursor) {
-        String result = "[";
-        boolean firstItem = true;
+        JSONArray jsonArray = new JSONArray();
         while(cursor.moveToNext()){
-            if (!firstItem) {
-                result += ",";
-            } else {
-                firstItem = false;
+
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("id", cursor.getString(0));
+                obj.put("artist", cursor.getString(1));
+
+                jsonArray.put(obj);
+            } catch (Exception e) {
             }
-            result += "{";
-            result += "\"id\":\"" + cursor.getString(0) + "\",";
-            result += "\"artist\":\"" + cursor.getString(1) + "\"}";
         }
 
-        result += "]";
-        return result;
+        return jsonArray.toString();
     }
 
     public String getAllMusics() {

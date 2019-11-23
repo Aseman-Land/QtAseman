@@ -44,6 +44,8 @@ import android.provider.Settings.Secure;
 import java.lang.Runnable;
 import android.os.Handler;
 import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.content.ContentResolver;
 
 import java.io.File;
 import java.io.InputStream;
@@ -54,6 +56,9 @@ import android.app.ActivityManager ;
 import android.os.Process;
 import java.util.List;
 import java.util.Iterator;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 //import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
@@ -562,6 +567,53 @@ public class AsemanJavaLayer
         if(AsemanQtService.getServiceInstance() != null)
             return AsemanQtService.getServiceInstance().stopNotification(id);
         return false;
+    }
+
+    String getContactList() {
+        Context ctx = getContext();
+        ContentResolver cr = ctx.getContentResolver();
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null);
+
+        JSONArray jsonArray = new JSONArray();
+
+        if ((cur != null ? cur.getCount() : 0) > 0) {
+            while (cur != null && cur.moveToNext()) {
+                String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                String name = cur.getString(cur.getColumnIndex(
+                        ContactsContract.Contacts.DISPLAY_NAME));
+
+                if (cur.getInt(cur.getColumnIndex(
+                        ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
+                    Cursor pCur = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (pCur.moveToNext()) {
+                        String phoneNo = pCur.getString(pCur.getColumnIndex(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                        JSONObject obj = new JSONObject();
+                        try {
+                            obj.put("id", id);
+                            obj.put("name", name);
+                            obj.put("phone", phoneNo);
+
+                            jsonArray.put(obj);
+                        } catch (Exception e) {
+                        }
+                    }
+                    pCur.close();
+                }
+            }
+        }
+        if(cur!=null){
+            cur.close();
+        }
+
+        return jsonArray.toString();
     }
 
 //    public static String getUniquePsuedoID() {

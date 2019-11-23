@@ -2,6 +2,7 @@
 #define ASEMANDEVICESITEM_H
 
 #include <asemandevices.h>
+#include <QJSValue>
 
 #include "asemantools_global.h"
 
@@ -15,6 +16,7 @@ public:
 
 public Q_SLOTS:
     bool getOpenPictures();
+    QVariantList getContactList(QJSValue asyncCallback);
 
 Q_SIGNALS:
     void incomingImage( const QString & path );
