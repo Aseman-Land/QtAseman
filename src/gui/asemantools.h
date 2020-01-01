@@ -35,9 +35,23 @@ class AsemanToolsPrivate;
 class LIBQTASEMAN_GUI_EXPORT AsemanTools : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(HashMethod)
+
 public:
-    AsemanTools(QObject *parent = 0);
+    AsemanTools(QObject *parent = Q_NULLPTR);
     virtual ~AsemanTools();
+
+    enum HashMethod {
+        Md5,
+        Sha224,
+        Sha256,
+        Sha384,
+        Sha512,
+        Sha3_224,
+        Sha3_256,
+        Sha3_384,
+        Sha3_512
+    };
 
     static void imageResize(const QString &path, const QSize &size, const QString &dest, QObject *base, std::function<void(bool)> callback);
 
@@ -110,6 +124,8 @@ public Q_SLOTS:
     static QString trNums(QString input);
     static QString passToMd5( const QString & pass );
     static QString md5(const QString & str );
+    static QString passToHash(const QString &pass, int method);
+    static QString hash(const QString &str, int method);
     static QString createUuid();
 
     static QString htmlToPlaintText(const QString &html);

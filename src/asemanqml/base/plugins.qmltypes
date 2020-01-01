@@ -737,7 +737,6 @@ Module {
             Parameter { name: "count"; type: "int" }
         }
         Method { name: "startCameraPicture"; type: "string" }
-        Method { name: "getContactList"; type: "QVariantList" }
         Method { name: "getOpenPictures"; type: "bool" }
         Method {
             name: "setFlag"
@@ -770,6 +769,11 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method { name: "getOpenPictures"; type: "bool" }
+        Method {
+            name: "getContactList"
+            type: "QVariantList"
+            Parameter { name: "asyncCallback"; type: "QJSValue" }
+        }
     }
     Component {
         name: "AsemanDownloader"
@@ -1707,6 +1711,20 @@ Module {
     Component {
         name: "AsemanTools"
         prototype: "QObject"
+        Enum {
+            name: "HashMethod"
+            values: {
+                "Md5": 0,
+                "Sha224": 1,
+                "Sha256": 2,
+                "Sha384": 3,
+                "Sha512": 4,
+                "Sha3_224": 5,
+                "Sha3_256": 6,
+                "Sha3_384": 7,
+                "Sha3_512": 8
+            }
+        }
         Method {
             name: "debug"
             Parameter { name: "var"; type: "QVariant" }
@@ -2016,6 +2034,18 @@ Module {
             name: "md5"
             type: "string"
             Parameter { name: "str"; type: "string" }
+        }
+        Method {
+            name: "passToHash"
+            type: "string"
+            Parameter { name: "pass"; type: "string" }
+            Parameter { name: "method"; type: "int" }
+        }
+        Method {
+            name: "hash"
+            type: "string"
+            Parameter { name: "str"; type: "string" }
+            Parameter { name: "method"; type: "int" }
         }
         Method { name: "createUuid"; type: "string" }
         Method {

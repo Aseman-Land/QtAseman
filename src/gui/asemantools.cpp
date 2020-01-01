@@ -545,12 +545,57 @@ QString AsemanTools::passToMd5(const QString &pass)
     if( pass.isEmpty() )
         return QString();
 
-    return QString::fromUtf8(QCryptographicHash::hash( pass.toUtf8(), QCryptographicHash::Md5 ).toHex());
+    return md5(pass);
 }
 
 QString AsemanTools::md5(const QString &str)
 {
-    return QString::fromUtf8(QCryptographicHash::hash( str.toUtf8(), QCryptographicHash::Md5 ).toHex());
+    return hash(str, Md5);
+}
+
+QString AsemanTools::passToHash(const QString &pass, int method)
+{
+    if( pass.isEmpty() )
+        return QString();
+
+    return hash(pass, method);
+}
+
+QString AsemanTools::hash(const QString &str, int method)
+{
+    QCryptographicHash::Algorithm alg = QCryptographicHash::Md5;
+    switch (method)
+    {
+    case Md5:
+        alg = QCryptographicHash::Md5;
+        break;
+    case Sha224:
+        alg = QCryptographicHash::Sha224;
+        break;
+    case Sha256:
+        alg = QCryptographicHash::Sha256;
+        break;
+    case Sha384:
+        alg = QCryptographicHash::Sha384;
+        break;
+    case Sha512:
+        alg = QCryptographicHash::Sha512;
+        break;
+    case Sha3_224:
+        alg = QCryptographicHash::Sha3_224;
+        break;
+    case Sha3_256:
+        alg = QCryptographicHash::Sha3_256;
+        break;
+    case Sha3_384:
+        alg = QCryptographicHash::Sha3_384;
+        break;
+    case Sha3_512:
+        alg = QCryptographicHash::Sha3_512;
+        break;
+    }
+
+    return QString::fromUtf8(QCryptographicHash::hash(str.toUtf8(), alg).toHex());
 }
 
 QString AsemanTools::createUuid()
