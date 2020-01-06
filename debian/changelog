@@ -1,3 +1,15 @@
+qtaseman (1.0.21-1aseman-bionic) bionic; urgency=medium
+
+  * Bugfix on network
+
+ -- Aseman Team <contact@aseman.co>  Mon, 06 Jan 2020 10:50:00 +0330
+
+qtaseman (1.0.20-1aseman-bionic) bionic; urgency=medium
+
+  * New QML Network Module
+
+ -- Aseman Team <contact@aseman.co>  Mon, 06 Jan 2020 10:10:00 +0330
+
 qtaseman (1.0.19-1aseman-bionic) bionic; urgency=medium
 
   * Visit Github

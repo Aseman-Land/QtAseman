@@ -143,6 +143,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: QtQml Aseman Widgets components for the Qml, 
  It's free and released under the GPLv3 license.
 
+Package: qml-module-asemannetwork
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QtQml Aseman Network components for the Qml, 
+ It's free and released under the GPLv3 license.
+
 Package: qml-module-asemanmultimedia
 Section: libs
 Architecture: any

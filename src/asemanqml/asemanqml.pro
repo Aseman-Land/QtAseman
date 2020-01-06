@@ -7,4 +7,5 @@ SUBDIRS += \
     multimedia \
     widgets \
     modern \
-    controls
+    controls \
+    network

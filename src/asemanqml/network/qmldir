@@ -1,0 +1,4 @@
+module AsemanQml.Network
+classname AsemanNetworkPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlnetwork
