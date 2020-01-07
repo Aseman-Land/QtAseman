@@ -4,7 +4,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanGui
+TARGET = QAsemanGui
 QT = core gui asemancore
 
 MODULE = asemangui

@@ -1,9 +1,9 @@
 %modules = (
-    "QtAsemanCore" => "$basedir/src/core",
-    "QtAsemanNetwork" => "$basedir/src/network",
-    "QtAsemanGui" => "$basedir/src/gui",
-    "QtAsemanWidgets" => "$basedir/src/widgets",
-    "QtAsemanGeo" => "$basedir/src/geo",
-    "QtAsemanQml" => "$basedir/src/qml",
-    "QtAsemanMultimedia" => "$basedir/src/multimedia",
+    "QAsemanCore" => "$basedir/src/core",
+    "QAsemanNetwork" => "$basedir/src/network",
+    "QAsemanGui" => "$basedir/src/gui",
+    "QAsemanWidgets" => "$basedir/src/widgets",
+    "QAsemanGeo" => "$basedir/src/geo",
+    "QAsemanQml" => "$basedir/src/qml",
+    "QAsemanMultimedia" => "$basedir/src/multimedia",
 );

@@ -3,7 +3,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanCore
+TARGET = QAsemanCore
 QT = core
 
 MODULE = asemancore

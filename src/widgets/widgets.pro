@@ -3,7 +3,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanWidgets
+TARGET = QAsemanWidgets
 QT = core gui asemancore asemangui
 !android: !ios: {
     QT += widgets

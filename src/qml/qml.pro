@@ -3,7 +3,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui $$PWD/../network $$PWD/../widgets
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanQml
+TARGET = QAsemanQml
 QT = core gui asemancore asemangui asemannetwork network qml quick asemanwidgets
 ios: QT += widgets
 
