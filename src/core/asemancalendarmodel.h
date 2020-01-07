@@ -116,4 +116,6 @@ private:
     AsemanCalendarModelPrivate *p;
 };
 
+typedef AsemanCalendarModel QAsemanCalendarModel;
+
 #endif // ASEMANCALENDARMODEL_H

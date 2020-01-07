@@ -30,4 +30,6 @@ private:
     AsemanDevicesItemPrivate *p;
 };
 
+typedef AsemanDevicesItem QAsemanDevicesItem;
+
 #endif // ASEMANDEVICESITEM_H

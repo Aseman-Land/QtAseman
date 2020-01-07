@@ -95,6 +95,8 @@ private:
     AsemanImageColorAnalizorThreadPrivate *p;
 };
 
+typedef AsemanImageColorAnalizor QAsemanImageColorAnalizor;
+
 
 class AsemanImageColorAnalizorCorePrivate;
 class AsemanImageColorAnalizorCore : public QObject

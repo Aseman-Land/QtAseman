@@ -72,4 +72,6 @@ private:
     Private *p;
 };
 
+typedef AsemanListModel QAsemanListModel;
+
 #endif // ASEMANLISTMODEL_H

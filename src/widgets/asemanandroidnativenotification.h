@@ -53,4 +53,6 @@ private:
     Private *p;
 };
 
+typedef AsemanAndroidNativeNotification QAsemanAndroidNativeNotification;
+
 #endif // ASEMANANDROIDNATIVENOTIFICATION_H

@@ -80,4 +80,6 @@ private:
     AsemanDragObjectPrivate *p;
 };
 
+typedef AsemanDragObject QAsemanDragObject;
+
 #endif // ASEMANDRAGOBJECT_H

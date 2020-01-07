@@ -46,4 +46,6 @@ private:
     AsemanCameraCapturePrivate *p;
 };
 
+typedef AsemanCameraCapture QAsemanCameraCapture;
+
 #endif // ASEMANCAMERACAPTURE_H

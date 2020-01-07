@@ -16,7 +16,6 @@ load(qt_module)
 DEFINES += LIBQTASEMAN_GUI_LIBRARY
 
 HEADERS += \
-    $$PWD/asemanabstractcolorfulllistmodel.h \
     $$PWD/asemanapplication.h \
     $$PWD/asemandevices.h \
     $$PWD/asemanimagecoloranalizor.h \
@@ -32,7 +31,6 @@ HEADERS += \
     $$PWD/asemanglobaltranslations.h
 
 SOURCES += \
-    $$PWD/asemanabstractcolorfulllistmodel.cpp \
     $$PWD/asemanapplication.cpp \
     $$PWD/asemandevices.cpp \
     $$PWD/asemanimagecoloranalizor.cpp \

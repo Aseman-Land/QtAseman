@@ -118,4 +118,6 @@ private:
     AsemanDesktopToolsPrivate *p;
 };
 
+typedef AsemanDesktopTools QAsemanDesktopTools;
+
 #endif // ASEMANDESKTOPTOOLS_H

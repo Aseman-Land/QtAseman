@@ -101,4 +101,6 @@ private:
     AsemanMixedListModelPrivate *p;
 };
 
+typedef AsemanMixedListModel QAsemanMixedListModel;
+
 #endif // ASEMANMIXEDLISTMODEL_H

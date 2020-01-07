@@ -79,4 +79,6 @@ private:
     Private *p;
 };
 
+typedef AsemanTranslationManager QAsemanTranslationManager;
+
 #endif // ASEMANTRANSLATIONMANAGER_H

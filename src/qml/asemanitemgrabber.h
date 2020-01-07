@@ -62,4 +62,6 @@ private:
     AsemanItemGrabberPrivate *p;
 };
 
+typedef AsemanItemGrabber QAsemanItemGrabber;
+
 #endif // ASEMANITEMGRABBER_H

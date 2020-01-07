@@ -51,4 +51,6 @@ private:
     AsemanAndroidMultimediaPrivate *p;
 };
 
+typedef AsemanAndroidMultimedia QAsemanAndroidMultimedia;
+
 #endif // ASEMANJAVALAYER_H

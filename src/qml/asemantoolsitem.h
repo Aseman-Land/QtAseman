@@ -32,4 +32,6 @@ private:
     AsemanToolsItemPrivate *p;
 };
 
+typedef AsemanToolsItem QAsemanToolsItem;
+
 #endif // ASEMANTOOLSITEM_H

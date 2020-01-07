@@ -101,4 +101,6 @@ private:
     AsemanQuickView *mView;
 };
 
+typedef AsemanQuickViewWrapper QAsemanQuickViewWrapper;
+
 #endif // ASEMANQUICKVIEWWRAPPER_H

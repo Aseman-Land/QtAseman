@@ -109,4 +109,6 @@ private:
     AsemanAudioRecorderPrivate *p;
 };
 
+typedef AsemanAudioRecorder QAsemanAudioRecorder;
+
 #endif // ASEMANAUDIORECORDER_H

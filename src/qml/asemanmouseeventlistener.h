@@ -57,4 +57,6 @@ private:
     AsemanMouseEventListenerPrivate *p;
 };
 
+typedef AsemanMouseEventListener QAsemanMouseEventListener;
+
 #endif // ASEMANMOUSEEVENTLISTENER_H

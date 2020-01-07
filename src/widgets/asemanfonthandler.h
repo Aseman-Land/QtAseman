@@ -65,4 +65,6 @@ private:
     AsemanFontHandlerPrivate *p;
 };
 
+typedef AsemanFontHandler QAsemanFontHandler;
+
 #endif // ASEMANFONTHANDLER_H

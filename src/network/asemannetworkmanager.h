@@ -62,4 +62,6 @@ private:
     AsemanNetworkCheckerPrivate *p;
 };
 
+typedef AsemanNetworkManager QAsemanNetworkManager;
+
 #endif // ASEMANNETWORKMANAGER_H

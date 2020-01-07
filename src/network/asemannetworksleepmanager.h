@@ -84,4 +84,6 @@ private:
     AsemanNetworkSleepManagerPrivate *p;
 };
 
+typedef AsemanNetworkSleepManager QAsemanNetworkSleepManager;
+
 #endif // ASEMANNETWORKSLEEPMANAGER_H

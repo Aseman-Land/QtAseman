@@ -80,4 +80,6 @@ private:
     Private *p;
 };
 
+typedef AsemanSocketInterface QAsemanSocketInterface;
+
 #endif // ASEMANSOCKETINTERFACE_H

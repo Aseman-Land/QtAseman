@@ -49,4 +49,6 @@ private:
     Private *p;
 };
 
+typedef AsemanGlobalTranslations QAsemanGlobalTranslations;
+
 #endif // ASEMANGLOBALTRANSLATIONS_H

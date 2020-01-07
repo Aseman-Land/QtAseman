@@ -73,4 +73,6 @@ private:
     AsemanAutoStartManagerPrivate *p;
 };
 
+typedef AsemanAutoStartManager QAsemanAutoStartManager;
+
 #endif // ASEMANAUTOSTARTMANAGER_H

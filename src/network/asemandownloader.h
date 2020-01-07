@@ -83,4 +83,6 @@ private:
     AsemanDownloaderPrivate *p;
 };
 
+typedef AsemanDownloader QAsemanDownloader;
+
 #endif // ASEMANDOWNLOADER_H

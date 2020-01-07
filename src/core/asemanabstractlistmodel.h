@@ -39,4 +39,6 @@ public Q_SLOTS:
     QVariantMap get(int index) const;
 };
 
+typedef AsemanAbstractListModel QAsemanAbstractListModel;
+
 #endif // ASEMANABSTRACTLISTMODEL_H

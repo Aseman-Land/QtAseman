@@ -49,4 +49,6 @@ private:
     Private *p;
 };
 
+typedef AsemanNetworkRequestReply QAsemanNetworkRequestReply;
+
 #endif // ASEMANNETWORKREQUESTREPLY_H

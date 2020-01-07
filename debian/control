@@ -84,20 +84,6 @@ Depends: libqt5asemannetwork (= ${binary:Version})
 Description: QtNetwork Aseman tools development files, 
  It's free and released under the GPLv3 license.
 
-Package: libqt5asemangeo
-Section: libs
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: QtGeo Aseman tools, 
- It's free and released under the GPLv3 license.
-
-Package: libqt5asemangeo-dev
-Section: libdevel
-Architecture: any
-Depends: libqt5asemangeo (= ${binary:Version})
-Description: QtGeo Aseman tools development files, 
- It's free and released under the GPLv3 license.
-
 Package: libqt5asemanmultimedia
 Section: libs
 Architecture: any
@@ -197,7 +183,6 @@ Depends: libqt5asemancore (= ${binary:Version}),
  libqt5asemangui (= ${binary:Version}),
  libqt5asemanwidgets (= ${binary:Version}),
  libqt5asemannetwork (= ${binary:Version}),
- libqt5asemangeo (= ${binary:Version}),
  libqt5asemanmultimedia (= ${binary:Version}),
  libqt5asemanqml (= ${binary:Version}),
  qml-module-asemanbase, qml-module-asemanwidgets,
@@ -214,7 +199,6 @@ Depends: libqt5asemancore-dev (= ${binary:Version}),
  libqt5asemangui-dev (= ${binary:Version}),
  libqt5asemanwidgets-dev (= ${binary:Version}),
  libqt5asemannetwork-dev (= ${binary:Version}),
- libqt5asemangeo-dev (= ${binary:Version}),
  libqt5asemanmultimedia-dev (= ${binary:Version}),
  libqt5asemanqml-dev (= ${binary:Version}),
  qt5aseman (= ${binary:Version})

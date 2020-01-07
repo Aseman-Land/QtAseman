@@ -59,4 +59,6 @@ private:
     AsemanSettingsPrivate *p;
 };
 
+typedef AsemanSettings QAsemanSettings;
+
 #endif // ASEMANSETTINGS_H

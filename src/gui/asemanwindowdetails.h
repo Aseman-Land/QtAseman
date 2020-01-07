@@ -49,4 +49,6 @@ private:
     AsemanWindowDetailsPrivate *p;
 };
 
+typedef AsemanWindowDetails QAsemanWindowDetails;
+
 #endif // ASEMANWINDOWDETAILS_H

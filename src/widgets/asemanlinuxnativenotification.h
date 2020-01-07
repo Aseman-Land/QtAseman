@@ -57,4 +57,6 @@ private:
     AsemanLinuxNativeNotificationPrivate *p;
 };
 
+typedef AsemanLinuxNativeNotification QAsemanLinuxNativeNotification;
+
 #endif // ASEMANLINUXNATIVENOTIFICATION_H

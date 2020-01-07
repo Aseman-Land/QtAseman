@@ -63,4 +63,6 @@ private:
     AsemanMapObjectPrivate *p;
 };
 
+typedef AsemanMapObject QAsemanMapObject;
+
 #endif // ASEMANMAPOBJECT_H

@@ -121,4 +121,6 @@ private:
     AsemanNetworkManagerItemPrivate *p;
 };
 
+typedef AsemanNetworkManagerItem QAsemanNetworkManagerItem;
+
 #endif // ASEMANNETWORKMANAGERITEM_H

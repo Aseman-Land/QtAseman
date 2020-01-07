@@ -60,4 +60,6 @@ private:
     AsemanNativeNotificationItemPrivate *p;
 };
 
+typedef AsemanNativeNotificationItem QAsemanNativeNotificationItem;
+
 #endif // ASEMANNATIVENOTIFICATIONITEM_H

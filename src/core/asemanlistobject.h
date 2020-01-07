@@ -74,4 +74,6 @@ private:
     AsemanListObjectPrivate *p;
 };
 
+typedef AsemanListObject QAsemanListObject;
+
 #endif // ASEMANLISTOBJECT_H

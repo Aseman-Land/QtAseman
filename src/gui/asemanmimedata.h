@@ -67,6 +67,8 @@ private:
     AsemanMimeDataPrivate *p;
 };
 
+typedef AsemanMimeData QAsemanMimeData;
+
 Q_DECLARE_METATYPE(AsemanMimeData*)
 
 #endif // ASEMANMIMEDATA_H

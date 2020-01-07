@@ -216,4 +216,6 @@ private:
     AsemanApplicationPrivate *p;
 };
 
+typedef AsemanApplication QAsemanApplication;
+
 #endif // ASEMANAPPLICATION_H

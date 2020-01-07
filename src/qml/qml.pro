@@ -22,9 +22,7 @@ HEADERS += \
     $$PWD/asemanmouseeventlistener.h \
     $$PWD/asemanqmlengine.h \
     $$PWD/asemanqmlimage.h \
-    $$PWD/asemanqmlsmartcomponent.h \
     $$PWD/asemanqttools.h \
-    $$PWD/asemanquickitemimagegrabber.h \
     $$PWD/asemanquickobject.h \
     $$PWD/asemanquickview.h \
     $$PWD/asemanquickviewwrapper.h \
@@ -32,11 +30,10 @@ HEADERS += \
     $$PWD/qtsingleapplication/qtlockedfile.h \
     $$PWD/asemantools_global.h \
     $$PWD/asemandevicesitem.h \
-    $$PWD/asemannetworkrequest.h \
     $$PWD/asemantoolsitem.h \
     $$PWD/asemanfileresourcemanager.h \
     $$PWD/asemanproxycomponent.h \
-    asemanquicklistmodel.h
+    $$PWD/asemanquicklistmodel.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -47,9 +44,7 @@ SOURCES += \
     $$PWD/asemanmouseeventlistener.cpp \
     $$PWD/asemanqmlengine.cpp \
     $$PWD/asemanqmlimage.cpp \
-    $$PWD/asemanqmlsmartcomponent.cpp \
     $$PWD/asemanqttools.cpp \
-    $$PWD/asemanquickitemimagegrabber.cpp \
     $$PWD/asemanquickobject.cpp \
     $$PWD/asemanquickview.cpp \
     $$PWD/asemanquickviewwrapper.cpp \
@@ -58,11 +53,10 @@ SOURCES += \
     $$PWD/qtsingleapplication/qtlockedfile_win.cpp \
     $$PWD/qtsingleapplication/qtlockedfile.cpp \
     $$PWD/asemandevicesitem.cpp \
-    $$PWD/asemannetworkrequest.cpp \
     $$PWD/asemantoolsitem.cpp \
     $$PWD/asemanfileresourcemanager.cpp \
     $$PWD/asemanproxycomponent.cpp \
-    asemanquicklistmodel.cpp
+    $$PWD/asemanquicklistmodel.cpp
 
 android {
     QT += androidextras

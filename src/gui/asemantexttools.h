@@ -39,4 +39,6 @@ private:
     AsemanTextToolsPrivate *p;
 };
 
+typedef AsemanTextTools QAsemanTextTools;
+
 #endif // ASEMANTEXTTOOLS_H

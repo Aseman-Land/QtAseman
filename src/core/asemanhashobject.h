@@ -63,4 +63,6 @@ private:
     AsemanHashObjectPrivate *p;
 };
 
+typedef AsemanHashObject QAsemanHashObject;
+
 #endif // ASEMANHASHOBJECT_H

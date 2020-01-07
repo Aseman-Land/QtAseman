@@ -98,4 +98,6 @@ private:
     AsemanAudioEncoderSettingsPrivate *p;
 };
 
+typedef AsemanAudioEncoderSettings QAsemanAudioEncoderSettings;
+
 #endif // ASEMANAUDIOENCODERSETTINGS_H

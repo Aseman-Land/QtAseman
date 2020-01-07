@@ -137,4 +137,6 @@ private:
     AsemanFileSystemModelPrivate *p;
 };
 
+typedef AsemanFileSystemModel QAsemanFileSystemModel;
+
 #endif // ASEMANFILESYSTEMMODEL_H

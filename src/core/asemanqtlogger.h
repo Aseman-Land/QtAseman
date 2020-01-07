@@ -50,4 +50,6 @@ private:
     AsemanQtLoggerPrivate *p;
 };
 
+typedef AsemanQtLogger QAsemanQtLogger;
+
 #endif // ASEMANQTLOGGER_H

@@ -102,4 +102,6 @@ private:
     AsemanJavaLayerPrivate *p;
 };
 
+typedef AsemanJavaLayer QAsemanJavaLayer;
+
 #endif // ASEMANJAVALAYER_H

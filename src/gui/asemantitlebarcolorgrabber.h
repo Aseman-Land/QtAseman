@@ -64,4 +64,6 @@ private:
     AsemanTitleBarColorGrabberPrivate *p;
 };
 
+typedef AsemanTitleBarColorGrabber QAsemanTitleBarColorGrabber;
+
 #endif // ASEMANTITLEBARCOLORGRABBER_H

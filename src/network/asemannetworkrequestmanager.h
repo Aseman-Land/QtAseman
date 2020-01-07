@@ -86,4 +86,6 @@ private:
     Private *p;
 };
 
+typedef AsemanNetworkRequestManager QAsemanNetworkRequestManager;
+
 #endif // ASEMANNETWORKREQUESTMANAGER_H

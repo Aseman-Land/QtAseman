@@ -68,4 +68,6 @@ private:
     AsemanQuickObjectPrivate *p;
 };
 
+typedef AsemanQuickObject QAsemanQuickObject;
+
 #endif // ASEMANQUICKOBJECT_H

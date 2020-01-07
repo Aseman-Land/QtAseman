@@ -69,4 +69,6 @@ private:
     AsemanPingPrivate *p;
 };
 
+typedef AsemanHostChecker QAsemanHostChecker;
+
 #endif // ASEMANHOSTCHECKER_H

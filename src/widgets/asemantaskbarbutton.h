@@ -63,4 +63,6 @@ private:
     AsemanTaskbarButtonPrivate *p;
 };
 
+typedef AsemanTaskbarButton QAsemanTaskbarButton;
+
 #endif // ASEMANTASKBARBUTTON_H

@@ -292,4 +292,6 @@ private:
     AsemanDevicesPrivate *p;
 };
 
+typedef AsemanDevices QAsemanDevices;
+
 #endif // ASEMANDEVICES_H

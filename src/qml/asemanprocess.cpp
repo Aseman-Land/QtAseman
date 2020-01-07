@@ -66,12 +66,18 @@ void AsemanProcess::start()
     QProcess *process = new QProcess(this);
     process->setReadChannelMode(QProcess::ForwardedChannels);
 
-    connect(process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), this, [this, process](int){
+    connect(process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), this, [process](int){
         process->deleteLater();
     });
     connect(process, &QProcess::destroyed, this, [this, process](){
         if(!p->process || p->process == process)
             Q_EMIT runningChanged();
+    });
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process](){
+        Q_EMIT standardOutput(QString::fromUtf8(process->readAllStandardOutput()));
+    });
+    connect(process, &QProcess::readAllStandardError, this, [this, process](){
+        Q_EMIT standardOutput(QString::fromUtf8(process->readAllStandardError()));
     });
 
     p->process = process;

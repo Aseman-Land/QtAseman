@@ -156,4 +156,6 @@ private:
     AsemanToolsPrivate *p;
 };
 
+typedef AsemanTools QAsemanTools;
+
 #endif // ASEMANTOOLS_H

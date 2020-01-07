@@ -63,4 +63,6 @@ private:
     AsemanFileDownloaderQueuePrivate *p;
 };
 
+typedef AsemanFileDownloaderQueue QAsemanFileDownloaderQueue;
+
 #endif // ASEMANFILEDOWNLOADERQUEUE_H

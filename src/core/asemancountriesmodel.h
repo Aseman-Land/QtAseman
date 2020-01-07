@@ -90,4 +90,6 @@ private:
     AsemanCountriesModelPrivate *p;
 };
 
+typedef AsemanCountriesModel QAsemanCountriesModel;
+
 #endif // ASEMANCOUNTRIESMODEL_H

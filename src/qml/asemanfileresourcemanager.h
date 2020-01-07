@@ -54,4 +54,6 @@ Q_SIGNALS:
     void copyProgress(const QString &id, qint64 bytes, qint64 total);
 };
 
+typedef AsemanFileResourceManager QAsemanFileResourceManager;
+
 #endif // ASEMANFILERESOURCEMANAGER_H

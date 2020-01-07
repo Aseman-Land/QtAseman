@@ -105,4 +105,6 @@ private:
     Private *p;
 };
 
+typedef AsemanQmlImage QAsemanQmlImage;
+
 #endif // ASEMANQMLIMAGE_H

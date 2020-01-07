@@ -82,4 +82,6 @@ private:
     AsemanKdeWalletPrivate *p;
 };
 
+typedef AsemanKdeWallet QAsemanKdeWallet;
+
 #endif // ASEMANKDEWALLET_H

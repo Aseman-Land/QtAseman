@@ -44,4 +44,6 @@ private:
     AsemanDebugObjectCounterPrivate *p;
 };
 
+typedef AsemanDebugObjectCounter QAsemanDebugObjectCounter;
+
 #endif // ASEMANDEBUGOBJECTCOUNTER_H

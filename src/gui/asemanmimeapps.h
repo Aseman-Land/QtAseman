@@ -50,4 +50,6 @@ private:
     AsemanMimeAppsPrivate *p;
 };
 
+typedef AsemanMimeApps QAsemanMimeApps;
+
 #endif // ASEMANMIMEAPPS_H

@@ -62,4 +62,6 @@ private:
     AsemanDragAreaPrivate *p;
 };
 
+typedef AsemanDragArea QAsemanDragArea;
+
 #endif // ASEMANDRAGAREA_H

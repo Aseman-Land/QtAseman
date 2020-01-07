@@ -31,7 +31,6 @@
 #include "asemandesktoptools.h"
 #include "asemansettings.h"
 #include "asemanmimedata.h"
-#include "asemannetworkrequest.h"
 #include "asemanfileresourcemanager.h"
 #include "asemanmapobject.h"
 #include "asemandragobject.h"
@@ -51,7 +50,6 @@
 #include "asemantexttools.h"
 #include "asemanlistmodel.h"
 #include "asemanfiledownloaderqueueitem.h"
-#include "asemanquickitemimagegrabber.h"
 #include "asemantitlebarcolorgrabber.h"
 #include "asemanproxycomponent.h"
 #include "asemanfiledownloaderqueue.h"
@@ -62,11 +60,9 @@
 #include "asemanmixedlistmodel.h"
 #include "asemanencrypter.h"
 #include "asemanquickviewwrapper.h"
-#include "asemanqmlsmartcomponent.h"
 #include "asemanmouseeventlistener.h"
 #include "asemanqmlimage.h"
 #include "asemantranslationmanager.h"
-#include "asemansysteminfo.h"
 #include "asemanitemgrabber.h"
 #include "asemanquicklistmodel.h"
 #ifndef Q_OS_IOS
@@ -118,7 +114,6 @@ SINGLETON_PROVIDER(AsemanBackHandler        , aseman_backhandler_singleton      
 SINGLETON_PROVIDER(AsemanApplicationItem    , aseman_app_singleton               , AsemanQtToolsItemBase::application(engine))
 SINGLETON_PROVIDER(AsemanQuickViewWrapper   , aseman_qview_singleton             , AsemanQtToolsItemBase::quickView(engine))
 SINGLETON_PROVIDER(AsemanQtLogger           , aseman_logger_singleton            , AsemanQtToolsItemBase::qtLogger())
-SINGLETON_PROVIDER(AsemanSystemInfo         , aseman_sysinfo_singleton           , AsemanQtToolsItemBase::systemInfo())
 SINGLETON_PROVIDER(AsemanFileDownloaderQueue, aseman_downloader_queue_singleton  , AsemanQtToolsItemBase::getDownloaderQueue(engine))
 SINGLETON_PROVIDER(AsemanGlobalTranslations , aseman_globaltranslations_singleton, AsemanQtToolsItemBase::globalTranslations(engine))
 #ifdef Q_OS_ANDROID
@@ -150,11 +145,9 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanImageColorAnalizor>(uri, 2, 0, "ImageColorAnalizor", exportMode);
     registerType<AsemanAutoStartManager>(uri, 2, 0, "AutoStartManager", exportMode);
     registerType<AsemanSettings>(uri, 2, 0, "Settings", exportMode);
-    registerType<AsemanQuickItemImageGrabber>(uri, 2, 0, "ItemImageGrabber", exportMode);
     registerType<AsemanFileDownloaderQueueItem>(uri, 2, 0, "FileDownloaderQueueItem", exportMode);
     registerType<AsemanFileDownloaderQueue>(uri, 2, 0, "FileDownloaderQueue", exportMode);
     registerType<AsemanMouseEventListener>(uri, 2, 0, "MouseEventListener", exportMode);
-    registerType<AsemanNetworkRequest>(uri, 2, 0, "NetworkRequest", exportMode);
     registerType<AsemanItemGrabber>(uri, 2, 0, "ItemGrabber", exportMode);
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
     registerType<AsemanKeyHandler>(uri, 2, 0, "KeyHandler", exportMode);
@@ -163,7 +156,6 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanProcess>(uri, 2, 0, "Process", exportMode);
 #endif
     registerType<AsemanTranslationManager>(uri, 2, 0, "TranslationManager", exportMode);
-    registerType<AsemanQmlSmartComponent>(uri, 2, 0, "SmartComponentCore", exportMode);
 #ifdef DESKTOP_LINUX
     registerType<AsemanMimeApps>(uri, 2, 0, "MimeApps", exportMode);
 #endif
@@ -191,7 +183,6 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerSingletonType<AsemanApplicationItem>(uri, 2, 0, "AsemanApp", aseman_app_singleton, exportMode);
     registerSingletonType<AsemanQtLogger>(uri, 2, 0, "Logger", aseman_logger_singleton, exportMode);
     registerSingletonType<AsemanQuickViewWrapper>(uri, 2, 0, "View", aseman_qview_singleton, exportMode);
-    registerSingletonType<AsemanSystemInfo>(uri, 2, 0, "SystemInfo", aseman_sysinfo_singleton, exportMode);
     registerSingletonType<AsemanFileDownloaderQueue>(uri, 2, 0, "DownloaderQueue", aseman_downloader_queue_singleton, exportMode);
     registerSingletonType<AsemanGlobalTranslations>(uri, 2, 0, "Translations", aseman_globaltranslations_singleton, exportMode);
 #ifdef Q_OS_ANDROID

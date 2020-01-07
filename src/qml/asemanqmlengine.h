@@ -39,4 +39,6 @@ private:
     AsemanQmlEnginePrivate *p;
 };
 
+typedef AsemanQmlEngine QAsemanQmlEngine;
+
 #endif // ASEMANQMLENGINE_H

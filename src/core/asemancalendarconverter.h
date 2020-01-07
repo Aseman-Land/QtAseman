@@ -92,4 +92,6 @@ private:
     AsemanCalendarConverterPrivate *p;
 };
 
+typedef AsemanCalendarConverter QAsemanCalendarConverter;
+
 #endif // ASEMANCALENDARCONVERTER_H

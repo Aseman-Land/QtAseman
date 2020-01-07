@@ -96,4 +96,6 @@ private:
     AsemanSystemTrayPrivate *p;
 };
 
+typedef AsemanSystemTray QAsemanSystemTray;
+
 #endif // ASEMANSYSTEMTRAY_H

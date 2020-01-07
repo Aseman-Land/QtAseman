@@ -47,4 +47,6 @@ private:
     QSharedPointer<AsemanSimpleQtCryptor::Key> _key;
 };
 
+typedef AsemanEncrypter QAsemanEncrypter;
+
 #endif // ASEMANENCRYPTER_H

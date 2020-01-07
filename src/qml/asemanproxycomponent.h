@@ -35,4 +35,6 @@ private:
     Private *p;
 };
 
+typedef AsemanProxyComponent QAsemanProxyComponent;
+
 #endif // ASEMANPROXYCOMPONENT_H

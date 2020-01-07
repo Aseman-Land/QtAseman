@@ -68,4 +68,6 @@ private:
     AsemanBackHandlerPrivate *p;
 };
 
+typedef AsemanBackHandler QAsemanBackHandler;
+
 #endif // ASEMANBACKHANDLER_H

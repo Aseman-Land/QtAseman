@@ -56,4 +56,6 @@ private:
     AsemanNativeNotificationPrivate *p;
 };
 
+typedef AsemanNativeNotification QAsemanNativeNotification;
+
 #endif // ASEMANNATIVENOTIFICATION_H

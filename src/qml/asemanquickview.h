@@ -106,4 +106,6 @@ private:
     AsemanQuickViewPrivate *p;
 };
 
+typedef AsemanQuickView QAsemanQuickView;
+
 #endif // ASEMANQUICKVIEW_H
