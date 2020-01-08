@@ -10,6 +10,7 @@ AboutPage 2.0 AboutPage.qml
 AboutPageItem 2.0 AboutPageItem.qml
 AboutPageAseman 2.0 AboutPageAseman.qml
 AsemanProductsList 2.0 AsemanProductsList.qml
+SelectableList 2.0 SelectableList.qml
 NullMouseArea 2.0 NullMouseArea.qml
 AndroidListEffect 2.0 AndroidListEffect.qml
 CachedImage 2.0 CachedImage.qml
