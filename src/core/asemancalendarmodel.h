@@ -28,6 +28,9 @@
 #include "asemancore_global.h"
 
 class AsemanCalendarModelPrivate;
+/*!
+    \private
+ */
 class LIBQTASEMAN_CORE_EXPORT AsemanCalendarModel : public QObject
 {
     Q_OBJECT

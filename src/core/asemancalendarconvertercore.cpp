@@ -30,12 +30,18 @@ int aseman_hijri_months_start[13]      = {0,30,59,89,118,148,177,207,236,266,295
 int aseman_hijri_leap_months_start[13] = {0,30,59,89,118,148,177,207,236,266,295,325,355};
 int aseman_hijri_leap_years[11]        = {2,5,7,10,13,16,18,21,24,26,29};
 
+/*!
+    \private
+ */
 class AsemanCalendarConverterCorePrivate
 {
 public:
     AsemanCalendarConverterCore::CalendarTypes calendar;
 };
 
+/*!
+    \private
+ */
 AsemanCalendarConverterCore::AsemanCalendarConverterCore()
 {
     p = new AsemanCalendarConverterCorePrivate;

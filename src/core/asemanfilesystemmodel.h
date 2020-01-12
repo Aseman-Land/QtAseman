@@ -65,7 +65,7 @@ public:
         FileCreatedDate
     };
 
-    AsemanFileSystemModel(QObject *parent = 0);
+    AsemanFileSystemModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanFileSystemModel();
 
     void setShowDirs(bool stt);
@@ -100,12 +100,14 @@ public:
 
     QString parentFolder() const;
 
+#ifndef ASEMAN_OXYGEN_SKIP
     const QFileInfo &id( const QModelIndex &index ) const;
 
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
     QHash<qint32,QByteArray> roleNames() const;
+#endif
     int count() const;
 
 public Q_SLOTS:
@@ -122,9 +124,9 @@ Q_SIGNALS:
     void folderChanged();
     void parentFolderChanged();
     void sortFieldChanged();
-    void listChanged();
     void recursiveChanged();
     void limitChanged();
+    void listChanged();
 
 private Q_SLOTS:
     void reinit_buffer();

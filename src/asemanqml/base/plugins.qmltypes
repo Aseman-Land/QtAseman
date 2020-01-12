@@ -197,7 +197,7 @@ Module {
         isSingleton: true
         exportMetaObjectRevisions: [0]
         Property { name: "calendar"; type: "int" }
-        Property { name: "calendarsID"; type: "QStringList"; isReadonly: true }
+        Property { name: "calendarIDs"; type: "QStringList"; isReadonly: true }
         Property { name: "currentDays"; type: "int"; isReadonly: true }
         Property { name: "currentYear"; type: "int"; isReadonly: true }
         Property { name: "currentMonth"; type: "int"; isReadonly: true }
@@ -1009,17 +1009,6 @@ Module {
             name: "values"
             type: "QVariantList"
             Parameter { name: "key"; type: "string" }
-        }
-        Method {
-            name: "containt"
-            type: "QVariant"
-            Parameter { name: "key"; type: "string" }
-        }
-        Method {
-            name: "containt"
-            type: "QVariant"
-            Parameter { name: "key"; type: "string" }
-            Parameter { name: "value"; type: "QVariant" }
         }
         Method {
             name: "contains"

@@ -43,6 +43,10 @@ public:
 };
 
 class AsemanCalendarConverterCorePrivate;
+
+/*!
+    \private
+ */
 class AsemanCalendarConverterCore
 {
 public:

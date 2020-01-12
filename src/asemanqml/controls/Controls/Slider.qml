@@ -4,11 +4,20 @@ import AsemanQml.Controls 2.0
 import QtQuick.Controls 2.2 as QtControls
 import QtQuick.Controls.Material 2.1
 
+/*!
+    \class Slider
+    \brief Inherited QtControls Slider that show a beautiful label above it.
+ */
 QtControls.Slider {
     id: slider
     orientation: Qt.Horizontal
 
+    /*!
+        type:bool Sets the slider upper label is visible or not. This label shows current value of the slider.
+    */
     property alias labelVisible: lblScene.visible
+
+
     property alias labelOpacity: lblScene.opacity
     property int labelDecimals: 1
     property string labelUnit: ""

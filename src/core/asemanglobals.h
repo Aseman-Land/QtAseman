@@ -19,6 +19,17 @@
 #ifndef ASEMANGLOBALS_H
 #define ASEMANGLOBALS_H
 
+/*!
+    \defgroup AsemanCore
+    Provides core classes, methods and tools of the QAseman modules.
+    It only needs QtCore module and has no GUI.
+
+    You can add it to your project using below command:
+    \code{.pro}
+    QT += asemancore
+    \endcode
+ */
+
 #include <QtGlobal>
 
 #define SET_PROPERTY(PROPERTY_NAME) \

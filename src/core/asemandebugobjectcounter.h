@@ -24,6 +24,9 @@
 #include "asemancore_global.h"
 
 class AsemanDebugObjectCounterPrivate;
+/*!
+    \private
+ */
 class LIBQTASEMAN_CORE_EXPORT AsemanDebugObjectCounter : public QObject
 {
     Q_OBJECT

@@ -33,7 +33,9 @@ public:
     virtual ~AsemanEncrypter(){}
 
     void setKey(const QString &key);
+#ifndef ASEMAN_OXYGEN_SKIP
     QString key() const;
+#endif
 
 public Q_SLOTS:
     QByteArray encrypt(const QByteArray &data);

@@ -16,6 +16,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*!
+    \class AsemanAbstractListModel
+    \brief Aseman's Abstract list model class provides some useful get methods
+    for QML.
+
+    AsemanAbstractListModel provide abstract ListModel class, has some get
+    functions that is useful on the QML.
+    Every model create based on AsemanAbstractListModel, could pass data
+    to the QML using this functions.
+
+    \reentrant
+    \ingroup AsemanCore
+*/
+
 #include "asemanabstractlistmodel.h"
 
 #include <QHash>
@@ -25,6 +39,10 @@ AsemanAbstractListModel::AsemanAbstractListModel(QObject *parent) :
 {
 }
 
+/*!
+    Returns all roles keys of the Model as a QStringList.
+    \sa get
+ */
 QStringList AsemanAbstractListModel::roles() const
 {
     QStringList result;
@@ -40,6 +58,11 @@ QStringList AsemanAbstractListModel::roles() const
     return result;
 }
 
+
+/*!
+    Return value based on the \a row number and \a role id.
+    \sa roles
+ */
 QVariant AsemanAbstractListModel::get(int row, int role) const
 {
     if(row >= rowCount() || row < 0)
@@ -49,12 +72,22 @@ QVariant AsemanAbstractListModel::get(int row, int role) const
     return data(idx , role);
 }
 
+
+/*!
+    Return value based on the \a row number and \a roleName.
+    \sa roles
+ */
 QVariant AsemanAbstractListModel::get(int index, const QString &roleName) const
 {
     const int role = roleNames().key(roleName.toUtf8());
     return get(index, role);
 }
 
+
+/*!
+    Return all values based on the \a row number as a QVariantMap object.
+    \sa roles
+ */
 QVariantMap AsemanAbstractListModel::get(int index) const
 {
     if(index >= rowCount())
