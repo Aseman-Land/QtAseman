@@ -1,0 +1,4 @@
+module QtQuick.Controls.IOSStyle
+plugin qtquickcontrols2iosstylestyleplugin
+classname QtQuickControls2IOSStyleStylePlugin
+depends QtQuick.Controls 2.5

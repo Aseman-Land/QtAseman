@@ -7,7 +7,8 @@ SUBDIRS = \
     widgets \
     multimedia \
     qml \
-    asemanqml
+    asemanqml \
+    styles
 
 android: SUBDIRS += android
 
