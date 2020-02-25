@@ -48,6 +48,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.res.Resources;
 import android.content.Context;
+import android.app.NotificationChannel;
+import android.graphics.Color;
+import android.support.annotation.RequiresApi;
+import android.os.Build.VERSION_CODES;
+import android.os.Build;
 
 import org.qtproject.qt5.android.bindings.QtService;
 
@@ -67,15 +72,28 @@ public class AsemanQtService extends QtService {
         super.onCreate();
     }
 
-    public boolean startForeground(int id, String title, String msg, String iconPath, String icon) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    public String createNotificationChannel(String channelId ,String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(chan);
+        return channelId;
+    }
+
+    public boolean startForeground(int id, String title, String msg, String iconPath, String icon, String channelId) {
         Intent notificationIntent = new Intent(this, AsemanActivity.class);
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Resources R = getResources();
 
+        Notification.Builder builder = new Notification.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(channelId);
         Notification notification =
-                  new Notification.Builder(this)
+            builder
             .setContentTitle(title)
             .setContentText(msg)
             .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
@@ -86,7 +104,7 @@ public class AsemanQtService extends QtService {
         return true;
     }
 
-    public boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon, String channelId, boolean sound, boolean vibrate)
     {
         Resources R = getResources();
         if (m_notificationManager == null) {
@@ -97,8 +115,10 @@ public class AsemanQtService extends QtService {
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Notification.Builder builder = new Notification.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(channelId);
         Notification notification =
-                  new Notification.Builder(this)
+             builder
             .setContentTitle(title)
             .setContentText(body)
             .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
