@@ -131,16 +131,18 @@ bool AsemanJavaLayer::getOpenPictures()
     return res;
 }
 
-bool AsemanJavaLayer::startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon)
+bool AsemanJavaLayer::startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, const QString &channelId)
 {
     jint jid = id;
     QAndroidJniObject jtitle = QAndroidJniObject::fromString(title);
     QAndroidJniObject jmsg = QAndroidJniObject::fromString(msg);
     QAndroidJniObject jicon = QAndroidJniObject::fromString(icon);
     QAndroidJniObject jiconPath = QAndroidJniObject::fromString(iconPath);
-    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z",
+    QAndroidJniObject jchannelId = QAndroidJniObject::fromString(channelId);
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z",
                                                   jid, jtitle.object<jstring>(), jmsg.object<jstring>(),
-                                                  jiconPath.object<jstring>(), jicon.object<jstring>());
+                                                  jiconPath.object<jstring>(), jicon.object<jstring>(),
+                                                  jchannelId.object<jstring>());
     return res;
 }
 
@@ -151,18 +153,20 @@ bool AsemanJavaLayer::stopForeground(bool removeNotification)
     return res;
 }
 
-bool AsemanJavaLayer::startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, bool sound, bool vibrate)
+bool AsemanJavaLayer::startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, const QString &channelId, bool sound, bool vibrate)
 {
     jint jid = id;
     QAndroidJniObject jtitle = QAndroidJniObject::fromString(title);
     QAndroidJniObject jmsg = QAndroidJniObject::fromString(msg);
     QAndroidJniObject jicon = QAndroidJniObject::fromString(icon);
     QAndroidJniObject jiconPath = QAndroidJniObject::fromString(iconPath);
+    QAndroidJniObject jchannelId = QAndroidJniObject::fromString(channelId);
     jboolean jsound = sound;
     jboolean jvibrate = vibrate;
-    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)Z",
+    jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)Z",
                                                   jid, jtitle.object<jstring>(), jmsg.object<jstring>(),
-                                                  jiconPath.object<jstring>(), jicon.object<jstring>(), jsound, jvibrate);
+                                                  jiconPath.object<jstring>(), jicon.object<jstring>(),
+                                                  jchannelId.object<jstring>(), jsound, jvibrate);
     return res;
 }
 
@@ -170,6 +174,15 @@ bool AsemanJavaLayer::stopNotification(qint32 id)
 {
     jint jid = id;
     jboolean res = p->object.callMethod<jboolean>(__FUNCTION__, "(I)Z", jid);
+    return res;
+}
+
+QString AsemanJavaLayer::createNotificationChannel(const QString &channelId, const QString &channelName)
+{
+    QAndroidJniObject jchannelId = QAndroidJniObject::fromString(channelId);
+    QAndroidJniObject jchannelName = QAndroidJniObject::fromString(channelName);
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+                                             jchannelId.object<jstring>(), jchannelName.object<jstring>()).toString();
     return res;
 }
 

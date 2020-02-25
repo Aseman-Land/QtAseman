@@ -46,6 +46,11 @@ import android.app.Notification;
 import android.content.res.Resources;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.NotificationChannel;
+import android.graphics.Color;
+import android.support.annotation.RequiresApi;
+import android.os.Build.VERSION_CODES;
+import android.os.Build;
 
 //import com.google.android.gms.common.api.GoogleApiClient;
 //import com.google.android.gms.common.api.GoogleSignInOptions;
@@ -81,7 +86,18 @@ public class AsemanActivity extends QtActivity
         return _transparentNavigationBar;
     }
 
-    public boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
+    @RequiresApi(Build.VERSION_CODES.O)
+    public String createNotificationChannel(String channelId ,String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(chan);
+        return channelId;
+    }
+
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon, String channelId, boolean sound, boolean vibrate)
     {
         Resources R = getResources();
         if (m_notificationManager == null) {
@@ -92,8 +108,11 @@ public class AsemanActivity extends QtActivity
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Notification.Builder builder = new Notification.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(channelId);
+
         Notification notification =
-                  new Notification.Builder(this)
+            builder
             .setContentTitle(title)
             .setContentText(body)
             .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))

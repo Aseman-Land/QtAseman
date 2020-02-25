@@ -533,10 +533,23 @@ public class AsemanJavaLayer
         return true;
     }
 
-    boolean startForeground(int id, String title, String body, String iconPath, String icon)
+    public String createNotificationChannel(String channelId ,String channelName){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(AsemanActivity.getActivityInstance() != null)
+                return AsemanActivity.getActivityInstance().createNotificationChannel(channelId, channelName);
+            else
+            if(AsemanQtService.getServiceInstance() != null)
+                return AsemanQtService.getServiceInstance().createNotificationChannel(channelId, channelName);
+        } else {
+            return "";
+        }
+        return channelId;
+    }
+
+    boolean startForeground(int id, String title, String body, String iconPath, String icon, String channelId)
     {
         if(AsemanQtService.getServiceInstance() != null)
-            return AsemanQtService.getServiceInstance().startForeground(id, title, body, iconPath, icon);
+            return AsemanQtService.getServiceInstance().startForeground(id, title, body, iconPath, icon, channelId);
         return false;
     }
 
@@ -549,13 +562,13 @@ public class AsemanJavaLayer
         return false;
     }
 
-    boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
+    boolean startNotification(int id, String title, String body, String iconPath, String icon, String channelId, boolean sound, boolean vibrate)
     {
         if(AsemanActivity.getActivityInstance() != null)
-            return AsemanActivity.getActivityInstance().startNotification(id, title, body, iconPath, icon, sound, vibrate);
+            return AsemanActivity.getActivityInstance().startNotification(id, title, body, iconPath, icon, channelId, sound, vibrate);
         else
         if(AsemanQtService.getServiceInstance() != null)
-            return AsemanQtService.getServiceInstance().startNotification(id, title, body, iconPath, icon, sound, vibrate);
+            return AsemanQtService.getServiceInstance().startNotification(id, title, body, iconPath, icon, channelId, sound, vibrate);
         return false;
     }
 
