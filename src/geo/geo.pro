@@ -3,7 +3,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanGeo
+TARGET = QAsemanGeo
 QT = core positioning asemancore
 
 MODULE = asemangeo
