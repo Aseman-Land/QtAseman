@@ -31,7 +31,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanSettings : public QObject
     Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
 public:
-    AsemanSettings(QObject *parent = 0);
+    AsemanSettings(QObject *parent = Q_NULLPTR);
     virtual ~AsemanSettings();
 
     void setCategory(const QString &category);

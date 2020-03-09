@@ -59,7 +59,7 @@ public:
         KeyRole
     };
 
-    AsemanCountriesModel(QObject *parent = 0);
+    AsemanCountriesModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCountriesModel();
 
 #ifndef ASEMAN_OXYGEN_SKIP

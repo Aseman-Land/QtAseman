@@ -35,7 +35,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanTaskbarButton : public QObject
     Q_PROPERTY(QWindow* window      READ window      WRITE setWindow      NOTIFY windowChanged     )
 
 public:
-    AsemanTaskbarButton(QObject *parent = 0);
+    AsemanTaskbarButton(QObject *parent = Q_NULLPTR);
     virtual ~AsemanTaskbarButton();
 
     void setBadgeNumber(int num);

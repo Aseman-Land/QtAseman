@@ -47,7 +47,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickObject : public QObject
     Q_CLASSINFO("DefaultProperty", "items")
 
 public:
-    Q_INVOKABLE explicit AsemanQuickObject(QObject *parent = 0);
+    Q_INVOKABLE explicit AsemanQuickObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanQuickObject();
 
     QQmlListProperty<QObject> items();

@@ -38,7 +38,7 @@ public:
         RolesModelName
     };
 
-    AsemanMixedListModel(QObject *parent = 0);
+    AsemanMixedListModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanMixedListModel();
 
     int rowCount(const QModelIndex & parent = QModelIndex()) const;

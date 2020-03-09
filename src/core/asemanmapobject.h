@@ -31,7 +31,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanMapObject : public QObject
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
-    AsemanMapObject(QObject *parent = 0);
+    AsemanMapObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanMapObject();
 
     Q_INVOKABLE void insert(const QString & key, const QVariant & value );

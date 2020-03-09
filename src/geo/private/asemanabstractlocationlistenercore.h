@@ -28,7 +28,7 @@ class LIBQTASEMAN_GEO_EXPORT AsemanAbstractLocationListenerCore : public QObject
 {
     Q_OBJECT
 public:
-    AsemanAbstractLocationListenerCore(QObject *parent = 0);
+    AsemanAbstractLocationListenerCore(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAbstractLocationListenerCore();
 
     virtual void requestLocationUpdates(int interval) = 0;

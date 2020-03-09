@@ -42,7 +42,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanCalendarConverter : public QObject
     Q_PROPERTY(int         currentDay   READ currentDay   NOTIFY fakeSignal)
 
 public:
-    AsemanCalendarConverter(QObject *parent = 0);
+    AsemanCalendarConverter(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCalendarConverter();
 
     void setCalendar( int t );

@@ -31,7 +31,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanHashObject : public QObject
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
-    AsemanHashObject(QObject *parent = 0);
+    AsemanHashObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanHashObject();
 
 public Q_SLOTS:

@@ -33,7 +33,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanItemGrabber : public QObject
     Q_PROPERTY(QString fileName READ fileName WRITE setFileName NOTIFY fileNameChanged)
 
 public:
-    AsemanItemGrabber(QObject *parent = 0);
+    AsemanItemGrabber(QObject *parent = Q_NULLPTR);
     virtual ~AsemanItemGrabber();
 
     void setItem(QQuickItem *item);

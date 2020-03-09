@@ -62,7 +62,7 @@ public:
         CalendarHijri = AsemanCalendarConverterCore::Hijri
     };
 
-    AsemanCalendarModel(QObject *parent = 0);
+    AsemanCalendarModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCalendarModel();
 
     QList<int> years() const;
