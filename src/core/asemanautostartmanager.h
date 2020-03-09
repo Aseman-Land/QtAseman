@@ -36,7 +36,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanAutoStartManager : public QObject
     Q_PROPERTY(bool    active  READ active  WRITE setActive  NOTIFY activeChanged )
 
 public:
-    AsemanAutoStartManager(QObject *parent = 0);
+    AsemanAutoStartManager(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAutoStartManager();
 
     void setCommand(const QString &cmd);

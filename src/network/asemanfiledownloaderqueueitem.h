@@ -35,7 +35,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanFileDownloaderQueueItem : public QObject
     Q_PROPERTY(QString result READ result NOTIFY resultChanged)
 
 public:
-    AsemanFileDownloaderQueueItem(QObject *parent = 0);
+    AsemanFileDownloaderQueueItem(QObject *parent = Q_NULLPTR);
     virtual ~AsemanFileDownloaderQueueItem();
 
     void setSource(const QString &url);

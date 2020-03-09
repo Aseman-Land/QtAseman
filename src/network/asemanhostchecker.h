@@ -35,7 +35,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanHostChecker : public QObject
     Q_PROPERTY(bool available READ available NOTIFY availableChanged)
 
 public:
-    AsemanHostChecker(QObject *parent = 0);
+    AsemanHostChecker(QObject *parent = Q_NULLPTR);
     virtual ~AsemanHostChecker();
 
     void setHost(const QString &host);

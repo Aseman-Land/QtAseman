@@ -33,7 +33,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanLinuxNativeNotification : public QObject
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
 
 public:
-    AsemanLinuxNativeNotification(QObject *parent = 0);
+    AsemanLinuxNativeNotification(QObject *parent = Q_NULLPTR);
     virtual ~AsemanLinuxNativeNotification();
 
     void setColor(const QColor &color);

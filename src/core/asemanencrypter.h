@@ -29,7 +29,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanEncrypter : public QObject
     Q_PROPERTY(QString key READ key WRITE setKey NOTIFY keyChanged)
 
 public:
-    AsemanEncrypter(QObject *parent = 0): QObject(parent){}
+    AsemanEncrypter(QObject *parent = Q_NULLPTR): QObject(parent){}
     virtual ~AsemanEncrypter(){}
 
     void setKey(const QString &key);

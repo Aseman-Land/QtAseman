@@ -64,7 +64,7 @@ public:
         FinalizingStatus = QMediaRecorder::FinalizingStatus
     };
 
-    AsemanAudioRecorder(QObject *parent = 0);
+    AsemanAudioRecorder(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAudioRecorder();
 
     AsemanAudioEncoderSettings *encoderSettings() const;

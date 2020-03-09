@@ -41,7 +41,7 @@ public:
         MoreSaturation
     };
 
-    AsemanImageColorAnalizor(QObject *parent = 0);
+    AsemanImageColorAnalizor(QObject *parent = Q_NULLPTR);
     virtual ~AsemanImageColorAnalizor();
 
     QUrl source() const;
@@ -74,7 +74,7 @@ class AsemanImageColorAnalizorThread : public QObject
 {
     Q_OBJECT
 public:
-    AsemanImageColorAnalizorThread(QObject *parent = 0);
+    AsemanImageColorAnalizorThread(QObject *parent = Q_NULLPTR);
     virtual ~AsemanImageColorAnalizorThread();
 
     const QHash<int, QHash<QString, QColor> > &results() const;
@@ -103,7 +103,7 @@ class AsemanImageColorAnalizorCore : public QObject
 {
     Q_OBJECT
 public:
-    AsemanImageColorAnalizorCore(QObject *parent = 0);
+    AsemanImageColorAnalizorCore(QObject *parent = Q_NULLPTR);
     virtual ~AsemanImageColorAnalizorCore();
 
 public Q_SLOTS:

@@ -28,7 +28,7 @@ class LIBQTASEMAN_MULTIMEDIA_EXPORT AsemanAbstractCameraCaptureCore : public QOb
 {
     Q_OBJECT
 public:
-    AsemanAbstractCameraCaptureCore(QObject *parent = 0);
+    AsemanAbstractCameraCaptureCore(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAbstractCameraCaptureCore();
 
     virtual int capture(const QString &dest, AsemanCameraCapture::CameraFace face) = 0;

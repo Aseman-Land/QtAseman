@@ -28,7 +28,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanTextTools : public QObject
 {
     Q_OBJECT
 public:
-    AsemanTextTools(QObject *parent = 0);
+    AsemanTextTools(QObject *parent = Q_NULLPTR);
     virtual ~AsemanTextTools();
 
 public Q_SLOTS:

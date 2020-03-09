@@ -34,7 +34,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanFontHandler : public QObject
     Q_PROPERTY(QVariantMap fonts READ fonts WRITE setFonts NOTIFY fontsChanged)
 
 public:
-    AsemanFontHandler(QObject *parent = 0);
+    AsemanFontHandler(QObject *parent = Q_NULLPTR);
     virtual ~AsemanFontHandler();
 
     QVariantMap fonts();

@@ -29,7 +29,7 @@ class LIBQTASEMAN_GEO_EXPORT AsemanAndroidLocationListenerCore : public AsemanAb
 {
     Q_OBJECT
 public:
-    AsemanAndroidLocationListenerCore(QObject *parent = 0);
+    AsemanAndroidLocationListenerCore(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAndroidLocationListenerCore();
 
     void requestLocationUpdates(int interval);

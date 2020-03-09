@@ -105,7 +105,7 @@ class LIBQTASEMAN_CORE_EXPORT JalaliCalendarObject : public QObject
 {
     Q_OBJECT
 public:
-    JalaliCalendarObject(QObject *parent = 0): QObject(parent){}
+    JalaliCalendarObject(QObject *parent = Q_NULLPTR): QObject(parent){}
 };
 
 #endif // ASEMANCALENDARCONVERTERCORE_H

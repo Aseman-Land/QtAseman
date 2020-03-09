@@ -33,7 +33,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanFileDownloaderQueue : public QObject
     Q_PROPERTY(QString destination READ destination WRITE setDestination NOTIFY destinationChanged)
 
 public:
-    AsemanFileDownloaderQueue(QObject *parent = 0);
+    AsemanFileDownloaderQueue(QObject *parent = Q_NULLPTR);
     virtual ~AsemanFileDownloaderQueue();
 
     void setCapacity(int cap);

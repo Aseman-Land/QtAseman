@@ -28,7 +28,7 @@ class LIBQTASEMAN_MULTIMEDIA_EXPORT AsemanAndroidCameraCaptureCore : public Asem
 {
     Q_OBJECT
 public:
-    AsemanAndroidCameraCaptureCore(QObject *parent = 0);
+    AsemanAndroidCameraCaptureCore(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAndroidCameraCaptureCore();
 
     int capture(const QString &dest, AsemanCameraCapture::CameraFace face);
