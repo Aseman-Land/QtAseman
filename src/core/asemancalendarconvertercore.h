@@ -33,6 +33,7 @@ public:
     int month;
     qint64 year;
     int day_of_week;
+    bool leap;
 
     bool operator ==(const DateProperty &b) const {
         return b.day == day &&
