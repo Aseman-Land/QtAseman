@@ -324,9 +324,6 @@ qint64 AsemanCalendarConverterCore::fromDateGregorian( qint64 year , int month ,
 
     qint16 month_days = (leap)? aseman_gregorian_leap_months_start[month] : aseman_gregorian_months_start[month];
     qint64 abs_days   = year_days + month_days + day;
-    if (leap && month<=1)
-        abs_days--;
-    else
     if( year < 0 && !leap )
         abs_days--;
 
