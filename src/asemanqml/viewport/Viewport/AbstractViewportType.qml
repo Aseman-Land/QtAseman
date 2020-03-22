@@ -23,14 +23,14 @@ Item {
         else
             BackHandler.removeHandler(this)
     }
-    onRatioChanged: if (ratio == 0 && !open) item.destroy()
+    onRatioChanged: if (ratio == 0 && !open) { childItem.destroy(); item.destroy();}
 
     RoundedItem {
         id: background
         width: parent.width
         height: parent.height
 
-        Item {
+        Rectangle {
             id: backgroundScene
             anchors.fill: parent
         }
@@ -41,7 +41,7 @@ Item {
         width: parent.width
         height: parent.height
 
-        Item {
+        Rectangle {
             id: foregroundScene
             anchors.fill: parent
         }
