@@ -7,6 +7,6 @@ AbstractViewportType {
     foreground.opacity: ratio
 
     Behavior on ratio {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 250 }
     }
 }

@@ -12,6 +12,7 @@ AbstractViewportType {
     foreground.anchors.centerIn: foreground.parent
     foreground.z: 10
     foreground.radius: Devices.isAndroid? 0 : 10 * Devices.density
+    foregroundScene.color: "transparent"
 
     Behavior on ratio {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 250 }

@@ -8,11 +8,13 @@ AbstractViewportType {
 
     background.transformOrigin: index < 2? Item.Center : Item.Top
     background.scale: 1 - (ratio * topPadSize / height)
-    background.radius: Devices.isAndroid? 0 : 10 * Devices.density
+    background.radius: 10 * Devices.density
 
-    foreground.y: height * (1-ratio) + (height - foreground.height)
-    foreground.height: item.height - (item.index * topPadSize )
-    foreground.radius: Devices.isAndroid? 0 : 10 * Devices.density
+    foreground.y: height * (1-ratio) + (height - foreground.height + foreground.radius)
+    foreground.height: item.height - (item.index * topPadSize ) + foreground.radius
+    foreground.radius: 10 * Devices.density
+    foreground.z: 10
+    foregroundScene.anchors.bottomMargin: foreground.radius
 
     readonly property real topPadSize: 25 * Devices.density
     property real openRatio: open? 1 : 0
@@ -49,7 +51,6 @@ AbstractViewportType {
 
         MouseArea {
             anchors.fill: parent
-            rotation: layoutDirection==Qt.LeftToRight? 0 : 180
             onMouseYChanged: {
                 var ratio = 1 - ((mouseY - pinY) / item.foreground.height);
                 if (ratio < 0.01)

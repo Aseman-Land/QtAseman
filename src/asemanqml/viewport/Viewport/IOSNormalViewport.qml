@@ -21,7 +21,7 @@ AbstractViewportType {
         anchors.fill: parent
         z: 100
         color: "#000"
-        opacity: item.ratio * 0.3
+        opacity: item.ratio * 0.4
     }
 
     NumberAnimation {
@@ -34,12 +34,12 @@ AbstractViewportType {
 
     Item {
         anchors.fill: parent
+        rotation: layoutDirection==Qt.LeftToRight? 0 : 180
 
         MouseArea {
             width: 20 * Devices.density
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            rotation: layoutDirection==Qt.LeftToRight? 0 : 180
             onMouseXChanged: {
                 var ratio = 1 - ((mouseX - pinX) / item.foreground.width);
                 if (ratio < 0.01)
