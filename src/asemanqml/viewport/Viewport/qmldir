@@ -9,3 +9,4 @@ IOSDialogViewport 2.0 IOSDialogViewport.qml
 IOSNormalViewport 2.0 IOSNormalViewport.qml
 IOSPopupViewport 2.0 IOSPopupViewport.qml
 Viewport 2.0 Viewport.qml
+ViewportPage 2.0 ViewportPage.qml

@@ -7,7 +7,9 @@ AbstractViewportType {
     background.scale: 1 - (ratio * 0.05)
     background.transformOrigin: Item.Bottom
 
+    foreground.z: 10
     foreground.y: height * (1-ratio)
+    foregroundScene.anchors.topMargin: -Devices.statusBarHeight
 
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1

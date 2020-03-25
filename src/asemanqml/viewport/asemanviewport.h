@@ -1,0 +1,63 @@
+/*
+    Copyright (C) 2019 Aseman Team
+    http://aseman.io
+
+    This project is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This project is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef ASEMANVIEWPORT_H
+#define ASEMANVIEWPORT_H
+
+#include <QObject>
+#include <QQuickItem>
+
+#include "asemanviewportitem.h"
+
+class AsemanViewport : public QQuickItem
+{
+    Q_OBJECT
+    class Private;
+    Q_PROPERTY(QQmlListProperty<AsemanViewportItem> items READ items NOTIFY itemsChanged)
+    Q_PROPERTY(QStringList keys READ keys NOTIFY itemsChanged)
+
+public:
+    AsemanViewport(QQuickItem *parent = Q_NULLPTR);
+    virtual ~AsemanViewport();
+
+    QQmlListProperty<AsemanViewportItem> items();
+    QList<AsemanViewportItem*> itemsList() const;
+    QStringList keys() const;
+
+public Q_SLOTS:
+    QVariant getComponent(const QString &name);
+
+Q_SIGNALS:
+    void itemsChanged();
+    void viewportChanged();
+
+private:
+    static void append(QQmlListProperty<AsemanViewportItem> *p, AsemanViewportItem *v);
+    static int count(QQmlListProperty<AsemanViewportItem> *p);
+    static AsemanViewportItem *at(QQmlListProperty<AsemanViewportItem> *p, int idx);
+    static void clear(QQmlListProperty<AsemanViewportItem> *p);
+
+private:
+    Private *p;
+};
+
+Q_DECLARE_METATYPE(AsemanViewport*)
+
+typedef AsemanViewport QAsemanViewport;
+
+#endif // ASEMANVIEWPORT_H

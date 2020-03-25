@@ -18,6 +18,11 @@
 
 #include "asemanqttoolsitemviewport.h"
 
+#include <asemanviewport.h>
+#include <asemanviewportcontroller.h>
+#include <asemanviewportcontrollerroute.h>
+#include <asemanviewportitem.h>
+
 #include <qqml.h>
 #include <QHash>
 #include <QSet>
@@ -31,8 +36,13 @@ static QString aseman_qt_tools_destination;
 void AsemanQtToolsItemViewport::registerTypes(const char *uri, bool exportMode)
 {
     static QSet<QByteArray> register_list;
-    if(register_list.contains(uri) && !exportMode)
+    if (register_list.contains(uri) && !exportMode)
         return;
+
+    registerType<AsemanViewport>(uri, 2, 0, "ViewportCore", exportMode);
+    registerType<AsemanViewportItem>(uri, 2, 0, "ViewportItem", exportMode);
+    registerType<AsemanViewportController>(uri, 2, 0, "ViewportController", exportMode);
+    registerType<AsemanViewportControllerRoute>(uri, 2, 0, "ViewportControllerRoute", exportMode);
 
     register_list.insert(uri);
 }

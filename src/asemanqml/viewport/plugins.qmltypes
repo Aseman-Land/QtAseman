@@ -30,22 +30,77 @@ Module {
         "QtQuick.Window 2.2"
     ]
     Component {
+        name: "AsemanViewport"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["AsemanQml.Viewport/ViewportCore 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "items"; type: "AsemanViewportItem"; isList: true; isReadonly: true }
+        Property { name: "keys"; type: "QStringList"; isReadonly: true }
+        Signal { name: "viewportChanged" }
+        Method {
+            name: "getComponent"
+            type: "QVariant"
+            Parameter { name: "name"; type: "string" }
+        }
+    }
+    Component {
+        name: "AsemanViewportController"
+        defaultProperty: "routes"
+        prototype: "QObject"
+        exports: ["AsemanQml.Viewport/ViewportController 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "routes"; type: "AsemanViewportControllerRoute"; isList: true; isReadonly: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Method {
+            name: "trigger"
+            type: "QQuickItem*"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "properties"; type: "QVariantMap" }
+        }
+        Method {
+            name: "trigger"
+            type: "QQuickItem*"
+            Parameter { name: "url"; type: "string" }
+        }
+    }
+    Component {
+        name: "AsemanViewportControllerRoute"
+        prototype: "QObject"
+        exports: ["AsemanQml.Viewport/ViewportControllerRoute 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "route"; type: "QRegExp" }
+        Property { name: "component"; type: "QVariant" }
+        Property { name: "viewportType"; type: "string" }
+    }
+    Component {
+        name: "AsemanViewportItem"
+        prototype: "QObject"
+        exports: ["AsemanQml.Viewport/ViewportItem 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "name"; type: "string" }
+        Property { name: "component"; type: "QVariant" }
+    }
+    Component {
         prototype: "QQuickItem"
         name: "AsemanQml.Viewport/AbstractViewportType 2.0"
         exports: ["AsemanQml.Viewport/AbstractViewportType 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -54,16 +109,21 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "openRatio"; type: "double" }
+        Property { name: "mouseRatio"; type: "double" }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -72,16 +132,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -90,16 +153,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -108,16 +174,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -126,16 +195,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -144,16 +216,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -164,16 +239,19 @@ Module {
         defaultProperty: "data"
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -185,16 +263,19 @@ Module {
         Property { name: "topPadSize"; type: "double"; isReadonly: true }
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "childItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "backgroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
-        Property { name: "foregroundScene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -206,45 +287,21 @@ Module {
         Property { name: "androidStyle"; type: "bool" }
         Property { name: "layoutDirection"; type: "int" }
         Property { name: "mainItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "androidActivity"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "androidBottomDrawer"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "androidDefaultPages"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "androidDialog"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "iosBottomDrawer"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "iosDialog"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "iosNormal"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "iosPopup"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
         Method {
-            name: "appendCustom"
+            name: "append"
             type: "QVariant"
             Parameter { name: "component"; type: "QVariant" }
             Parameter { name: "properties"; type: "QVariant" }
             Parameter { name: "type"; type: "QVariant" }
         }
-        Method {
-            name: "appendPage"
-            type: "QVariant"
-            Parameter { name: "component"; type: "QVariant" }
-            Parameter { name: "properties"; type: "QVariant" }
-        }
-        Method {
-            name: "appendPopup"
-            type: "QVariant"
-            Parameter { name: "component"; type: "QVariant" }
-            Parameter { name: "properties"; type: "QVariant" }
-        }
-        Method {
-            name: "appendDialog"
-            type: "QVariant"
-            Parameter { name: "component"; type: "QVariant" }
-            Parameter { name: "properties"; type: "QVariant" }
-        }
-        Method {
-            name: "appendBottomDrawer"
-            type: "QVariant"
-            Parameter { name: "component"; type: "QVariant" }
-            Parameter { name: "properties"; type: "QVariant" }
-        }
         Method { name: "closeLast"; type: "QVariant" }
+        Property { name: "items"; type: "AsemanViewportItem"; isList: true; isReadonly: true }
+        Property { name: "keys"; type: "QStringList"; isReadonly: true }
+        Signal { name: "viewportChanged" }
+        Method {
+            name: "getComponent"
+            type: "QVariant"
+            Parameter { name: "name"; type: "string" }
+        }
     }
 }

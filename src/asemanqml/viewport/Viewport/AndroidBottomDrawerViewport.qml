@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 AbstractViewportType {
     id: item
 
-    foreground.height: childItem? childItem.height : item.height
+    foreground.height: foregroundItem? foregroundItem.height : item.height
     foreground.y: height - foreground.height * ratio
     foreground.z: 10
 
