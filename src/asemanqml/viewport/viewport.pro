@@ -7,11 +7,19 @@ QT += core gui network asemanqml asemangui asemancore
 
 HEADERS += \
     $$PWD/asemanviewportplugin.h \
-    $$PWD/asemanqttoolsitemviewport.h
+    $$PWD/asemanqttoolsitemviewport.h \
+    $$PWD/asemanviewport.h \
+    $$PWD/asemanviewportcontroller.h \
+    $$PWD/asemanviewportcontrollerroute.h \
+    $$PWD/asemanviewportitem.h
 
 SOURCES += \
     $$PWD/asemanviewportplugin.cpp \
-    $$PWD/asemanqttoolsitemviewport.cpp
+    $$PWD/asemanqttoolsitemviewport.cpp \
+    $$PWD/asemanviewport.cpp \
+    $$PWD/asemanviewportcontroller.cpp \
+    $$PWD/asemanviewportcontrollerroute.cpp \
+    $$PWD/asemanviewportitem.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 

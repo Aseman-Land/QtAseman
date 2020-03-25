@@ -1,7 +1,8 @@
 import QtQuick 2.0
 import AsemanQml.Base 2.0
+import AsemanQml.Viewport 2.0
 
-Item {
+ViewportCore {
 
     property bool androidStyle: Devices.isAndroid
     property int layoutDirection: View.layoutDirection
@@ -14,9 +15,9 @@ Item {
         mainItem.parent = scene;
     }
 
-    ListObject {
-        id: list
-    }
+    ListObject { id: list }
+    HashObject { id: viewportsHash }
+    HashObject { id: componentsHash }
 
     Item {
         id: scene
@@ -24,9 +25,22 @@ Item {
         clip: true
     }
 
-    function appendCustom(component, properties, type) {
+    function append(component, properties, type) {
+        var cmp = getComponent(type);
+        var comObj;
+        if (cmp.length) {
+            if (!viewportsHash.contains(cmp)) {
+                comObj = Qt.createComponent(cmp);
+                viewportsHash.insert(cmp, comObj);
+            } else {
+                comObj = viewportsHash.value(cmp)
+            }
+        } else {
+            comObj = cmp
+        }
+
         var lastItem = (list.count? list.last() : mainItem );
-        var typeObj = type.createObject(scene);
+        var typeObj = comObj.createObject(scene);
         typeObj.layoutDirection = Qt.binding( function(){ return layoutDirection } )
         typeObj.open = true;
         typeObj.index = Qt.binding( function() { return list.count? list.indexOf(typeObj) + 1 : 0 } )
@@ -41,17 +55,23 @@ Item {
 
         lastItem.parent = typeObj.backgroundScene;
 
+        if (component.length) {
+            var key = component
+            if (componentsHash.contains(key))
+                component = componentsHash.value(key)
+            else {
+                component = Qt.createComponent(key)
+                componentsHash.insert(key, component)
+            }
+        }
+
         var obj = properties? component.createObject(typeObj.foregroundScene, properties) : component.createObject(typeObj.foregroundScene);
         list.append(typeObj);
 
-        typeObj.childItem = obj
+        typeObj.foregroundItem = obj
+        typeObj.backgroundItem = lastItem
         return obj
     }
-
-    function appendPage(component, properties) { return appendCustom(component, properties, androidStyle? androidDefaultPages : iosNormal ) }
-    function appendPopup(component, properties) { return appendCustom(component, properties, androidStyle? androidActivity : iosPopup ) }
-    function appendDialog(component, properties) { return appendCustom(component, properties, androidStyle? androidDialog : iosDialog ) }
-    function appendBottomDrawer(component, properties) { return appendCustom(component, properties, androidStyle? androidBottomDrawer : iosBottomDrawer ) }
 
     function closeLast() {
         if (list.count === 0)
@@ -59,24 +79,4 @@ Item {
 
         list.last().open = false;
     }
-
-    property alias androidActivity: androidActivity
-    property alias androidBottomDrawer: androidBottomDrawer
-    property alias androidDefaultPages: androidDefaultPages
-    property alias androidDialog: androidDialog
-
-    Component { id: androidActivity; AndroidActivityViewport {} }
-    Component { id: androidBottomDrawer; AndroidBottomDrawerViewport {} }
-    Component { id: androidDefaultPages; AndroidDefaultPagesViewport {} }
-    Component { id: androidDialog; AndroidDialogViewport {} }
-
-    property alias iosBottomDrawer: iosBottomDrawer
-    property alias iosDialog: iosDialog
-    property alias iosNormal: iosNormal
-    property alias iosPopup: iosPopup
-
-    Component { id: iosBottomDrawer; IOSBottomDrawerViewport {} }
-    Component { id: iosDialog; IOSDialogViewport {} }
-    Component { id: iosNormal; IOSNormalViewport {} }
-    Component { id: iosPopup; IOSPopupViewport {} }
 }

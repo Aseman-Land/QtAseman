@@ -5,8 +5,8 @@ import AsemanQml.Base 2.0
 AbstractViewportType {
     id: item
 
-    foreground.height: childItem? childItem.height : item.height
-    foreground.width: childItem? childItem.width : item.width
+    foreground.height: foregroundItem? foregroundItem.height : item.height
+    foreground.width: foregroundItem? foregroundItem.width : item.width
     foreground.scale: 0.8 + ratio * 0.2
     foreground.opacity: ratio
     foreground.anchors.centerIn: foreground.parent

@@ -5,7 +5,12 @@ Item {
     id: item
     anchors.fill: parent
 
-    property Item childItem
+    property Item foregroundItem
+    property Item backgroundItem
+
+    readonly property Item headerItem: foregroundItem && foregroundItem.header? foregroundItem.header : null
+    readonly property string title: foregroundItem && foregroundItem.title? foregroundItem.title : ""
+
     property int index
     property int count
     property int layoutDirection: View.layoutDirection
@@ -23,7 +28,7 @@ Item {
         else
             BackHandler.removeHandler(this)
     }
-    onRatioChanged: if (ratio == 0 && !open) { childItem.destroy(); item.destroy();}
+    onRatioChanged: if (ratio == 0 && !open) { foregroundItem.destroy(); item.destroy();}
 
     RoundedItem {
         id: background
