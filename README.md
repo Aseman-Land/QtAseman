@@ -344,6 +344,7 @@ ViewportController {
 
     ViewportControllerRoute {
         route: /about:\/\/aseman\/.*/
+        // You can also set component's file path to the component property.
         component: aboutComponent
         viewportType: "page" 
     }
@@ -358,8 +359,8 @@ Component {
             text: "About"
             anchors.centerIn: parent
             /*
-             * You can also pass properties to object with js map
-             * or with html query way (about://aseman/test?text=about&color=blue)
+             * You can also pass properties to object using js map
+             * or using html query way (about://aseman/test?text=about&color=blue)
              */
             onClicked: controller.trigger("about://aseman/test", {"text": "about"})
         }
