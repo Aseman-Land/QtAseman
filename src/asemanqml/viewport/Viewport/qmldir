@@ -1,0 +1,12 @@
+module AsemanQml.Viewport
+AbstractViewportType 2.0 AbstractViewportType.qml
+AndroidActivityViewport 2.0 AndroidActivityViewport.qml
+AndroidBottomDrawerViewport 2.0 AndroidBottomDrawerViewport.qml
+AndroidDefaultPagesViewport 2.0 AndroidDefaultPagesViewport.qml
+AndroidDialogViewport 2.0 AndroidDialogViewport.qml
+IOSBottomDrawerViewport 2.0 IOSBottomDrawerViewport.qml
+IOSDialogViewport 2.0 IOSDialogViewport.qml
+IOSNormalViewport 2.0 IOSNormalViewport.qml
+IOSPopupViewport 2.0 IOSPopupViewport.qml
+Viewport 2.0 Viewport.qml
+ViewportPage 2.0 ViewportPage.qml

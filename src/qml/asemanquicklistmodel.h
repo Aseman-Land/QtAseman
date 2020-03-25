@@ -54,4 +54,6 @@ private:
     Private *p;
 };
 
+typedef AsemanQuickListModel QAsemanQuickListModel;
+
 #endif // ASEMANQUICKLISTMODEL_H

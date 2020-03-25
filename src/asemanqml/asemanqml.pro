@@ -8,4 +8,5 @@ SUBDIRS += \
     widgets \
     modern \
     controls \
-    network
+    network \
+    viewport

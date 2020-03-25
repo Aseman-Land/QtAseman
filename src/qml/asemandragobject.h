@@ -41,7 +41,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanDragObject : public QObject
     Q_PROPERTY(bool dragging READ dragging NOTIFY draggingChanged)
 
 public:
-    AsemanDragObject(QObject *parent = 0);
+    AsemanDragObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDragObject();
 
     void setMimeData(AsemanMimeData *mime);
@@ -79,5 +79,7 @@ Q_SIGNALS:
 private:
     AsemanDragObjectPrivate *p;
 };
+
+typedef AsemanDragObject QAsemanDragObject;
 
 #endif // ASEMANDRAGOBJECT_H

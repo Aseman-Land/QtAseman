@@ -28,7 +28,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanAbstractListModel : public QAbstractListMode
 {
     Q_OBJECT
 public:
-    AsemanAbstractListModel(QObject *parent = 0);
+    AsemanAbstractListModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAbstractListModel();
 
     Q_INVOKABLE QStringList roles() const;
@@ -38,5 +38,7 @@ public Q_SLOTS:
     QVariant get(int index, const QString &roleName) const;
     QVariantMap get(int index) const;
 };
+
+typedef AsemanAbstractListModel QAsemanAbstractListModel;
 
 #endif // ASEMANABSTRACTLISTMODEL_H

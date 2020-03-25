@@ -61,4 +61,6 @@ private:
     Private *p;
 };
 
+typedef AsemanNetworkProxy QAsemanNetworkProxy;
+
 #endif // ASEMANNETWORKPROXY_H

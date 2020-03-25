@@ -63,4 +63,6 @@ private:
     QByteArray strToRecord( const QByteArray & str );
 };
 
+typedef AsemanListRecord QAsemanListRecord;
+
 #endif // ASEMANLISTRECORD_H

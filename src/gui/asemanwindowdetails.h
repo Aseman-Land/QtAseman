@@ -33,7 +33,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanWindowDetails : public QObject
     Q_PROPERTY(QScreen* screen READ screen NOTIFY screenChanged)
 
 public:
-    AsemanWindowDetails(QObject *parent = 0);
+    AsemanWindowDetails(QObject *parent = Q_NULLPTR);
     virtual ~AsemanWindowDetails();
 
     QWindow *window() const;
@@ -48,5 +48,7 @@ Q_SIGNALS:
 private:
     AsemanWindowDetailsPrivate *p;
 };
+
+typedef AsemanWindowDetails QAsemanWindowDetails;
 
 #endif // ASEMANWINDOWDETAILS_H

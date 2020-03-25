@@ -16,6 +16,34 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*!
+    \class AsemanCountriesModel
+    \brief The AsemanCountriesModel class provides a data model for the world countries
+    and their details like phone-codes, languages and ...
+
+    \reentrant
+    \ingroup AsemanCore
+ */
+
+/*!
+    \fn AsemanCountriesModel::countChanged
+    This signal emits when count of the model changed.
+    \sa count
+ */
+
+/*!
+    \fn AsemanCountriesModel::filterChanged
+    This signal emits when current filter changed.
+    \sa setFilter
+    \sa filter
+ */
+
+/*!
+    \fn AsemanCountriesModel::systemCountryChanged
+    This signal emits when systemCountry changed.
+    \sa systemCountry
+ */
+
 #include "asemancountriesmodel.h"
 
 #include <QFile>
@@ -25,6 +53,9 @@
 #include <QTimeZone>
 #include <QDebug>
 
+/*!
+    \private
+ */
 class AsemanCountriesModelPrivate
 {
 public:
@@ -182,16 +213,36 @@ QHash<qint32, QByteArray> AsemanCountriesModel::roleNames() const
     return *res;
 }
 
+
+/*!
+    Returns count of items exists in the model.
+    \returns count of items exists in the model.
+    \sa indexOf
+ */
 int AsemanCountriesModel::count() const
 {
     return p->list.count();
 }
 
+
+/*!
+    Returns index number assigned to the \a name country.
+    \return index number assigned to the \a name country.
+    \param name Country name
+    \sa count
+ */
 int AsemanCountriesModel::indexOf(const QString &name)
 {
     return p->list.indexOf(name.toLower());
 }
 
+
+/*!
+    Sets filter to the model. It acted like search that filters all
+    countries that hasn't \a filter in their names.
+    \param filter Set it as current filter.
+    \sa filter
+ */
 void AsemanCountriesModel::setFilter(const QString &filter)
 {
     if(p->filter == filter)
@@ -212,11 +263,24 @@ void AsemanCountriesModel::setFilter(const QString &filter)
     Q_EMIT filterChanged();
 }
 
+
+/*!
+    Returns current filter.
+    \return current filter.
+    \sa setFilter
+ */
 QString AsemanCountriesModel::filter() const
 {
     return p->filter;
 }
 
+
+/*!
+    Returns country of the current machine based on the
+    operating system locale settings.
+    \return Country name
+    \sa setFilter
+ */
 QString AsemanCountriesModel::systemCountry() const
 {
     return p->systemCountry;

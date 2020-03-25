@@ -24,11 +24,14 @@
 #include "asemancore_global.h"
 
 class AsemanDebugObjectCounterPrivate;
+/*!
+    \private
+ */
 class LIBQTASEMAN_CORE_EXPORT AsemanDebugObjectCounter : public QObject
 {
     Q_OBJECT
 public:
-    AsemanDebugObjectCounter(QObject *parent = 0);
+    AsemanDebugObjectCounter(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDebugObjectCounter();
 
 public Q_SLOTS:
@@ -43,5 +46,7 @@ private:
 private:
     AsemanDebugObjectCounterPrivate *p;
 };
+
+typedef AsemanDebugObjectCounter QAsemanDebugObjectCounter;
 
 #endif // ASEMANDEBUGOBJECTCOUNTER_H

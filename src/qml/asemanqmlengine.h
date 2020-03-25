@@ -28,7 +28,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanQmlEngine : public QQmlApplicationEngine
 {
     Q_OBJECT
 public:
-    AsemanQmlEngine(QObject *parent = 0);
+    AsemanQmlEngine(QObject *parent = Q_NULLPTR);
     virtual ~AsemanQmlEngine();
 
 Q_SIGNALS:
@@ -38,5 +38,7 @@ public Q_SLOTS:
 private:
     AsemanQmlEnginePrivate *p;
 };
+
+typedef AsemanQmlEngine QAsemanQmlEngine;
 
 #endif // ASEMANQMLENGINE_H

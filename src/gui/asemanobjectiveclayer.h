@@ -10,4 +10,6 @@ public:
     static qreal statusBarHeight();
 };
 
+typedef AsemanObjectiveCLayer QAsemanObjectiveCLayer;
+
 #endif // ASEMANOBJECTIVECLAYER_H

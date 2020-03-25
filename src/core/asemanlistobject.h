@@ -32,7 +32,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanListObject : public QObject
 
     Q_OBJECT
 public:
-    AsemanListObject(QObject *parent = 0);
+    AsemanListObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanListObject();
 
 public Q_SLOTS:
@@ -73,5 +73,7 @@ Q_SIGNALS:
 private:
     AsemanListObjectPrivate *p;
 };
+
+typedef AsemanListObject QAsemanListObject;
 
 #endif // ASEMANLISTOBJECT_H

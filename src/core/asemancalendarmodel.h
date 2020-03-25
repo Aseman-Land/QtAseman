@@ -28,6 +28,9 @@
 #include "asemancore_global.h"
 
 class AsemanCalendarModelPrivate;
+/*!
+    \private
+ */
 class LIBQTASEMAN_CORE_EXPORT AsemanCalendarModel : public QObject
 {
     Q_OBJECT
@@ -59,7 +62,7 @@ public:
         CalendarHijri = AsemanCalendarConverterCore::Hijri
     };
 
-    AsemanCalendarModel(QObject *parent = 0);
+    AsemanCalendarModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCalendarModel();
 
     QList<int> years() const;
@@ -115,5 +118,7 @@ private Q_SLOTS:
 private:
     AsemanCalendarModelPrivate *p;
 };
+
+typedef AsemanCalendarModel QAsemanCalendarModel;
 
 #endif // ASEMANCALENDARMODEL_H

@@ -3,7 +3,7 @@ load(qt_build_config)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-TARGET = QtAsemanWidgets
+TARGET = QAsemanWidgets
 QT = core gui asemancore asemangui
 !android: !ios: {
     QT += widgets
@@ -77,10 +77,4 @@ win {
         $$PWD/private/asemanwintaskbarbuttonengine.cpp
     HEADERS += \
         $$PWD/private/asemanwintaskbarbuttonengine.h
-}
-
-contains(DEFINES,ENABLE_KEYCHAIN) {
-    LIBS += -lqt5keychain
-    SOURCES += $$PWD/asemankeychain.cpp
-    HEADERS += $$PWD/asemankeychain.h
 }

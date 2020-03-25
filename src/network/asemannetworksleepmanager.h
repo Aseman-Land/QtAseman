@@ -35,7 +35,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkSleepManager : public QObject
     Q_PROPERTY(bool available READ available NOTIFY availableChanged)
 
 public:
-    AsemanNetworkSleepManager(QObject *parent = 0);
+    AsemanNetworkSleepManager(QObject *parent = Q_NULLPTR);
     virtual ~AsemanNetworkSleepManager();
 
     void setHost(const QString &host);
@@ -83,5 +83,7 @@ private:
 private:
     AsemanNetworkSleepManagerPrivate *p;
 };
+
+typedef AsemanNetworkSleepManager QAsemanNetworkSleepManager;
 
 #endif // ASEMANNETWORKSLEEPMANAGER_H

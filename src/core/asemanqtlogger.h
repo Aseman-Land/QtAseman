@@ -30,7 +30,7 @@ class LIBQTASEMAN_CORE_EXPORT AsemanQtLogger : public QObject
     Q_PROPERTY(QString path READ path NOTIFY pathChanged)
 
 public:
-    AsemanQtLogger(const QString & path, QObject *parent = 0);
+    AsemanQtLogger(const QString & path, QObject *parent = Q_NULLPTR);
     virtual ~AsemanQtLogger();
 
     virtual void logMsg(QtMsgType type , const QMessageLogContext &context, const QString &msg);
@@ -49,5 +49,7 @@ private Q_SLOTS:
 private:
     AsemanQtLoggerPrivate *p;
 };
+
+typedef AsemanQtLogger QAsemanQtLogger;
 
 #endif // ASEMANQTLOGGER_H

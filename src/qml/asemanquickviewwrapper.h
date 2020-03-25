@@ -45,7 +45,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickViewWrapper : public QObject
     Q_PROPERTY(QWindow* window READ window NOTIFY fakeSignal)
 
 public:
-    AsemanQuickViewWrapper(AsemanQuickView *view, QObject *parent = 0);
+    AsemanQuickViewWrapper(AsemanQuickView *view, QObject *parent = Q_NULLPTR);
     virtual ~AsemanQuickViewWrapper();
 
     void setReverseScroll(bool stt);
@@ -100,5 +100,7 @@ private Q_SLOTS:
 private:
     AsemanQuickView *mView;
 };
+
+typedef AsemanQuickViewWrapper QAsemanQuickViewWrapper;
 
 #endif // ASEMANQUICKVIEWWRAPPER_H

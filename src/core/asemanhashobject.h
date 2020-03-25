@@ -31,30 +31,29 @@ class LIBQTASEMAN_CORE_EXPORT AsemanHashObject : public QObject
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
-    AsemanHashObject(QObject *parent = 0);
+    AsemanHashObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanHashObject();
 
-    Q_INVOKABLE void insert(const QString & key, const QVariant & value );
-    Q_INVOKABLE void insertMulti(const QString & key, const QVariant & value );
-    Q_INVOKABLE void remove( const QString & key );
-    Q_INVOKABLE void remove( const QString & key, const QVariant & value );
+public Q_SLOTS:
+    void insert(const QString & key, const QVariant & value );
+    void insertMulti(const QString & key, const QVariant & value );
+    void remove( const QString & key );
+    void remove( const QString & key, const QVariant & value );
 
-    Q_INVOKABLE QVariant key( const QVariant & value );
-    Q_INVOKABLE QStringList keys( const QVariant & value );
-    Q_INVOKABLE QStringList uniqueKeys();
-    Q_INVOKABLE QStringList keys();
-    Q_INVOKABLE QVariant value( const QString & key );
-    Q_INVOKABLE QVariantList values( const QString & key );
+    QVariant key( const QVariant & value );
+    QStringList keys( const QVariant & value );
+    QStringList uniqueKeys();
+    QStringList keys();
+    QVariant value( const QString & key );
+    QVariantList values( const QString & key );
 
-    Q_INVOKABLE QVariant containt( const QString & key );
-    Q_INVOKABLE QVariant containt( const QString & key, const QVariant & value );
-    Q_INVOKABLE QVariant contains( const QString & key );
-    Q_INVOKABLE QVariant contains( const QString & key, const QVariant & value );
+    QVariant contains( const QString & key );
+    QVariant contains( const QString & key, const QVariant & value );
 
-    Q_INVOKABLE void clear();
-    Q_INVOKABLE int count();
+    void clear();
+    int count();
 
-    Q_INVOKABLE QVariantMap toMap() const;
+    QVariantMap toMap() const;
 
 Q_SIGNALS:
     void countChanged();
@@ -62,5 +61,7 @@ Q_SIGNALS:
 private:
     AsemanHashObjectPrivate *p;
 };
+
+typedef AsemanHashObject QAsemanHashObject;
 
 #endif // ASEMANHASHOBJECT_H

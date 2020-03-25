@@ -49,7 +49,7 @@ public:
         ActivateMiddleClick
     };
 
-    AsemanSystemTray(QObject *parent = 0);
+    AsemanSystemTray(QObject *parent = Q_NULLPTR);
     virtual ~AsemanSystemTray();
 
     void setVisible(bool visible);
@@ -95,5 +95,7 @@ protected:
 private:
     AsemanSystemTrayPrivate *p;
 };
+
+typedef AsemanSystemTray QAsemanSystemTray;
 
 #endif // ASEMANSYSTEMTRAY_H

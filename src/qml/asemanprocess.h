@@ -49,6 +49,8 @@ Q_SIGNALS:
     void commandChanged();
     void argumentsChanged();
     void runningChanged();
+    void standardOutput(const QString &output);
+    void errorOutput(const QString &output);
 
 public Q_SLOTS:
     void start();
@@ -57,5 +59,7 @@ public Q_SLOTS:
 private:
     Private *p;
 };
+
+typedef AsemanProcess QAsemanProcess;
 
 #endif // ASEMANPROCESS_H

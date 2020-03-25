@@ -34,7 +34,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanBackHandler : public QObject
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
-    AsemanBackHandler(QObject *parent = 0);
+    AsemanBackHandler(QObject *parent = Q_NULLPTR);
     virtual ~AsemanBackHandler();
 
     QObject *topHandlerObject() const;
@@ -67,5 +67,7 @@ private:
 private:
     AsemanBackHandlerPrivate *p;
 };
+
+typedef AsemanBackHandler QAsemanBackHandler;
 
 #endif // ASEMANBACKHANDLER_H

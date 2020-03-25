@@ -141,4 +141,6 @@ private:
     Private *p;
 };
 
+typedef AsemanNetworkRequestObject QAsemanNetworkRequestObject;
+
 #endif // ASEMANNETWORKREQUESTOBJECT_H

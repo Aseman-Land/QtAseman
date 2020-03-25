@@ -49,4 +49,6 @@ private:
     Private *p;
 };
 
+typedef AsemanKeyHandler QAsemanKeyHandler;
+
 #endif // ASEMANKEYHANDLER_H

@@ -19,6 +19,10 @@
 import QtQuick 2.9
 import AsemanQml.Base 2.0
 
+/*!
+    \brief Provides Page manager, that push items to it and then
+    pop them using closeLast() method or BackHandler.back() method.
+ */
 Item {
     id: pmanager
     clip: true
@@ -103,6 +107,12 @@ Item {
         property bool closed
     }
 
+    /*!
+        Append \a component Component with \a properties that is a map object,
+        \param type:Component component Component must append to the page manager
+        \param type:map properties Default properties of the component as a map
+        @return type:User Created Item from Component.
+     */
     function append(component, properties) {
         var last = list.lastItem()
         var iscene = item_component.createObject(pmanager)

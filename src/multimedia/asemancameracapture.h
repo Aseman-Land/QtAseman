@@ -33,7 +33,7 @@ public:
         CameraFacingBack
     };
 
-    AsemanCameraCapture(QObject *parent = 0);
+    AsemanCameraCapture(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCameraCapture();
 
 public Q_SLOTS:
@@ -45,5 +45,7 @@ Q_SIGNALS:
 private:
     AsemanCameraCapturePrivate *p;
 };
+
+typedef AsemanCameraCapture QAsemanCameraCapture;
 
 #endif // ASEMANCAMERACAPTURE_H

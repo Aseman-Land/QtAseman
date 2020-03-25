@@ -87,4 +87,6 @@ private:
     AsemanApplicationItemPrivate *p;
 };
 
+typedef AsemanApplicationItem QAsemanApplicationItem;
+
 #endif // ASEMANAPPLICATIONITEM_H

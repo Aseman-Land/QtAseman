@@ -20,12 +20,6 @@ package land.aseman.android;
 
 import org.qtproject.qt5.android.bindings.QtActivity;
 
-import land.aseman.android.store.StoreManager;
-import land.aseman.android.store.util.IabHelper;
-import land.aseman.android.store.util.IabResult;
-import land.aseman.android.store.util.Inventory;
-import land.aseman.android.store.util.Purchase;
-import com.android.vending.billing.IInAppBillingService;
 import com.hmkcode.android.image.RealPathUtil;
 
 import android.app.Activity;
@@ -52,15 +46,17 @@ import android.app.Notification;
 import android.content.res.Resources;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.NotificationChannel;
+import android.graphics.Color;
+import android.support.annotation.RequiresApi;
+import android.os.Build.VERSION_CODES;
+import android.os.Build;
 
 //import com.google.android.gms.common.api.GoogleApiClient;
 //import com.google.android.gms.common.api.GoogleSignInOptions;
 
 public class AsemanActivity extends QtActivity
 {
-    static final String STORE_MANAGER_TAG = "StoreManager";
-    static final int STORE_MANAGER_RC_REQUEST = 0;
-
     private static AsemanActivity instance;
     private int keyboardExtraHeight = 0;
 
@@ -73,24 +69,10 @@ public class AsemanActivity extends QtActivity
 
     boolean _storeHasFound;
     String _storeManagerLastPurchaseSku;
-    IabHelper mStoreManagerHelper;
-//    GoogleApiClient mGoogleApiClient;
 
     public AsemanActivity() {
         AsemanActivity.instance = this;
     }
-
-//    public void initGoogleApiClient() {
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestEmail()
-//            .build();
-
-//        // Build a GoogleApiClient with access to GoogleSignIn.API and the options above.
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//            .enableAutoManage(this, this)
-//            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-//            .build();
-//    }
 
     public static AsemanActivity getActivityInstance() {
         return AsemanActivity.instance;
@@ -104,7 +86,18 @@ public class AsemanActivity extends QtActivity
         return _transparentNavigationBar;
     }
 
-    public boolean startNotification(int id, String title, String body, String iconPath, String icon, boolean sound, boolean vibrate)
+    @RequiresApi(Build.VERSION_CODES.O)
+    public String createNotificationChannel(String channelId ,String channelName){
+        NotificationChannel chan = new NotificationChannel(channelId,
+                channelName, NotificationManager.IMPORTANCE_NONE);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(chan);
+        return channelId;
+    }
+
+    public boolean startNotification(int id, String title, String body, String iconPath, String icon, String channelId, boolean sound, boolean vibrate)
     {
         Resources R = getResources();
         if (m_notificationManager == null) {
@@ -115,8 +108,11 @@ public class AsemanActivity extends QtActivity
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Notification.Builder builder = new Notification.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(channelId);
+
         Notification notification =
-                  new Notification.Builder(this)
+            builder
             .setContentTitle(title)
             .setContentText(body)
             .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
@@ -217,13 +213,6 @@ public class AsemanActivity extends QtActivity
                 Uri selectedImageUri = data.getData();
                 AsemanJavaLayer.selectImageResult( getPath(selectedImageUri) );
             }
-        }
-
-        Iterator sm_itrs = StoreManager.instances.iterator();
-        while (sm_itrs.hasNext()) {
-            StoreManager sm = (StoreManager)sm_itrs.next();
-            if(sm != null && sm.mStoreManagerHelper != null)
-                sm.mStoreManagerHelper.handleActivityResult(requestCode, resultCode, data);
         }
 
         super.onActivityResult(requestCode, resultCode, data);

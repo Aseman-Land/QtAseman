@@ -50,7 +50,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickView : public QObject
     Q_PROPERTY(qreal flickVelocity READ flickVelocity NOTIFY fakeSignal)
 
 public:
-    AsemanQuickView(QQmlEngine *engine, QObject *parent = 0);
+    AsemanQuickView(QQmlEngine *engine, QObject *parent = Q_NULLPTR);
     virtual ~AsemanQuickView();
 
     AsemanDesktopTools *desktopTools() const;
@@ -105,5 +105,7 @@ protected:
 private:
     AsemanQuickViewPrivate *p;
 };
+
+typedef AsemanQuickView QAsemanQuickView;
 
 #endif // ASEMANQUICKVIEW_H

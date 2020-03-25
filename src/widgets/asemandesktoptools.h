@@ -50,7 +50,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanDesktopTools : public QObject
 
     Q_OBJECT
 public:
-    AsemanDesktopTools(QObject *parent = 0);
+    AsemanDesktopTools(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDesktopTools();
 
     enum DesktopSession {
@@ -117,5 +117,7 @@ private:
 private:
     AsemanDesktopToolsPrivate *p;
 };
+
+typedef AsemanDesktopTools QAsemanDesktopTools;
 
 #endif // ASEMANDESKTOPTOOLS_H

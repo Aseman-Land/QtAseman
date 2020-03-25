@@ -27,7 +27,6 @@
 #include "asemandesktoptools.h"
 #include <asemantexttools.h>
 #include <asemanfiledownloaderqueue.h>
-#include <asemansysteminfo.h>
 #include <asemancalendarconverter.h>
 
 #ifdef Q_OS_ANDROID
@@ -121,15 +120,6 @@ AsemanToolsItem *AsemanQtTools::tools()
     static QPointer<AsemanToolsItem> res = 0;
     if(!res)
         res = new AsemanToolsItem();
-
-    return res;
-}
-
-AsemanSystemInfo *AsemanQtTools::systemInfo()
-{
-    static QPointer<AsemanSystemInfo> res = 0;
-    if(!res)
-        res = new AsemanSystemInfo();
 
     return res;
 }

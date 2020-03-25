@@ -110,7 +110,7 @@ public:
         AsemanScaleFactorEnable
     };
 
-    AsemanDevices(QObject *parent = 0);
+    AsemanDevices(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDevices();
 
     static bool isMobile();
@@ -291,5 +291,7 @@ protected:
 private:
     AsemanDevicesPrivate *p;
 };
+
+typedef AsemanDevices QAsemanDevices;
 
 #endif // ASEMANDEVICES_H

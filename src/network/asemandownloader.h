@@ -38,7 +38,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanDownloader : public QObject
 
     Q_OBJECT
 public:
-    AsemanDownloader(QObject *parent = 0);
+    AsemanDownloader(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDownloader();
 
     qint64 recievedBytes() const;
@@ -82,5 +82,7 @@ private:
 private:
     AsemanDownloaderPrivate *p;
 };
+
+typedef AsemanDownloader QAsemanDownloader;
 
 #endif // ASEMANDOWNLOADER_H

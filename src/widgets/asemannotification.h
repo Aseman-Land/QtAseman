@@ -19,6 +19,8 @@
 #ifndef ASEMANNOTIFICATION_H
 #define ASEMANNOTIFICATION_H
 
+#include <QObject>
+
 #if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
 #include "asemanlinuxnativenotification.h"
 typedef AsemanLinuxNativeNotification AsemanNotification;
@@ -32,8 +34,9 @@ typedef AsemanNativeNotification AsemanNotification;
 #include "asemanandroidnativenotification.h"
 typedef AsemanAndroidNativeNotification AsemanNotification;
 #else
-#include <QObject>
 typedef QObject AsemanNotification;
 #endif
+
+typedef AsemanNotification QAsemanNotification;
 
 #endif // ASEMANNOTIFICATION_H

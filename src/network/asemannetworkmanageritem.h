@@ -80,7 +80,7 @@ public:
         Bearer4G = QNetworkConfiguration::Bearer4G
     };
 
-    AsemanNetworkManagerItem(QObject *parent = 0);
+    AsemanNetworkManagerItem(QObject *parent = Q_NULLPTR);
     virtual ~AsemanNetworkManagerItem();
 
     int bearerType() const;
@@ -120,5 +120,7 @@ private:
 private:
     AsemanNetworkManagerItemPrivate *p;
 };
+
+typedef AsemanNetworkManagerItem QAsemanNetworkManagerItem;
 
 #endif // ASEMANNETWORKMANAGERITEM_H

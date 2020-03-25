@@ -36,7 +36,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkManager : public QObject
     Q_PROPERTY(qint32  interval READ interval WRITE setInterval NOTIFY intervalChanged)
 
 public:
-    AsemanNetworkManager(QObject *parent = 0);
+    AsemanNetworkManager(QObject *parent = Q_NULLPTR);
     virtual ~AsemanNetworkManager();
 
     QString defaultNetworkIdentifier() const;
@@ -61,5 +61,7 @@ private Q_SLOTS:
 private:
     AsemanNetworkCheckerPrivate *p;
 };
+
+typedef AsemanNetworkManager QAsemanNetworkManager;
 
 #endif // ASEMANNETWORKMANAGER_H

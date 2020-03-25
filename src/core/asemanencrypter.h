@@ -29,11 +29,13 @@ class LIBQTASEMAN_CORE_EXPORT AsemanEncrypter : public QObject
     Q_PROPERTY(QString key READ key WRITE setKey NOTIFY keyChanged)
 
 public:
-    AsemanEncrypter(QObject *parent = 0): QObject(parent){}
+    AsemanEncrypter(QObject *parent = Q_NULLPTR): QObject(parent){}
     virtual ~AsemanEncrypter(){}
 
     void setKey(const QString &key);
+#ifndef ASEMAN_OXYGEN_SKIP
     QString key() const;
+#endif
 
 public Q_SLOTS:
     QByteArray encrypt(const QByteArray &data);
@@ -46,5 +48,7 @@ private:
     QString _keyStr;
     QSharedPointer<AsemanSimpleQtCryptor::Key> _key;
 };
+
+typedef AsemanEncrypter QAsemanEncrypter;
 
 #endif // ASEMANENCRYPTER_H

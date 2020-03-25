@@ -47,4 +47,6 @@ private:
     Private *p;
 };
 
+typedef AsemanMultimediaDatabase QAsemanMultimediaDatabase;
+
 #endif // ASEMANMULTIMEDIADATABASE_H

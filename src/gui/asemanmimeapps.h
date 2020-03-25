@@ -29,7 +29,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanMimeApps : public QObject
 {
     Q_OBJECT
 public:
-    AsemanMimeApps( QObject *parent = 0 );
+    AsemanMimeApps( QObject *parent = Q_NULLPTR );
     virtual ~AsemanMimeApps();
 
     Q_INVOKABLE QStringList appsOfMime( const QString & mime );
@@ -49,5 +49,7 @@ public Q_SLOTS:
 private:
     AsemanMimeAppsPrivate *p;
 };
+
+typedef AsemanMimeApps QAsemanMimeApps;
 
 #endif // ASEMANMIMEAPPS_H

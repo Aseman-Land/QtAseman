@@ -36,7 +36,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanKdeWallet : public QObject
     Q_PROPERTY(QStringList folderList READ folderList NOTIFY folderListChanged)
 
 public:
-    AsemanKdeWallet(QObject *parent = 0);
+    AsemanKdeWallet(QObject *parent = Q_NULLPTR);
     virtual ~AsemanKdeWallet();
 
     QStringList availableWallets() const;
@@ -81,5 +81,7 @@ private Q_SLOTS:
 private:
     AsemanKdeWalletPrivate *p;
 };
+
+typedef AsemanKdeWallet QAsemanKdeWallet;
 
 #endif // ASEMANKDEWALLET_H

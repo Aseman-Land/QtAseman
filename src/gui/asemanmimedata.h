@@ -37,7 +37,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanMimeData : public QObject
     Q_PROPERTY(QStringList formats READ formats NOTIFY dataMapChanged)
 
 public:
-    AsemanMimeData(QObject *parent = 0);
+    AsemanMimeData(QObject *parent = Q_NULLPTR);
     virtual ~AsemanMimeData();
 
     void setText(const QString &txt);
@@ -66,6 +66,8 @@ Q_SIGNALS:
 private:
     AsemanMimeDataPrivate *p;
 };
+
+typedef AsemanMimeData QAsemanMimeData;
 
 Q_DECLARE_METATYPE(AsemanMimeData*)
 

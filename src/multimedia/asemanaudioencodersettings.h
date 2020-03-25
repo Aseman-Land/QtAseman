@@ -59,7 +59,7 @@ public:
         TwoPassEncoding = QMultimedia::TwoPassEncoding
     };
 
-    AsemanAudioEncoderSettings(QObject *parent = 0);
+    AsemanAudioEncoderSettings(QObject *parent = Q_NULLPTR);
     virtual ~AsemanAudioEncoderSettings();
 
     int bitRate() const;
@@ -97,5 +97,7 @@ Q_SIGNALS:
 private:
     AsemanAudioEncoderSettingsPrivate *p;
 };
+
+typedef AsemanAudioEncoderSettings QAsemanAudioEncoderSettings;
 
 #endif // ASEMANAUDIOENCODERSETTINGS_H

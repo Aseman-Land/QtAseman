@@ -59,23 +59,28 @@ public:
         KeyRole
     };
 
-    AsemanCountriesModel(QObject *parent = 0);
+    AsemanCountriesModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCountriesModel();
 
+#ifndef ASEMAN_OXYGEN_SKIP
     QString id( const QModelIndex &index ) const;
 
     int rowCount(const QModelIndex & parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
     QHash<qint32,QByteArray> roleNames() const;
+
     int count() const;
+#endif
 
     Q_INVOKABLE int indexOf(const QString &name);
 
     void setFilter(const QString &filter);
+#ifndef ASEMAN_OXYGEN_SKIP
     QString filter() const;
 
     QString systemCountry() const;
+#endif
 
 Q_SIGNALS:
     void countChanged();
@@ -89,5 +94,7 @@ private:
 private:
     AsemanCountriesModelPrivate *p;
 };
+
+typedef AsemanCountriesModel QAsemanCountriesModel;
 
 #endif // ASEMANCOUNTRIESMODEL_H

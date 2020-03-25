@@ -15,6 +15,86 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*!
+    \class AsemanFileSystemModel
+    \brief The AsemanFileSystemModel class provides a data model system to
+    fetch and push file system data to the view.
+
+    \reentrant
+    \ingroup AsemanCore
+ */
+
+/*!
+    \fn AsemanFileSystemModel::countChanged
+    This signal emits when count of the model changed.
+    \sa setCount
+ */
+
+/*!
+    \fn AsemanFileSystemModel::showDirsChanged
+    This signal emits when showDirs flag changed.
+    \sa setShowDirs
+ */
+
+/*!
+    \fn AsemanFileSystemModel::showDotAndDotDotChanged
+    This signal emits when showDotAndDotDot flag changed.
+    \sa setShowDotAndDotDot
+ */
+
+/*!
+    \fn AsemanFileSystemModel::showDirsFirstChanged
+    This signal emits when showDirsFirst flag changed.
+    \sa setShowDirsFirst
+ */
+
+/*!
+    \fn AsemanFileSystemModel::showFilesChanged
+    This signal emits when showFiles flag changed.
+    \sa setShowFiles
+ */
+
+/*!
+    \fn AsemanFileSystemModel::showHiddenChanged
+    This signal emits when showHidden flag changed.
+    \sa setShowHidden
+ */
+
+/*!
+    \fn AsemanFileSystemModel::nameFiltersChanged
+    This signal emits when nameFilters changed.
+    \sa setNameFilters
+ */
+
+/*!
+    \fn AsemanFileSystemModel::folderChanged
+    This signal emits when current folder changed.
+    \sa setFolder
+ */
+
+/*!
+    \fn AsemanFileSystemModel::parentFolderChanged
+    This signal emits when parentFolder changed.
+    \sa parentFolder
+ */
+
+/*!
+    \fn AsemanFileSystemModel::sortFieldChanged
+    This signal emits when sortField changed.
+    \sa setSortField
+ */
+
+/*!
+    \fn AsemanFileSystemModel::recursiveChanged
+    This signal emits when recursive flag changed.
+    \sa setRecursive
+ */
+
+/*!
+    \fn AsemanFileSystemModel::limitChanged
+    This signal emits when limit value changed.
+    \sa setLimit
+ */
 
 #include "asemanfilesystemmodel.h"
 
@@ -163,6 +243,12 @@ AsemanFileSystemModel::AsemanFileSystemModel(QObject *parent) :
     connect(p->refresh_timer, &QTimer::timeout, this, &AsemanFileSystemModel::reinit_buffer);
 }
 
+
+/*!
+    Sets model showDirs flag to show directories or not.
+    \param stt showDirs state
+    \sa showDirs
+ */
 void AsemanFileSystemModel::setShowDirs(bool stt)
 {
     if(p->showDirs == stt)
@@ -174,11 +260,21 @@ void AsemanFileSystemModel::setShowDirs(bool stt)
     refresh();
 }
 
+/*!
+    Returns showDirs flag state
+    \sa setShowDirs
+ */
 bool AsemanFileSystemModel::showDirs() const
 {
     return p->showDirs;
 }
 
+
+/*!
+    Sets model showDotAndDotDot flag to show "." and ".." folders or not.
+    \param stt "." and ".." state
+    \sa showDotAndDotDot
+ */
 void AsemanFileSystemModel::setShowDotAndDotDot(bool stt)
 {
     if(p->showDotAndDotDot == stt)
@@ -190,11 +286,21 @@ void AsemanFileSystemModel::setShowDotAndDotDot(bool stt)
     refresh();
 }
 
+/*!
+    Returns showDotAndDotDot flag state
+    \sa setShowDotAndDotDot
+ */
 bool AsemanFileSystemModel::showDotAndDotDot() const
 {
     return p->showDotAndDotDot;
 }
 
+
+/*!
+    Sets model showDirsFirst flag to show directories on the top of the list or not
+    \param stt showDirsFirst state
+    \sa showDirsFirst
+ */
 void AsemanFileSystemModel::setShowDirsFirst(bool stt)
 {
     if(p->showDirsFirst == stt)
@@ -206,11 +312,21 @@ void AsemanFileSystemModel::setShowDirsFirst(bool stt)
     refresh();
 }
 
+/*!
+    Returns showDirsFirst flag state
+    \sa setShowDirsFirst
+ */
 bool AsemanFileSystemModel::showDirsFirst() const
 {
     return p->showDirsFirst;
 }
 
+
+/*!
+    Sets model showFiles flag to show files or not.
+    \param stt showFiles state
+    \sa showFiles
+ */
 void AsemanFileSystemModel::setShowFiles(bool stt)
 {
     if(p->showFiles == stt)
@@ -222,11 +338,21 @@ void AsemanFileSystemModel::setShowFiles(bool stt)
     refresh();
 }
 
+/*!
+    Returns showFiles flag state
+    \sa setShowFiles
+ */
 bool AsemanFileSystemModel::showFiles() const
 {
     return p->showFiles;
 }
 
+
+/*!
+    Sets model showHidden flag to show hidden or not.
+    \param stt showHidden state
+    \sa showHidden
+ */
 void AsemanFileSystemModel::setShowHidden(bool stt)
 {
     if(p->showHidden == stt)
@@ -238,11 +364,21 @@ void AsemanFileSystemModel::setShowHidden(bool stt)
     refresh();
 }
 
+/*!
+    Returns showHidden flag state
+    \sa setShowHidden
+ */
 bool AsemanFileSystemModel::showHidden() const
 {
     return p->showHidden;
 }
 
+
+/*!
+    Sets nameFilters list to filter items in the model.
+    \param list nameFilters state
+    \sa nameFilters
+ */
 void AsemanFileSystemModel::setNameFilters(const QStringList &list)
 {
     if(p->nameFilters == list)
@@ -254,11 +390,21 @@ void AsemanFileSystemModel::setNameFilters(const QStringList &list)
     refresh();
 }
 
+/*!
+    Returns all nameFilters values
+    \sa setNameFilters
+ */
 QStringList AsemanFileSystemModel::nameFilters() const
 {
     return p->nameFilters;
 }
 
+
+/*!
+    Sets current folder that model read data from it.
+    \param url folder path
+    \sa folder
+ */
 void AsemanFileSystemModel::setFolder(const QString &url)
 {
     if(p->folder == url)
@@ -276,11 +422,21 @@ void AsemanFileSystemModel::setFolder(const QString &url)
     refresh();
 }
 
+/*!
+    Returns current folder string.
+    \sa setFolder
+ */
 QString AsemanFileSystemModel::folder() const
 {
     return p->folder;
 }
 
+
+/*!
+    Sets sort SortFlag, model sort using it.
+    \param field sort flag
+    \sa sortField
+ */
 void AsemanFileSystemModel::setSortField(int field)
 {
     if(p->sortField == field)
@@ -292,11 +448,22 @@ void AsemanFileSystemModel::setSortField(int field)
     refresh();
 }
 
+/*!
+    Returns current sortField value.
+    \sa setSortField
+ */
 int AsemanFileSystemModel::sortField() const
 {
     return p->sortField;
 }
 
+
+/*!
+    Recursive lookup files and folders. If it's set to true, model will show
+    all files of the folder, even in the sub-folders.
+    \param recursive recursive flag
+    \sa recursive
+ */
 void AsemanFileSystemModel::setRecursive(bool recursive)
 {
     if(p->recursive == recursive)
@@ -308,11 +475,22 @@ void AsemanFileSystemModel::setRecursive(bool recursive)
     refresh();
 }
 
+/*!
+    Returns recursive flag state
+    \sa setRecursive
+ */
 bool AsemanFileSystemModel::recursive() const
 {
     return p->recursive;
 }
 
+
+/*!
+    Sets limit of the files and folder to load in the model. It's useful
+    when you want to explore a folder with million of files and folders.
+    \param limit limits of the model
+    \sa limit
+ */
 void AsemanFileSystemModel::setLimit(qint32 limit)
 {
     if(p->limit == limit)
@@ -322,11 +500,20 @@ void AsemanFileSystemModel::setLimit(qint32 limit)
     Q_EMIT limitChanged();
 }
 
+/*!
+    Returns limit value
+    \sa setRecursive
+ */
 qint32 AsemanFileSystemModel::limit() const
 {
     return p->limit;
 }
 
+/*!
+    Returns parent path of the current folder. It's useful when you
+    want to add "up" action to your view.
+    \sa folder
+ */
 QString AsemanFileSystemModel::parentFolder() const
 {
     return QFileInfo(p->folder).dir().absolutePath();
@@ -414,11 +601,22 @@ QHash<qint32, QByteArray> AsemanFileSystemModel::roleNames() const
     return *res;
 }
 
+/*!
+    Returns count of items exists in the model.
+    \returns count of items exists in the model.
+    \sa indexOf
+ */
 int AsemanFileSystemModel::count() const
 {
     return p->list.count();
 }
 
+
+/*!
+    Clean and reload all data of the model
+    \sa count
+    \sa setFolder
+ */
 void AsemanFileSystemModel::refresh()
 {
     p->refresh_timer->stop();

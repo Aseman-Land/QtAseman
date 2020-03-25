@@ -34,7 +34,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanTitleBarColorGrabber : public QObject
     Q_PROPERTY(QColor color READ color NOTIFY colorChanged)
 
 public:
-    AsemanTitleBarColorGrabber(QObject *parent = 0);
+    AsemanTitleBarColorGrabber(QObject *parent = Q_NULLPTR);
     virtual ~AsemanTitleBarColorGrabber();
 
     void setWindow(QWindow *win);
@@ -63,5 +63,7 @@ private Q_SLOTS:
 private:
     AsemanTitleBarColorGrabberPrivate *p;
 };
+
+typedef AsemanTitleBarColorGrabber QAsemanTitleBarColorGrabber;
 
 #endif // ASEMANTITLEBARCOLORGRABBER_H

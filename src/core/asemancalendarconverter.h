@@ -35,20 +35,20 @@ class LIBQTASEMAN_CORE_EXPORT AsemanCalendarConverter : public QObject
 
     Q_PROPERTY(int calendar READ calendar WRITE setCalendar NOTIFY calendarChanged)
 
-    Q_PROPERTY(QStringList calendarsID  READ calendarsID  NOTIFY fakeSignal)
+    Q_PROPERTY(QStringList calendarIDs  READ calendarIDs  NOTIFY fakeSignal)
     Q_PROPERTY(int         currentDays  READ currentDays  NOTIFY fakeSignal)
     Q_PROPERTY(int         currentYear  READ currentYear  NOTIFY fakeSignal)
     Q_PROPERTY(int         currentMonth READ currentMonth NOTIFY fakeSignal)
     Q_PROPERTY(int         currentDay   READ currentDay   NOTIFY fakeSignal)
 
 public:
-    AsemanCalendarConverter(QObject *parent = 0);
+    AsemanCalendarConverter(QObject *parent = Q_NULLPTR);
     virtual ~AsemanCalendarConverter();
 
     void setCalendar( int t );
     int calendar() const;
 
-    QStringList calendarsID() const;
+    QStringList calendarIDs() const;
 
     static int currentDays();
     qint64 currentYear();
@@ -91,5 +91,7 @@ Q_SIGNALS:
 private:
     AsemanCalendarConverterPrivate *p;
 };
+
+typedef AsemanCalendarConverter QAsemanCalendarConverter;
 
 #endif // ASEMANCALENDARCONVERTER_H

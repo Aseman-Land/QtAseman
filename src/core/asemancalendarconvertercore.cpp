@@ -19,6 +19,7 @@
 #include "asemancalendarconvertercore.h"
 
 #include <QObject>
+#include <QDebug>
 
 int aseman_gregorian_months_start[13]      = {0,31,59,90,120,151,181,212,243,273,304,334,365};
 int aseman_gregorian_leap_months_start[13] = {0,31,60,91,121,152,182,213,244,274,305,335,366};
@@ -30,12 +31,18 @@ int aseman_hijri_months_start[13]      = {0,30,59,89,118,148,177,207,236,266,295
 int aseman_hijri_leap_months_start[13] = {0,30,59,89,118,148,177,207,236,266,295,325,355};
 int aseman_hijri_leap_years[11]        = {2,5,7,10,13,16,18,21,24,26,29};
 
+/*!
+    \private
+ */
 class AsemanCalendarConverterCorePrivate
 {
 public:
     AsemanCalendarConverterCore::CalendarTypes calendar;
 };
 
+/*!
+    \private
+ */
 AsemanCalendarConverterCore::AsemanCalendarConverterCore()
 {
     p = new AsemanCalendarConverterCorePrivate;
@@ -310,6 +317,7 @@ qint64 AsemanCalendarConverterCore::fromDateGregorian( qint64 year , int month ,
 
     month--;
     day--;
+    year--;
 
     qint64 leap_pad = (year/4) - (year/100) + (year/400);
     qint64 year_days = year*365 + leap_pad;
@@ -330,51 +338,58 @@ DateProperty AsemanCalendarConverterCore::toDateGregorian( qint64 days_from_greg
     qint64 year    = 0;
     qint16 month   = 0;
 
-    year += day/146097 * 400;
-    day   = day%146097;
+    static const qint32 oneYear = 365;
+    static const qint32 fourYear = oneYear*4 + 1; // 1461 days
+    static const qint32 oneHundredYear = fourYear*25 - 1; // 36524 days
+    static const qint32 fourHundredYear = oneHundredYear*4 + 1; // 146097 days
+
+    year += (day/fourHundredYear) * 400;
+    day   = day%fourHundredYear;
 
     if( days_from_gregorian_zero < 0 && day != 0 )
     {
         year -= 400;
-        day   = 146097 + day;
+        day   = fourHundredYear + day;
     }
 
-    if( day < 36524*3 )
+    if( day < oneHundredYear*3 ) // Three Hundred years
     {
-        year += day/36524 * 100;
-        day   = day%36524;
+        year += day/oneHundredYear * 100;
+        day   = day%oneHundredYear;
     }
     else
     {
-        year += 400-100;
-        day   = day - 36524*3;
+        year += 300;
+        day   = day - oneHundredYear*3;
     }
 
-    if( day < 1461*24 )
+    if( day < fourYear*24 )
     {
-        year += day/1461 * 4;
-        day   = day%1461;
+        year += day/fourYear * 4;
+        day   = day%fourYear;
     }
     else
     {
         year += 100-4;
-        day   = day - 1461*24;
+        day   = day - fourYear*24;
     }
 
-    if( day < 365*3 )
+    if( day < oneYear*3 )
     {
-        year += day/365 * 1;
-        day   = day%365;
+        year += day/oneYear * 1;
+        day   = day%oneYear;
     }
     else
     {
         year += 4-1;
-        day   = day - 365*3;
+        day   = day - oneYear*3;
     }
 
     day++;
+    year++;
 
     bool leap = isLeapGregorian(year);
+
     for( int i=11 ; i>=0 ; i-- )
     {
         qint16 month_day = (leap)? aseman_gregorian_leap_months_start[i] : aseman_gregorian_months_start[i] ;
@@ -389,10 +404,11 @@ DateProperty AsemanCalendarConverterCore::toDateGregorian( qint64 days_from_greg
     month++;
 
     DateProperty property;
-        property.day = day;
-        property.month = month;
-        property.year = year;
-        property.day_of_week = (days_from_gregorian_zero) % 7;
+    property.day = day;
+    property.month = month;
+    property.year = year;
+    property.day_of_week = (days_from_gregorian_zero) % 7;
+    property.leap = leap;
 
     if( property.day_of_week < 0 )
         property.day_of_week = 6 + property.day_of_week;
@@ -487,6 +503,7 @@ qint64 AsemanCalendarConverterCore::fromDateJalali( qint64 year , int month , in
 
     month--;
     day--;
+    year--;
 
     qint64 leap_pad = (year/4) - (year/100) + (year/400);
     qint64 year_days = year*365 + leap_pad;
@@ -550,6 +567,7 @@ DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_
     }
 
     day++;
+    year++;
 
     bool leap = isLeapJalali(year);
     for( int i=11 ; i>=0 ; i-- )
@@ -570,6 +588,7 @@ DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_
         property.month = month;
         property.year = year;
         property.day_of_week = (days_from_jalali_zero-3) % 7;
+        property.leap = leap;
 
     if( property.day_of_week < 0 )
         property.day_of_week = 6 + property.day_of_week;
@@ -680,6 +699,7 @@ qint64 AsemanCalendarConverterCore::fromDateHijri( qint64 year , int month , int
 
     month--;
     day--;
+    year--;
 
     qint64 leap_pad = leapsNumberHijri(year);
 
@@ -724,6 +744,7 @@ DateProperty AsemanCalendarConverterCore::toDateHijri( qint64 days_from_hijri_ze
     }
 
     day++;
+    year++;
 
     int leap_number = leapIndexHijri( year );
     bool leap = (leap_number!=-1);
@@ -745,6 +766,7 @@ DateProperty AsemanCalendarConverterCore::toDateHijri( qint64 days_from_hijri_ze
         property.month = month;
         property.year = year;
         property.day_of_week = (days_from_hijri_zero-4) % 7;
+        property.leap = leap;
 
     if( property.day_of_week < 0 )
         property.day_of_week = 6 + property.day_of_week;

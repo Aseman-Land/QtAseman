@@ -16,6 +16,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*!
+    \class AsemanAutoStartManager
+    \brief Provides Startup manager methods to add auto start option
+    to your software.
+
+    \reentrant
+    \ingroup AsemanCore
+ */
+
 #include "asemanautostartmanager.h"
 
 #if defined(Q_OS_MAC) && defined(OSX_CORE_SERVICES_AVAILABLE)
@@ -26,6 +35,9 @@
 #include <QDir>
 #include <QSettings>
 
+/*!
+    \private
+ */
 class AsemanAutoStartManagerPrivate
 {
 public:
@@ -46,6 +58,11 @@ AsemanAutoStartManager::AsemanAutoStartManager(QObject *parent) :
     p->active = true;
 }
 
+
+/*!
+    Sets command to execute when OS booted successfully.
+    \sa command()
+ */
 void AsemanAutoStartManager::setCommand(const QString &cmd)
 {
     if(p->command == cmd)
@@ -57,11 +74,22 @@ void AsemanAutoStartManager::setCommand(const QString &cmd)
     save();
 }
 
+
+/*!
+    Returns command to execute when OS booted successfully.
+    \sa setCommand()
+ */
 QString AsemanAutoStartManager::command() const
 {
     return p->command;
 }
 
+
+/*!
+    Sets source file name to \a fileName arguments.
+    \note It supprted on the Unix/Linux operationg systems only.
+    \sa source()
+ */
 void AsemanAutoStartManager::setSource(const QString &fileName)
 {
     if(p->source == fileName)
@@ -73,6 +101,12 @@ void AsemanAutoStartManager::setSource(const QString &fileName)
     refresh();
 }
 
+
+/*!
+    Returns source file name.
+    \note It supprted on the Unix/Linux operationg systems only.
+    \sa setSource()
+ */
 QString AsemanAutoStartManager::source() const
 {
     return p->source;

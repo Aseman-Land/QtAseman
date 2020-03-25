@@ -74,10 +74,11 @@ public Q_SLOTS:
     bool startQtService();
     bool stopQtService();
 
-    bool startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon);
+    bool startForeground(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, const QString &channelId);
     bool stopForeground(bool removeNotification);
-    bool startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, bool sound = false, bool vibrate = false);
+    bool startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, const QString &channelId, bool sound = false, bool vibrate = false);
     bool stopNotification(qint32 id);
+    QString createNotificationChannel(const QString &channelId ,const QString &channelName);
 
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
@@ -101,5 +102,7 @@ protected:
 private:
     AsemanJavaLayerPrivate *p;
 };
+
+typedef AsemanJavaLayer QAsemanJavaLayer;
 
 #endif // ASEMANJAVALAYER_H

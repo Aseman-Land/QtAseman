@@ -33,6 +33,7 @@ public:
     int month;
     qint64 year;
     int day_of_week;
+    bool leap;
 
     bool operator ==(const DateProperty &b) const {
         return b.day == day &&
@@ -43,6 +44,10 @@ public:
 };
 
 class AsemanCalendarConverterCorePrivate;
+
+/*!
+    \private
+ */
 class AsemanCalendarConverterCore
 {
 public:
@@ -101,7 +106,7 @@ class LIBQTASEMAN_CORE_EXPORT JalaliCalendarObject : public QObject
 {
     Q_OBJECT
 public:
-    JalaliCalendarObject(QObject *parent = 0): QObject(parent){}
+    JalaliCalendarObject(QObject *parent = Q_NULLPTR): QObject(parent){}
 };
 
 #endif // ASEMANCALENDARCONVERTERCORE_H
