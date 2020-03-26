@@ -56,7 +56,7 @@ AsemanAndroidCameraCaptureCore::AsemanAndroidCameraCaptureCore(QObject *parent) 
 {
     p = new AsemanAndroidCameraCaptureCorePrivate;
     p->idIndexs = 1000;
-    p->object = QAndroidJniObject("land/aseman/android/extra/AsemanCameraCapture");
+    p->object = QAndroidJniObject("io/aseman/android/extra/AsemanCameraCapture");
     android_camera_capture_objects.insert(p->object.object<jobject>(), this);
 }
 
@@ -90,7 +90,7 @@ static void imageCaptured( JNIEnv *env, jobject obj, jint id, jstring path)
 bool aseman_android_camcap_registerNativeMethods() {
     JNINativeMethod methods[] {{"_imageCaptured", "(ILjava/lang/String;)V", reinterpret_cast<void *>(imageCaptured)}};
 
-    QAndroidJniObject javaClass("land/aseman/android/extra/AsemanCameraCapture");
+    QAndroidJniObject javaClass("io/aseman/android/extra/AsemanCameraCapture");
     QAndroidJniEnvironment env;
     jclass objectClass = env->GetObjectClass(javaClass.object<jobject>());
 

@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package land.aseman.android;
+package io.aseman.android;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,7 +29,7 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import land.aseman.android.AsemanActivity;
+import io.aseman.android.AsemanActivity;
 
 public class AsemanMultimedia
 {

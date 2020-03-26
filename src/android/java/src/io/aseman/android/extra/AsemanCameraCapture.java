@@ -16,11 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package land.aseman.android.extra;
+package io.aseman.android.extra;
 
-import land.aseman.android.AsemanApplication;
-import land.aseman.android.AsemanActivity;
-import land.aseman.android.AsemanService;
+import io.aseman.android.AsemanApplication;
+import io.aseman.android.AsemanActivity;
+import io.aseman.android.AsemanService;
 
 import android.os.Bundle;
 import android.content.Context;

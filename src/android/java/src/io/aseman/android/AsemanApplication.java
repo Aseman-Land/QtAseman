@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package land.aseman.android;
+package io.aseman.android;
 
 import org.qtproject.qt5.android.bindings.QtApplication;
 

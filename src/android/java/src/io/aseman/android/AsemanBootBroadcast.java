@@ -16,12 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 2.9
-import AsemanQml.Base 2.0
+package io.aseman.android;
 
-AsemanObject {
-    property string title
-    property url icon
-    property color color
-    property Component delegate
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+import io.aseman.android.AsemanService;
+
+public class AsemanBootBroadcast extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context ctx, Intent intent) {
+        if(intent.getAction().equalsIgnoreCase(Intent.ACTION_BOOT_COMPLETED)) {
+            Intent i = new Intent(ctx, AsemanService.class);
+            i.putExtra("name", "SurvivingwithAndroid");
+            try {
+                ctx.startService(i);
+            } catch(Exception e) {
+                return;
+            }
+        }
+    }
 }

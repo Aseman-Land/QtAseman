@@ -29,9 +29,6 @@ Rectangle {
     property alias titleFont: title_txt.font
     property alias titleFontSize: title_txt.font.pixelSize
     property bool light: true
-    property bool backButton: false
-    property real backScale: 1
-    property alias backButtonText: back_txt.text
     property alias shadow: shadow_rct.visible
     property alias shadowOpacity: shadow_rct.opacity
     property bool statusBar: Devices.transparentStatusBar
@@ -39,8 +36,6 @@ Rectangle {
     property int layoutDirection: View.layoutDirection
 
     readonly property real defaultHeight: Devices.standardTitleBarHeight + (statusBar? View.statusBarHeight : 0)
-
-    signal beginBack()
 
     Item {
         anchors.fill: parent
@@ -66,53 +61,6 @@ Rectangle {
             color: "#33000000"
         }
 
-        Row {
-            id: back_row
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.leftMargin: 10*Devices.density
-            visible: backButton
-
-            Image {
-                anchors.verticalCenter: parent.verticalCenter
-                height: 20*Devices.density*backScale
-                source: header.light? (height>48? "files/back_light_64.png" : "files/back_light_32.png") : (height>48? "files/back_64.png" : "files/back_32.png")
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-                opacity: back_row.press? 0.6 : 0.8
-            }
-
-            Text {
-                id: back_txt
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: Math.floor(12*Devices.fontDensity*backScale)
-                font.family: AsemanApp.globalFont.family
-                text: qsTr("Back")
-                color: {
-                    if(header.light) {
-                        return back_row.press? "#dddddd" : "#ffffff"
-                    } else {
-                        return back_row.press? "#555555" : "#111111"
-                    }
-                }
-            }
-
-            property bool press: false
-        }
-
-        MouseArea {
-            anchors.fill: back_row
-            anchors.margins: -10*Devices.density
-            onPressed: back_row.press = true
-            onReleased: back_row.press = false
-            visible: back_row.visible
-            onClicked: {
-                header.beginBack()
-                BackHandler.back()
-            }
-        }
-
         Text {
             id: title_txt
             font.pixelSize: Math.floor(10*Devices.fontDensity)
@@ -130,14 +78,5 @@ Rectangle {
 
             color: header.light? "#ffffff" : "#333333"
         }
-    }
-
-    Connections{
-        target: AsemanApp
-        onLanguageUpdated: initTranslations()
-    }
-
-    function initTranslations(){
-        back_txt.text = qsTr("Back")
     }
 }

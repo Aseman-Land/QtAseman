@@ -56,7 +56,7 @@ AsemanAndroidLocationListenerCore::AsemanAndroidLocationListenerCore(QObject *pa
     p = new AsemanAndroidLocationListenerPrivate;
     qRegisterMetaType<QGeoPositionInfo>("QGeoPositionInfo");
 
-    p->object = QAndroidJniObject("land/aseman/android/extra/AsemanLocationListener");
+    p->object = QAndroidJniObject("io/aseman/android/extra/AsemanLocationListener");
     android_location_listener_objects.insert(p->object.object<jobject>(), this);
 }
 
@@ -92,7 +92,7 @@ static void locationListened( JNIEnv *env, jobject obj ,jdouble longitude, jdoub
 bool aseman_android_loclis_registerNativeMethods() {
     JNINativeMethod methods[] {{"_locationListened", "(DDDLjava/lang/String;)V", reinterpret_cast<void *>(locationListened)}};
 
-    QAndroidJniObject javaClass("land/aseman/android/extra/AsemanLocationListener");
+    QAndroidJniObject javaClass("io/aseman/android/extra/AsemanLocationListener");
     QAndroidJniEnvironment env;
     jclass objectClass = env->GetObjectClass(javaClass.object<jobject>());
 
