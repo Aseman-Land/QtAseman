@@ -4,7 +4,7 @@
 
 ## What is QtAseman
 
-QtAseman is a set of tools, design patterns and architectures that we have developed over the years in various projects, and after much usages and stability, we released them as a collection under this name as a OpenSource and Free tools under the LGPLv3 license.
+QtAseman is a set of tools, design patterns and architectures that we have developed over the years in various projects, and after much usages and stability, we released them as a collection under this name as a Open Source and Free tools under the LGPLv3 license.
 
 ## How to build
 
@@ -45,7 +45,7 @@ AsemanWindow {
 }
 ```
 
-If you wish to change application attributes like applicationName and applicationOrganization you can create a `AsemanApp` object in the parent of the `AsemanWindow`. It's completly optional and you can ignore it.
+If you wish to change application attributes like applicationName and applicationOrganization you can create a `AsemanApp` object in the parent of the `AsemanWindow`. It's completely optional and you can ignore it.
 
 ```js
 import AsemanQml.Controls 2.0
@@ -76,7 +76,7 @@ Also QtAseman suggest a great Software Architecture for every use of the modules
 
 ### AsemanQml.Base
 
-Base module provides many base and core modules for your application. For example modules like Device infos, Desktop functions tools, data type convertors, lists, hashes and ... placed in the Base module.
+Base module provides many base and core modules for your application. For example modules like Device infos, Desktop functions tools, data type converters, lists, hashes and ... placed in the Base module.
 
 this is on of the Main use of the Base module:
 
@@ -116,7 +116,7 @@ or below codes read text from file:
 var text = Tools.readText("/home/bardia/file.txt");
 ```
 
-There is also a `Process` component that run processes or a greate back handler component which name is `BackHandler`.
+There is also a `Process` component that run processes or a great back handler component which name is `BackHandler`.
 
 #### BackHandler
 
@@ -207,11 +207,51 @@ Settings {
 }
 ````
 
-Every changes on the settings's property, saved and restore on the next application load.
+Every changes on the setting's property, saved and restore on the next application load.
+
+#### Translations
+
+`Translations` and `TranslationManager` provides functions and tools to manager translations on your applications:
+
+```js
+TranslationManager {
+    id: translationManager
+    
+    // Finds all lang-*.qm files in the sourceDirectory using three below lines
+    sourceDirectory: "../translations"
+    delimiters: "-"
+    fileName: "lang"
+    
+    localeName: "fa"
+}
+
+Button {
+    // Everytime translation changed to other language, Every refresher texts
+    // will refreshed and translated to the new language
+    text: qsTr("Dismiss") + Translations.refresher
+}
+```
+
+#### RoundedItem
+
+It render every included child item, rounded. For example below code show an image with rounded corners:
+
+```js
+RoundedItem {
+	width: 100
+	height: 100
+	radius: 10
+	
+	Image {
+		anchors.fill: parent
+		source: "image.png"
+	}
+}
+```
 
 ### AsemanQml.Controls
 
-Controls module provide every controls modules like QtQuick.Controls. For exampe It provide `AsemanApplication ` , `AsemanWindow`, `SideMenu`, `Header` and many other Component.
+Controls module provide every controls modules like QtQuick.Controls. For example It provide `AsemanApplication ` , `AsemanWindow`, `SideMenu`, `Header` and many other Component.
 
 Below example show a simple usage of the `Controls` components.
 
@@ -307,7 +347,7 @@ Component {
 
 #### ViewportController
 
-Using `ViewportController` components you don't need to create complicated architecture. It make your architecture easy and dymanic.
+Using `ViewportController` components you don't need to create complicated architecture. It make your architecture easy and dynamic.
 
 Below example show you how to create UI and open them easily in the apps.
 
@@ -381,7 +421,7 @@ Component {
 
 ### AsemanQml.Network
 
-Network module provides components to send network requests. fpr Example `NetworkRequestManager` and `NetworkRequest` could send http requests like post, get, put and ....
+Network module provides components to send network requests. for Example `NetworkRequestManager` and `NetworkRequest` could send http requests like post, get, put and ....
 Below example shows you a simple usage of the network modules.
 
 ```js
@@ -448,4 +488,4 @@ QT += asemancore asemangui asemanqml asemannetwork asemanwidgets asemangeo
 
 ## Documents
 
-The full documention process is under developing and Not completed yet. But We started documenting all modules and all details using Doxygen standards and put them on documents folder.
+The full documentation process is under developing and Not completed yet. But We started documenting all modules and all details using Doxygen standards and put them on documents folder.
