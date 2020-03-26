@@ -34,7 +34,7 @@
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package land.aseman.android;
+package io.aseman.android;
 
 import android.app.Service;
 import android.content.Intent;
@@ -43,7 +43,7 @@ import android.os.IBinder;
 import android.app.PendingIntent;
 import android.app.Notification;
 import android.content.res.Resources;
-import land.aseman.android.AsemanActivity;
+import io.aseman.android.AsemanActivity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.res.Resources;

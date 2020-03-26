@@ -1,16 +1,12 @@
 import QtQuick 2.9
 import AsemanQml.Base 2.0
 import QtQuick.Controls 2.2 as QtControls
-import QtQuick.Layouts 1.3 as QtLayouts
-import QtQuick.Controls.Material 2.1
 
 QtControls.TextField {
     id: field
     implicitWidth: -1
 
     property alias placeholder: pholder.text
-    property alias cursorParent: _cursor.cursorParent
-    property alias cursor: _cursor
 
     QtControls.Label {
         id: pholder
@@ -31,6 +27,4 @@ QtControls.TextField {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
         }
     }
-
-    TextCursorArea { id: _cursor }
 }

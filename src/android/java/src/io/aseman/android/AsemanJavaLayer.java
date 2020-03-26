@@ -16,11 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package land.aseman.android;
+package io.aseman.android;
 
-import land.aseman.android.AsemanApplication;
-import land.aseman.android.AsemanActivity;
-import land.aseman.android.AsemanQtService;
+import io.aseman.android.AsemanApplication;
+import io.aseman.android.AsemanActivity;
+import io.aseman.android.AsemanQtService;
 
 import org.qtproject.qt5.android.bindings.QtService;
 

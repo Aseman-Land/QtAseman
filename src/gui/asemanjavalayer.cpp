@@ -53,7 +53,7 @@ AsemanJavaLayer::AsemanJavaLayer() :
     QObject()
 {
     p = new AsemanJavaLayerPrivate;
-    p->object = QAndroidJniObject("land/aseman/android/AsemanJavaLayer");
+    p->object = QAndroidJniObject("io/aseman/android/AsemanJavaLayer");
 
 #if defined(Q_OS_ANDROID) && defined(ASEMAN_STATIC_BUILD)
     QMetaObject::invokeMethod( this, "registerObject", Qt::QueuedConnection );
@@ -497,7 +497,7 @@ bool aseman_jlayer_registerNativeMethods() {
                                {"_activityDestroyed", "()V", reinterpret_cast<void *>(activityDestroyed)},
                                {"_keyboardVisiblityChanged", "(I)V", reinterpret_cast<void *>(keyboardVisiblityChanged)}};
 
-    QAndroidJniObject javaClass("land/aseman/android/AsemanJavaLayer");
+    QAndroidJniObject javaClass("io/aseman/android/AsemanJavaLayer");
     QAndroidJniEnvironment env;
     jclass objectClass = env->GetObjectClass(javaClass.object<jobject>());
 

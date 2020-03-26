@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package land.aseman.android;
+package io.aseman.android;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -51,8 +51,8 @@ import android.util.Log;
 import android.os.Process;
 import android.widget.Toast;
 
-import land.aseman.android.AsemanActivity;
-import land.aseman.android.AsemanServiceDelegate;
+import io.aseman.android.AsemanActivity;
+import io.aseman.android.AsemanServiceDelegate;
 import org.qtproject.qt5.android.bindings.QtApplication;
 
 public class AsemanService extends Service
@@ -207,7 +207,7 @@ public class AsemanService extends Service
                     Bundle loaderParams = new Bundle();
                     loaderParams.putInt(ERROR_CODE_KEY, 0);
                     loaderParams.putString(DEX_PATH_KEY, dexPaths);
-                    loaderParams.putString(LOADER_CLASS_NAME_KEY, "land.aseman.android.AsemanServiceDelegate");
+                    loaderParams.putString(LOADER_CLASS_NAME_KEY, "io.aseman.android.AsemanServiceDelegate");
                     if (m_serviceInfo.metaData.containsKey("android.app.static_init_classes")) {
                         loaderParams.putStringArray(STATIC_INIT_CLASSES_KEY,
                                                     m_serviceInfo.metaData.getString("android.app.static_init_classes").split(":"));

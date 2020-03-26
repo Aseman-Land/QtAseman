@@ -3,12 +3,8 @@ RoundedImage 2.0 RoundedImage.qml
 ShadowRectangle 2.0 ShadowRectangle.qml
 AsemanListView 2.0 AsemanListView.qml
 AsemanGridView 2.0 AsemanGridView.qml
-AsemanLogo 2.0 AsemanLogo.qml
 AsemanFlickable 2.0 AsemanFlickable.qml
 FileSystemView 2.0 FileSystemView.qml
-AboutPage 2.0 AboutPage.qml
-AboutPageItem 2.0 AboutPageItem.qml
-AboutPageAseman 2.0 AboutPageAseman.qml
 AsemanProductsList 2.0 AsemanProductsList.qml
 SelectableList 2.0 SelectableList.qml
 NullMouseArea 2.0 NullMouseArea.qml
@@ -17,7 +13,6 @@ CachedImage 2.0 CachedImage.qml
 MaterialFrame 2.0 MaterialFrame.qml
 PointMapListener 2.0 PointMapListener.qml
 BackAction 2.0 BackAction.qml
-SearchBar 2.0 SearchBar.qml
 CrashController 2.0 CrashController.qml
 ItemBackable 2.0 ItemBackable.qml
 RoundedItem 2.0 RoundedItem.qml
