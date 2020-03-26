@@ -1424,33 +1424,6 @@ Module {
         Property { name: "password"; type: "string" }
     }
     Component {
-        name: "AsemanNetworkRequest"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/NetworkRequest 2.0"]
-        exportMetaObjectRevisions: [0]
-        Method {
-            name: "post"
-            Parameter { name: "url"; type: "string" }
-            Parameter { name: "query"; type: "QVariantMap" }
-            Parameter { name: "data"; type: "string" }
-            Parameter { name: "callback"; type: "QJSValue" }
-            Parameter { name: "type"; type: "string" }
-        }
-        Method {
-            name: "post"
-            Parameter { name: "url"; type: "string" }
-            Parameter { name: "query"; type: "QVariantMap" }
-            Parameter { name: "data"; type: "string" }
-            Parameter { name: "callback"; type: "QJSValue" }
-        }
-        Method {
-            name: "get"
-            Parameter { name: "url"; type: "string" }
-            Parameter { name: "query"; type: "QVariantMap" }
-            Parameter { name: "callback"; type: "QJSValue" }
-        }
-    }
-    Component {
         name: "AsemanNetworkSleepManager"
         prototype: "QObject"
         exports: ["AsemanQml.Base/NetworkSleepManager 2.0"]
@@ -1471,6 +1444,14 @@ Module {
         Property { name: "arguments"; type: "QStringList" }
         Property { name: "command"; type: "string" }
         Property { name: "running"; type: "bool"; isReadonly: true }
+        Signal {
+            name: "standardOutput"
+            Parameter { name: "output"; type: "string" }
+        }
+        Signal {
+            name: "errorOutput"
+            Parameter { name: "output"; type: "string" }
+        }
         Method { name: "start" }
         Method { name: "terminate" }
     }
@@ -1515,18 +1496,6 @@ Module {
         Method { name: "refresh" }
     }
     Component {
-        name: "AsemanQmlSmartComponent"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/SmartComponentCore 2.0"]
-        exportMetaObjectRevisions: [0]
-        Property { name: "source"; type: "QUrl" }
-        Property { name: "status"; type: "int"; isReadonly: true }
-        Property { name: "component"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "delayInterval"; type: "int" }
-        Signal { name: "errorChanged" }
-        Signal { name: "ready" }
-    }
-    Component {
         name: "AsemanQtLogger"
         prototype: "QObject"
         exports: ["AsemanQml.Base/Logger 2.0"]
@@ -1538,16 +1507,6 @@ Module {
             name: "debug"
             Parameter { name: "var"; type: "QVariant" }
         }
-        Method { name: "start" }
-    }
-    Component {
-        name: "AsemanQuickItemImageGrabber"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/ItemImageGrabber 2.0"]
-        exportMetaObjectRevisions: [0]
-        Property { name: "item"; type: "QQuickItem"; isPointer: true }
-        Property { name: "image"; type: "QImage"; isReadonly: true }
-        Property { name: "defaultImage"; type: "QUrl" }
         Method { name: "start" }
     }
     Component {
@@ -1623,19 +1582,6 @@ Module {
             Parameter { name: "key"; type: "string" }
         }
         Method { name: "keys"; type: "QStringList" }
-    }
-    Component {
-        name: "AsemanSystemInfo"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/SystemInfo 2.0"]
-        isCreatable: false
-        isSingleton: true
-        exportMetaObjectRevisions: [0]
-        Property { name: "cpuCores"; type: "qulonglong"; isReadonly: true }
-        Property { name: "cpuFreq"; type: "qulonglong"; isReadonly: true }
-        Signal { name: "fakeSignal" }
-        Method { name: "cpuCores"; type: "qulonglong" }
-        Method { name: "cpuFreq"; type: "qulonglong" }
     }
     Component {
         name: "AsemanSystemTray"
@@ -2344,79 +2290,6 @@ Module {
         }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/AboutPage 2.0"
-        exports: ["AsemanQml.Base/AboutPage 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "list"; type: "QVariant" }
-        Property { name: "defaultColor"; type: "QColor" }
-        Property { name: "framesColor"; type: "QColor" }
-        Property { name: "textsColor"; type: "QColor" }
-    }
-    Component {
-        prototype: "QObject"
-        name: "AsemanQml.Base/AboutPageAseman 2.0"
-        exports: ["AsemanQml.Base/AboutPageAseman 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "items"
-        Property { name: "title"; type: "string" }
-        Property { name: "icon"; type: "QUrl" }
-        Property { name: "color"; type: "QColor" }
-        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QObject"
-        name: "AsemanQml.Base/AboutPageItem 2.0"
-        exports: ["AsemanQml.Base/AboutPageItem 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "items"
-        Property { name: "title"; type: "string" }
-        Property { name: "icon"; type: "QUrl" }
-        Property { name: "color"; type: "QColor" }
-        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/AndroidListEffect 2.0"
-        exports: ["AsemanQml.Base/AndroidListEffect 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "flickable"; type: "QQuickFlickable"; isPointer: true }
-        Property { name: "minimumSensivityX"; type: "double" }
-        Property { name: "minimumSensivityY"; type: "double" }
-        Property { name: "ignoreDelayX"; type: "double" }
-        Property { name: "ignoreDelayY"; type: "double" }
-        Property { name: "topMargin"; type: "double" }
-        Property { name: "bottomMargin"; type: "double" }
-        Property { name: "mouseX"; type: "double"; isReadonly: true }
-        Property { name: "mouseY"; type: "double"; isReadonly: true }
-        Property { name: "mousePosition"; type: "QPointF"; isReadonly: true }
-        Signal { name: "mousePressed" }
-        Signal { name: "mouseReleased" }
-        Method { name: "ignoreEvent" }
-        Method { name: "acceptEvent" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/AnimationItem 2.0"
-        exports: ["AsemanQml.Base/AnimationItem 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "anim"; type: "bool" }
-        Property { name: "anim_time"; type: "int" }
-        Property { name: "easing"; type: "QEasingCurve" }
-        Signal { name: "animationFinished" }
-        Method { name: "startAnimation"; type: "QVariant" }
-    }
-    Component {
         prototype: "QQuickFlickable"
         name: "AsemanQml.Base/AsemanFlickable 2.0"
         exports: ["AsemanQml.Base/AsemanFlickable 2.0"]
@@ -2450,16 +2323,6 @@ Module {
         Property { name: "tabBarMargin"; type: "double" }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/AsemanLogo 2.0"
-        exports: ["AsemanQml.Base/AsemanLogo 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "ratio"; type: "double" }
-        Property { name: "dark"; type: "bool" }
-    }
-    Component {
         prototype: "QObject"
         name: "AsemanQml.Base/BackAction 2.0"
         exports: ["AsemanQml.Base/BackAction 2.0"]
@@ -2470,49 +2333,6 @@ Module {
         Property { name: "callback"; type: "QVariant" }
         Property { name: "disableBack"; type: "bool" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/BottomPanel 2.0"
-        exports: ["AsemanQml.Base/BottomPanel 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "item"; type: "QVariant" }
-        Property { name: "destroyOnHide"; type: "bool" }
-        Method { name: "hide"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/Button 2.0"
-        exports: ["AsemanQml.Base/Button 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "iconCenter"; type: "bool" }
-        Property { name: "press"; type: "bool" }
-        Property { name: "enter"; type: "bool" }
-        Property { name: "triggeredOnHover"; type: "bool" }
-        Property { name: "highlightColor"; type: "QColor" }
-        Property { name: "normalColor"; type: "string" }
-        Property { name: "hoverColor"; type: "string" }
-        Property { name: "textMargin"; type: "double" }
-        Property { name: "tooltipColor"; type: "QColor" }
-        Property { name: "tooltipTextColor"; type: "QColor" }
-        Property { name: "tooltipFont"; type: "QFont" }
-        Property { name: "tooltipText"; type: "string" }
-        Property { name: "tooltipPosition"; type: "int" }
-        Property { name: "text"; type: "string" }
-        Property { name: "icon"; type: "QUrl" }
-        Property { name: "fontSize"; type: "int" }
-        Property { name: "textFont"; type: "QFont" }
-        Property { name: "hoverEnabled"; type: "bool" }
-        Property { name: "containsMouse"; type: "bool"; isReadonly: true }
-        Property { name: "iconHeight"; type: "double" }
-        Property { name: "textColor"; type: "QColor" }
-        Property { name: "rowWidth"; type: "double" }
-        Property { name: "cursorShape"; type: "int" }
-        Signal { name: "clicked" }
     }
     Component {
         prototype: "QQuickItem"
@@ -2555,27 +2375,6 @@ Module {
         Property { name: "currentIndex"; type: "int" }
     }
     Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/CradleBits 2.0"
-        exports: ["AsemanQml.Base/CradleBits 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "space"; type: "double" }
-        Property { name: "x_pad"; type: "double" }
-        Property { name: "index"; type: "int" }
-        Method { name: "poke"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/CradleIndicator 2.0"
-        exports: ["AsemanQml.Base/CradleIndicator 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "count"; type: "double" }
-    }
-    Component {
         prototype: "QObject"
         name: "AsemanQml.Base/CrashController 2.0"
         exports: ["AsemanQml.Base/CrashController 2.0"]
@@ -2590,38 +2389,6 @@ Module {
         Method { name: "unlock"; type: "QVariant" }
         Method { name: "checkCrash"; type: "QVariant" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QQuickMouseArea"
-        name: "AsemanQml.Base/CursorShapeArea 2.0"
-        exports: ["AsemanQml.Base/CursorShapeArea 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/Dialog 2.0"
-        exports: ["AsemanQml.Base/Dialog 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "color"; type: "QColor" }
-        Property { name: "blockBack"; type: "bool" }
-        Property { name: "autoDestroy"; type: "bool" }
-        Property { name: "buttons"; type: "QVariant" }
-        Property { name: "margins"; type: "double" }
-        Property { name: "opened"; type: "bool" }
-        Property { name: "title"; type: "string" }
-        Property { name: "textColor"; type: "QColor" }
-        Property { name: "font"; type: "QFont" }
-        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
-        Signal {
-            name: "buttonClicked"
-            Parameter { name: "index"; type: "int" }
-        }
-        Method { name: "open"; type: "QVariant" }
-        Method { name: "close"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickGridView"
@@ -2642,21 +2409,6 @@ Module {
         Method { name: "back"; type: "QVariant" }
         Property { name: "tabBarRatio"; type: "double"; isReadonly: true }
         Property { name: "tabBarHeight"; type: "double" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/Indicator 2.0"
-        exports: ["AsemanQml.Base/Indicator 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "light"; type: "bool" }
-        Property { name: "modern"; type: "bool" }
-        Property { name: "indicatorSize"; type: "double" }
-        Property { name: "source"; type: "string" }
-        Property { name: "running"; type: "bool" }
-        Method { name: "start"; type: "QVariant" }
-        Method { name: "stop"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickItem"
@@ -2686,116 +2438,12 @@ Module {
         Property { name: "shadowColor"; type: "QColor" }
     }
     Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/MessageDialog 2.0"
-        exports: ["AsemanQml.Base/MessageDialog 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "frameItem"; type: "QVariant" }
-        Method {
-            name: "show"
-            type: "QVariant"
-            Parameter { name: "component"; type: "QVariant" }
-            Parameter { name: "args"; type: "QVariant" }
-        }
-        Method { name: "hide"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickColumn"
-        name: "AsemanQml.Base/MessageDialogOkCancelWarning 2.0"
-        exports: ["AsemanQml.Base/MessageDialogOkCancelWarning 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "message"; type: "string" }
-        Property { name: "okText"; type: "string" }
-        Signal { name: "canceled" }
-        Signal { name: "ok" }
-    }
-    Component {
-        prototype: "QQuickMouseArea"
-        name: "AsemanQml.Base/NormalWheelScroll 2.0"
-        exports: ["AsemanQml.Base/NormalWheelScroll 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "flick"; type: "QQuickFlickable"; isPointer: true }
-        Property { name: "animated"; type: "bool" }
-        Property { name: "reverse"; type: "bool" }
-        Property { name: "naturalScroll"; type: "bool" }
-        Property { name: "endContentY"; type: "double" }
-    }
-    Component {
         prototype: "QQuickMouseArea"
         name: "AsemanQml.Base/NullMouseArea 2.0"
         exports: ["AsemanQml.Base/NullMouseArea 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/OSXTitleButtons 2.0"
-        exports: ["AsemanQml.Base/OSXTitleButtons 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "closeButton"; type: "bool" }
-        Property { name: "minimizeButton"; type: "bool" }
-        Property { name: "fullscreenButton"; type: "bool" }
-        Property { name: "fullscreened"; type: "bool" }
-        Property { name: "hovered"; type: "bool" }
-    }
-    Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/PasteButton 2.0"
-        exports: ["AsemanQml.Base/PasteButton 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "textItem"; type: "QVariant" }
-        Property { name: "textRect"; type: "QRectF" }
-        Method { name: "initTranslations"; type: "QVariant" }
-        Property { name: "iconCenter"; type: "bool" }
-        Property { name: "press"; type: "bool" }
-        Property { name: "enter"; type: "bool" }
-        Property { name: "triggeredOnHover"; type: "bool" }
-        Property { name: "highlightColor"; type: "QColor" }
-        Property { name: "normalColor"; type: "string" }
-        Property { name: "hoverColor"; type: "string" }
-        Property { name: "textMargin"; type: "double" }
-        Property { name: "tooltipColor"; type: "QColor" }
-        Property { name: "tooltipTextColor"; type: "QColor" }
-        Property { name: "tooltipFont"; type: "QFont" }
-        Property { name: "tooltipText"; type: "string" }
-        Property { name: "tooltipPosition"; type: "int" }
-        Property { name: "text"; type: "string" }
-        Property { name: "icon"; type: "QUrl" }
-        Property { name: "fontSize"; type: "int" }
-        Property { name: "textFont"; type: "QFont" }
-        Property { name: "hoverEnabled"; type: "bool" }
-        Property { name: "containsMouse"; type: "bool"; isReadonly: true }
-        Property { name: "iconHeight"; type: "double" }
-        Property { name: "textColor"; type: "QColor" }
-        Property { name: "rowWidth"; type: "double" }
-        Property { name: "cursorShape"; type: "int" }
-        Signal { name: "clicked" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/PhysicalScrollBar 2.0"
-        exports: ["AsemanQml.Base/PhysicalScrollBar 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "scrollArea"; type: "QQuickFlickable"; isPointer: true }
-        Property { name: "orientation"; type: "int" }
-        Property { name: "reverse"; type: "bool" }
-        Property { name: "color"; type: "QColor" }
-        Property { name: "pressed"; type: "bool"; isReadonly: true }
-        Method { name: "position"; type: "QVariant" }
-        Method { name: "size"; type: "QVariant" }
     }
     Component {
         prototype: "QObject"
@@ -2810,75 +2458,6 @@ Module {
         Property { name: "y"; type: "double" }
         Property { name: "result"; type: "QPointF"; isReadonly: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/PointingDialog 2.0"
-        exports: ["AsemanQml.Base/PointingDialog 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "item"; type: "QVariant" }
-        Property { name: "margin"; type: "double" }
-        Property { name: "hoverToClose"; type: "bool" }
-        Property { name: "extraX"; type: "double" }
-        Property { name: "extraY"; type: "double" }
-        Property { name: "pointerLeftMargin"; type: "double" }
-        Property { name: "containsMouse"; type: "bool"; isReadonly: true }
-        Method { name: "refresh"; type: "QVariant" }
-        Method {
-            name: "pointingTo"
-            type: "QVariant"
-            Parameter { name: "x"; type: "QVariant" }
-            Parameter { name: "y"; type: "QVariant" }
-            Parameter { name: "width"; type: "QVariant" }
-            Parameter { name: "height"; type: "QVariant" }
-        }
-        Method { name: "hide"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/ProgressBar 2.0"
-        exports: ["AsemanQml.Base/ProgressBar 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "percent"; type: "double" }
-        Property { name: "topColor"; type: "QColor" }
-        Method {
-            name: "setValue"
-            type: "QVariant"
-            Parameter { name: "p"; type: "QVariant" }
-        }
-    }
-    Component {
-        prototype: "QQuickRectangle"
-        name: "AsemanQml.Base/QueueList 2.0"
-        exports: ["AsemanQml.Base/QueueList 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "currentIndex"; type: "int" }
-        Property { name: "dscale"; type: "double" }
-        Property { name: "components"; type: "QVariantList" }
-        Property { name: "count"; type: "int"; isReadonly: true }
-        Method { name: "refresh"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/RollerDialog 2.0"
-        exports: ["AsemanQml.Base/RollerDialog 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Method {
-            name: "show"
-            type: "QVariant"
-            Parameter { name: "y1"; type: "QVariant" }
-            Parameter { name: "y2"; type: "QVariant" }
-            Parameter { name: "item"; type: "QVariant" }
-        }
-        Method { name: "hide"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickItem"
@@ -2954,65 +2533,5 @@ Module {
         Property { name: "shadowOpacity"; type: "double" }
         Property { name: "shadowRadius"; type: "double" }
         Property { name: "visibleShadow"; type: "bool" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/Slider 2.0"
-        exports: ["AsemanQml.Base/Slider 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "maximum"; type: "double" }
-        Property { name: "value"; type: "double" }
-        Property { name: "backColor"; type: "QColor" }
-        Property { name: "backRadius"; type: "double" }
-        Property { name: "backBorder"; type: "QQuickPen"; isReadonly: true; isPointer: true }
-        Property { name: "backHeight"; type: "double" }
-        Property { name: "seekerColor"; type: "QColor" }
-        Property { name: "seekerBorder"; type: "QQuickPen"; isReadonly: true; isPointer: true }
-        Property { name: "pressed"; type: "bool"; isReadonly: true }
-    }
-    Component {
-        prototype: "QObject"
-        name: "AsemanQml.Base/SmartComponent 2.0"
-        exports: ["AsemanQml.Base/SmartComponent 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        Method { name: "createLocalComponent"; type: "QVariant" }
-        Property { name: "source"; type: "QUrl" }
-        Property { name: "status"; type: "int"; isReadonly: true }
-        Property { name: "component"; type: "QQmlComponent"; isReadonly: true; isPointer: true }
-        Property { name: "delayInterval"; type: "int" }
-        Signal { name: "errorChanged" }
-        Signal { name: "ready" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/SubMessage 2.0"
-        exports: ["AsemanQml.Base/SubMessage 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "item"; type: "QVariant" }
-        Property { name: "source"; type: "QVariant" }
-        Property { name: "backgroundColor"; type: "QColor" }
-        Property { name: "blurBack"; type: "bool" }
-        Method { name: "hide"; type: "QVariant" }
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/WindowDragArea 2.0"
-        exports: ["AsemanQml.Base/WindowDragArea 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
-        prototype: "QQuickItem"
-        name: "AsemanQml.Base/WindowResizeGrip 2.0"
-        exports: ["AsemanQml.Base/WindowResizeGrip 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
     }
 }
