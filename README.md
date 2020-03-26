@@ -58,9 +58,9 @@ AsemanApplication {
     organizationDomain: "aseman.io"
     
     AsemanWindow {
-    	visible: true
-    	width: 480
-    	height: 720
+        visible: true
+        width: 480
+        height: 720
     }
 }
 ```
@@ -238,14 +238,14 @@ It render every included child item, rounded. For example below code show an ima
 
 ```js
 RoundedItem {
-	width: 100
-	height: 100
-	radius: 10
-	
-	Image {
-		anchors.fill: parent
-		source: "image.png"
-	}
+    width: 100
+    height: 100
+    radius: 10
+    
+    Image {
+        anchors.fill: parent
+        source: "image.png"
+    }
 }
 ```
 
