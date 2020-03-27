@@ -125,3 +125,18 @@ To check device type on the QML source codes, use below properties
 ### Operating System Parts
 
 To work with any parts of the operating system like statusbar, virtual keyboard and ..., Use below methods
+
+| Property                         | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| Devices.transparentStatusBar     | Returns true if status-bar is transparented on Android (rw)  |
+| Devices.transparentNavigationBar | Returns true if navigation-bar is transparented on Android (rw) |
+| Devices.standardTitleBarHeight   | Returns standard and best suggested titleBar height (ro)     |
+| Devices.statusBarHeight          | Returns status-bar height (ro)                               |
+| Devices.navigationBarHeight      | Returns navigation-bar height (ro)                           |
+| Devices.clipboard                | Returns clipboard contained text (rw)                        |
+| Devices.clipboardUrl             | Returns clipboard contained urls (rw)                        |
+| Devices.keyboardHeight           | Returns keyboard height (ro)                                 |
+| Devices.keyboard                 | Returns true if keyboard is visible (ro)                     |
+| Devices.hideKeyboard()           | Hide keyboard if it visible                                  |
+| Devices.showKeyboard()           | Show keyboard if it hidden                                   |
+

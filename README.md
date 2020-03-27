@@ -188,6 +188,7 @@ var allValues = model.get(idx); // allValues.propertyName is equal to value
 model.clear();
 model.append({"name", "bardia", "age": 30});
 var data = model.data; // Get all data of the model as list
+var json = Tools.variantToJson(data); // Convert data to json string
 ```
 
 #### Settings
