@@ -1,3 +1,5 @@
+<img src="icons/logo.png" align="right" />
+
 # QtAseman
 
 [TOC]

@@ -4,15 +4,18 @@ IMPORT_VERSION = 2.0
 VERSION_REVISION = 2
 
 INCLUDEPATH += $$PWD
-QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets
+QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets \
+    quick
 
 HEADERS += \
     $$PWD/asemanqmlplugin.h \
-    $$PWD/asemanqttoolsitembase.h
+    $$PWD/asemanqttoolsitembase.h \
+    asemandelegateswitch.h
 
 SOURCES += \
     $$PWD/asemanqmlplugin.cpp \
-    $$PWD/asemanqttoolsitembase.cpp
+    $$PWD/asemanqttoolsitembase.cpp \
+    asemandelegateswitch.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
