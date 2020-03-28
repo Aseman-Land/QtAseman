@@ -252,6 +252,33 @@ RoundedItem {
 }
 ```
 
+#### DelegateSwitch
+
+`DelegateSwitch` provide component to switch between two or more child components on the fly. for example:
+
+```js
+ListView {
+    model: 20
+    delegate: DelegateSwitch {
+        current: model.index % 2
+        Component {
+            Rectangle {
+                width: 100; height: 40
+                color: "red"
+            }
+        }
+        Component {
+            Rectangle {
+                width: 40; height: 40
+                color: "blue"
+            }
+        }
+    }
+}
+```
+
+This example above show a red rectangle on the even indexes and a blue squere on the odd indexes.
+
 #### ReadMore
 
  To read more about Base module, please read [this document](documents/AsemanQml.Base.md).
