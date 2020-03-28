@@ -5,10 +5,8 @@ AsemanListView 2.0 AsemanListView.qml
 AsemanGridView 2.0 AsemanGridView.qml
 AsemanFlickable 2.0 AsemanFlickable.qml
 FileSystemView 2.0 FileSystemView.qml
-AsemanProductsList 2.0 AsemanProductsList.qml
 SelectableList 2.0 SelectableList.qml
 NullMouseArea 2.0 NullMouseArea.qml
-AndroidListEffect 2.0 AndroidListEffect.qml
 CachedImage 2.0 CachedImage.qml
 MaterialFrame 2.0 MaterialFrame.qml
 PointMapListener 2.0 PointMapListener.qml

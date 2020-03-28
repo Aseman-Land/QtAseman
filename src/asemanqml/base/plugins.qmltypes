@@ -393,6 +393,16 @@ Module {
         }
     }
     Component {
+        name: "AsemanDelegateSwitch"
+        defaultProperty: "components"
+        prototype: "QQuickItem"
+        exports: ["AsemanQml.Base/DelegateSwitch 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "components"; type: "QQmlComponent"; isList: true; isReadonly: true }
+        Property { name: "current"; type: "int" }
+        Property { name: "item"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+    }
+    Component {
         name: "AsemanDesktopTools"
         prototype: "QObject"
         exports: [
