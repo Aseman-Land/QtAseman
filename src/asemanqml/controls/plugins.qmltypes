@@ -739,6 +739,26 @@ Module {
     }
     Component {
         prototype: "QQuickItem"
+        name: "AsemanQml.Controls/TextCursorArea 2.0"
+        exports: ["AsemanQml.Controls/TextCursorArea 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "color"; type: "QColor" }
+        Property { name: "backgroundColor"; type: "QColor" }
+        Property { name: "textItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "cursorParent"; type: "QQuickItem"; isPointer: true }
+        Property { name: "selected"; type: "bool"; isReadonly: true }
+        Property { name: "topPadding"; type: "double" }
+        Property { name: "menuMap"; type: "QVariant" }
+        Property { name: "menuMoreMap"; type: "QVariant" }
+        Property { name: "menuMore"; type: "bool" }
+        Property { name: "active"; type: "bool" }
+        Method { name: "hideMenu"; type: "QVariant" }
+        Method { name: "close"; type: "QVariant" }
+    }
+    Component {
+        prototype: "QQuickItem"
         name: "AsemanQml.Controls/TabBar 2.0"
         exports: ["AsemanQml.Controls/TabBar 2.0"]
         exportMetaObjectRevisions: [0]

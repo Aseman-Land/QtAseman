@@ -21,4 +21,5 @@ TextField 2.0 TextField.qml
 Tooltip 2.0 Tooltip.qml
 Slider 2.0 Slider.qml
 TextArea 2.0 TextArea.qml
+TextCursorArea 2.0 TextCursorArea.qml
 PanelDrawer 2.0 PanelDrawer.qml
