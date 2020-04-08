@@ -8,6 +8,8 @@ Item {
     property Item foregroundItem
     property Item backgroundItem
 
+    property ListObject list
+
     readonly property Item headerItem: foregroundItem && foregroundItem.header? foregroundItem.header : null
     readonly property string title: foregroundItem && foregroundItem.title? foregroundItem.title : ""
 

@@ -53,6 +53,8 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "IOSBottomDrawerViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("dialog", "IOSDialogViewport.qml", this);
 #endif
+
+    p->defaultItems << new AsemanViewportItem("none", "NoneViewport.qml", this);
 }
 
 QQmlListProperty<AsemanViewportItem> AsemanViewport::items()
