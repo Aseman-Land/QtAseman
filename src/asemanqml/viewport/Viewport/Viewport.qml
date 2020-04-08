@@ -45,7 +45,7 @@ ViewportCore {
         }
 
         var lastItem = (list.count? list.last() : mainItem );
-        var typeObj = comObj.createObject(scene);
+        var typeObj = comObj.createObject(scene, {"list": list});
         typeObj.layoutDirection = Qt.binding( function(){ return layoutDirection } )
         typeObj.open = true;
         typeObj.index = Qt.binding( function() { return list.count? list.indexOf(typeObj) + 1 : 0 } )

@@ -6,18 +6,30 @@ AbstractViewportType {
 
     ratio: openRatio * mouseRatio
 
-    background.transformOrigin: index < 2? Item.Center : Item.Top
+    background.transformOrigin: iosIndex < 2? Item.Center : Item.Top
     background.scale: 1 - (ratio * topPadSize / height)
     background.radius: 10 * Devices.density
 
     foreground.parent: column
     foreground.anchors.bottom: foreground.parent.bottom
     foreground.anchors.bottomMargin: -foreground.radius
-    foreground.height: item.height - (item.index * topPadSize ) + foreground.radius
+    foreground.height: item.height - (item.iosIndex * topPadSize ) + foreground.radius
     foreground.radius: 10 * Devices.density
     foreground.z: 10
     foregroundScene.anchors.bottomMargin: foreground.radius
     foregroundScene.anchors.topMargin: -Devices.statusBarHeight
+
+    readonly property bool isIOSPopup: true
+    readonly property int iosIndex: {
+        if (!list)
+            return 0;
+        for (var i=list.count-1; i>=0; i--)
+        {
+            if (!list.at(i).isIOSPopup)
+                return index - i - 1
+        }
+        return index
+    }
 
     readonly property real topPadSize: Math.max(20 * Devices.density, Devices.statusBarHeight) + 5 * Devices.density
     property real openRatio: open? 1 : 0
