@@ -34,6 +34,11 @@ ViewportCore {
                 viewportsHash.insert(cmp, comObj);
             } else {
                 comObj = viewportsHash.value(cmp)
+                if (!comObj) {
+                    comObj = Qt.createComponent(cmp);
+                    viewportsHash.remove(cmp);
+                    viewportsHash.insert(cmp, comObj);
+                }
             }
         } else {
             comObj = cmp
