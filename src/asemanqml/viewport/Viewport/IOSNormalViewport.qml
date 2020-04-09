@@ -43,6 +43,7 @@ AbstractViewportType {
             width: 20 * Devices.density
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            preventStealing: true
             onMouseXChanged: {
                 var ratio = 1 - ((mouseX - pinX) / item.foreground.width);
                 if (ratio < 0.01)
