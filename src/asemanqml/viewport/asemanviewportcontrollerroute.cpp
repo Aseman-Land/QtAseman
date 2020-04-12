@@ -60,6 +60,26 @@ void AsemanViewportControllerRoute::setComponent(const QVariant &component)
     Q_EMIT componentChanged();
 }
 
+QQmlComponent *AsemanViewportControllerRoute::sourceComponent() const
+{
+    return component().value<QQmlComponent*>();
+}
+
+void AsemanViewportControllerRoute::setSourceComponent(QQmlComponent *sourceComponent)
+{
+    setComponent( QVariant::fromValue(sourceComponent) );
+}
+
+QUrl AsemanViewportControllerRoute::source() const
+{
+    return component().toUrl();
+}
+
+void AsemanViewportControllerRoute::setSource(const QUrl &sourceComponent)
+{
+    setComponent( QVariant::fromValue(sourceComponent) );
+}
+
 QString AsemanViewportControllerRoute::viewportType() const
 {
     return p->viewportType;

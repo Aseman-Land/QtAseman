@@ -22,13 +22,17 @@
 #include <QObject>
 #include <QRegExp>
 #include <QVariant>
+#include <QUrl>
+#include <QQmlComponent>
 
 class AsemanViewportControllerRoute : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QRegExp route READ route WRITE setRoute NOTIFY routeChanged)
-    Q_PROPERTY(QVariant component READ component WRITE setComponent NOTIFY componentChanged)
+    Q_PROPERTY(QQmlComponent* sourceComponent READ sourceComponent WRITE setSourceComponent NOTIFY componentChanged)
+    Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY componentChanged)
     Q_PROPERTY(QString viewportType READ viewportType WRITE setViewportType NOTIFY viewportTypeChanged)
+    Q_CLASSINFO("DefaultProperty", "sourceComponent")
 
     class Private;
 
@@ -41,6 +45,12 @@ public:
 
     QVariant component() const;
     void setComponent(const QVariant &component);
+
+    QQmlComponent *sourceComponent() const;
+    void setSourceComponent(QQmlComponent *sourceComponent);
+
+    QUrl source() const;
+    void setSource(const QUrl &sourceComponent);
 
     QString viewportType() const;
     void setViewportType(const QString &viewportType);
