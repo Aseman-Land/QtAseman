@@ -43,6 +43,10 @@ ViewportCore {
         } else {
             comObj = cmp
         }
+        if (comObj.status === Component.Error) {
+            console.debug(comObj.errorString().trim())
+            return null
+        }
 
         var lastItem = (list.count? list.last() : mainItem );
         var typeObj = comObj.createObject(scene, {"list": list});
@@ -73,6 +77,10 @@ ViewportCore {
                     componentsHash.insert(key, component);
                 }
             }
+        }
+        if (component.status === Component.Error) {
+            console.debug(component.errorString().trim())
+            return null
         }
 
         var obj = properties? component.createObject(typeObj.foregroundScene, properties) : component.createObject(typeObj.foregroundScene);
