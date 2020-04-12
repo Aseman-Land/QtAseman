@@ -4,6 +4,7 @@ import AsemanQml.Base 2.0
 AbstractViewportType {
     id: item
 
+    fillForeground: true
     ratio: openRatio * mouseRatio
 
     background.x: (layoutDirection == Qt.LeftToRight? -width : width) * ratio/2
