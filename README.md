@@ -421,14 +421,14 @@ ViewportController {
     // Define all your UI routes that connect paths to UI components.
     ViewportControllerRoute {
         route: /main:\/\/test\/.*/
-        component: hiComponent
+        sourceComponent: hiComponent
         viewportType: "popup" 
     }
 
     ViewportControllerRoute {
         route: /about:\/\/aseman\/.*/
-        // You can also set component's file path to the component property.
-        component: aboutComponent
+        // You can also use `source` property and pass component's url to it.
+        sourceComponent: aboutComponent
         viewportType: "page" 
     }
 }
