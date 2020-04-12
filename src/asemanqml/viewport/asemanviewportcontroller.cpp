@@ -29,12 +29,16 @@ class AsemanViewportController::Private
 public:
     QPointer<AsemanViewport> viewport;
     QList<AsemanViewportControllerRoute*> routes;
+    static QList<AsemanViewportController*> controllers;
 };
+
+QList<AsemanViewportController*> AsemanViewportController::Private::controllers;
 
 AsemanViewportController::AsemanViewportController(QObject *parent) :
     QObject(parent)
 {
     p = new Private;
+    Private::controllers << this;
 }
 
 QQmlListProperty<AsemanViewportControllerRoute> AsemanViewportController::routes()
@@ -129,7 +133,20 @@ void AsemanViewportController::clear(QQmlListProperty<AsemanViewportControllerRo
     Q_EMIT aobj->routesChanged();
 }
 
+QList<AsemanViewportController *> AsemanViewportController::controllers(AsemanViewport *viewport)
+{
+    if (!viewport)
+        return Private::controllers;
+
+    QList<AsemanViewportController *> res;
+    for (AsemanViewportController *controller: Private::controllers)
+        if (controller->p->viewport == viewport)
+            res << controller;
+    return res;
+}
+
 AsemanViewportController::~AsemanViewportController()
 {
+    Private::controllers.removeOne(this);
     delete p;
 }

@@ -43,6 +43,8 @@ public:
     void setViewport(AsemanViewport *viewport);
     AsemanViewport *viewport() const;
 
+    static QList<AsemanViewportController *> controllers(AsemanViewport *viewport = Q_NULLPTR);
+
 public Q_SLOTS:
     QQuickItem *trigger(const QString &url, QVariantMap properties = QVariantMap());
 
@@ -61,5 +63,6 @@ private:
 };
 
 typedef AsemanViewportController QAsemanViewportController;
+
 
 #endif // ASEMANVIEWPORTCONTROLLER_H
