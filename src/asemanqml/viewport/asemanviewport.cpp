@@ -17,6 +17,7 @@
 */
 
 #include "asemanviewport.h"
+#include "asemanviewportcontroller.h"
 
 class AsemanViewport::Private
 {
@@ -82,6 +83,11 @@ QStringList AsemanViewport::keys() const
     return result;
 }
 
+AsemanViewportAttechedType *AsemanViewport::qmlAttachedProperties(QObject *object)
+{
+    return new AsemanViewportAttechedType(object);
+}
+
 QVariant AsemanViewport::getComponent(const QString &name)
 {
     QList<AsemanViewportItem*> list = p->defaultItems;
@@ -123,4 +129,38 @@ void AsemanViewport::clear(QQmlListProperty<AsemanViewportItem> *p)
 AsemanViewport::~AsemanViewport()
 {
     delete p;
+}
+
+
+
+AsemanViewportAttechedType::AsemanViewportAttechedType(QObject *parent) :
+    QObject(parent)
+{
+}
+
+AsemanViewportController *AsemanViewportAttechedType::controller() const
+{
+    QList<AsemanViewportController*> controllers = allControllers();
+    return controllers.length()? controllers.first() : Q_NULLPTR;
+}
+
+QList<AsemanViewportController*> AsemanViewportAttechedType::allControllers() const
+{
+    AsemanViewport *viewport = Q_NULLPTR;
+    QObject *obj = parent();
+    while (obj)
+    {
+        viewport = qobject_cast<AsemanViewport*>(obj);
+        if (viewport)
+            return AsemanViewportController::controllers(viewport);
+
+        QQuickItem *item = qobject_cast<QQuickItem*>(obj);
+        obj = item? item->parentItem() : obj->parent();
+    }
+
+    return AsemanViewportController::controllers();
+}
+
+AsemanViewportAttechedType::~AsemanViewportAttechedType()
+{
 }

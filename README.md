@@ -456,6 +456,16 @@ Component {
 }
 ```
 
+There is also an attached property, you can use to call trigger function in the Viewport's childeren components:
+
+```
+MouseArea {
+    onClicked: Viewport.controller.trigger("about://aseman/test", {"text": "about"})
+}
+```
+
+`Viewport.controller` method returns first controller of the parent Viewport. If you wish to get all controllers as array, use `Viewport.allController` method instead.
+
 ### AsemanQml.Network
 
 Network module provides components to send network requests. For Example `NetworkRequestManager` and `NetworkRequest` could send http requests like post, get, put and etc.

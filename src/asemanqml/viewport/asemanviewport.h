@@ -24,6 +24,7 @@
 
 #include "asemanviewportitem.h"
 
+class AsemanViewportAttechedType;
 class AsemanViewport : public QQuickItem
 {
     Q_OBJECT
@@ -38,6 +39,8 @@ public:
     QQmlListProperty<AsemanViewportItem> items();
     QList<AsemanViewportItem*> itemsList() const;
     QStringList keys() const;
+
+    static AsemanViewportAttechedType *qmlAttachedProperties(QObject *object);
 
 public Q_SLOTS:
     QVariant getComponent(const QString &name);
@@ -56,7 +59,24 @@ private:
     Private *p;
 };
 
-Q_DECLARE_METATYPE(AsemanViewport*)
+class AsemanViewportController;
+class AsemanViewportAttechedType : public QObject {
+    Q_OBJECT
+    Q_PROPERTY(AsemanViewportController* controller READ controller NOTIFY controllersChanged)
+    Q_PROPERTY(QList<AsemanViewportController *> allControllers READ allControllers NOTIFY controllersChanged)
+
+public:
+    AsemanViewportAttechedType(QObject *parent);
+    virtual ~AsemanViewportAttechedType();
+
+    AsemanViewportController *controller() const;
+    QList<AsemanViewportController *> allControllers() const;
+
+Q_SIGNALS:
+    void controllersChanged();
+};
+
+QML_DECLARE_TYPEINFO(AsemanViewport, QML_HAS_ATTACHED_PROPERTIES)
 
 typedef AsemanViewport QAsemanViewport;
 
