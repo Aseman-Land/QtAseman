@@ -19,6 +19,8 @@
 #include "asemanviewport.h"
 #include "asemanviewportcontroller.h"
 
+#include <QtQml>
+
 class AsemanViewport::Private
 {
 public:
@@ -141,10 +143,20 @@ AsemanViewportAttechedType::AsemanViewportAttechedType(QObject *parent) :
 AsemanViewportController *AsemanViewportAttechedType::controller() const
 {
     QList<AsemanViewportController*> controllers = allControllers();
-    return controllers.length()? controllers.first() : Q_NULLPTR;
+    if (controllers.isEmpty())
+    {
+        qmlWarning(this) << "There is no controller attached to the viewport.";
+        return Q_NULLPTR;
+    }
+    return controllers.first();
 }
 
 QList<AsemanViewportController*> AsemanViewportAttechedType::allControllers() const
+{
+    return AsemanViewportController::controllers( AsemanViewportAttechedType::viewport() );
+}
+
+AsemanViewport *AsemanViewportAttechedType::viewport() const
 {
     AsemanViewport *viewport = Q_NULLPTR;
     QObject *obj = parent();
@@ -152,13 +164,12 @@ QList<AsemanViewportController*> AsemanViewportAttechedType::allControllers() co
     {
         viewport = qobject_cast<AsemanViewport*>(obj);
         if (viewport)
-            return AsemanViewportController::controllers(viewport);
+            return viewport;
 
         QQuickItem *item = qobject_cast<QQuickItem*>(obj);
         obj = item? item->parentItem() : obj->parent();
     }
-
-    return AsemanViewportController::controllers();
+    return viewport;
 }
 
 AsemanViewportAttechedType::~AsemanViewportAttechedType()
