@@ -12,6 +12,13 @@ AbstractViewportType {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
     }
 
+    MouseArea {
+        parent: item.background
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: item.open = false
+    }
+
     Rectangle {
         anchors.fill: item.background
         color: "#000"

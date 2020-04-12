@@ -103,7 +103,7 @@ QQuickItem *AsemanViewportController::trigger(const QString &url, QVariantMap pr
         }
     }
 
-    qmlWarning(this) << "Cannot find any route to handle" << url;
+    qmlWarning(this) << "Cannot find any route to handle " << url;
     return Q_NULLPTR;
 }
 
