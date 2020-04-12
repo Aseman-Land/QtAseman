@@ -19,7 +19,7 @@ AbstractViewportType {
     Rectangle {
         anchors.fill: item.background
         color: "#000"
-        opacity: item.ratio * 0.2
+        opacity: item.ratio * 0.3
         visible: item.ratio
 
         MouseArea {

@@ -27,6 +27,11 @@ ViewportCore {
 
     function append(component, properties, type) {
         var cmp = getComponent(type);
+        if (!cmp) {
+            console.debug("There is no \"" + type + "\" viewportType. Available types are ", keys)
+            return null
+        }
+
         var comObj;
         if ((cmp + "").length && cmp.status == undefined) {
             if (!viewportsHash.contains(cmp)) {

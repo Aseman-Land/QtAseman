@@ -17,8 +17,15 @@ AbstractViewportType {
     Rectangle {
         anchors.fill: item.background
         color: "#000"
-        opacity: item.ratio * 0.1
+        opacity: item.ratio * 0.3
         visible: item.index <= 3
+    }
+
+    MouseArea {
+        parent: item.background
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: item.open = false
     }
 
     Item {
