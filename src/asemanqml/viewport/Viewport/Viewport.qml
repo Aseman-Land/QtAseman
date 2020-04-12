@@ -28,7 +28,7 @@ ViewportCore {
     function append(component, properties, type) {
         var cmp = getComponent(type);
         var comObj;
-        if (cmp.length) {
+        if ((cmp + "").length) {
             if (!viewportsHash.contains(cmp)) {
                 comObj = Qt.createComponent(cmp);
                 viewportsHash.insert(cmp, comObj);
@@ -60,13 +60,18 @@ ViewportCore {
 
         lastItem.parent = typeObj.backgroundScene;
 
-        if (component.length) {
+        if ((component + "").length) {
             var key = component
-            if (componentsHash.contains(key))
-                component = componentsHash.value(key)
-            else {
+            if (!componentsHash.contains(key)) {
                 component = Qt.createComponent(key)
                 componentsHash.insert(key, component)
+            } else {
+                component = componentsHash.value(key)
+                if (!component) {
+                    component = Qt.createComponent(key);
+                    componentsHash.remove(key);
+                    componentsHash.insert(key, component);
+                }
             }
         }
 
