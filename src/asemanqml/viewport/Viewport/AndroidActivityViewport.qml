@@ -2,6 +2,8 @@ import QtQuick 2.0
 
 AbstractViewportType {
     id: item
+
+    fillForeground: true
     ratio: openRatio * mouseRatio
 
     background.scale: 1 - (ratio * 0.05)

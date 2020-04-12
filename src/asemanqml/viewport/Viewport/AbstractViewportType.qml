@@ -13,6 +13,8 @@ Item {
     readonly property Item headerItem: foregroundItem && foregroundItem.header? foregroundItem.header : null
     readonly property string title: foregroundItem && foregroundItem.title? foregroundItem.title : ""
 
+    property bool fillForeground: false
+
     property int index
     property int count
     property int layoutDirection: View.layoutDirection

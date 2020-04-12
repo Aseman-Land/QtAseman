@@ -4,6 +4,7 @@ import AsemanQml.Base 2.0
 AbstractViewportType {
     id: item
 
+    fillForeground: true
     ratio: openRatio * mouseRatio
 
     background.transformOrigin: iosIndex < 2? Item.Center : Item.Top

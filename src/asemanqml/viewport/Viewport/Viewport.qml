@@ -76,6 +76,9 @@ ViewportCore {
         }
 
         var obj = properties? component.createObject(typeObj.foregroundScene, properties) : component.createObject(typeObj.foregroundScene);
+        if (typeObj.fillForeground)
+            obj.anchors.fill = obj.parent
+
         list.append(typeObj);
 
         typeObj.foregroundItem = obj
