@@ -382,6 +382,12 @@ Component {
 }
 ```
 
+There is also an attached property, you can use to call append function in the Viewport's childeren components:
+
+```js
+Viewport.viewport.append(...)
+```
+
 #### ViewportController
 
 Using `ViewportController` components you won't need to create a complicated architecture. It helps you to make your architecture quite easy and dynamic.
@@ -458,7 +464,7 @@ Component {
 
 There is also an attached property, you can use to call trigger function in the Viewport's childeren components:
 
-```
+```js
 MouseArea {
     onClicked: Viewport.controller.trigger("about://aseman/test", {"text": "about"})
 }
