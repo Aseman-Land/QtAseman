@@ -46,7 +46,7 @@ public:
     static QList<AsemanViewportController *> controllers(AsemanViewport *viewport = Q_NULLPTR);
 
 public Q_SLOTS:
-    QQuickItem *trigger(const QString &url, QVariantMap properties = QVariantMap());
+    QVariantMap lookup(const QString &url, QVariantMap properties = QVariantMap());
 
 Q_SIGNALS:
     void routesChanged();

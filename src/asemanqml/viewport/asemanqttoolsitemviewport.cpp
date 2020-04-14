@@ -41,7 +41,7 @@ void AsemanQtToolsItemViewport::registerTypes(const char *uri, bool exportMode)
 
     registerType<AsemanViewport>(uri, 2, 0, "ViewportCore", exportMode);
     registerType<AsemanViewportItem>(uri, 2, 0, "ViewportItem", exportMode);
-    registerType<AsemanViewportController>(uri, 2, 0, "ViewportController", exportMode);
+    registerType<AsemanViewportController>(uri, 2, 0, "ViewportControllerCore", exportMode);
     registerType<AsemanViewportControllerRoute>(uri, 2, 0, "ViewportControllerRoute", exportMode);
 
     register_list.insert(uri);

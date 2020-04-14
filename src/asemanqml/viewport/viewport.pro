@@ -34,3 +34,6 @@ RESOURCES += asemanviewport
 
 load(qml_plugin)
 
+DISTFILES += \
+    Viewport/ViewportController.qml
+

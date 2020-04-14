@@ -11,3 +11,4 @@ IOSPopupViewport 2.0 IOSPopupViewport.qml
 NoneViewport 2.0 NoneViewport.qml
 Viewport 2.0 Viewport.qml
 ViewportPage 2.0 ViewportPage.qml
+ViewportController 2.0 ViewportController.qml
