@@ -7,6 +7,7 @@ ViewportCore {
     property bool androidStyle: Devices.isAndroid
     property int layoutDirection: View.layoutDirection
     property Item mainItem
+    property alias count: list.count
 
     onMainItemChanged: {
         if (!mainItem)

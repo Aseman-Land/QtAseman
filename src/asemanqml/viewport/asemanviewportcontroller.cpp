@@ -63,12 +63,13 @@ AsemanViewport *AsemanViewportController::viewport() const
     return p->viewport;
 }
 
-QQuickItem *AsemanViewportController::trigger(const QString &url, QVariantMap properties)
+QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap properties)
 {
+    QVariantMap res;
     if (!p->viewport)
     {
         qmlWarning(this) << "viewport property cannot be null.";
-        return Q_NULLPTR;
+        return res;
     }
 
     for (AsemanViewportControllerRoute *r: p->routes)
@@ -92,19 +93,18 @@ QQuickItem *AsemanViewportController::trigger(const QString &url, QVariantMap pr
             QVariant type = r->viewportType().length()? r->viewportType() : urlObj.scheme();
             QVariant props = properties;
 
-            QMetaObject::invokeMethod(p->viewport.data(), "append", Q_RETURN_ARG(QVariant, item), Q_ARG(QVariant, component),
-                                      Q_ARG(QVariant, props), Q_ARG(QVariant, type));
-
-            QQuickItem *res = item.value<QQuickItem*>();
-            if (!res)
-                qmlWarning(this) << "Cannot append page to viewport.";
+            res["component"] = component;
+            res["type"] = type;
+            res["properties"] = props;
+            res["viewport"] = QVariant::fromValue<QObject*>(p->viewport.data());
 
             return res;
         }
     }
 
     qmlWarning(this) << "Cannot find any route to handle " << url;
-    return Q_NULLPTR;
+
+    return res;
 }
 
 void AsemanViewportController::append(QQmlListProperty<AsemanViewportControllerRoute> *p, AsemanViewportControllerRoute *v)
