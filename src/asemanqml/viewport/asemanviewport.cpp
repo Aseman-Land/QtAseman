@@ -26,6 +26,7 @@ class AsemanViewport::Private
 public:
     QList<AsemanViewportItem*> items;
     QList<AsemanViewportItem*> defaultItems;
+    QHash<QUrl, QQmlComponent*> components;
 };
 
 AsemanViewport::AsemanViewport(QQuickItem *parent) :
@@ -100,6 +101,29 @@ QVariant AsemanViewport::getComponent(const QString &name)
             return i->component();
 
     return QVariant();
+}
+
+QQmlComponent *AsemanViewport::createComponent(const QUrl &url, bool asyn)
+{
+    QQmlComponent *component = p->components.value(url);
+    if (component)
+        return component;
+
+    QQmlEngine *engine = qmlEngine(this);
+    if (!engine)
+    {
+        qmlWarning(this) << "Could not find engine of the object";
+        return Q_NULLPTR;
+    }
+
+    component = new QQmlComponent(engine, url, (asyn? QQmlComponent::Asynchronous : QQmlComponent::PreferSynchronous), this);
+    p->components[url] = component;
+
+    connect(component, &QObject::destroyed, this, [this, url](){
+        p->components.remove(url);
+    });
+
+    return component;
 }
 
 void AsemanViewport::append(QQmlListProperty<AsemanViewportItem> *p, AsemanViewportItem *v)

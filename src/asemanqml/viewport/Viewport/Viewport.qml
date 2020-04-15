@@ -35,17 +35,7 @@ ViewportCore {
 
         var comObj;
         if ((cmp + "").length && cmp.status == undefined) {
-            if (!viewportsHash.contains(cmp)) {
-                comObj = Qt.createComponent(cmp);
-                viewportsHash.insert(cmp, comObj);
-            } else {
-                comObj = viewportsHash.value(cmp)
-                if (!comObj) {
-                    comObj = Qt.createComponent(cmp);
-                    viewportsHash.remove(cmp);
-                    viewportsHash.insert(cmp, comObj);
-                }
-            }
+            comObj = createComponent(Qt.resolvedUrl(cmp));
         } else {
             comObj = cmp
         }
@@ -71,18 +61,7 @@ ViewportCore {
         lastItem.parent = typeObj.backgroundScene;
 
         if ((component + "").length && component.status == undefined) {
-            var key = component
-            if (!componentsHash.contains(key)) {
-                component = Qt.createComponent(key)
-                componentsHash.insert(key, component)
-            } else {
-                component = componentsHash.value(key)
-                if (!component) {
-                    component = Qt.createComponent(key);
-                    componentsHash.remove(key);
-                    componentsHash.insert(key, component);
-                }
-            }
+            component = createComponent(Qt.resolvedUrl(component));
         }
         if (component.status === Component.Error) {
             console.debug(component.errorString().trim())

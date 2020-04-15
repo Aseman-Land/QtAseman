@@ -44,6 +44,7 @@ public:
 
 public Q_SLOTS:
     QVariant getComponent(const QString &name);
+    QQmlComponent *createComponent(const QUrl &fileUrl, bool asyn = false);
 
 Q_SIGNALS:
     void itemsChanged();
