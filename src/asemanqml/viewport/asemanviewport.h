@@ -75,6 +75,8 @@ public:
     QList<AsemanViewportController *> allControllers() const;
     AsemanViewport *viewport() const;
 
+    static AsemanViewport *viewport(QObject *obj);
+
 Q_SIGNALS:
     void controllersChanged();
 };

@@ -46,7 +46,7 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
 
 #ifdef Q_OS_ANDROID
     p->defaultItems << new AsemanViewportItem("page", "AndroidDefaultPagesViewport.qml", this);
-    p->defaultItems << new AsemanViewportItem("popup", "AndroidActivityViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("popup", "IOSPopupViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("activity", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "AndroidBottomDrawerViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("dialog", "AndroidDialogViewport.qml", this);
@@ -182,17 +182,23 @@ QList<AsemanViewportController*> AsemanViewportAttechedType::allControllers() co
 
 AsemanViewport *AsemanViewportAttechedType::viewport() const
 {
+    return AsemanViewportAttechedType::viewport( parent() );
+}
+
+AsemanViewport *AsemanViewportAttechedType::viewport(QObject *obj)
+{
     AsemanViewport *viewport = Q_NULLPTR;
-    QObject *obj = parent();
-    while (obj)
+    do
     {
+        QQuickItem *item = qobject_cast<QQuickItem*>(obj);
+        obj = item? item->parentItem() : obj->parent();
+
         viewport = qobject_cast<AsemanViewport*>(obj);
         if (viewport)
             return viewport;
 
-        QQuickItem *item = qobject_cast<QQuickItem*>(obj);
-        obj = item? item->parentItem() : obj->parent();
-    }
+    } while(obj);
+
     return viewport;
 }
 
