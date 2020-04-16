@@ -29,6 +29,8 @@ class AsemanViewportController::Private
 public:
     QPointer<AsemanViewport> viewport;
     QList<AsemanViewportControllerRoute*> routes;
+    bool allowRecursiveTrigger;
+
     static QList<AsemanViewportController*> controllers;
 };
 
@@ -38,6 +40,8 @@ AsemanViewportController::AsemanViewportController(QObject *parent) :
     QObject(parent)
 {
     p = new Private;
+    p->allowRecursiveTrigger = false;
+
     Private::controllers << this;
 }
 
@@ -61,6 +65,20 @@ void AsemanViewportController::setViewport(AsemanViewport *viewport)
 AsemanViewport *AsemanViewportController::viewport() const
 {
     return p->viewport;
+}
+
+bool AsemanViewportController::allowRecursiveTrigger() const
+{
+    return p->allowRecursiveTrigger;
+}
+
+void AsemanViewportController::setAllowRecursiveTrigger(bool allowRecursiveTrigger)
+{
+    if (p->allowRecursiveTrigger == allowRecursiveTrigger)
+        return;
+
+    p->allowRecursiveTrigger = allowRecursiveTrigger;
+    Q_EMIT allowRecursiveTriggerChanged();
 }
 
 QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap properties)
@@ -102,7 +120,12 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
         }
     }
 
-    qmlWarning(this) << "Cannot find any route to handle " << url;
+    AsemanViewportAttechedType attachType(p->viewport);
+    AsemanViewportController *parentController = attachType.controller();
+    if (parentController && p->allowRecursiveTrigger)
+        return parentController->lookup(url, properties);
+    else
+        qmlWarning(this) << "Cannot find any route to handle " << url;
 
     return res;
 }
@@ -135,9 +158,6 @@ void AsemanViewportController::clear(QQmlListProperty<AsemanViewportControllerRo
 
 QList<AsemanViewportController *> AsemanViewportController::controllers(AsemanViewport *viewport)
 {
-    if (!viewport)
-        return Private::controllers;
-
     QList<AsemanViewportController *> res;
     for (AsemanViewportController *controller: Private::controllers)
         if (controller->p->viewport == viewport)

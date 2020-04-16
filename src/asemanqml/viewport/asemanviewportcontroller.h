@@ -31,6 +31,7 @@ class AsemanViewportController : public QObject
     class Private;
     Q_PROPERTY(QQmlListProperty<AsemanViewportControllerRoute> routes READ routes NOTIFY routesChanged)
     Q_PROPERTY(AsemanViewport* viewport READ viewport WRITE setViewport NOTIFY viewportChanged)
+    Q_PROPERTY(bool allowRecursiveTrigger READ allowRecursiveTrigger WRITE setAllowRecursiveTrigger NOTIFY allowRecursiveTriggerChanged)
 
     Q_CLASSINFO("DefaultProperty", "routes")
 
@@ -43,6 +44,9 @@ public:
     void setViewport(AsemanViewport *viewport);
     AsemanViewport *viewport() const;
 
+    bool allowRecursiveTrigger() const;
+    void setAllowRecursiveTrigger(bool allowRecursiveTrigger);
+
     static QList<AsemanViewportController *> controllers(AsemanViewport *viewport = Q_NULLPTR);
 
 public Q_SLOTS:
@@ -51,6 +55,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void routesChanged();
     void viewportChanged();
+    void allowRecursiveTriggerChanged();
 
 private:
     static void append(QQmlListProperty<AsemanViewportControllerRoute> *p, AsemanViewportControllerRoute *v);
