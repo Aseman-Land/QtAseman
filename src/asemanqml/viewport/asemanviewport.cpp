@@ -46,12 +46,14 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
 
 #ifdef Q_OS_ANDROID
     p->defaultItems << new AsemanViewportItem("page", "AndroidDefaultPagesViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("stack", "IOSNormalViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("popup", "IOSPopupViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("activity", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "AndroidBottomDrawerViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("dialog", "AndroidDialogViewport.qml", this);
 #else
     p->defaultItems << new AsemanViewportItem("page", "IOSNormalViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("stack", "IOSNormalViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("popup", "IOSPopupViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("activity", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "IOSBottomDrawerViewport.qml", this);

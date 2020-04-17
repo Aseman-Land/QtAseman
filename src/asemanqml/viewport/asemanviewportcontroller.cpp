@@ -81,10 +81,13 @@ void AsemanViewportController::setAllowRecursiveTrigger(bool allowRecursiveTrigg
     Q_EMIT allowRecursiveTriggerChanged();
 }
 
-QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap properties)
+QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap properties, AsemanViewport *viewport)
 {
     QVariantMap res;
-    if (!p->viewport)
+    if (!viewport)
+        viewport = p->viewport;
+
+    if (!viewport)
     {
         qmlWarning(this) << "viewport property cannot be null.";
         return res;
@@ -114,7 +117,7 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
             res["component"] = component;
             res["type"] = type;
             res["properties"] = props;
-            res["viewport"] = QVariant::fromValue<QObject*>(p->viewport.data());
+            res["viewport"] = QVariant::fromValue<QObject*>(viewport);
 
             return res;
         }
@@ -123,7 +126,7 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
     AsemanViewportAttechedType attachType(p->viewport);
     AsemanViewportController *parentController = attachType.controller();
     if (parentController && p->allowRecursiveTrigger)
-        return parentController->lookup(url, properties);
+        return parentController->lookup(url, properties, viewport);
     else
         qmlWarning(this) << "Cannot find any route to handle " << url;
 
