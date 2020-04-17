@@ -50,7 +50,7 @@ public:
     static QList<AsemanViewportController *> controllers(AsemanViewport *viewport = Q_NULLPTR);
 
 public Q_SLOTS:
-    QVariantMap lookup(const QString &url, QVariantMap properties = QVariantMap());
+    QVariantMap lookup(const QString &url, QVariantMap properties = QVariantMap(), AsemanViewport *viewport = Q_NULLPTR);
 
 Q_SIGNALS:
     void routesChanged();

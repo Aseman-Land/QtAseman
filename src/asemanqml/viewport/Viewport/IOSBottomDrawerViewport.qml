@@ -13,7 +13,6 @@ AbstractViewportType {
     foreground.anchors.bottom: foreground.parent.bottom
     foreground.anchors.bottomMargin: -foreground.radius
     foregroundScene.anchors.bottomMargin: foreground.radius
-    foregroundScene.anchors.topMargin: -Devices.statusBarHeight
 
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
@@ -37,7 +36,6 @@ AbstractViewportType {
         anchors.fill: item.background
         color: "#000"
         opacity: item.ratio * 0.3
-        visible: item.index <= 3
     }
 
     NumberAnimation {
@@ -64,14 +62,13 @@ AbstractViewportType {
         height: flick.contentY
         anchors.bottom: parent.bottom
         z: 5
-        visible: !Devices.isAndroid
         clip: true
 
         FastBlur {
             anchors.bottom: parent.bottom
             height: item.background.height
             width: item.background.width
-            radius: Devices.isAndroid? 0 : 64
+            radius: 64
             cached: true
             source: item.background
         }
