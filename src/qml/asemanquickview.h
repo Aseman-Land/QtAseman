@@ -44,7 +44,6 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickView : public QObject
     Q_PROPERTY(QObject*    root        READ root        WRITE setRoot        NOTIFY rootChanged)
     Q_PROPERTY(QQuickItem* focusedText READ focusedText WRITE setFocusedText NOTIFY focusedTextChanged)
 
-    Q_PROPERTY(int layoutDirection READ layoutDirection WRITE setLayoutDirection NOTIFY layoutDirectionChanged)
     Q_PROPERTY(QString offlineStoragePath READ offlineStoragePath WRITE setOfflineStoragePath NOTIFY offlineStoragePathChanged)
 
     Q_PROPERTY(qreal flickVelocity READ flickVelocity NOTIFY fakeSignal)
@@ -75,9 +74,6 @@ public:
     void setFocusedText( QQuickItem *item );
     QQuickItem *focusedText() const;
 
-    int layoutDirection() const;
-    void setLayoutDirection( int l );
-
     qreal flickVelocity() const;
 
     void setOfflineStoragePath(const QString &path);
@@ -93,7 +89,6 @@ Q_SIGNALS:
     void navigationBarHeightChanged();
     void rootChanged();
     void focusedTextChanged();
-    void layoutDirectionChanged();
     void reverseScrollChanged();
     void fakeSignal();
     void closeRequest();

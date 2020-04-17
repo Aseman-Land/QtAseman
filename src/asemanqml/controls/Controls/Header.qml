@@ -33,7 +33,6 @@ Rectangle {
     property alias shadowOpacity: shadow_rct.opacity
     property bool statusBar: Devices.transparentStatusBar
     property bool centerText: true
-    property int layoutDirection: View.layoutDirection
 
     readonly property real defaultHeight: Devices.standardTitleBarHeight + (statusBar? View.statusBarHeight : 0)
 
@@ -71,7 +70,7 @@ Rectangle {
                 if(centerText)
                     return parent.width/2 - width/2
                 else
-                if(layoutDirection == Qt.RightToLeft)
+                if(LayoutMirroring.enabled)
                     return parent.width - Devices.standardTitleBarHeight - width
                 else
                     return Devices.standardTitleBarHeight

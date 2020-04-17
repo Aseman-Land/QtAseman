@@ -7,7 +7,6 @@ import QtGraphicalEffects 1.0
 Item {
     id: item
 
-    property int layoutDirection: View.layoutDirection
     property alias toolbarHeight: toolbar.height
     property alias toolbarTopMargin: toolbar.y
     property alias searchBarButton: searchIcon
@@ -127,12 +126,11 @@ Item {
                 TextInput {
                     id: text_input
                     anchors.fill: searchbarArea
-                    leftPadding: Devices.isIOS || layoutDirection==Qt.RightToLeft? 0 : height
-                    rightPadding: Devices.isIOS || layoutDirection==Qt.LeftToRight? 0 : height
+                    leftPadding: Devices.isIOS? 0 : height
                     selectedTextColor: "#fff"
                     selectionColor: "#18f"
                     verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: item.layoutDirection == Qt.LeftToRight? Text.AlignLeft : Text.AlignRight
+                    horizontalAlignment: Text.AlignLeft
                     inputMethodHints: Qt.ImhNoPredictiveText
                     font.family: AsemanApp.globalFont.family
                     font.pixelSize: 10*Devices.fontDensity
@@ -176,7 +174,7 @@ Item {
                     var s2 = searchbar.height - toolbarTopMargin
                     return item.ratio*s2 + (1-item.ratio)*s1
                 }
-                x: item.layoutDirection==Qt.LeftToRight? parent.width - width : 0
+                x: LayoutMirroring.enabled? 0 : parent.width - width
 
                 Rectangle {
                     id: searchHighlight

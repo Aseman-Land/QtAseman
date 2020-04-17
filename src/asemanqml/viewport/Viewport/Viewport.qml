@@ -5,7 +5,6 @@ import AsemanQml.Viewport 2.0
 ViewportCore {
 
     property bool androidStyle: Devices.isAndroid
-    property int layoutDirection: View.layoutDirection
     property Item mainItem
     property alias count: list.count
 
@@ -46,7 +45,6 @@ ViewportCore {
 
         var lastItem = (list.count? list.last() : mainItem );
         var typeObj = comObj.createObject(scene, {"list": list});
-        typeObj.layoutDirection = Qt.binding( function(){ return layoutDirection } )
         typeObj.open = true;
         typeObj.index = Qt.binding( function() { return list.count? list.indexOf(typeObj) + 1 : 0 } )
         typeObj.count = Qt.binding( function() { return list.count } )

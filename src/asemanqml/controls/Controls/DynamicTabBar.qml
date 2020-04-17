@@ -28,7 +28,6 @@ Item {
     property real minimumWidth: 120*Devices.density
     property alias model: tabBar.model
     property alias currentIndex: tabBar.currentIndex
-    property alias layoutDirection: tabBar.layoutDirection
     property color highlightColor: "#03A9F4"
     property color textColor: "#333333"
     property real fontSize: 12*Devices.fontDensity
@@ -46,7 +45,6 @@ Item {
         id: tabBar
         anchors.fill: parent
         orientation: Qt.Horizontal
-        layoutDirection: View.layoutDirection
 
         delegate: QtControls.ItemDelegate {
             height: tabBar.height

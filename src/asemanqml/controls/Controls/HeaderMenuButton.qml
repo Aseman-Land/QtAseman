@@ -24,7 +24,7 @@ Item {
     width: height
     height: Devices.standardTitleBarHeight
     y: View.statusBarHeight
-    x: View.layoutDirection==Qt.LeftToRight? 0 : parent.width - width
+    x: LayoutMirroring.enabled? parent.width - width : 0
 
     property alias color: rect.color
     property alias buttonColor: menuIcon.color
@@ -33,6 +33,8 @@ Item {
     property alias pressed: marea.pressed
 
     signal clicked()
+
+    LayoutMirroring.childrenInherit: true
 
     Rectangle {
         id: rect
@@ -46,7 +48,6 @@ Item {
     MenuIcon {
         id: menuIcon
         anchors.centerIn: parent
-        layoutDirection: View.layoutDirection
     }
 
     MouseArea {

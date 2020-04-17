@@ -9,13 +9,10 @@ Header 2.0 Header.qml
 HeaderMenuButton 2.0 HeaderMenuButton.qml
 Helper 2.0 Helper.qml
 HelperPoint 2.0 HelperPoint.qml
-MenuController 2.0 MenuController.qml
 MenuIcon 2.0 MenuIcon.qml
 PanelFlicker 2.0 PanelFlicker.qml
-ScrollBar 2.0 ScrollBar.qml
-SideMenu 2.0 SideMenu.qml
-SlidePageManager 2.0 SlidePageManager.qml
-TabBar 2.0 TabBar.qml
+HScrollBar 2.0 HScrollBar.qml
+DynamicTabBar 2.0 DynamicTabBar.qml
 TabView 2.0 TabView.qml
 TextField 2.0 TextField.qml
 Tooltip 2.0 Tooltip.qml

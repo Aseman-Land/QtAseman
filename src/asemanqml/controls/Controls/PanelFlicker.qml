@@ -42,7 +42,7 @@ Item {
         return res
     }
 
-    property int layoutDirection: 1
+    property bool bottomMenu: true
     readonly property bool showed: item_frame.y > -menuHeight
 
     onDelegateChanged: {
@@ -64,7 +64,7 @@ Item {
         id: main_frame
         anchors.fill: parent
         transformOrigin: Item.Center
-        rotation: layoutDirection? 180 : 0
+        rotation: bottomMenu? 180 : 0
 
         MouseArea {
             id: marea
@@ -143,7 +143,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 transformOrigin: Item.Center
-                rotation: layoutDirection? 180 : 0
+                rotation: bottomMenu? 180 : 0
             }
         }
 
