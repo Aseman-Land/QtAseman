@@ -1,4 +1,4 @@
-usr/lib/*-linux-gnu/libQt5AsemanQml*
-usr/lib/*-linux-gnu/cmake/Qt5AsemanQml/*
-usr/lib/*-linux-gnu/pkgconfig/Qt5AsemanQml.pc
+usr/lib/*-linux-gnu/libQAsemanQml*
+usr/lib/*-linux-gnu/cmake/Qt5QAsemanQml/*
+usr/lib/*-linux-gnu/pkgconfig/QAsemanQml.pc
 usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemanqml*

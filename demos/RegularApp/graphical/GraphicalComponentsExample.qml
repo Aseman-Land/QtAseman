@@ -47,37 +47,25 @@ Rectangle {
                 onClicked: appendRequest(sideMenu_component)
             }
             MainMenuItem {
-                text: "Menu Controller"
-                onClicked: appendRequest(menuController_component)
-            }
-            MainMenuItem {
-                text: "Material Button"
-                onClicked: appendRequest(materialButton_component)
-            }
-            MainMenuItem {
-                text: "Show Panel"
-                onClicked: btmPanel.item = qmlcontrols_component.createObject(btmPanel)
-            }
-            MainMenuItem {
                 text: "Show Popup"
                 onClicked: msgDialog.visible = true
             }
         }
     }
 
-    PhysicalScrollBar {
+    HScrollBar {
         anchors.right: flick.right
         anchors.top: flick.top
         height: flick.height
         width: 6*Devices.density
-        color: masterPalette.highlight
+        color: "#18f"
         scrollArea: flick
     }
 
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "#18f"
         text: qsTr("Graphical Components")
         shadow: true
     }
@@ -86,10 +74,6 @@ Rectangle {
         ratio: 1
         buttonColor: "#ffffff"
         onClicked: BackHandler.back()
-    }
-
-    BottomPanel {
-        id: btmPanel
     }
 
     Popup {
@@ -135,22 +119,8 @@ Rectangle {
     }
 
     Component {
-        id: menuController_component
-        MenuControllerExample {
-            anchors.fill: parent
-        }
-    }
-
-    Component {
         id: sideMenu_component
         SideMenuExample {
-            anchors.fill: parent
-        }
-    }
-
-    Component {
-        id: materialButton_component
-        MaterialButtonExample {
             anchors.fill: parent
         }
     }

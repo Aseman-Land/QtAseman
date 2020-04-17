@@ -23,8 +23,6 @@
         <file>models/FileSystemModelExample.qml</file>
         <file>models/ModelComponentExamples.qml</file>
         <file>graphical/GraphicalComponentsExample.qml</file>
-        <file>graphical/MaterialButtonExample.qml</file>
-        <file>graphical/MenuControllerExample.qml</file>
         <file>graphical/SideMenuExample.qml</file>
         <file>global/MainMenuItem.qml</file>
         <file>global/MainPage.qml</file>

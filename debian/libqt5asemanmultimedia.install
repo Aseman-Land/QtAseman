@@ -1,4 +1,4 @@
-usr/lib/*-linux-gnu/libQt5AsemanMultimedia*
-usr/lib/*-linux-gnu/cmake/Qt5AsemanMultimedia/*
-usr/lib/*-linux-gnu/pkgconfig/Qt5AsemanMultimedia.pc
+usr/lib/*-linux-gnu/libQAsemanMultimedia*
+usr/lib/*-linux-gnu/cmake/Qt5QAsemanMultimedia/*
+usr/lib/*-linux-gnu/pkgconfig/QAsemanMultimedia.pc
 usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemanmultimedia*

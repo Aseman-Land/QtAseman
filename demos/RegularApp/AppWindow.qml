@@ -20,8 +20,9 @@ import QtQuick 2.7
 import QtQuick.Window 2.2
 import AsemanQml.Base 2.0
 import AsemanQml.Controls 2.0
+import AsemanQml.Viewport 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.0
 import QtQuick.Dialogs 1.2
 import "graphical"
@@ -33,7 +34,7 @@ import "global"
 AsemanWindow {
     id: mainWin
     width: 480
-    height: 640
+    height: 720
     title: qsTr("Hello World")
     visible: true
     backController: true
@@ -41,23 +42,22 @@ AsemanWindow {
     Material.accent: Material.LightBlue
     Material.theme: Material.Light
 
+    property bool mirror
+
+    LayoutMirroring.enabled: mirror
+    LayoutMirroring.childrenInherit: true
+
     Rectangle {
         anchors.fill: parent
         color: "#000000"
     }
 
-    SlidePageManager {
-        id: pageManger
+    Viewport {
+        id: viewport
         anchors.fill: parent
-        direction: (mainItem && mainItem.pageManagerDirection? Qt.Vertical : Qt.Horizontal)
 
-        LayoutMirroring.enabled: View.layoutDirection == Qt.RightToLeft
-        LayoutMirroring.childrenInherit: true
-
-        mainComponent: Rectangle {
+        mainItem: Rectangle {
             anchors.fill: parent
-
-            property alias pageManagerDirection: pManagerSwitch.checked
 
             AsemanFlickable {
                 id: flick
@@ -72,60 +72,57 @@ AsemanWindow {
                     width: flick.width
 
                     MainMenuItem {
-                        text: "Vertical page manager"
-                        onClicked: pManagerSwitch.checked = !pManagerSwitch.checked
-                        Switch {
-                            id: pManagerSwitch
-                            anchors.verticalCenter: parent.verticalCenter
-                            x: View.layoutDirection==Qt.LeftToRight? parent.width - width : 0
-                        }
-                    }
-                    MainMenuItem {
                         text: "Right To Left"
                         onClicked: layoutSwitch.checked = !layoutSwitch.checked
                         Switch {
                             id: layoutSwitch
                             anchors.verticalCenter: parent.verticalCenter
-                            x: View.layoutDirection==Qt.LeftToRight? parent.width - width : 0
-                            onCheckedChanged: View.layoutDirection = (checked? Qt.RightToLeft : Qt.LeftToRight)
+                            anchors.right: parent.right
+                            onCheckedChanged: mirror = checked
                         }
                     }
                     MainMenuItem {
                         text: "Graphical Components"
-                        onClicked: pageManger.append(graphicalComponents)
+                        onClicked: viewport.append(graphicalComponents, {}, "stack")
                     }
                     MainMenuItem {
                         text: "Model Components"
-                        onClicked: pageManger.append(modelComponents)
+                        onClicked: viewport.append(modelComponents, {}, "ios-bottomdrawer")
                     }
                     MainMenuItem {
                         text: "Non-Graphical Components"
-                        onClicked: pageManger.append(nonGraphicalComponents)
+                        onClicked: viewport.append(nonGraphicalComponents, {}, "popup")
                     }
                     MainMenuItem {
                         text: "Static Components"
-                        onClicked: pageManger.append(staticComponents)
-                    }
-                    MainMenuItem {
-                        text: "AsemanQtTools Github"
-                        onClicked: Qt.openUrlExternally("https://github.com/Aseman-Land/aseman-qt-tools")
+                        onClicked: viewport.append(staticComponents, {}, "activity")
                     }
                 }
             }
 
-            PhysicalScrollBar {
+            RoundButton {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.margins: 10 * Devices.density
+                highlighted: true
+                text: qsTr("Github")
+                onClicked: Qt.openUrlExternally("https://github.com/Aseman-Land/aseman-qt-tools")
+            }
+
+            HScrollBar {
                 anchors.right: flick.right
                 anchors.top: flick.top
                 height: flick.height
                 width: 6*Devices.density
-                color: masterPalette.highlight
+                color: "#18f"
                 scrollArea: flick
             }
 
             Header {
                 id: header
                 width: parent.width
-                color: masterPalette.highlight
+                color: "#18f"
                 text: qsTr("SlidePageManager")
                 shadow: true
             }
@@ -136,7 +133,7 @@ AsemanWindow {
         id: staticComponents
         StaticComponentsExample {
             anchors.fill: parent
-            onAppendRequest: pageManger.append(component)
+            onAppendRequest: viewport.append(component, {}, "stack")
         }
     }
 
@@ -144,15 +141,16 @@ AsemanWindow {
         id: graphicalComponents
         GraphicalComponentsExample {
             anchors.fill: parent
-            onAppendRequest: pageManger.append(component)
+            onAppendRequest: viewport.append(component, {}, "popup")
         }
     }
 
     Component {
         id: modelComponents
         ModelComponentExamples {
-            anchors.fill: parent
-            onAppendRequest: pageManger.append(component)
+            width: Viewport.viewport.width
+            height: Viewport.viewport.height * 0.6
+            onAppendRequest: viewport.append(component, {}, "popup")
         }
     }
 
@@ -160,7 +158,7 @@ AsemanWindow {
         id: nonGraphicalComponents
         NonGraphicalComponentsExample {
             anchors.fill: parent
-            onAppendRequest: pageManger.append(component)
+            onAppendRequest: viewport.append(component, {}, "activity")
         }
     }
 }

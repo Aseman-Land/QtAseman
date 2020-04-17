@@ -21,11 +21,16 @@ import AsemanQml.Base 2.0
 import AsemanQml.Controls 2.0
 import "../global"
 
-Rectangle {
+Item {
     id: scItem
-    color: masterPalette.window
 
     signal appendRequest(variant component)
+
+    Rectangle {
+        anchors.fill: parent
+        color: masterPalette.window
+        opacity: 0.5
+    }
 
     AsemanFlickable {
         id: flick
@@ -51,21 +56,23 @@ Rectangle {
         }
     }
 
-    PhysicalScrollBar {
+    HScrollBar {
         anchors.right: flick.right
         anchors.top: flick.top
         height: flick.height
         width: 6*Devices.density
-        color: masterPalette.highlight
+        color: "#18f"
         scrollArea: flick
     }
 
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "transparent"
         text: qsTr("Model Components")
         shadow: true
+        light: false
+        shadowOpacity: 0
     }
 
     HeaderMenuButton {

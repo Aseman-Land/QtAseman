@@ -1,4 +1,4 @@
-usr/lib/*-linux-gnu/libQt5AsemanWidgets*
-usr/lib/*-linux-gnu/cmake/Qt5AsemanWidgets/*
-usr/lib/*-linux-gnu/pkgconfig/Qt5AsemanWidgets.pc
+usr/lib/*-linux-gnu/libQAsemanWidgets*
+usr/lib/*-linux-gnu/cmake/Qt5QAsemanWidgets/*
+usr/lib/*-linux-gnu/pkgconfig/QAsemanWidgets.pc
 usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemanwidgets*
