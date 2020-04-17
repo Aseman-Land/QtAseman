@@ -1,14 +1,14 @@
 Source: qtaseman
 Section: libs
 Priority: optional
-Maintainer: Aseman Team <contact@aseman.co>
+Maintainer: Aseman Team <contact@aseman.io>
 Build-Depends:
  debhelper (>= 8.0.0),
  g++ (>= 4:4.7),
  gcc (>= 4:4.7),
  qtbase5-dev (>= 5.9.0),
  libqt5sql5-sqlite (>= 5.9.0),
- libqt5multimediaquick-p5 (>= 5.9.0),
+ libqt5multimediaquick5 (>= 5.9.0),
  libqt5multimedia5-plugins (>= 5.9.0),
  libqt5multimedia5 (>= 5.9.0),
  qtpositioning5-dev (>= 5.9.0),
@@ -84,6 +84,20 @@ Depends: libqt5asemannetwork (= ${binary:Version})
 Description: QtNetwork Aseman tools development files, 
  It's free and released under the GPLv3 license.
 
+Package: libqt5asemangeo
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QtGeo Aseman tools, 
+ It's free and released under the GPLv3 license.
+
+Package: libqt5asemangeo-dev
+Section: libdevel
+Architecture: any
+Depends: libqt5asemangeo (= ${binary:Version})
+Description: QtGeo Aseman tools development files, 
+ It's free and released under the GPLv3 license.
+
 Package: libqt5asemanmultimedia
 Section: libs
 Architecture: any
@@ -144,6 +158,14 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: QtQml Aseman Multimedia components for the Qml, 
  It's free and released under the GPLv3 license.
 
+Package: qml-module-asemanviewport
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ qml-module-asemanbase
+Description: QtQml Aseman Viewport components for the Qml, 
+ It's free and released under the GPLv3 license.
+
 Package: qml-module-asemanmodern
 Section: libs
 Architecture: any
@@ -183,12 +205,13 @@ Depends: libqt5asemancore (= ${binary:Version}),
  libqt5asemangui (= ${binary:Version}),
  libqt5asemanwidgets (= ${binary:Version}),
  libqt5asemannetwork (= ${binary:Version}),
+ libqt5asemangeo (= ${binary:Version}),
  libqt5asemanmultimedia (= ${binary:Version}),
  libqt5asemanqml (= ${binary:Version}),
  qml-module-asemanbase, qml-module-asemanwidgets,
  qml-module-asemanmultimedia, qml-module-asemanawesome,
  qml-module-asemanmaterial, qml-module-asemanmodern,
- qml-module-asemancontrols
+ qml-module-asemancontrols, qml-module-asemanviewport
 Description: Qt Aseman full package, 
  It's free and released under the GPLv3 license.
 
@@ -199,6 +222,7 @@ Depends: libqt5asemancore-dev (= ${binary:Version}),
  libqt5asemangui-dev (= ${binary:Version}),
  libqt5asemanwidgets-dev (= ${binary:Version}),
  libqt5asemannetwork-dev (= ${binary:Version}),
+ libqt5asemangeo-dev (= ${binary:Version}),
  libqt5asemanmultimedia-dev (= ${binary:Version}),
  libqt5asemanqml-dev (= ${binary:Version}),
  qt5aseman (= ${binary:Version})
