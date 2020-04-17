@@ -55,7 +55,7 @@ Item {
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "#18f"
         text: qsTr("NetworkSleepManager")
         shadow: true
     }

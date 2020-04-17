@@ -61,19 +61,19 @@ Rectangle {
         }
     }
 
-    PhysicalScrollBar {
+    HScrollBar {
         anchors.right: listv.right
         anchors.top: listv.top
         height: listv.height
         width: 6*Devices.density
-        color: masterPalette.highlight
+        color: "#18f"
         scrollArea: listv
     }
 
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "#18f"
         text: qsTr("FileSystemModel")
         shadow: true
     }

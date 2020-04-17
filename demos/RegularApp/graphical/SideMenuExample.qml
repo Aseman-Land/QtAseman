@@ -33,12 +33,12 @@ Rectangle {
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "#18f"
         text: qsTr("SideMenu")
         shadow: true
     }
 
-    SideMenu {
+    Drawer {
         id: sidebar
         anchors.fill: parent
         delegate: MouseArea {

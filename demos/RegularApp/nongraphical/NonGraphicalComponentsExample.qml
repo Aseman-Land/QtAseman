@@ -70,19 +70,19 @@ Rectangle {
         }
     }
 
-    PhysicalScrollBar {
+    HScrollBar {
         anchors.right: flick.right
         anchors.top: flick.top
         height: flick.height
         width: 6*Devices.density
-        color: masterPalette.highlight
+        color: "#18f"
         scrollArea: flick
     }
 
     Header {
         id: header
         width: parent.width
-        color: masterPalette.highlight
+        color: "#18f"
         text: qsTr("Non-Graphical Components")
         shadow: true
     }

@@ -306,7 +306,7 @@ AsemanWindow {
         color: "#18f"
     }
 
-    SideMenu {
+    Drawer {
         id: menu
         anchors.fill: parent
         delegate: Rectangle {

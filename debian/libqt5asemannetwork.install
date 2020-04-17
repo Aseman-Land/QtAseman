@@ -1,4 +1,4 @@
-usr/lib/*-linux-gnu/libQt5AsemanNetwork*
-usr/lib/*-linux-gnu/cmake/Qt5AsemanNetwork/*
-usr/lib/*-linux-gnu/pkgconfig/Qt5AsemanNetwork.pc
+usr/lib/*-linux-gnu/libQAsemanNetwork*
+usr/lib/*-linux-gnu/cmake/Qt5QAsemanNetwork/*
+usr/lib/*-linux-gnu/pkgconfig/QAsemanNetwork.pc
 usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemannetwork*
