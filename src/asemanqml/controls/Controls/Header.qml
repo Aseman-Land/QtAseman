@@ -58,6 +58,7 @@ Rectangle {
             width: parent.width
             height: 1*Devices.density
             visible: !shadow_rct.visible
+            opacity: shadow_rct.opacity
             color: "#33000000"
         }
 
