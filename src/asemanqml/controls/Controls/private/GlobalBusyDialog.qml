@@ -75,7 +75,6 @@ Item {
                 id: row
                 anchors.centerIn: parent
                 spacing: 8*Devices.density
-                layoutDirection: View.layoutDirection
 
                 BusyIndicator {
                     running: true

@@ -7,11 +7,11 @@ AbstractViewportType {
     fillForeground: true
     ratio: openRatio * mouseRatio
 
-    background.x: (layoutDirection == Qt.LeftToRight? -width : width) * ratio/2
+    background.x: (LayoutMirroring.enabled? width : -width) * ratio/2
 
     foreground.anchors.top: headerScene.bottom
     foreground.anchors.bottom: foreground.parent.bottom
-    foreground.x: (layoutDirection == Qt.LeftToRight? width : -width) * (1-ratio)
+    foreground.x: (LayoutMirroring.enabled? -width : width) * (1-ratio)
 
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
@@ -38,7 +38,7 @@ AbstractViewportType {
 
     Item {
         anchors.fill: parent
-        rotation: layoutDirection==Qt.LeftToRight? 0 : 180
+        rotation: LayoutMirroring.enabled? 180 : 0
 
         MouseArea {
             width: 20 * Devices.density

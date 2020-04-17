@@ -12,6 +12,5 @@ MaterialFrame 2.0 MaterialFrame.qml
 PointMapListener 2.0 PointMapListener.qml
 BackAction 2.0 BackAction.qml
 CrashController 2.0 CrashController.qml
-ItemBackable 2.0 ItemBackable.qml
 RoundedItem 2.0 RoundedItem.qml
 CoverList 2.0 CoverList.qml

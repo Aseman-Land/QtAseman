@@ -26,7 +26,6 @@ AsemanQuickViewWrapper::AsemanQuickViewWrapper(AsemanQuickView *view, QObject *p
     connect(mView, &AsemanQuickView::navigationBarHeightChanged, this, &AsemanQuickViewWrapper::navigationBarHeightChanged);
     connect(mView, &AsemanQuickView::rootChanged, this, &AsemanQuickViewWrapper::rootChanged);
     connect(mView, &AsemanQuickView::focusedTextChanged, this, &AsemanQuickViewWrapper::focusedTextChanged);
-    connect(mView, &AsemanQuickView::layoutDirectionChanged, this, &AsemanQuickViewWrapper::layoutDirectionChanged);
     connect(mView, &AsemanQuickView::reverseScrollChanged, this, &AsemanQuickViewWrapper::reverseScrollChanged);
     connect(mView, &AsemanQuickView::fakeSignal, this, &AsemanQuickViewWrapper::fakeSignal);
     connect(mView, &AsemanQuickView::closeRequest, this, &AsemanQuickViewWrapper::closeRequest);
@@ -76,26 +75,6 @@ void AsemanQuickViewWrapper::setFocusedText(QQuickItem *item)
 QQuickItem *AsemanQuickViewWrapper::focusedText() const
 {
     return mView->focusedText();
-}
-
-int AsemanQuickViewWrapper::layoutDirection() const
-{
-    return mView->layoutDirection();
-}
-
-void AsemanQuickViewWrapper::setLayoutDirection(int l)
-{
-    mView->setLayoutDirection(l);
-}
-
-bool AsemanQuickViewWrapper::reverseLayout() const
-{
-    return mView->layoutDirection() == Qt::RightToLeft;
-}
-
-bool AsemanQuickViewWrapper::defaultLayout() const
-{
-    return mView->layoutDirection() != Qt::RightToLeft;
 }
 
 qreal AsemanQuickViewWrapper::flickVelocity() const

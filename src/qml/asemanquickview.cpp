@@ -41,7 +41,6 @@ public:
     QPointer<QObject> root;
     QPointer<QQuickItem> focused_text;
 
-    int layoutDirection;
     bool reverseScroll;
 
     QQmlEngine *engine;
@@ -52,7 +51,6 @@ AsemanQuickView::AsemanQuickView(QQmlEngine *engine, QObject *parent ) :
 {
     p = new AsemanQuickViewPrivate;
     p->engine = engine;
-    p->layoutDirection = Qt::LeftToRight;
     p->reverseScroll = false;
 
     connect(devices(), &AsemanDevices::statusBarHeightChanged, this, &AsemanQuickView::statusBarHeightChanged);
@@ -161,20 +159,6 @@ void AsemanQuickView::setFocusedText(QQuickItem *item)
 QQuickItem *AsemanQuickView::focusedText() const
 {
     return p->focused_text;
-}
-
-int AsemanQuickView::layoutDirection() const
-{
-    return p->layoutDirection;
-}
-
-void AsemanQuickView::setLayoutDirection(int l)
-{
-    if( l == p->layoutDirection )
-        return;
-
-    p->layoutDirection = l;
-    Q_EMIT layoutDirectionChanged();
 }
 
 qreal AsemanQuickView::flickVelocity() const

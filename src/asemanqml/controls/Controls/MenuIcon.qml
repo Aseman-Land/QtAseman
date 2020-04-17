@@ -27,7 +27,7 @@ Item {
     property color color: "#ffffff"
     property real ratio: 0
 
-    property int layoutDirection: View.layoutDirection
+    readonly property bool _mirror: LayoutMirroring.enabled
 
     Column {
         width: Math.min(parent.width, parent.height)
@@ -37,7 +37,7 @@ Item {
         transform: Scale {
             origin.x: width/2
             origin.y: height/2
-            xScale: (layoutDirection==Qt.LeftToRight?1:-1)*yScale
+            xScale: (_mirror?-1:1)*yScale
             yScale: 1-ratio/6
         }
 

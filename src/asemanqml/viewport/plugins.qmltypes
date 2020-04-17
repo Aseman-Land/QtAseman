@@ -92,6 +92,13 @@ Module {
             type: "QVariantMap"
             Parameter { name: "url"; type: "string" }
             Parameter { name: "properties"; type: "QVariantMap" }
+            Parameter { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        }
+        Method {
+            name: "lookup"
+            type: "QVariantMap"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "properties"; type: "QVariantMap" }
         }
         Method {
             name: "lookup"
@@ -134,7 +141,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -159,7 +165,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -174,6 +179,8 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
+        Property { name: "openRatio"; type: "double" }
+        Property { name: "mouseRatio"; type: "double" }
         Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
@@ -182,7 +189,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -205,7 +211,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -228,7 +233,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -253,7 +257,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -276,7 +279,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -301,7 +303,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -329,7 +330,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -352,7 +352,6 @@ Module {
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "ratio"; type: "double" }
         Property { name: "open"; type: "bool" }
         Property { name: "background"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
@@ -368,7 +367,6 @@ Module {
         isComposite: true
         defaultProperty: "data"
         Property { name: "androidStyle"; type: "bool" }
-        Property { name: "layoutDirection"; type: "int" }
         Property { name: "mainItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "count"; type: "int"; isReadonly: true }
         Method {
@@ -411,10 +409,18 @@ Module {
             type: "QVariant"
             Parameter { name: "url"; type: "QVariant" }
             Parameter { name: "properties"; type: "QVariant" }
+            Parameter { name: "viewport"; type: "QVariant" }
         }
         Property { name: "routes"; type: "AsemanViewportControllerRoute"; isList: true; isReadonly: true }
         Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
         Property { name: "allowRecursiveTrigger"; type: "bool" }
+        Method {
+            name: "lookup"
+            type: "QVariantMap"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "properties"; type: "QVariantMap" }
+            Parameter { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        }
         Method {
             name: "lookup"
             type: "QVariantMap"

@@ -42,8 +42,9 @@ Item {
         return res
     }
 
-    property int layoutDirection: View.layoutDirection
     readonly property bool showed: item_frame.x > -menuWidth
+
+    LayoutMirroring.childrenInherit: true
 
     onDelegateChanged: {
         if( item )
@@ -64,7 +65,7 @@ Item {
         id: main_frame
         anchors.fill: parent
         transformOrigin: Item.Center
-        rotation: layoutDirection==Qt.RightToLeft? 180 : 0
+        rotation: LayoutMirroring.enabled? 180 : 0
 
         MouseArea {
             id: marea
@@ -150,7 +151,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 transformOrigin: Item.Center
-                rotation: layoutDirection==Qt.RightToLeft? 180 : 0
+                rotation: LayoutMirroring.enabled? 180 : 0
             }
         }
 

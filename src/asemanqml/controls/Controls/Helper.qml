@@ -206,7 +206,6 @@ Item {
 
             QtLayouts.RowLayout {
                 QtLayouts.Layout.fillWidth: true
-                layoutDirection: View.layoutDirection
 
                 QtControls.Label {
                     height: 50*Devices.density
@@ -221,7 +220,7 @@ Item {
 
                     QtControls.Label {
                         QtLayouts.Layout.fillWidth: true
-                        horizontalAlignment: View.defaultLayout? Text.AlignLeft : Text.AlignRight
+                        horizontalAlignment: Text.AlignLeft
                         color: prv.lastItem? prv.lastItem.titleColor : "transparent"
                         font: prv.lastItem? prv.lastItem.titleFont : AsemanApp.globalFont
                         text: prv.lastItem? prv.lastItem.title : ""
@@ -230,7 +229,7 @@ Item {
 
                     QtControls.Label {
                         QtLayouts.Layout.fillWidth: true
-                        horizontalAlignment: View.defaultLayout? Text.AlignLeft : Text.AlignRight
+                        horizontalAlignment: Text.AlignLeft
                         color: prv.lastItem? prv.lastItem.descriptionColor : "transparent"
                         font: prv.lastItem? prv.lastItem.descriptionFont : AsemanApp.globalFont
                         text: prv.lastItem? prv.lastItem.description : ""

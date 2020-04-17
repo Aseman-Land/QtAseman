@@ -17,7 +17,6 @@ Item {
 
     property int index
     property int count
-    property int layoutDirection: View.layoutDirection
     property real ratio: open? 1 : 0
 
     property alias background: background
