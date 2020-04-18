@@ -19,7 +19,6 @@ Some main features to use on QML are:
 - VideoPlayer component
 - Some graphical components like shadows for easy to use and better experiance
 - Network and Http Request handler
-
 - Models and Abstract models with better experience
 - Encrypt/Decrypt tools
 - Qt/C++ Like Hash, Map and List objects
@@ -28,6 +27,11 @@ Some main features to use on QML are:
 - Settings manager
 - Some other tools like file read/write methods, type convert methods and ...
 - Process executer tools from QML
+
+## QtAseman 3.1.x Roadplan
+
+- iOS plugin for QtQuickControls
+- AsemanQml.SQL module
 
 ## How to Install
 
