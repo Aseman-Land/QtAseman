@@ -6,6 +6,8 @@
 
 QtAseman is a set of tools, design patterns and architectures that we have developed over the years in various projects for wide range of uses. Now, with it's proven stability, we have decided to release this collection with the name QtAseman as an Open Source and Free tool under the LGPLv3 license.
 
+![Snapshot](https://aseman.io/projects/qtaseman/snapshot.png)
+
 Some main features to use on QML are:
 
 - Viewport tools that provides unique page manager system (page, popup, stack, dialog and ...)
