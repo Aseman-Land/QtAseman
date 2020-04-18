@@ -1,6 +1,6 @@
 <img src="icons/logo.png" align="right" />
 
-# QtAseman
+# Qt Aseman
 
 ## What is QtAseman
 
