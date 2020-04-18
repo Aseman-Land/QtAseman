@@ -1,0 +1,45 @@
+{
+    "$schema": "http://qt.io/schema/extension-schema-v1#",
+    "title": "Qt Aseman",
+    "extensionType": [
+        "library"
+    ],
+    "version": "3.0.0",
+    "vendor": {
+        "name": "Aseman",
+        "url": "https://aseman.io"
+    },
+    "contact": "Aseman <asemanland@gmail.com>",
+    "copyright": [ "Aseman.io" ],
+    "author": "Bardia Daneshvar",
+    "icon": "https://aseman.io/projects/qtaseman/aseman-qt.png",
+    "licenses": [
+      { "licenseType": "LGPLv3",
+        "licenseUrl": "https://www.gnu.org/licenses/lgpl-3.0.html" }
+    ],
+    "created": "2020-04-18",
+    "lastUpdate": "2020-04-18",
+    "platforms": [
+        "macOS 10.14 or newer", "Android 5.0 or newer", "iOS 13.1", "Ubuntu 18.04 or newer", "Windows 7 or newer", "Linux" 
+    ],
+    "architectures": [
+        "x86", "armv7", "armv8", "x86_64"
+    ],
+    "qtVersions": [
+        "5.9.0  or newer"
+    ],
+    "tags": [
+        "Tools" ],
+    "price": {
+        "listprice": 0
+    },
+    "sourceRepoUrl": "https://github.com/Aseman-Land/QtAseman",
+    "binaryRepoUrl": "https://launchpad.net/~aseman/+archive/ubuntu/qt-modules",
+    "userManuals": [
+        "https://github.com/Aseman-Land/QtAseman/blob/master/README.md",
+        "https://github.com/Aseman-Land/QtAseman/blob/master/documents/AsemanQml.Base.md"
+    ],
+    "dependencies": [
+        "Quick"
+    ]
+}

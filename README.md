@@ -6,6 +6,27 @@
 
 QtAseman is a set of tools, design patterns and architectures that we have developed over the years in various projects for wide range of uses. Now, with it's proven stability, we have decided to release this collection with the name QtAseman as an Open Source and Free tool under the LGPLv3 license.
 
+Some main features to use on QML are:
+
+- Viewport tools that provides unique page manager system (page, popup, stack, dialog and ...)
+- Gestures for viewports 
+- Transparent statusbar and optional navigation bar on mobile devices
+- Some extra Qml controls components like Drawer, Header, TextField, CircularProgressBar and ...
+- BackHandler system
+- Font awesome and Material icons fonts
+- VideoPlayer component
+- Some graphical components like shadows for easy to use and better experiance
+- Network and Http Request handler
+
+- Models and Abstract models with better experience
+- Encrypt/Decrypt tools
+- Qt/C++ Like Hash, Map and List objects
+- Tools to get more device infos like deviceId, density, keyboard height, statusBar height and ...
+- Translation manager tools
+- Settings manager
+- Some other tools like file read/write methods, type convert methods and ...
+- Process executer tools from QML
+
 ## How to Install
 
 Currently binary packages only available on the ubuntu (launchpad) repositories. To install it on the ubuntu 20.04 LTS:
