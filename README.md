@@ -28,10 +28,10 @@ Some main features to use on QML are:
 - Some other tools like file read/write methods, type convert methods and ...
 - Process executer tools from QML
 
-## QtAseman 3.1.x Roadplan
+## QtAseman 3.1.x Roadmap
 
 - iOS plugin for QtQuickControls
-- AsemanQml.SQL module
+- AsemanQml.Database module
 
 ## How to Install
 
