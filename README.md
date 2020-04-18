@@ -2,11 +2,20 @@
 
 # QtAseman
 
-[TOC]
-
 ## What is QtAseman
 
 QtAseman is a set of tools, design patterns and architectures that we have developed over the years in various projects for wide range of uses. Now, with it's proven stability, we have decided to release this collection with the name QtAseman as an Open Source and Free tool under the LGPLv3 license.
+
+## How to Install
+
+Currently binary packages only available on the ubuntu (launchpad) repositories. To install it on the ubuntu 20.04 LTS:
+
+```bash
+sudo add-apt-repository ppa:aseman/qt-modules
+sudo apt install qt5aseman
+```
+
+and to install development files install `qt5aseman-dev` package.
 
 ## How to build
 
