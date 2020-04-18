@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.14
 import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.IOSStyle 2.12
-import QtQuick.Controls.IOSStyle.impl 2.12
 
 T.BusyIndicator {
     id: control
@@ -49,13 +48,37 @@ T.BusyIndicator {
 
     padding: 6
 
-    contentItem: BusyIndicatorImpl {
-        implicitWidth: control.IOSStyle.touchTarget
-        implicitHeight: control.IOSStyle.touchTarget
-        color: control.IOSStyle.accentColor
-
-        running: control.running
+    contentItem: Item {
+        id: cont
+        implicitWidth: 24
+        implicitHeight: implicitWidth
         opacity: control.running ? 1 : 0
         Behavior on opacity { OpacityAnimator { duration: 250 } }
+
+
+        Timer {
+            interval: 80
+            repeat: true
+            running: control.running
+            onTriggered: parent.rotation = (parent.rotation + 30) % 360
+        }
+
+        Repeater {
+            model: 12
+            Rectangle {
+                property real size: parent.width
+
+                width: 2
+                height: size / 4
+                radius: 16
+                x: size/2 + size/2 * Math.sin(rotation * Math.PI/180).toFixed(12) - 1.28
+                y: size/2 - size/2 * Math.cos(rotation * Math.PI/180).toFixed(12)
+                rotation: index * 30
+                antialiasing: true
+                transformOrigin: Item.Top
+                opacity: 1/16 * index + 4/16
+                color: "grey"
+            }
+        }
     }
 }
