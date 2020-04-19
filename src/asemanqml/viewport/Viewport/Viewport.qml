@@ -16,8 +16,6 @@ ViewportCore {
     }
 
     ListObject { id: list }
-    HashObject { id: viewportsHash }
-    HashObject { id: componentsHash }
 
     Item {
         id: scene
