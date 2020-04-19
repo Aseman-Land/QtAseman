@@ -3,7 +3,8 @@ TARGETPATH = AsemanQml/Viewport
 IMPORT_VERSION = 2.0
 
 INCLUDEPATH += $$PWD
-QT += core gui network asemanqml asemangui asemancore
+QT += core gui network asemanqml asemangui asemancore \
+    quick
 
 HEADERS += \
     $$PWD/asemanviewportplugin.h \

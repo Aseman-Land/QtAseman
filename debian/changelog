@@ -1,3 +1,11 @@
+qtaseman (3.00.1-2aseman-focal) focal; urgency=medium
+
+  * Increase ios-page gesture width
+  * Bugfix on ios-page
+
+ -- Aseman IO <contact@aseman.io>  Sat, 18 Apr 2020 20:50:00 +0330
+
+
 qtaseman (3.00.1-1aseman-focal) focal; urgency=medium
 
   * Bugfix on TextField and TextArea components
