@@ -9,7 +9,7 @@ AbstractViewportType {
 
     background.x: (LayoutMirroring.enabled? width : -width) * ratio/2
 
-    foreground.anchors.top: headerScene.bottom
+    foreground.anchors.top: foreground.parent.top
     foreground.anchors.bottom: foreground.parent.bottom
     foreground.x: (LayoutMirroring.enabled? -width : width) * (1-ratio)
 
@@ -67,14 +67,5 @@ AbstractViewportType {
 
             property real pinX
         }
-    }
-
-    Rectangle {
-        id: headerScene
-        anchors.left: item.foreground.left
-        anchors.right: item.foreground.right
-        anchors.top: parent.top
-        height: headerItem || title.length? Devices.standardTitleBarHeight + Devices.statusBarHeight : 0
-        color: "#18f"
     }
 }
