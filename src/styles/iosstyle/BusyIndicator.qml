@@ -46,10 +46,7 @@ T.BusyIndicator {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    padding: 6
-
     contentItem: Item {
-        id: cont
         implicitWidth: 24
         implicitHeight: implicitWidth
         opacity: control.running ? 1 : 0
@@ -71,7 +68,7 @@ T.BusyIndicator {
                 width: 2
                 height: size / 4
                 radius: 16
-                x: size/2 + size/2 * Math.sin(rotation * Math.PI/180).toFixed(12) - 1.28
+                x: size/2 + size/2 * Math.sin(rotation * Math.PI/180).toFixed(12) - 1
                 y: size/2 - size/2 * Math.cos(rotation * Math.PI/180).toFixed(12)
                 rotation: index * 30
                 antialiasing: true
