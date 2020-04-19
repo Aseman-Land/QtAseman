@@ -41,7 +41,7 @@ AbstractViewportType {
         rotation: LayoutMirroring.enabled? 180 : 0
 
         MouseArea {
-            width: 20 * Devices.density
+            width: 30 * Devices.density
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             preventStealing: true
