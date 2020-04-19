@@ -12,9 +12,9 @@ QtControls.TextArea {
         id: pholder
         opacity: field.text.length || field.preeditText.length? 1 : 0.6
         scale: field.text.length || field.preeditText.length? 0.7 : 1
-        transformOrigin: LayoutMirroring.enabled? Item.Left : Item.Right
+        transformOrigin: LayoutMirroring.enabled? Item.Right : Item.Left
         y: field.text.length || field.preeditText.length? -height/2 : field.font.pixelSize/2 - height/2 + 8*Devices.density
-        x: LayoutMirroring.enabled? 0 : parent.width - width
+        x: LayoutMirroring.enabled? parent.width - width : 0
 
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
