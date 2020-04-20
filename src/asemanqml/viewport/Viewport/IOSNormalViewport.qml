@@ -41,7 +41,7 @@ AbstractViewportType {
         rotation: LayoutMirroring.enabled? 180 : 0
 
         MouseArea {
-            width: item.gestureWidthIsNull? 20 * Devices.density : item.gestureWidth
+            width: item.gestureWidthIsNull? 30 * Devices.density : item.gestureWidth
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             preventStealing: true
