@@ -10,6 +10,7 @@ class AsemanAbstractViewportType : public QQuickItem
     Q_PROPERTY(QQuickItem* backgroundItem READ backgroundItem WRITE setBackgroundItem NOTIFY backgroundItemChanged)
     Q_PROPERTY(QQuickItem* foregroundItem READ foregroundItem WRITE setForegroundItem NOTIFY foregroundItemChanged)
     Q_PROPERTY(AsemanViewport* viewport READ viewport WRITE setViewport NOTIFY viewportChanged)
+    Q_PROPERTY(bool open READ open WRITE setOpen NOTIFY openChanged)
 
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
     Q_PROPERTY(bool gestureWidthIsNull READ gestureWidthIsNull NOTIFY gestureWidthChanged)
@@ -47,6 +48,9 @@ public:
     bool blockBackIsNull() const;
     void setBlockBack(bool blockBack);
 
+    bool open() const;
+    void setOpen(bool open);
+
 Q_SIGNALS:
     void gestureWidthChanged();
     void touchToCloseChanged();
@@ -54,6 +58,7 @@ Q_SIGNALS:
     void foregroundItemChanged();
     void backgroundItemChanged();
     void viewportChanged();
+    void openChanged();
 
 private:
     Private *p;
@@ -72,6 +77,7 @@ class AsemanViewportTypeAttechedProperty : public QObject {
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
+    Q_PROPERTY(bool open READ open WRITE setOpen NOTIFY openChanged)
 
 public:
     AsemanViewportTypeAttechedProperty(QObject *parent);
@@ -86,15 +92,20 @@ public:
     bool blockBack(bool *isNull = Q_NULLPTR) const;
     void setBlockBack(bool blockBack);
 
+    bool open() const;
+    void setOpen(bool open);
+
 Q_SIGNALS:
     void gestureWidthChanged();
     void touchToCloseChanged();
     void blockBackChanged();
+    void openChanged();
 
 private:
     QVariant mGestureWidth;
     QVariant mTouchToClose;
     QVariant mBlockBack;
+    bool mOpen;
 };
 
 QML_DECLARE_TYPEINFO(AsemanViewportType, QML_HAS_ATTACHED_PROPERTIES)

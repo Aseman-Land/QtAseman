@@ -47,6 +47,7 @@ Module {
         Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
@@ -156,6 +157,7 @@ Module {
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "open"; type: "bool" }
     }
     Component {
         prototype: "QQuickItem"

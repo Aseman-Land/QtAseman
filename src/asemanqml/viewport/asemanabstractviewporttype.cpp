@@ -10,12 +10,14 @@ public:
     QPointer<QQuickItem> backgroundItem;
     QPointer<AsemanViewport> viewport;
     QPointer<AsemanViewportTypeAttechedProperty> foregroundAttachedType;
+    bool open;
 };
 
 AsemanAbstractViewportType::AsemanAbstractViewportType(QQuickItem *parent) :
     QQuickItem(parent)
 {
     p = new Private;
+    p->open = false;
 }
 
 QQuickItem *AsemanAbstractViewportType::foregroundItem() const
@@ -33,6 +35,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
+        disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
     }
 
     p->foregroundItem = foregroundItem;
@@ -43,11 +46,14 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
+        connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
     }
 
     Q_EMIT foregroundItemChanged();
     Q_EMIT gestureWidthChanged();
     Q_EMIT touchToCloseChanged();
+    Q_EMIT openChanged();
+    Q_EMIT blockBackChanged();
 }
 
 QQuickItem *AsemanAbstractViewportType::backgroundItem() const
@@ -147,6 +153,23 @@ void AsemanAbstractViewportType::setBlockBack(bool blockBack)
     p->foregroundAttachedType->setBlockBack(blockBack);
 }
 
+bool AsemanAbstractViewportType::open() const
+{
+    return p->foregroundAttachedType? p->foregroundAttachedType->open() : p->open;
+}
+
+void AsemanAbstractViewportType::setOpen(bool open)
+{
+    if (p->foregroundAttachedType)
+        p->foregroundAttachedType->setOpen(open);
+
+    if (p->open == open)
+        return;
+
+    p->open = open;
+    Q_EMIT openChanged();
+}
+
 AsemanAbstractViewportType::~AsemanAbstractViewportType()
 {
     delete p;
@@ -158,7 +181,8 @@ AsemanViewportTypeAttechedProperty *AsemanViewportType::qmlAttachedProperties(QO
 }
 
 AsemanViewportTypeAttechedProperty::AsemanViewportTypeAttechedProperty(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    mOpen(true)
 {
 }
 
@@ -205,6 +229,20 @@ void AsemanViewportTypeAttechedProperty::setBlockBack(bool blockBack)
 
     mBlockBack = blockBack;
     Q_EMIT blockBackChanged();
+}
+
+bool AsemanViewportTypeAttechedProperty::open() const
+{
+    return mOpen;
+}
+
+void AsemanViewportTypeAttechedProperty::setOpen(bool open)
+{
+    if (mOpen == open)
+        return;
+
+    mOpen = open;
+    Q_EMIT openChanged();
 }
 
 AsemanViewportTypeAttechedProperty::~AsemanViewportTypeAttechedProperty()

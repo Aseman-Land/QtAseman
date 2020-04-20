@@ -18,7 +18,6 @@ AbstractViewportTypeCore {
     property alias backgroundScene: backgroundScene
     property alias foreground: foreground
     property alias foregroundScene: foregroundScene
-    property bool open
 
     onOpenChanged: {
         if (open)
