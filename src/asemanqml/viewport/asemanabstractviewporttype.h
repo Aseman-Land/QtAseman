@@ -17,6 +17,9 @@ class AsemanAbstractViewportType : public QQuickItem
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool touchToCloseIsNull READ touchToCloseIsNull NOTIFY touchToCloseChanged)
 
+    Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
+    Q_PROPERTY(bool blockBackIsNull READ blockBackIsNull NOTIFY blockBackChanged)
+
     class Private;
 
 public:
@@ -40,9 +43,14 @@ public:
     bool touchToCloseIsNull() const;
     void setTouchToClose(bool touchToClose);
 
+    bool blockBack() const;
+    bool blockBackIsNull() const;
+    void setBlockBack(bool blockBack);
+
 Q_SIGNALS:
     void gestureWidthChanged();
     void touchToCloseChanged();
+    void blockBackChanged();
     void foregroundItemChanged();
     void backgroundItemChanged();
     void viewportChanged();
@@ -63,6 +71,7 @@ class AsemanViewportTypeAttechedProperty : public QObject {
     Q_OBJECT
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
+    Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
 
 public:
     AsemanViewportTypeAttechedProperty(QObject *parent);
@@ -74,13 +83,18 @@ public:
     bool touchToClose(bool *isNull = Q_NULLPTR) const;
     void setTouchToClose(bool touchToClose);
 
+    bool blockBack(bool *isNull = Q_NULLPTR) const;
+    void setBlockBack(bool blockBack);
+
 Q_SIGNALS:
     void gestureWidthChanged();
     void touchToCloseChanged();
+    void blockBackChanged();
 
 private:
     QVariant mGestureWidth;
     QVariant mTouchToClose;
+    QVariant mBlockBack;
 };
 
 QML_DECLARE_TYPEINFO(AsemanViewportType, QML_HAS_ATTACHED_PROPERTIES)

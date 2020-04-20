@@ -512,11 +512,12 @@ MouseArea {
 
 #### ViewportType Attached Property
 
-Using `ViewportType` attached property, you can change gesture area width and also active/deactive touch background to close dialogs/pages feature:
+Using `ViewportType` attached property, you can change some attributes on the current Viewport's type item:
 
 ```js
-ViewportType.gestureWidth: 10
-ViewportType.touchToClose: false
+ViewportType.gestureWidth: 10 // Change touch/mouse gesture area's width
+ViewportType.touchToClose: false // Disable touch background to close feature
+ViewportType.blockBack: true // Disable press back to close feature
 ```
 
 ### AsemanQml.Network

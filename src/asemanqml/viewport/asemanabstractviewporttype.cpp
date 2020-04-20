@@ -32,6 +32,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     {
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
+        disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
     }
 
     p->foregroundItem = foregroundItem;
@@ -41,6 +42,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     {
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
+        connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
     }
 
     Q_EMIT foregroundItemChanged();
@@ -122,6 +124,29 @@ void AsemanAbstractViewportType::setTouchToClose(bool touchToClose)
     p->foregroundAttachedType->setTouchToClose(touchToClose);
 }
 
+bool AsemanAbstractViewportType::blockBack() const
+{
+    return p->foregroundAttachedType? p->foregroundAttachedType->blockBack() : false;
+}
+
+bool AsemanAbstractViewportType::blockBackIsNull() const
+{
+    if (!p->foregroundAttachedType)
+        return false;
+
+    bool isNull;
+    p->foregroundAttachedType->blockBack(&isNull);
+    return isNull;
+}
+
+void AsemanAbstractViewportType::setBlockBack(bool blockBack)
+{
+    if (!p->foregroundAttachedType)
+        return;
+
+    p->foregroundAttachedType->setBlockBack(blockBack);
+}
+
 AsemanAbstractViewportType::~AsemanAbstractViewportType()
 {
     delete p;
@@ -165,6 +190,21 @@ void AsemanViewportTypeAttechedProperty::setTouchToClose(bool touchToClose)
 
     mTouchToClose = touchToClose;
     Q_EMIT touchToCloseChanged();
+}
+
+bool AsemanViewportTypeAttechedProperty::blockBack(bool *isNull) const
+{
+    if (isNull) *isNull = mBlockBack.isNull();
+    return mBlockBack.toBool();
+}
+
+void AsemanViewportTypeAttechedProperty::setBlockBack(bool blockBack)
+{
+    if (mBlockBack == blockBack)
+        return;
+
+    mBlockBack = blockBack;
+    Q_EMIT blockBackChanged();
 }
 
 AsemanViewportTypeAttechedProperty::~AsemanViewportTypeAttechedProperty()

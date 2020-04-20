@@ -22,7 +22,7 @@ AbstractViewportTypeCore {
 
     onOpenChanged: {
         if (open)
-            BackHandler.pushHandler(this, function(){ open = false })
+            BackHandler.pushHandler(this, back)
         else
             BackHandler.removeHandler(this)
     }
@@ -48,5 +48,13 @@ AbstractViewportTypeCore {
             id: foregroundScene
             anchors.fill: parent
         }
+    }
+
+    function back() {
+        if (!item.blockBackIsNull && item.blockBack)
+            return false;
+
+        open = false
+        return true;
     }
 }

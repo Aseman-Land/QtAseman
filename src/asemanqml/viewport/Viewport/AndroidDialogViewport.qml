@@ -24,8 +24,8 @@ AbstractViewportType {
 
         MouseArea {
             anchors.fill: parent
-            visible: item.touchToCloseIsNull || item.touchToClose
-            onClicked: item.open = false
+            hoverEnabled: true
+            onClicked: if (item.touchToCloseIsNull || item.touchToClose) item.open = false
         }
     }
 
