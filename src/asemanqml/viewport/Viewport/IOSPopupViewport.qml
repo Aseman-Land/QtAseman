@@ -83,6 +83,7 @@ AbstractViewportType {
         contentWidth: column.width
         contentHeight: column.height
         boundsBehavior: Flickable.StopAtBounds
+        interactive: item.gestureWidthIsNull || item.gestureWidth
         rebound: Transition {
             NumberAnimation {
                 properties: "x,y"

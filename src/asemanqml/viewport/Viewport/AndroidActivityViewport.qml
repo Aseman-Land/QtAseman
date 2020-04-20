@@ -48,6 +48,8 @@ AbstractViewportType {
 
         MouseArea {
             anchors.fill: parent
+            preventStealing: true
+            visible: item.gestureWidthIsNull || item.gestureWidth
             onMouseYChanged: {
                 var ratio = 1 - ((mouseY - pinY) / item.foreground.height);
                 if (ratio < 0.01)
