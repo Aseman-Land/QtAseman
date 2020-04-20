@@ -1,11 +1,9 @@
 HEADERS += \
-    $$PWD/qquickiosstyleprogressbar_p.h \
     $$PWD/qquickiosstyleripple_p.h \
     $$PWD/qquickiosstylestyle_p.h \
     $$PWD/qquickiosstyletheme_p.h
 
 SOURCES += \
-    $$PWD/qquickiosstyleprogressbar.cpp \
     $$PWD/qquickiosstyleripple.cpp \
     $$PWD/qquickiosstylestyle.cpp \
     $$PWD/qquickiosstyletheme.cpp

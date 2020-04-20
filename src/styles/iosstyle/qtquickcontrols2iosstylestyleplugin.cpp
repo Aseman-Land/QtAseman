@@ -38,7 +38,6 @@
 
 #include "qquickiosstylestyle_p.h"
 #include "qquickiosstyletheme_p.h"
-#include "qquickiosstyleprogressbar_p.h"
 #include "qquickiosstyleripple_p.h"
 
 #include <QtQuickControls2/private/qquickstyleselector_p.h>
@@ -73,7 +72,6 @@ void QtQuickControls2IOSStyleStylePlugin::registerTypes(const char *uri)
     QByteArray import = QByteArray(uri) + ".impl";
     qmlRegisterModule(import, 2, QT_VERSION_MINOR); // Qt 5.12->2.12, 5.13->2.13...
 
-    qmlRegisterType<QQuickIOSStyleProgressBar>(import, 2, 0, "ProgressBarImpl");
     qmlRegisterType<QQuickIOSStyleRipple>(import, 2, 0, "Ripple");
     qmlRegisterType(resolvedUrl(QStringLiteral("BoxShadow.qml")), import, 2, 0, "BoxShadow");
     qmlRegisterType(resolvedUrl(QStringLiteral("FastDropShadow.qml")), import, 2, 0, "FastDropShadow");

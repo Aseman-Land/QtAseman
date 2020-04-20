@@ -47,21 +47,19 @@ T.ProgressBar {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    contentItem: ProgressBarImpl {
-        implicitHeight: 4
-
+    contentItem: Rectangle {
+        implicitHeight: 2
+        width: control.position * parent.width
+        radius: 1
         scale: control.mirrored ? -1 : 1
         color: control.IOSStyle.accentColor
-        progress: control.position
-        indeterminate: control.visible && control.indeterminate
     }
 
     background: Rectangle {
         implicitWidth: 200
-        implicitHeight: 4
+        implicitHeight: 2
         y: (control.height - height) / 2
-        height: 4
-
-        color: Qt.rgba(control.IOSStyle.accentColor.r, control.IOSStyle.accentColor.g, control.IOSStyle.accentColor.b, 0.25)
+        radius: 1
+        color: control.IOSStyle.secondaryTextColor
     }
 }
