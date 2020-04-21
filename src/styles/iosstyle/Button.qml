@@ -75,7 +75,7 @@ T.Button {
         color: !control.enabled ? control.IOSStyle.hintTextColor :
                                   control.flat && control.highlighted ? control.IOSStyle.accentColor :
                                                                         control.highlighted ? control.IOSStyle.primaryHighlightedTextColor :
-                                                                                              control.flat ? control.IOSStyle.hintTextColor : control.IOSStyle.foreground
+                                                                                              control.flat ? control.IOSStyle.hintTextColor : control.IOSStyle.accentColor
     }
 
     background: Rectangle {
@@ -91,7 +91,7 @@ T.Button {
             if(control.highlighted)
                 return Qt.lighter(control.IOSStyle.highlightedButtonColor, control.pressed? 1.2 : 1)
             else
-                return Qt.darker(control.IOSStyle.buttonBorderColor, control.pressed? 1.05 : 1)
+                return Qt.darker(control.IOSStyle.accentColor, control.pressed? 1.05 : 1)
         }
         color: {
             if(!control.enabled)
