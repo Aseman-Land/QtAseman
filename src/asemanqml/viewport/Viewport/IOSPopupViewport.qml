@@ -12,8 +12,8 @@ AbstractViewportType {
     background.radius: 10 * Devices.density
 
     foreground.parent: column
-    foreground.anchors.bottom: foreground.parent.bottom
-    foreground.anchors.bottomMargin: -foreground.radius
+    foreground.anchors.top: foreground.parent.top
+    foreground.anchors.topMargin: foreground.radius + item.height
     foreground.height: item.height - (item.iosIndex * topPadSize ) + foreground.radius
     foreground.radius: 10 * Devices.density
     foreground.z: 10
@@ -78,10 +78,12 @@ AbstractViewportType {
 
     Flickable {
         id: flick
-        anchors.fill: parent
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: item.gestureWidthIsNull || item.gestureWidth <= 0? item.height : item.gestureWidth + topPadSize + foreground.radius
         flickableDirection: Flickable.VerticalFlick
         contentWidth: column.width
-        contentHeight: column.height
+        contentHeight: item.foreground.height + height
         boundsBehavior: Flickable.StopAtBounds
         interactive: item.gestureWidthIsNull || item.gestureWidth
         rebound: Transition {
@@ -110,8 +112,8 @@ AbstractViewportType {
 
         Item {
             id: column
-            width: flick.width
-            height: flick.height + item.foreground.height
+            width: item.width
+            height: item.height + item.foreground.height
         }
     }
 
