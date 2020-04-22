@@ -7,14 +7,16 @@ AbstractViewportType {
     fillForeground: true
     ratio: openRatio * mouseRatio
 
-    background.x: (LayoutMirroring.enabled? width : -width) * ratio/2
+    background.x: LayoutMirroring.enabled? (foreground.x + item.width)/2 : (foreground.x - item.width)/2
 
+    foreground.parent: dragScene
     foreground.anchors.top: foreground.parent.top
     foreground.anchors.bottom: foreground.parent.bottom
-    foreground.x: (LayoutMirroring.enabled? -width : width) * (1-ratio)
+    foreground.x: foregroundX
 
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
+    readonly property real foregroundX: (LayoutMirroring.enabled? -width : width) * (1-ratio)
 
     Behavior on openRatio {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
@@ -25,7 +27,7 @@ AbstractViewportType {
         anchors.fill: parent
         z: 100
         color: "#000"
-        opacity: item.ratio * 0.4
+        opacity: item.openRatio * 0.4
     }
 
     NumberAnimation {
@@ -36,26 +38,25 @@ AbstractViewportType {
         duration: 300
     }
 
-    Item {
-        anchors.fill: parent
-        rotation: LayoutMirroring.enabled? 180 : 0
+    MouseArea {
+        id: dragArea
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        width: item.gestureWidthIsNull? parent.width : item.gestureWidth
+        drag {
+            target: item.foreground
+            axis: Drag.XAxis
+            minimumX: LayoutMirroring.enabled? -item.width : 0
+            maximumX: LayoutMirroring.enabled? 0 : item.width
+            filterChildren: true
+            onActiveChanged: {
+                if (dragArea.drag.active)
+                    return;
 
-        MouseArea {
-            width: item.gestureWidthIsNull? 30 * Devices.density : item.gestureWidth
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            preventStealing: true
-            onMouseXChanged: {
-                var ratio = 1 - ((mouseX - pinX) / item.foreground.width);
-                if (ratio < 0.01)
-                    ratio = 0.01;
-                if (ratio > 1)
-                    ratio = 1;
+                mouseRatio = (LayoutMirroring.enabled? item.width + foreground.x : item.width - foreground.x) / item.width
+                foreground.x = Qt.binding( function(){ return foregroundX } )
 
-                mouseRatio = ratio;
-            }
-            onPressed: pinX = mouseX
-            onReleased: {
                 if (mouseRatio < 0.7) {
                     open = false
                 } else {
@@ -64,8 +65,14 @@ AbstractViewportType {
                     mouseRatioAnim.start()
                 }
             }
+        }
 
-            property real pinX
+        Item {
+            id: dragScene
+            width: item.width
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
         }
     }
 }
