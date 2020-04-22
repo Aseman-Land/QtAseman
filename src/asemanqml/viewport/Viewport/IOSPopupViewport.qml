@@ -47,6 +47,8 @@ AbstractViewportType {
         flickAnim.start()
     }
 
+    onHeightChanged: flick.contentY = (open? item.foreground.height : 0)
+
     Behavior on openRatio {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
     }
