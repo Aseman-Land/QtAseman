@@ -14,16 +14,18 @@ AbstractViewportType {
     foreground.z: 10
     foreground.y: height * (1-ratio)
     foreground.parent: dragArea
-    foreground.height: item.height - topPadSize
+    foreground.height: foregroundHeight + foreground.radius
     foreground.radius: 10 * Devices.density
     foreground.transformOrigin: Item.Center
-    foreground.scale: 1 - foreignScale * topPadSize / height
+    foreground.scale: 1 - foregroundScale * topPadSize / height
     foregroundScene.anchors.topMargin: -Devices.statusBarHeight
+    foregroundScene.anchors.bottomMargin: foreground.radius
 
     readonly property real topPadSize: Math.max(20 * Devices.density, Devices.statusBarHeight) + 5 * Devices.density
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
-    property real foreignScale: nextItem? nextItem.realRatio : 0
+    readonly property real foregroundScale: nextItem? nextItem.realRatio : 0
+    readonly property real foregroundHeight: item.height - topPadSize
     readonly property real realRatio: 1 - foreground.y / foreground.height
 
     readonly property bool isIOSPopup: true
@@ -90,7 +92,7 @@ AbstractViewportType {
         id: dragArea
         anchors.left: parent.left
         anchors.right: parent.right
-        y: topPadSize * (1 - foreignScale)
+        y: topPadSize * (1 - foregroundScale)
         height: item.gestureWidthIsNull? (item.height - topPadSize) : item.gestureWidth
         drag {
             target: item.foreground
@@ -103,7 +105,7 @@ AbstractViewportType {
                     return;
 
                 mouseRatio = realRatio
-                foreground.y = Qt.binding( function() { return foreground.height * (1-ratio); } )
+                foreground.y = Qt.binding( function() { return foregroundHeight * (1-ratio); } )
                 if (realRatio < 0.7) {
                     open = false
                 } else {
