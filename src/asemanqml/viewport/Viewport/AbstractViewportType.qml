@@ -25,7 +25,7 @@ AbstractViewportTypeCore {
         else
             BackHandler.removeHandler(this)
     }
-    onRatioChanged: if (ratio == 0 && !open) { foregroundItem.destroy(); item.destroy();}
+    onRatioChanged: if (ratio <= 0 && !open) { foregroundItem.destroy(); item.destroy();}
 
     RoundedItem {
         id: background
