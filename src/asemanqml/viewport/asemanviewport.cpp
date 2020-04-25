@@ -88,9 +88,9 @@ QStringList AsemanViewport::keys() const
     return result;
 }
 
-AsemanViewportAttechedType *AsemanViewport::qmlAttachedProperties(QObject *object)
+AsemanViewportAttechedProperty *AsemanViewport::qmlAttachedProperties(QObject *object)
 {
-    return new AsemanViewportAttechedType(object);
+    return new AsemanViewportAttechedProperty(object);
 }
 
 QVariant AsemanViewport::getComponent(const QString &name)
@@ -161,12 +161,12 @@ AsemanViewport::~AsemanViewport()
 
 
 
-AsemanViewportAttechedType::AsemanViewportAttechedType(QObject *parent) :
+AsemanViewportAttechedProperty::AsemanViewportAttechedProperty(QObject *parent) :
     QObject(parent)
 {
 }
 
-AsemanViewportController *AsemanViewportAttechedType::controller() const
+AsemanViewportController *AsemanViewportAttechedProperty::controller() const
 {
     QList<AsemanViewportController*> controllers = allControllers();
     if (controllers.isEmpty())
@@ -177,17 +177,17 @@ AsemanViewportController *AsemanViewportAttechedType::controller() const
     return controllers.first();
 }
 
-QList<AsemanViewportController*> AsemanViewportAttechedType::allControllers() const
+QList<AsemanViewportController*> AsemanViewportAttechedProperty::allControllers() const
 {
-    return AsemanViewportController::controllers( AsemanViewportAttechedType::viewport() );
+    return AsemanViewportController::controllers( AsemanViewportAttechedProperty::viewport() );
 }
 
-AsemanViewport *AsemanViewportAttechedType::viewport() const
+AsemanViewport *AsemanViewportAttechedProperty::viewport() const
 {
-    return AsemanViewportAttechedType::viewport( parent() );
+    return AsemanViewportAttechedProperty::viewport( parent() );
 }
 
-AsemanViewport *AsemanViewportAttechedType::viewport(QObject *obj)
+AsemanViewport *AsemanViewportAttechedProperty::viewport(QObject *obj)
 {
     AsemanViewport *viewport = Q_NULLPTR;
     do
@@ -204,6 +204,6 @@ AsemanViewport *AsemanViewportAttechedType::viewport(QObject *obj)
     return viewport;
 }
 
-AsemanViewportAttechedType::~AsemanViewportAttechedType()
+AsemanViewportAttechedProperty::~AsemanViewportAttechedProperty()
 {
 }

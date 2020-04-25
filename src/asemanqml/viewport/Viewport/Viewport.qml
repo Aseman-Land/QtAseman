@@ -3,6 +3,7 @@ import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
 
 ViewportCore {
+    id: viewportCore
 
     property bool androidStyle: Devices.isAndroid
     property Item mainItem
@@ -16,8 +17,6 @@ ViewportCore {
     }
 
     ListObject { id: list }
-    HashObject { id: viewportsHash }
-    HashObject { id: componentsHash }
 
     Item {
         id: scene
@@ -33,7 +32,7 @@ ViewportCore {
         }
 
         var comObj;
-        if ((cmp + "").length && cmp.status == undefined) {
+        if ((cmp + "").length && cmp.status === undefined) {
             comObj = createComponent(Qt.resolvedUrl(cmp));
         } else {
             comObj = cmp
@@ -58,7 +57,7 @@ ViewportCore {
 
         lastItem.parent = typeObj.backgroundScene;
 
-        if ((component + "").length && component.status == undefined) {
+        if ((component + "").length && component.status === undefined) {
             component = createComponent(Qt.resolvedUrl(component));
         }
         if (component.status === Component.Error) {
@@ -74,6 +73,7 @@ ViewportCore {
 
         typeObj.foregroundItem = obj
         typeObj.backgroundItem = lastItem
+        typeObj.viewport = viewportCore
         return obj
     }
 

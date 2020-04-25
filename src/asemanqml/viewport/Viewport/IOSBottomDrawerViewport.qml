@@ -6,27 +6,11 @@ AbstractViewportType {
     id: item
 
     foreground.height: foregroundItem? foregroundItem.height : item.height
-    foreground.y: height - foreground.height * ratio
     foreground.z: 10
+    foreground.parent: dragArea
     foregroundScene.color: "transparent"
-    foreground.parent: column
-    foreground.anchors.bottom: foreground.parent.bottom
-    foreground.anchors.bottomMargin: -foreground.radius
-    foregroundScene.anchors.bottomMargin: foreground.radius
 
     property real openRatio: open? 1 : 0
-    property real mouseRatio: 1
-
-    onOpenChanged: {
-        if (open)
-            return;
-
-        var mr = mouseRatio
-        ratio = Qt.binding( function(){ return openRatio * mr } )
-        flickAnim.from = flick.contentY
-        flickAnim.to = 0
-        flickAnim.start()
-    }
 
     Behavior on ratio {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
@@ -39,27 +23,16 @@ AbstractViewportType {
     }
 
     NumberAnimation {
-        id: flickAnim
-        target: flick
-        property: "contentY"
-        easing.type: Easing.OutCubic
-        duration: 350
-        from: 0
-        to: item.foreground.height
-        Component.onCompleted: Tools.jsDelayCall(1, start)
-    }
-
-    NumberAnimation {
-        id: mouseRatioAnim
-        target: item
-        property: "mouseRatio"
+        id: foregroundAnim
+        target: foreground
+        property: "y"
         easing.type: Easing.OutCubic
         duration: 300
     }
 
     Item {
         width: item.foreground.width
-        height: flick.contentY
+        height: item.height - dragArea.y - item.foreground.y
         anchors.bottom: parent.bottom
         z: 5
         clip: true
@@ -74,42 +47,46 @@ AbstractViewportType {
         }
     }
 
-    Flickable {
-        id: flick
+    MouseArea {
         anchors.fill: parent
-        z: 6
-        flickableDirection: Flickable.VerticalFlick
-        contentWidth: column.width
-        contentHeight: column.height
-        boundsBehavior: Flickable.StopAtBounds
-        rebound: Transition {
-            NumberAnimation {
-                properties: "x,y"
-                duration: 0
+        hoverEnabled: true
+    }
+
+    MouseArea {
+        anchors.top: parent.top
+        anchors.bottom: dragArea.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        visible: item.touchToCloseIsNull || item.touchToClose
+        onClicked: open = false
+    }
+
+    MouseArea {
+        id: dragArea
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: item.gestureWidthIsNull? item.foreground.height : item.gestureWidth
+        y: parent.height - item.foreground.height * item.ratio
+        z: 10
+        drag {
+            target: item.foreground
+            axis: Drag.YAxis
+            minimumY: 0
+            maximumY: item.height
+            filterChildren: true
+            onActiveChanged: {
+                if (dragArea.drag.active)
+                    return;
+
+                var ratio = 1 - foreground.y / dragArea.height
+                if (ratio < 0.7) {
+                    open = false
+                } else {
+                    foregroundAnim.from = foreground.y
+                    foregroundAnim.to = 0
+                    foregroundAnim.start()
+                }
             }
-        }
-        onContentYChanged: if (dragging) mouseRatio = flick.contentY / item.foreground.height
-        onDraggingChanged: {
-            if (dragging)
-                return;
-
-            if (mouseRatio < 0.7) {
-                open = false
-            } else {
-                mouseRatioAnim.from = mouseRatio
-                mouseRatioAnim.to = 1
-                mouseRatioAnim.start()
-
-                flickAnim.from = flick.contentY
-                flickAnim.to = item.foreground.height
-                flickAnim.start()
-            }
-        }
-
-        Item {
-            id: column
-            width: flick.width
-            height: flick.height + item.foreground.height
         }
     }
 }
