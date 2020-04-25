@@ -29,7 +29,7 @@ GridView {
     onContentYChanged: prv.optimizeTabBar()
 
     maximumFlickVelocity: View.flickVelocity
-    boundsBehavior: Devices.isIOS? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+    boundsBehavior: !Devices.isAndroid? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
     onContentHeightChanged: if(contentHeight<height) anim.start()
 
     NumberAnimation {
@@ -38,8 +38,8 @@ GridView {
         property: "tabBarExtra"
         from: prv.tabBarExtra
         to: tabBarHeight
-        easing.type: Devices.isIOS? Easing.OutBack : Easing.OutCubic
-        duration: Devices.isIOS? 350 : 250
+        easing.type: !Devices.isAndroid? Easing.OutBack : Easing.OutCubic
+        duration: !Devices.isAndroid? 350 : 250
     }
 
     Transition {
@@ -76,5 +76,5 @@ GridView {
         }
     }
 
-    Component.onCompleted: if(!Devices.isIOS) rebound = android_transition
+    Component.onCompleted: if(Devices.isAndroid) rebound = android_transition
 }

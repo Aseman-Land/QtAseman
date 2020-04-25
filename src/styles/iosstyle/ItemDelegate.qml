@@ -75,14 +75,11 @@ T.ItemDelegate {
 
         color: control.highlighted ? control.IOSStyle.listHighlightColor : "transparent"
 
-        Ripple {
+        Rectangle {
             width: parent.width
             height: parent.height
-
-            clip: visible
-            pressed: control.pressed
-            anchor: control
-            active: control.down || control.visualFocus || control.hovered
+            visible: control.pressed || control.down || control.visualFocus || control.hovered
+            opacity: control.down || control.visualFocus || control.hovered? 0.5 : 1
             color: control.IOSStyle.rippleColor
         }
     }

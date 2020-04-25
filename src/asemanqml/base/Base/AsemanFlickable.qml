@@ -22,7 +22,7 @@ import AsemanQml.Base 2.0
 Flickable {
     id: flick
     maximumFlickVelocity: View.flickVelocity
-    boundsBehavior: Devices.isIOS? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+    boundsBehavior: !Devices.isAndroid? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
 
     property bool allTimeMode: true
     readonly property real tabBarRatio: prv.tabBarExtra/tabBarHeight
@@ -38,8 +38,8 @@ Flickable {
         property: "tabBarExtra"
         from: prv.tabBarExtra
         to: tabBarHeight
-        easing.type: Devices.isIOS? Easing.OutBack : Easing.OutCubic
-        duration: Devices.isIOS? 350 : 250
+        easing.type: !Devices.isAndroid? Easing.OutBack : Easing.OutCubic
+        duration: !Devices.isAndroid? 350 : 250
     }
 
     Transition {
@@ -82,5 +82,5 @@ Flickable {
         }
     }
 
-    Component.onCompleted: if(!Devices.isIOS) rebound = android_transition
+    Component.onCompleted: if(Devices.isAndroid) rebound = android_transition
 }

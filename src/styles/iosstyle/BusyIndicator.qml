@@ -34,7 +34,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.14
+import QtQuick 2.9
 import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.IOSStyle 2.12
 
@@ -74,7 +74,7 @@ T.BusyIndicator {
                 antialiasing: true
                 transformOrigin: Item.Top
                 opacity: 1/16 * index + 4/16
-                color: "grey"
+                color: control.IOSStyle.background
             }
         }
     }

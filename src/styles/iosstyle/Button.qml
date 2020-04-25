@@ -61,8 +61,6 @@ T.Button {
                            flat && highlighted ? IOSStyle.accentColor :
                                                  highlighted ? IOSStyle.primaryHighlightedTextColor : IOSStyle.foreground
 
-    IOSStyle.background: flat ? "transparent" : undefined
-
     contentItem: IconLabel {
         id: content
         spacing: control.spacing
@@ -75,7 +73,7 @@ T.Button {
         color: !control.enabled ? control.IOSStyle.hintTextColor :
                                   control.flat && control.highlighted ? control.IOSStyle.accentColor :
                                                                         control.highlighted ? control.IOSStyle.primaryHighlightedTextColor :
-                                                                                              control.flat ? control.IOSStyle.hintTextColor : control.IOSStyle.accentColor
+                                                                                              control.flat ? control.IOSStyle.foreground : control.IOSStyle.accentColor
     }
 
     background: Rectangle {
@@ -84,21 +82,16 @@ T.Button {
         implicitHeight: control.IOSStyle.buttonHeight
 
         radius: 8
-        border.color: {
-            if(!control.enabled)
-                return control.IOSStyle.buttonDisabledColor;
-
-            if(control.highlighted)
-                return Qt.lighter(control.IOSStyle.highlightedButtonColor, control.pressed? 1.2 : 1)
-            else
-                return Qt.darker(control.IOSStyle.accentColor, control.pressed? 1.05 : 1)
-        }
+        opacity: control.flat? (control.pressed? 0.2 : 0) : 1
+        border.width: 0
         color: {
             if(!control.enabled)
                 return control.IOSStyle.buttonDisabledColor
 
-            if(control.highlighted)
+            if (control.highlighted)
                 return Qt.lighter(control.IOSStyle.highlightedButtonColor, control.pressed? 1.2 : 1)
+            if (control.flat)
+                return control.IOSStyle.foreground
             else
                 return Qt.darker(control.IOSStyle.backgroundColor, control.pressed? 1.05 : 1)
         }
@@ -111,6 +104,12 @@ T.Button {
 
         Behavior on color {
             ColorAnimation {
+                duration: 250
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
                 duration: 250
             }
         }

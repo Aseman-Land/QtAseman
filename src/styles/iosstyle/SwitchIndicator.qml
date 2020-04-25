@@ -53,8 +53,7 @@ Item {
         height: 23
         radius: height / 2
         y: parent.height / 2 - height / 2
-        border.color: control.enabled ? (control.checked ? control.IOSStyle.switchCheckedTrackColor : control.IOSStyle.switchBorderColor)
-                                      : control.IOSStyle.switchDisabledTrackColor
+
         color: {
             if(!control.enabled)
                 return control.IOSStyle.switchDisabledTrackColor
@@ -67,19 +66,6 @@ Item {
 
         Behavior on color {
             ColorAnimation { easing.type: Easing.OutCubic; duration: 150 }
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            anchors.margins: 1
-            anchors.leftMargin: height/2
-            color: control.IOSStyle.switchUncheckedTrackColor
-            radius: height/2
-            scale: 1 - control.visualPosition
-
-            Behavior on scale {
-                NumberAnimation { easing.type: Easing.OutCubic; duration: 300 }
-            }
         }
     }
 
