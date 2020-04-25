@@ -74,7 +74,7 @@ T.BusyIndicator {
                 antialiasing: true
                 transformOrigin: Item.Top
                 opacity: 1/16 * index + 4/16
-                color: control.IOSStyle.background
+                color: control.IOSStyle.foreground
             }
         }
     }

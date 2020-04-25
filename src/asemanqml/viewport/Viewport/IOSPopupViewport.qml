@@ -7,7 +7,7 @@ AbstractViewportType {
     fillForeground: true
     ratio: openRatio * mouseRatio
 
-    background.scale: iosBelowIndex < 2? 1 - (realRatio * topPadSize / height) : 1
+    background.scale: iosBelowIndex < 2? 1 - (realRatio * (topPadSize + 22 * Devices.density) / height) : 1
     background.transformOrigin: Item.Center
     background.radius: 10 * Devices.density
 
@@ -21,7 +21,7 @@ AbstractViewportType {
     foregroundScene.anchors.topMargin: -Devices.statusBarHeight
     foregroundScene.anchors.bottomMargin: foreground.radius
 
-    readonly property real topPadSize: Math.max(20 * Devices.density, Devices.statusBarHeight) + 5 * Devices.density
+    readonly property real topPadSize: Math.max(20 * Devices.density, Devices.statusBarHeight * 2.2)
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
     readonly property real foregroundScale: nextItem? nextItem.realRatio : 0
