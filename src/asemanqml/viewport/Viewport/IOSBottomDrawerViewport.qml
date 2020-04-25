@@ -88,5 +88,9 @@ AbstractViewportType {
                 }
             }
         }
+
+        MouseArea {
+            anchors.fill: parent
+        }
     }
 }
