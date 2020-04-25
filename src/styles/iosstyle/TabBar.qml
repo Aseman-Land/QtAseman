@@ -83,12 +83,25 @@ T.TabBar {
                 anchors.margins: 7
                 color: control.IOSStyle.backgroundColor
                 radius: 8
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "#fff"
+                    radius: 8
+                    opacity: 0.3
+                }
             }
         }
     }
 
-    background: Rectangle {
-        color: control.IOSStyle.backgroundColor
+    background: Item {
+
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 4
+            radius: 10
+            color: control.IOSStyle.backgroundColor
+        }
 
         Rectangle {
             anchors.fill: parent
