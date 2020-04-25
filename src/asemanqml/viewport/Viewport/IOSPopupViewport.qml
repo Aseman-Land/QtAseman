@@ -7,44 +7,45 @@ AbstractViewportType {
     fillForeground: true
     ratio: openRatio * mouseRatio
 
-    background.transformOrigin: iosIndex < 2? Item.Center : Item.Top
-    background.scale: 1 - (ratio * topPadSize / height)
+    background.scale: iosBelowIndex < 2? 1 - (realRatio * topPadSize / height) : 1
+    background.transformOrigin: Item.Center
     background.radius: 10 * Devices.density
 
-    foreground.parent: column
-    foreground.anchors.bottom: foreground.parent.bottom
-    foreground.anchors.bottomMargin: -foreground.radius
-    foreground.height: item.height - (item.iosIndex * topPadSize ) + foreground.radius
-    foreground.radius: 10 * Devices.density
     foreground.z: 10
-    foregroundScene.anchors.bottomMargin: foreground.radius
+    foreground.y: height * (1-ratio)
+    foreground.parent: dragArea
+    foreground.height: foregroundHeight + foreground.radius
+    foreground.radius: 10 * Devices.density
+    foreground.transformOrigin: Item.Center
+    foreground.scale: 1 - foregroundScale * topPadSize / height
     foregroundScene.anchors.topMargin: -Devices.statusBarHeight
-
-    readonly property bool isIOSPopup: true
-    readonly property int iosIndex: {
-        if (!list)
-            return 0;
-        for (var i=list.count-1; i>=0; i--)
-        {
-            if (!list.at(i).isIOSPopup)
-                return index - i - 1
-        }
-        return index
-    }
+    foregroundScene.anchors.bottomMargin: foreground.radius
 
     readonly property real topPadSize: Math.max(20 * Devices.density, Devices.statusBarHeight) + 5 * Devices.density
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
+    readonly property real foregroundScale: nextItem? nextItem.realRatio : 0
+    readonly property real foregroundHeight: item.height - topPadSize
+    readonly property real realRatio: 1 - foreground.y / foreground.height
 
-    onOpenChanged: {
-        if (open)
-            return;
+    readonly property bool isIOSPopup: true
+    readonly property Item nextItem: {
+        if (index==0 || !list || list.count <= index)
+            return null;
+        if (list.at(index).isIOSPopup)
+            return list.at(index);
+        return null;
+    }
+    readonly property int iosBelowIndex: {
+        if (index==0 || !list || list.count === 0)
+            return 0;
 
-        var mr = mouseRatio
-        ratio = Qt.binding( function(){ return openRatio * mr } )
-        flickAnim.from = flick.contentY
-        flickAnim.to = 0
-        flickAnim.start()
+        var start = Math.min(index, list.count-1);
+        for (var i=start; i>=0; i--)
+            if (!list.at(i).isIOSPopup)
+                return start - i - 1;
+
+        return index;
     }
 
     Behavior on openRatio {
@@ -57,15 +58,12 @@ AbstractViewportType {
         color: "#000"
     }
 
-    NumberAnimation {
-        id: flickAnim
-        target: flick
-        property: "contentY"
-        easing.type: Easing.OutCubic
-        duration: 350
-        from: 0
-        to: item.foreground.height
-        Component.onCompleted: Tools.jsDelayCall(1, start)
+    Rectangle {
+        parent: item.backgroundScene
+        anchors.fill: parent
+        z: 100
+        color: "#000"
+        opacity: item.ratio * 0.3
     }
 
     NumberAnimation {
@@ -76,49 +74,46 @@ AbstractViewportType {
         duration: 300
     }
 
-    Flickable {
-        id: flick
+    MouseArea {
         anchors.fill: parent
-        flickableDirection: Flickable.VerticalFlick
-        contentWidth: column.width
-        contentHeight: column.height
-        boundsBehavior: Flickable.StopAtBounds
-        rebound: Transition {
-            NumberAnimation {
-                properties: "x,y"
-                duration: 0
-            }
-        }
-        onContentYChanged: if (dragging) mouseRatio = flick.contentY / item.foreground.height
-        onDraggingChanged: {
-            if (dragging)
-                return;
-
-            if (mouseRatio < 0.7) {
-                open = false
-            } else {
-                mouseRatioAnim.from = mouseRatio
-                mouseRatioAnim.to = 1
-                mouseRatioAnim.start()
-
-                flickAnim.from = flick.contentY
-                flickAnim.to = item.foreground.height
-                flickAnim.start()
-            }
-        }
-
-        Item {
-            id: column
-            width: flick.width
-            height: flick.height + item.foreground.height
-        }
+        hoverEnabled: true
     }
 
-    Rectangle {
-        parent: item.backgroundScene
-        anchors.fill: parent
-        z: 100
-        color: "#000"
-        opacity: item.ratio * 0.2
+    MouseArea {
+        anchors.top: parent.top
+        anchors.bottom: dragArea.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        visible: item.touchToCloseIsNull || item.touchToClose
+        onClicked: open = false
+    }
+
+    MouseArea {
+        id: dragArea
+        anchors.left: parent.left
+        anchors.right: parent.right
+        y: topPadSize * (1 - foregroundScale)
+        height: item.gestureWidthIsNull? (item.height - topPadSize) : item.gestureWidth
+        drag {
+            target: item.foreground
+            axis: Drag.YAxis
+            minimumY: 0
+            maximumY: item.height
+            filterChildren: true
+            onActiveChanged: {
+                if (dragArea.drag.active)
+                    return;
+
+                mouseRatio = realRatio
+                foreground.y = Qt.binding( function() { return foregroundHeight * (1-ratio); } )
+                if (realRatio < 0.7) {
+                    open = false
+                } else {
+                    mouseRatioAnim.from = realRatio
+                    mouseRatioAnim.to = 1
+                    mouseRatioAnim.start()
+                }
+            }
+        }
     }
 }

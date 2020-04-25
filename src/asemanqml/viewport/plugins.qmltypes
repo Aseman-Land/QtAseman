@@ -39,12 +39,29 @@ Module {
         "org.kde.plasma.extras 2.0"
     ]
     Component {
+        name: "AsemanAbstractViewportType"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["AsemanQml.Viewport/AbstractViewportTypeCore 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "open"; type: "bool" }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
+    }
+    Component {
         name: "AsemanViewport"
         defaultProperty: "data"
         prototype: "QQuickItem"
         exports: ["AsemanQml.Viewport/ViewportCore 2.0"]
         exportMetaObjectRevisions: [0]
-        attachedType: "AsemanViewportAttechedType"
+        attachedType: "AsemanViewportAttechedProperty"
         Property { name: "items"; type: "AsemanViewportItem"; isList: true; isReadonly: true }
         Property { name: "keys"; type: "QStringList"; isReadonly: true }
         Signal { name: "viewportChanged" }
@@ -66,7 +83,7 @@ Module {
         }
     }
     Component {
-        name: "AsemanViewportAttechedType"
+        name: "AsemanViewportAttechedProperty"
         prototype: "QObject"
         Property {
             name: "controller"
@@ -127,17 +144,29 @@ Module {
         Property { name: "component"; type: "QVariant" }
     }
     Component {
+        name: "AsemanViewportType"
+        prototype: "QObject"
+        exports: ["AsemanQml.Viewport/ViewportType 2.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        attachedType: "AsemanViewportTypeAttechedProperty"
+    }
+    Component {
+        name: "AsemanViewportTypeAttechedProperty"
+        prototype: "QObject"
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "open"; type: "bool" }
+    }
+    Component {
         prototype: "QQuickItem"
         name: "AsemanQml.Viewport/AbstractViewportType 2.0"
         exports: ["AsemanQml.Viewport/AbstractViewportType 2.0"]
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -147,6 +176,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -157,11 +196,7 @@ Module {
         defaultProperty: "data"
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -171,6 +206,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -181,11 +226,7 @@ Module {
         defaultProperty: "data"
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -195,6 +236,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -203,11 +254,7 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -217,6 +264,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -225,11 +282,7 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -239,6 +292,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -249,11 +312,7 @@ Module {
         defaultProperty: "data"
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -263,6 +322,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -271,11 +340,7 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -285,6 +350,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -295,11 +370,7 @@ Module {
         defaultProperty: "data"
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -309,6 +380,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -322,11 +403,7 @@ Module {
         Property { name: "topPadSize"; type: "double"; isReadonly: true }
         Property { name: "openRatio"; type: "double" }
         Property { name: "mouseRatio"; type: "double" }
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -336,6 +413,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -344,11 +431,7 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "data"
-        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
-        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
         Property { name: "list"; type: "AsemanListObject"; isPointer: true }
-        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
-        Property { name: "title"; type: "string"; isReadonly: true }
         Property { name: "fillForeground"; type: "bool" }
         Property { name: "index"; type: "int" }
         Property { name: "count"; type: "int" }
@@ -358,6 +441,16 @@ Module {
         Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
         Property { name: "foreground"; type: "RoundedItem_QMLTYPE_3"; isReadonly: true; isPointer: true }
         Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"

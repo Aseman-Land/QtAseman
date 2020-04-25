@@ -7,7 +7,7 @@ AbstractViewportType {
 
     foreground.height: foregroundItem? foregroundItem.height : item.height
     foreground.width: foregroundItem? foregroundItem.width : item.width
-    foreground.scale: 0.8 + ratio * 0.2
+    foreground.scale: 1.1 - ratio * 0.1
     foreground.opacity: ratio
     foreground.anchors.centerIn: foreground.parent
     foreground.z: 10
@@ -26,7 +26,8 @@ AbstractViewportType {
 
         MouseArea {
             anchors.fill: parent
-            onClicked: item.open = false
+            hoverEnabled: true
+            onClicked: if (item.touchToCloseIsNull || item.touchToClose) item.open = false
         }
     }
 

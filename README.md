@@ -510,6 +510,17 @@ MouseArea {
 
 `Viewport.controller` method returns first controller of the parent Viewport. If you wish to get all controllers as array, use `Viewport.allController` method instead.
 
+#### ViewportType Attached Property
+
+Using `ViewportType` attached property, you can change some attributes on the current Viewport's type item:
+
+```js
+ViewportType.gestureWidth: 10 // Change touch/mouse gesture area's width
+ViewportType.touchToClose: false // Disable touch background to close feature
+ViewportType.blockBack: true // Disable press back to close feature
+ViewportType.open: false // Close current page of the viewport
+```
+
 ### AsemanQml.Network
 
 Network module provides components to send network requests. For Example `NetworkRequestManager` and `NetworkRequest` could send http requests like post, get, put and etc.

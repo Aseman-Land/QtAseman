@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "asemanabstractviewporttype.h"
 #include "asemanqttoolsitemviewport.h"
 
 #include <asemanviewport.h>
@@ -39,10 +40,12 @@ void AsemanQtToolsItemViewport::registerTypes(const char *uri, bool exportMode)
     if (register_list.contains(uri) && !exportMode)
         return;
 
+    registerType<AsemanAbstractViewportType>(uri, 2, 0, "AbstractViewportTypeCore", exportMode);
     registerType<AsemanViewport>(uri, 2, 0, "ViewportCore", exportMode);
     registerType<AsemanViewportItem>(uri, 2, 0, "ViewportItem", exportMode);
     registerType<AsemanViewportController>(uri, 2, 0, "ViewportControllerCore", exportMode);
     registerType<AsemanViewportControllerRoute>(uri, 2, 0, "ViewportControllerRoute", exportMode);
+    qmlRegisterUncreatableType<AsemanViewportType>(uri, 2, 0, "ViewportType", "");
 
     register_list.insert(uri);
 }
