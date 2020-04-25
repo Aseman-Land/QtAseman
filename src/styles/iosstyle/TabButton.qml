@@ -49,12 +49,11 @@ T.TabButton {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    padding: 12
     spacing: 6
 
     icon.width: 24
     icon.height: 24
-    icon.color: !enabled ? IOSStyle.hintTextColor : down || checked ? IOSStyle.accentColor : IOSStyle.foreground
+    icon.color: !enabled ? IOSStyle.hintTextColor : IOSStyle.foreground
 
     contentItem: IconLabel {
         spacing: control.spacing
@@ -64,16 +63,19 @@ T.TabButton {
         icon: control.icon
         text: control.text
         font: control.font
-        color: !control.enabled ? control.IOSStyle.hintTextColor : control.down || control.checked ? control.IOSStyle.accentColor : control.IOSStyle.foreground
+        color: !control.enabled ? control.IOSStyle.hintTextColor : control.IOSStyle.foreground
     }
 
-    background: Ripple {
+    background: Item {
         implicitHeight: control.IOSStyle.touchTarget
 
-        clip: true
-        pressed: control.pressed
-        anchor: control
-        active: control.down || control.visualFocus || control.hovered
-        color: control.IOSStyle.rippleColor
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 7
+            radius: 8
+            visible: control.pressed || control.down || control.visualFocus || control.hovered
+            opacity: control.down || control.visualFocus || control.hovered? 0.5 : 1
+            color: control.IOSStyle.backgroundColor
+        }
     }
 }

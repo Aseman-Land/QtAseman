@@ -67,12 +67,22 @@ T.TabBar {
         preferredHighlightEnd: width - 48
 
         highlight: Item {
-            z: 2
+            FastDropShadow {
+                anchors.fill: back
+                source: back
+                horizontalOffset: 0
+                verticalOffset: 1
+                radius: 5
+                opacity: 0.2
+                color: control.IOSStyle.foreground
+            }
+
             Rectangle {
-                height: 2
-                width: parent.width
-                y: control.position === T.TabBar.Footer ? 0 : parent.height - height
-                color: control.IOSStyle.accentColor
+                id: back
+                anchors.fill: parent
+                anchors.margins: 7
+                color: control.IOSStyle.backgroundColor
+                radius: 8
             }
         }
     }
@@ -80,10 +90,12 @@ T.TabBar {
     background: Rectangle {
         color: control.IOSStyle.backgroundColor
 
-        layer.enabled: control.IOSStyle.elevation > 0
-        layer.effect: ElevationEffect {
-            elevation: control.IOSStyle.elevation
-            fullWidth: true
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 4
+            color: control.IOSStyle.foreground
+            opacity: 0.1
+            radius: 10
         }
     }
 }
