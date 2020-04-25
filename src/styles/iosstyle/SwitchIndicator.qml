@@ -40,8 +40,8 @@ import QtQuick.Controls.IOSStyle.impl 2.12
 
 Item {
     id: indicator
-    implicitWidth: 38
-    implicitHeight: 32
+    implicitWidth: 46
+    implicitHeight: 39
 
     property Item control
     property alias handle: handle
@@ -50,7 +50,7 @@ Item {
 
     Rectangle {
         width: parent.width
-        height: 23
+        height: 28
         radius: height / 2
         y: parent.height / 2 - height / 2
 
@@ -83,8 +83,8 @@ Item {
         id: handle
         x: Math.max(1.5, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)) - 1.5)
         y: (parent.height - height) / 2
-        width: 20
-        height: 20
+        width: 24
+        height: 24
         radius: width / 2
         color: control.enabled ? control.IOSStyle.switchHandleColor
                                : control.IOSStyle.switchDisabledHandleColor
