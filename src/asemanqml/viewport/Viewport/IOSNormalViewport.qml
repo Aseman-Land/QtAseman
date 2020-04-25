@@ -67,6 +67,10 @@ AbstractViewportType {
             }
         }
 
+        MouseArea {
+            anchors.fill: parent
+        }
+
         Item {
             id: dragScene
             width: item.width
