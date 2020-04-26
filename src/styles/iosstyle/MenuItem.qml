@@ -98,14 +98,11 @@ T.MenuItem {
         implicitHeight: control.IOSStyle.menuItemHeight
         color: control.highlighted ? control.IOSStyle.listHighlightColor : "transparent"
 
-        Ripple {
+        Rectangle {
             width: parent.width
             height: parent.height
-
-            clip: visible
-            pressed: control.pressed
-            anchor: control
-            active: control.down || control.highlighted
+            visible: control.pressed || control.down || control.highlighted
+            opacity: control.down || control.highlighted? 0.5 : 1
             color: control.IOSStyle.rippleColor
         }
     }

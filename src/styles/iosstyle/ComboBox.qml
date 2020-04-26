@@ -99,36 +99,34 @@ T.ComboBox {
         cursorDelegate: CursorDelegate { }
     }
 
-    background: Rectangle {
+    background: Item {
         implicitWidth: 120
         implicitHeight: control.IOSStyle.buttonHeight
 
-        radius: control.flat ? 0 : 2
-        color: !control.editable ? control.IOSStyle.dialogColor : "transparent"
-
-        layer.enabled: control.enabled && !control.editable && control.IOSStyle.background.a > 0
-        layer.effect: ElevationEffect {
-            elevation: control.IOSStyle.elevation
+        Rectangle {
+            anchors.fill: parent
+            radius: 5
+            color: control.IOSStyle.foreground
+            opacity: 0.1
+            visible: control.editable
         }
 
         Rectangle {
-            visible: control.editable
-            y: parent.y + control.baselineOffset
-            width: parent.width
-            height: control.activeFocus ? 2 : 1
-            color: control.editable && control.activeFocus ? control.IOSStyle.accentColor : control.IOSStyle.hintTextColor
+            anchors.fill: parent
+            border.width: 1
+            border.color: control.down || control.visualFocus || control.hovered? control.IOSStyle.accent : control.IOSStyle.foreground
+            radius: 5
+            opacity: 0.15
+            visible: !control.editable
         }
 
-        Ripple {
-            clip: control.flat
-            clipRadius: control.flat ? 0 : 2
-            x: control.editable && control.indicator ? control.indicator.x : 0
-            width: control.editable && control.indicator ? control.indicator.width : parent.width
+        Rectangle {
+            width: parent.width
             height: parent.height
-            pressed: control.pressed
-            anchor: control.editable && control.indicator ? control.indicator : control
-            active: control.pressed || control.visualFocus || control.hovered
+            visible: control.pressed || control.down || control.visualFocus || control.hovered
+            opacity: control.down || control.visualFocus || control.hovered? 0.5 : 1
             color: control.IOSStyle.rippleColor
+            radius: 5
         }
     }
 
@@ -139,6 +137,7 @@ T.ComboBox {
         transformOrigin: Item.Top
         topMargin: 12
         bottomMargin: 12
+        dim: true
 
         IOSStyle.theme: control.IOSStyle.theme
         IOSStyle.accent: control.IOSStyle.accent
@@ -146,13 +145,12 @@ T.ComboBox {
 
         enter: Transition {
             // grow_fade_in
-            NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
+            NumberAnimation { property: "scale"; from: 1.1; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
 
         exit: Transition {
             // shrink_fade_out
-            NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
         }
 
@@ -167,13 +165,8 @@ T.ComboBox {
         }
 
         background: Rectangle {
-            radius: 2
+            radius: 10
             color: parent.IOSStyle.dialogColor
-
-            layer.enabled: control.enabled
-            layer.effect: ElevationEffect {
-                elevation: 8
-            }
         }
     }
 }
