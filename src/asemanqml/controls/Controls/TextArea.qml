@@ -13,7 +13,7 @@ QtControls.TextArea {
         opacity: minMode? 1 : 0.6
         scale: minMode? 0.8 : 1
         transformOrigin: LayoutMirroring.enabled? Item.Right : Item.Left
-        y: minMode? Math.min(8, field.topPadding) - height : field.topPadding
+        y: minMode? field.topInset - height : field.topPadding
         x: LayoutMirroring.enabled? parent.width - width - xPad : xPad
         color: field.focus? field.selectionColor : field.color
 

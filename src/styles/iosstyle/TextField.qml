@@ -50,10 +50,11 @@ T.TextField {
                              contentHeight + topPadding + bottomPadding,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    topPadding: 6
+    topPadding: 14
     bottomPadding: 6
     leftPadding: 10
     rightPadding: 10
+    topInset: 8
 
     color: enabled ? IOSStyle.foreground : IOSStyle.hintTextColor
     selectionColor: IOSStyle.accentColor
@@ -80,12 +81,9 @@ T.TextField {
 
     background: Item {
         implicitWidth: 120
-        implicitHeight: 54
 
         Rectangle {
             anchors.fill: parent
-            anchors.topMargin: 10
-            anchors.bottomMargin: 10
             radius: 10
             color: control.IOSStyle.foreground
             opacity: 0.1

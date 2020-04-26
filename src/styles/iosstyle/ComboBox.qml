@@ -116,7 +116,7 @@ T.ComboBox {
             border.width: 1
             border.color: control.down || control.visualFocus || control.hovered? control.IOSStyle.accent : control.IOSStyle.foreground
             radius: 5
-            opacity: 0.15
+            opacity: 0.1
             visible: !control.editable
         }
 

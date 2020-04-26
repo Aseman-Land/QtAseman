@@ -51,8 +51,12 @@ T.TextArea {
                              implicitBackgroundHeight + topInset + bottomInset,
                              placeholder.implicitHeight + 1 + topPadding + bottomPadding)
 
-    topPadding: 8
-    bottomPadding: 16
+    topPadding: 14
+    bottomPadding: 6
+    leftPadding: 10
+    rightPadding: 10
+
+    topInset: 8
 
     color: enabled ? IOSStyle.foreground : IOSStyle.hintTextColor
     selectionColor: IOSStyle.accentColor
@@ -77,5 +81,12 @@ T.TextArea {
 
     background: Item {
         implicitWidth: 120
+
+        Rectangle {
+            anchors.fill: parent
+            radius: 10
+            color: control.IOSStyle.foreground
+            opacity: 0.1
+        }
     }
 }
