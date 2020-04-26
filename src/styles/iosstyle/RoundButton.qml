@@ -62,8 +62,6 @@ T.RoundButton {
         flat && highlighted ? IOSStyle.accentColor :
         highlighted ? IOSStyle.primaryHighlightedTextColor : IOSStyle.foreground
 
-    IOSStyle.elevation: flat ? control.down || control.hovered ? 2 : 0
-                             : control.down ? 12 : 6
     IOSStyle.background: flat ? "transparent" : undefined
 
     contentItem: IconLabel {
@@ -85,31 +83,36 @@ T.RoundButton {
         implicitHeight: control.IOSStyle.buttonHeight
 
         radius: control.radius
-        color: !control.enabled ? control.IOSStyle.buttonDisabledColor
-            : control.checked || control.highlighted ? control.IOSStyle.highlightedButtonColor : control.IOSStyle.buttonColor
+        opacity: control.flat? (control.pressed? 0.2 : 0) : 1
+        border.width: 0
+        color: {
+            if(!control.enabled)
+                return control.IOSStyle.buttonDisabledColor
 
-        Rectangle {
-            width: parent.width
-            height: parent.height
-            radius: control.radius
-            visible: control.hovered || control.visualFocus
-            color: control.IOSStyle.rippleColor
+            if (control.highlighted)
+                return Qt.lighter(control.IOSStyle.highlightedButtonColor, control.pressed? 1.2 : 1)
+            if (control.flat)
+                return control.IOSStyle.foreground
+            else
+                return Qt.darker(control.IOSStyle.backgroundColor, control.pressed? 1.05 : 1)
         }
 
-        Rectangle {
-            width: parent.width
-            height: parent.height
-            radius: control.radius
-            visible: control.down
-            color: control.IOSStyle.rippleColor
+        Behavior on border.color {
+            ColorAnimation {
+                duration: 250
+            }
         }
 
-        // The layer is disabled when the button color is transparent so that you can do
-        // IOSStyle.background: "transparent" and get a proper flat button without needing
-        // to set IOSStyle.elevation as well
-        layer.enabled: control.enabled && control.IOSStyle.buttonColor.a > 0
-        layer.effect: ElevationEffect {
-            elevation: control.IOSStyle.elevation
+        Behavior on color {
+            ColorAnimation {
+                duration: 250
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 250
+            }
         }
     }
 }

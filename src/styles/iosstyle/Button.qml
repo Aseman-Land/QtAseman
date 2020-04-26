@@ -58,8 +58,8 @@ T.Button {
     icon.width: 24
     icon.height: 24
     icon.color: !enabled ? IOSStyle.hintTextColor :
-                           flat && highlighted ? IOSStyle.accentColor :
-                                                 highlighted ? IOSStyle.primaryHighlightedTextColor : IOSStyle.foreground
+        flat && highlighted ? IOSStyle.accentColor :
+        highlighted ? IOSStyle.primaryHighlightedTextColor : IOSStyle.foreground
 
     contentItem: IconLabel {
         id: content
@@ -71,9 +71,9 @@ T.Button {
         text: control.text
         font: control.font
         color: !control.enabled ? control.IOSStyle.hintTextColor :
-                                  control.flat && control.highlighted ? control.IOSStyle.accentColor :
-                                                                        control.highlighted ? control.IOSStyle.primaryHighlightedTextColor :
-                                                                                              control.flat ? control.IOSStyle.foreground : control.IOSStyle.accentColor
+            control.flat && control.highlighted ? control.IOSStyle.accentColor :
+            control.highlighted ? control.IOSStyle.primaryHighlightedTextColor :
+            control.flat ? control.IOSStyle.foreground : control.IOSStyle.accentColor
     }
 
     background: Rectangle {
