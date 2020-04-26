@@ -41,8 +41,9 @@ import QtQuick.Controls.IOSStyle.impl 2.12
 
 T.Popup {
     id: control
+    dim: true
 
-    IOSStyle.elevation: 24
+    IOSStyle.elevation: 3
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentWidth + leftPadding + rightPadding)
@@ -53,21 +54,20 @@ T.Popup {
 
     enter: Transition {
         // grow_fade_in
-        NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
+        NumberAnimation { property: "scale"; from: 1.1; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
     }
 
     exit: Transition {
         // shrink_fade_out
-        NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
     }
 
     background: Rectangle {
-        radius: 2
+        radius: 10
         color: control.IOSStyle.dialogColor
 
-        layer.enabled: control.IOSStyle.elevation > 0
+        layer.enabled: control.IOSStyle.elevation > 0 && !control.dim
         layer.effect: ElevationEffect {
             elevation: control.IOSStyle.elevation
         }
