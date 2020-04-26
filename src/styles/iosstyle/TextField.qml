@@ -50,8 +50,10 @@ T.TextField {
                              contentHeight + topPadding + bottomPadding,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    topPadding: 8
-    bottomPadding: 16
+    topPadding: 10
+    bottomPadding: 10
+    leftPadding: 10
+    rightPadding: 10
 
     color: enabled ? IOSStyle.foreground : IOSStyle.hintTextColor
     selectionColor: IOSStyle.accentColor
@@ -76,11 +78,16 @@ T.TextField {
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
     }
 
-    background: Rectangle {
-        y: control.height - height - control.bottomPadding + 8
+    background: Item {
         implicitWidth: 120
-        height: control.activeFocus || control.hovered ? 2 : 1
-        color: control.activeFocus ? control.IOSStyle.accentColor
-                                   : (control.hovered ? control.IOSStyle.primaryTextColor : control.IOSStyle.hintTextColor)
+
+        Rectangle {
+            anchors.fill: parent
+            anchors.topMargin: 4
+            anchors.bottomMargin: 4
+            radius: 10
+            color: control.IOSStyle.foreground
+            opacity: 0.1
+        }
     }
 }

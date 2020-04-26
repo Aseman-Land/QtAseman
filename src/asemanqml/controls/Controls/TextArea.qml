@@ -10,11 +10,15 @@ QtControls.TextArea {
 
     QtControls.Label {
         id: pholder
-        opacity: field.text.length || field.preeditText.length? 1 : 0.6
-        scale: field.text.length || field.preeditText.length? 0.7 : 1
+        opacity: minMode? 1 : 0.6
+        scale: minMode? 0.8 : 1
         transformOrigin: LayoutMirroring.enabled? Item.Right : Item.Left
-        y: field.text.length || field.preeditText.length? -height/2 : field.font.pixelSize/2 - height/2 + 8*Devices.density
-        x: LayoutMirroring.enabled? parent.width - width : 0
+        y: minMode? Math.min(8, field.topPadding) - height : field.topPadding
+        x: LayoutMirroring.enabled? parent.width - width - xPad : xPad
+        color: field.focus? field.selectionColor : field.color
+
+        readonly property bool minMode: field.text.length || field.preeditText.length
+        property real xPad: minMode? 0 : LayoutMirroring.enabled? field.rightPadding : field.leftPadding
 
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
@@ -23,6 +27,9 @@ QtControls.TextArea {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
         }
         Behavior on y {
+            NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
+        }
+        Behavior on xPad {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
         }
     }
