@@ -35,6 +35,7 @@
 ****************************************************************************/
 
 #include "qquickiosstylestyle_p.h"
+#include "qquickiosstylestyle_ios.h"
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qsettings.h>
@@ -111,10 +112,14 @@ static const QRgb rippleColorDark = 0x30FFFFFF;
 static const QRgb spinBoxDisabledIconColorLight = 0xFFCCCCCC;
 static const QRgb spinBoxDisabledIconColorDark = 0xFF666666;
 
+#ifndef Q_OS_IOS
+bool appearanceIsDark () { return QQuickStylePrivate::isDarkSystemTheme(); }
+#endif
+
 static QQuickIOSStyleStyle::Theme effectiveTheme(QQuickIOSStyleStyle::Theme theme)
 {
     if (theme == QQuickIOSStyleStyle::System)
-        theme = QQuickStylePrivate::isDarkSystemTheme() ? QQuickIOSStyleStyle::Dark : QQuickIOSStyleStyle::Light;
+        theme = appearanceIsDark() ? QQuickIOSStyleStyle::Dark : QQuickIOSStyleStyle::Light;
     return theme;
 }
 
@@ -147,7 +152,7 @@ QQuickIOSStyleStyle::Theme QQuickIOSStyleStyle::theme() const
 void QQuickIOSStyleStyle::setTheme(Theme theme)
 {
     if (theme == System)
-        theme = QQuickStylePrivate::isDarkSystemTheme() ? Dark : Light;
+        theme = appearanceIsDark() ? Dark : Light;
 
     m_explicitTheme = true;
     if (m_theme == theme)

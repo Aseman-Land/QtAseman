@@ -1,12 +1,18 @@
 HEADERS += \
     $$PWD/qquickiosstyleripple_p.h \
     $$PWD/qquickiosstylestyle_p.h \
-    $$PWD/qquickiosstyletheme_p.h
+    $$PWD/qquickiosstyletheme_p.h \
+    $$PWD/qquickiosstylestyle_ios.h
 
 SOURCES += \
     $$PWD/qquickiosstyleripple.cpp \
     $$PWD/qquickiosstylestyle.cpp \
     $$PWD/qquickiosstyletheme.cpp
+
+ios {
+    SOURCES += \
+        $$PWD/qquickiosstylestyle_ios.mm
+}
 
 QML_FILES += \
     $$PWD/ApplicationWindow.qml \
