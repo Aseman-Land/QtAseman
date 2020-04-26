@@ -75,10 +75,7 @@ T.TextArea {
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
     }
 
-    background: Rectangle {
-        y: parent.height - height - control.bottomPadding / 2
+    background: Item {
         implicitWidth: 120
-        height: control.activeFocus ? 2 : 1
-        color: control.activeFocus ? control.IOSStyle.accentColor : control.IOSStyle.hintTextColor
     }
 }

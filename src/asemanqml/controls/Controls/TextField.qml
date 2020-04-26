@@ -13,7 +13,7 @@ QtControls.TextField {
         opacity: minMode? 1 : 0.6
         scale: minMode? 0.8 : 1
         transformOrigin: LayoutMirroring.enabled? Item.Right : Item.Left
-        y: minMode? Math.min(8, field.topPadding) - height : parent.height/2 - height/2 - (field.bottomPadding - field.topPadding)/2
+        y: minMode? field.topPadding - height : parent.height/2 - height/2 - (field.bottomPadding - field.topPadding)/2
         x: LayoutMirroring.enabled? parent.width - width - xPad : xPad
         color: field.focus? field.selectionColor : field.color
 
