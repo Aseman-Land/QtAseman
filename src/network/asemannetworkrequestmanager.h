@@ -52,11 +52,11 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     AsemanNetworkRequestReply *get(AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
-    AsemanNetworkRequestReply *post(AsemanNetworkRequestObject *request);
-    AsemanNetworkRequestReply *put(AsemanNetworkRequestObject *request);
-    AsemanNetworkRequestReply *patch(AsemanNetworkRequestObject *request);
-    AsemanNetworkRequestReply *deleteMethod(AsemanNetworkRequestObject *request);
-    AsemanNetworkRequestReply *customMethod(const QString &method, AsemanNetworkRequestObject *request);
+    AsemanNetworkRequestReply *post(AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
+    AsemanNetworkRequestReply *put(AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
+    AsemanNetworkRequestReply *patch(AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
+    AsemanNetworkRequestReply *deleteMethod(AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
+    AsemanNetworkRequestReply *customMethod(const QString &method, AsemanNetworkRequestObject *request, bool ignoreEmptyValues = true);
 
 protected:
     virtual AsemanNetworkRequestReply *get(const QUrl &apiUrl, const QVariantMap &keys = QVariantMap(), const QVariantMap &headers = QVariantMap());
@@ -80,7 +80,7 @@ private:
     QHttpMultiPart *generateFormData(const QVariantMap &map);
     QString generateWWWFormData(const QVariantMap &map, bool ignoreEmpty = false) const;
     QString generateJson(const QVariantMap &map) const;
-    QByteArray requestData(AsemanNetworkRequestObject *request);
+    QByteArray requestData(AsemanNetworkRequestObject *request, bool ignoreEmptyValues);
 
 private:
     Private *p;

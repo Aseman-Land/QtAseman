@@ -7,7 +7,7 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Network 2.0'
 
 Module {
-    dependencies: ["QtQuick 2.8"]
+    dependencies: ["QtQuick 2.12"]
     Component {
         name: "AsemanNetworkRequestManager"
         prototype: "QObject"
@@ -29,6 +29,18 @@ Module {
             name: "post"
             type: "AsemanNetworkRequestReply*"
             Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+            Parameter { name: "ignoreEmptyValues"; type: "bool" }
+        }
+        Method {
+            name: "post"
+            type: "AsemanNetworkRequestReply*"
+            Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+        }
+        Method {
+            name: "put"
+            type: "AsemanNetworkRequestReply*"
+            Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+            Parameter { name: "ignoreEmptyValues"; type: "bool" }
         }
         Method {
             name: "put"
@@ -39,11 +51,30 @@ Module {
             name: "patch"
             type: "AsemanNetworkRequestReply*"
             Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+            Parameter { name: "ignoreEmptyValues"; type: "bool" }
+        }
+        Method {
+            name: "patch"
+            type: "AsemanNetworkRequestReply*"
+            Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
         }
         Method {
             name: "deleteMethod"
             type: "AsemanNetworkRequestReply*"
             Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+            Parameter { name: "ignoreEmptyValues"; type: "bool" }
+        }
+        Method {
+            name: "deleteMethod"
+            type: "AsemanNetworkRequestReply*"
+            Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+        }
+        Method {
+            name: "customMethod"
+            type: "AsemanNetworkRequestReply*"
+            Parameter { name: "method"; type: "string" }
+            Parameter { name: "request"; type: "AsemanNetworkRequestObject"; isPointer: true }
+            Parameter { name: "ignoreEmptyValues"; type: "bool" }
         }
         Method {
             name: "customMethod"

@@ -319,14 +319,14 @@ QString AsemanNetworkRequestManager::generateJson(const QVariantMap &map) const
     return QJsonDocument::fromVariant(map).toJson(QJsonDocument::Compact);
 }
 
-QByteArray AsemanNetworkRequestManager::requestData(AsemanNetworkRequestObject *request)
+QByteArray AsemanNetworkRequestManager::requestData(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     switch (static_cast<qint32>(request->contentType()))
     {
     case AsemanNetworkRequestObject::TypeWWWForm:
-        return generateWWWFormData(request->toMap()).toUtf8();
+        return generateWWWFormData(ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()).toUtf8();
     case AsemanNetworkRequestObject::TypeJson:
-        return generateJson(request->toMap()).toUtf8();
+        return generateJson(ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()).toUtf8();
     default:
         return variantToData(request->data());
     }
@@ -372,47 +372,47 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequest
     return reply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = postForm(request->url(), request->toMap(), request->headers());
+        reply = postForm(request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = post(request->url(), requestData(request), request->headers());
+        reply = post(request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = putForm(request->url(), request->toMap(), request->headers());
+        reply = putForm(request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = put(request->url(), requestData(request), request->headers());
+        reply = put(request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::patch(AsemanNetworkRequestObject *request)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::patch(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
-    return customMethod("PATCH", request);
+    return customMethod("PATCH", request, ignoreEmptyValues);
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::deleteMethod(AsemanNetworkRequestObject *request)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::deleteMethod(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
-    return customMethod("DELETE", request);
+    return customMethod("DELETE", request, ignoreEmptyValues);
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, AsemanNetworkRequestObject *request)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = customMethodForm(method, request->url(), request->toMap(), request->headers());
+        reply = customMethodForm(method, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = customMethod(method, request->url(), requestData(request), request->headers());
+        reply = customMethod(method, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
