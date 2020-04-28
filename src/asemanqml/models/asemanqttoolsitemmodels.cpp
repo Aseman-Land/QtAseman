@@ -25,7 +25,10 @@
 #include "asemanquicklistmodel.h"
 #include "asemanquicklistmodelcopyhint.h"
 #include "asemanquicklistmodelsource.h"
+#include "asemanquicklistmodelformathint.h"
 #include "asemanabstractquicklistmodelhint.h"
+#include "asemanquicklistmodelcamelcasehint.h"
+#include "asemanquicklistmodeldeletehint.h"
 
 #include <qqml.h>
 #include <QHash>
@@ -47,6 +50,9 @@ void AsemanQtToolsItemModels::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanQuickListModel>(uri, 2, 0, "AsemanListModel", exportMode);
     registerType<AsemanQuickListModelSource>(uri, 2, 0, "AsemanListModelSource", exportMode);
     registerType<AsemanQuickListModelCopyHint>(uri, 2, 0, "ModelCopyHint", exportMode);
+    registerType<AsemanQuickListModelFormatHint>(uri, 2, 0, "ModelFormatHint", exportMode);
+    registerType<AsemanQuickListModelCamelCaseHint>(uri, 2, 0, "ModelCamelCaseHint", exportMode);
+    registerType<AsemanQuickListModelDeleteHint>(uri, 2, 0, "ModelDeleteHint", exportMode);
     registerModel<AsemanMixedListModel>(uri, 2, 0, "MixedListModel", exportMode);
     registerModel<AsemanCountriesModel>(uri, 2, 0, "CountriesModel", exportMode);
     registerModel<AsemanFileSystemModel>(uri, 2, 0, "FileSystemModel", exportMode);

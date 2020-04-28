@@ -50,7 +50,7 @@ private:
     void refreshSourceData();
 
 protected:
-    virtual void changed(QList<QVariantMap> list);
+    virtual void changed(const QList<QVariantMap> &list);
 
 private:
     Private *p;

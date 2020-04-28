@@ -7,7 +7,37 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Models 2.0'
 
 Module {
-    dependencies: ["AsemanQml.Base 2.0"]
+    dependencies: [
+        "AsemanQml.Base 2.0",
+        "QtGraphicalEffects 1.12",
+        "QtQml 2.1",
+        "QtQml.Models 2.2",
+        "QtQuick 2.9",
+        "QtQuick.Controls 2.5",
+        "QtQuick.Controls.Fusion 2.12",
+        "QtQuick.Controls.Fusion.impl 2.12",
+        "QtQuick.Controls.IOSStyle 2.12",
+        "QtQuick.Controls.IOSStyle.impl 2.12",
+        "QtQuick.Controls.Imagine 2.12",
+        "QtQuick.Controls.Imagine.impl 2.12",
+        "QtQuick.Controls.Material 2.12",
+        "QtQuick.Controls.Material.impl 2.12",
+        "QtQuick.Controls.Styles 1.4",
+        "QtQuick.Controls.Styles.Plasma 2.0",
+        "QtQuick.Controls.Universal 2.12",
+        "QtQuick.Controls.Universal.impl 2.12",
+        "QtQuick.Controls.impl 2.12",
+        "QtQuick.Extras 1.4",
+        "QtQuick.Layouts 1.4",
+        "QtQuick.Templates 2.5",
+        "QtQuick.Window 2.2",
+        "org.kde.kconfig 1.0",
+        "org.kde.kirigami 2.9",
+        "org.kde.kquickcontrolsaddons 2.0",
+        "org.kde.plasma.components 2.0",
+        "org.kde.plasma.core 2.0",
+        "org.kde.plasma.extras 2.0"
+    ]
     Component {
         name: "AsemanAbstractListModel"
         prototype: "QAbstractListModel"
@@ -211,12 +241,36 @@ Module {
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
+        name: "AsemanQuickListModelCamelCaseHint"
+        prototype: "AsemanAbstractQuickListModelHint"
+        exports: ["AsemanQml.Models/ModelCamelCaseHint 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "path"; type: "string" }
+        Signal { name: "changeRequest" }
+    }
+    Component {
         name: "AsemanQuickListModelCopyHint"
         prototype: "AsemanAbstractQuickListModelHint"
         exports: ["AsemanQml.Models/ModelCopyHint 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "path"; type: "string" }
         Property { name: "targetPath"; type: "string" }
+        Signal { name: "changeRequest" }
+    }
+    Component {
+        name: "AsemanQuickListModelDeleteHint"
+        prototype: "AsemanAbstractQuickListModelHint"
+        exports: ["AsemanQml.Models/ModelDeleteHint 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "path"; type: "string" }
+        Signal { name: "changeRequest" }
+    }
+    Component {
+        name: "AsemanQuickListModelFormatHint"
+        prototype: "AsemanAbstractQuickListModelHint"
+        exports: ["AsemanQml.Models/ModelFormatHint 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "path"; type: "string" }
         Property { name: "method"; type: "QJSValue" }
         Signal { name: "changeRequest" }
     }
@@ -237,278 +291,4 @@ Module {
         }
         Method { name: "refresh" }
     }
-    Component {
-        name: "QAbstractItemModel"
-        prototype: "QObject"
-        Enum {
-            name: "LayoutChangeHint"
-            values: {
-                "NoLayoutChangeHint": 0,
-                "VerticalSortHint": 1,
-                "HorizontalSortHint": 2
-            }
-        }
-        Enum {
-            name: "CheckIndexOption"
-            values: {
-                "NoOption": 0,
-                "IndexIsValid": 1,
-                "DoNotUseParent": 2,
-                "ParentIsInvalid": 4
-            }
-        }
-        Signal {
-            name: "dataChanged"
-            Parameter { name: "topLeft"; type: "QModelIndex" }
-            Parameter { name: "bottomRight"; type: "QModelIndex" }
-            Parameter { name: "roles"; type: "QVector<int>" }
-        }
-        Signal {
-            name: "dataChanged"
-            Parameter { name: "topLeft"; type: "QModelIndex" }
-            Parameter { name: "bottomRight"; type: "QModelIndex" }
-        }
-        Signal {
-            name: "headerDataChanged"
-            Parameter { name: "orientation"; type: "Qt::Orientation" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "layoutChanged"
-            Parameter { name: "parents"; type: "QList<QPersistentModelIndex>" }
-            Parameter { name: "hint"; type: "QAbstractItemModel::LayoutChangeHint" }
-        }
-        Signal {
-            name: "layoutChanged"
-            Parameter { name: "parents"; type: "QList<QPersistentModelIndex>" }
-        }
-        Signal { name: "layoutChanged" }
-        Signal {
-            name: "layoutAboutToBeChanged"
-            Parameter { name: "parents"; type: "QList<QPersistentModelIndex>" }
-            Parameter { name: "hint"; type: "QAbstractItemModel::LayoutChangeHint" }
-        }
-        Signal {
-            name: "layoutAboutToBeChanged"
-            Parameter { name: "parents"; type: "QList<QPersistentModelIndex>" }
-        }
-        Signal { name: "layoutAboutToBeChanged" }
-        Signal {
-            name: "rowsAboutToBeInserted"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "rowsInserted"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "rowsAboutToBeRemoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "rowsRemoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "columnsAboutToBeInserted"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "columnsInserted"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "columnsAboutToBeRemoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal {
-            name: "columnsRemoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "first"; type: "int" }
-            Parameter { name: "last"; type: "int" }
-        }
-        Signal { name: "modelAboutToBeReset" }
-        Signal { name: "modelReset" }
-        Signal {
-            name: "rowsAboutToBeMoved"
-            Parameter { name: "sourceParent"; type: "QModelIndex" }
-            Parameter { name: "sourceStart"; type: "int" }
-            Parameter { name: "sourceEnd"; type: "int" }
-            Parameter { name: "destinationParent"; type: "QModelIndex" }
-            Parameter { name: "destinationRow"; type: "int" }
-        }
-        Signal {
-            name: "rowsMoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "start"; type: "int" }
-            Parameter { name: "end"; type: "int" }
-            Parameter { name: "destination"; type: "QModelIndex" }
-            Parameter { name: "row"; type: "int" }
-        }
-        Signal {
-            name: "columnsAboutToBeMoved"
-            Parameter { name: "sourceParent"; type: "QModelIndex" }
-            Parameter { name: "sourceStart"; type: "int" }
-            Parameter { name: "sourceEnd"; type: "int" }
-            Parameter { name: "destinationParent"; type: "QModelIndex" }
-            Parameter { name: "destinationColumn"; type: "int" }
-        }
-        Signal {
-            name: "columnsMoved"
-            Parameter { name: "parent"; type: "QModelIndex" }
-            Parameter { name: "start"; type: "int" }
-            Parameter { name: "end"; type: "int" }
-            Parameter { name: "destination"; type: "QModelIndex" }
-            Parameter { name: "column"; type: "int" }
-        }
-        Method { name: "submit"; type: "bool" }
-        Method { name: "revert" }
-        Method {
-            name: "hasIndex"
-            type: "bool"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "column"; type: "int" }
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method {
-            name: "hasIndex"
-            type: "bool"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "column"; type: "int" }
-        }
-        Method {
-            name: "index"
-            type: "QModelIndex"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "column"; type: "int" }
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method {
-            name: "index"
-            type: "QModelIndex"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "column"; type: "int" }
-        }
-        Method {
-            name: "parent"
-            type: "QModelIndex"
-            Parameter { name: "child"; type: "QModelIndex" }
-        }
-        Method {
-            name: "sibling"
-            type: "QModelIndex"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "column"; type: "int" }
-            Parameter { name: "idx"; type: "QModelIndex" }
-        }
-        Method {
-            name: "rowCount"
-            type: "int"
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method { name: "rowCount"; type: "int" }
-        Method {
-            name: "columnCount"
-            type: "int"
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method { name: "columnCount"; type: "int" }
-        Method {
-            name: "hasChildren"
-            type: "bool"
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method { name: "hasChildren"; type: "bool" }
-        Method {
-            name: "data"
-            type: "QVariant"
-            Parameter { name: "index"; type: "QModelIndex" }
-            Parameter { name: "role"; type: "int" }
-        }
-        Method {
-            name: "data"
-            type: "QVariant"
-            Parameter { name: "index"; type: "QModelIndex" }
-        }
-        Method {
-            name: "setData"
-            type: "bool"
-            Parameter { name: "index"; type: "QModelIndex" }
-            Parameter { name: "value"; type: "QVariant" }
-            Parameter { name: "role"; type: "int" }
-        }
-        Method {
-            name: "setData"
-            type: "bool"
-            Parameter { name: "index"; type: "QModelIndex" }
-            Parameter { name: "value"; type: "QVariant" }
-        }
-        Method {
-            name: "headerData"
-            type: "QVariant"
-            Parameter { name: "section"; type: "int" }
-            Parameter { name: "orientation"; type: "Qt::Orientation" }
-            Parameter { name: "role"; type: "int" }
-        }
-        Method {
-            name: "headerData"
-            type: "QVariant"
-            Parameter { name: "section"; type: "int" }
-            Parameter { name: "orientation"; type: "Qt::Orientation" }
-        }
-        Method {
-            name: "fetchMore"
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method {
-            name: "canFetchMore"
-            type: "bool"
-            Parameter { name: "parent"; type: "QModelIndex" }
-        }
-        Method {
-            name: "flags"
-            type: "Qt::ItemFlags"
-            Parameter { name: "index"; type: "QModelIndex" }
-        }
-        Method {
-            name: "match"
-            type: "QModelIndexList"
-            Parameter { name: "start"; type: "QModelIndex" }
-            Parameter { name: "role"; type: "int" }
-            Parameter { name: "value"; type: "QVariant" }
-            Parameter { name: "hits"; type: "int" }
-            Parameter { name: "flags"; type: "Qt::MatchFlags" }
-        }
-        Method {
-            name: "match"
-            type: "QModelIndexList"
-            Parameter { name: "start"; type: "QModelIndex" }
-            Parameter { name: "role"; type: "int" }
-            Parameter { name: "value"; type: "QVariant" }
-            Parameter { name: "hits"; type: "int" }
-        }
-        Method {
-            name: "match"
-            type: "QModelIndexList"
-            Parameter { name: "start"; type: "QModelIndex" }
-            Parameter { name: "role"; type: "int" }
-            Parameter { name: "value"; type: "QVariant" }
-        }
-    }
-    Component { name: "QAbstractListModel"; prototype: "QAbstractItemModel" }
 }

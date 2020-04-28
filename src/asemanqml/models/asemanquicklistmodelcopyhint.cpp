@@ -1,5 +1,4 @@
 #include "asemanquicklistmodelcopyhint.h"
-#include "asemanquicklistmodelsource.h"
 
 #include <QtQml>
 
@@ -8,7 +7,6 @@ class AsemanQuickListModelCopyHint::Private
 public:
     QString path;
     QString targetPath;
-    QJSValue method;
 };
 
 AsemanQuickListModelCopyHint::AsemanQuickListModelCopyHint(QObject *parent) :
@@ -39,6 +37,7 @@ void AsemanQuickListModelCopyHint::setTargetPath(const QString &targetPath)
 
     p->targetPath = targetPath;
     Q_EMIT targetPathChanged();
+    Q_EMIT changeRequest();
 }
 
 QString AsemanQuickListModelCopyHint::targetPath() const
@@ -46,35 +45,22 @@ QString AsemanQuickListModelCopyHint::targetPath() const
     return p->targetPath;
 }
 
-void AsemanQuickListModelCopyHint::setMethod(const QJSValue &method)
-{
-    p->method = method;
-    Q_EMIT methodChanged();
-    Q_EMIT changeRequest();
-}
-
-QJSValue AsemanQuickListModelCopyHint::method() const
-{
-    return p->method;
-}
-
 QVariantMap AsemanQuickListModelCopyHint::analyze(const QVariantMap &map)
 {
-    if (!p->method.isCallable() || p->path.isEmpty())
+    if (p->path.isEmpty())
+    {
+        qmlWarning(this) << "ModelCopyHint.path is empty";
         return map;
-
-    QQmlEngine *engine = qmlEngine(this);
-    if (!engine)
+    }
+    if (p->targetPath.isEmpty())
+    {
+        qmlWarning(this) << "ModelCopyHint.targetPath is empty";
         return map;
+    }
 
     QVariant data = AsemanAbstractQuickListModelHint::getPathValue(map, p->path);
 
-    QJSValueList args = { engine->toScriptValue(data) };
-    QJSValue result = p->method.call(args);
-
-    result.toVariant();
-
-    return AsemanAbstractQuickListModelHint::setPathValue(map, (p->targetPath.length()? p->targetPath : p->path), result.toVariant()).toMap();
+    return AsemanAbstractQuickListModelHint::setPathValue(map, p->targetPath, data).toMap();
 }
 
 AsemanQuickListModelCopyHint::~AsemanQuickListModelCopyHint()

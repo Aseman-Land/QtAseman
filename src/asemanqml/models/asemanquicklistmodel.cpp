@@ -114,8 +114,10 @@ void AsemanQuickListModel::refreshSourceData()
     change(list);
 }
 
-void AsemanQuickListModel::changed(QList<QVariantMap> list)
+void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
 {
+    QList<QVariantMap> list = l;
+
     QList<AsemanAbstractQuickListModelHint*> hints;
     for (QObject *obj: p->items)
     {

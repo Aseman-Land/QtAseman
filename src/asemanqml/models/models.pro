@@ -11,7 +11,10 @@ HEADERS += \
     $$PWD/asemanquicklistmodel.h \
     $$PWD/asemanquicklistmodelsource.h \
     asemanabstractquicklistmodelhint.h \
-    asemanquicklistmodelcopyhint.h
+    asemanquicklistmodelcamelcasehint.h \
+    asemanquicklistmodelcopyhint.h \
+    asemanquicklistmodeldeletehint.h \
+    asemanquicklistmodelformathint.h
 
 SOURCES += \
     $$PWD/asemanmodelsplugin.cpp \
@@ -19,7 +22,10 @@ SOURCES += \
     $$PWD/asemanquicklistmodel.cpp \
     $$PWD/asemanquicklistmodelsource.cpp \
     asemanabstractquicklistmodelhint.cpp \
-    asemanquicklistmodelcopyhint.cpp
+    asemanquicklistmodelcamelcasehint.cpp \
+    asemanquicklistmodelcopyhint.cpp \
+    asemanquicklistmodeldeletehint.cpp \
+    asemanquicklistmodelformathint.cpp
 
 static: !linux: !win32: DEFINES += ASEMAN_STATIC_BUILD
 
