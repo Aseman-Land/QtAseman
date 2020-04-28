@@ -61,13 +61,13 @@ void AsemanQuickListModelSource::refresh()
     QStringList pathList = p->path.split(QStringLiteral("->"));
     for (const QString &pt: pathList)
     {
-        QRegExp rx(QStringLiteral("\\w+\\s*\\[\\s*(\\d+)\\s*\\]"));
-        int pos = 0;
-
-        if ((pos = rx.indexIn(pt)) > 0 && pos + rx.matchedLength() == pt.length())
+        QRegExp rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
+        if (rx.indexIn(pt) >= 0)
         {
-            qint32 idx = rx.cap(1).toInt();
-            QVariantList list = data.toList();
+            QString key = rx.cap(1);
+            qint32 idx = rx.cap(2).toInt();
+
+            QVariantList list = data.toMap().value(key).toList();
             if (idx < list.count())
                 data = list.at(idx);
             else
