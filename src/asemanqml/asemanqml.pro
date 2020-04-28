@@ -9,4 +9,5 @@ SUBDIRS += \
     modern \
     controls \
     network \
-    viewport
+    viewport \
+    models

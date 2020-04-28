@@ -22,11 +22,7 @@
 #include <asemanlistmodel.h>
 #include <QQmlListProperty>
 
-#include "asemanglobals.h"
-
-#include "asemantools_global.h"
-
-class LIBQTASEMAN_QML_EXPORT AsemanQuickListModel : public AsemanListModel
+class AsemanQuickListModel : public AsemanListModel
 {
     Q_OBJECT
     class Private;
@@ -52,6 +48,9 @@ private:
 
     void loadSources();
     void refreshSourceData();
+
+protected:
+    virtual void changed(QList<QVariantMap> list);
 
 private:
     Private *p;

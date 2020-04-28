@@ -195,58 +195,6 @@ Beside clicking on the hide button to trigger back function, you can press Esc b
 
 **Note**: You must use AsemanWindow object to make Esc or Physical back button work.
 
-#### AsemanListModel
-
-AsemanListModel provides a model component for advanced usage of QML. Below example shows how to use AsemanListModel in your code:
-
-```js
-AsemanListModel {
-    id: model
-    data: [
-        {
-            "name": "bardia",
-            "age": 30 + 2 // It supports js values too.
-        },
-        {
-            "name": "amir",
-            "age": 31
-        }
-    ]
-    // cachePath store model data to the file and restore it everytime
-    // Application load again
-    cachePath: AsemanApp.homePath + "/ages.model"
-}
-```
-
-**Note**: `AsemanApp.homePath` returns standard path to store config files.
-
-And You can manage your model using below methods:
-
-```js
-var value = model.get(idx, "propertyName");
-var allValues = model.get(idx); // allValues.propertyName is equal to value
-model.clear();
-model.append({"name", "bardia", "age": 30});
-var data = model.data; // Get all data of the model as list
-var json = Tools.variantToJson(data); // Convert data to json string
-```
-
-Also you can use `AsemanListModelSource` component to pass two or more different sources to the `AsemanListModel`:
-
-```js
-AsemanListModel {
-    AsemanListModelSource {
-        // obj is an object that has a result property, returns variant/array/map
-        source: obj.result
-        path: "data->users[2]->childeren"
-    }
-    AsemanListModelSource {
-        source: { title: "test", list: [a, b, c, d] }
-        path: "list"
-    }
-}
-```
-
 #### Settings
 
 Creates a settings file in a specific path and stores settings values there:
@@ -577,6 +525,98 @@ NetworkRequest {
 ```
 
 You can create many simple request files in your project and every time you need them, just send them to the server using NetworkRequestManager and get your response.
+
+### AsemanQml.Models
+
+Models module provide some ready to use models like `CountriesModel` and `FileSystemModel` and Also provide a new Model mechanism that make works with models easier on the QML.
+
+#### AsemanListModel
+
+AsemanListModel provides a model component for advanced usage of QML. Below example shows how to use AsemanListModel in your code:
+
+```js
+AsemanListModel {
+    id: model
+    data: [
+        {
+            "name": "bardia",
+            "age": 30 + 2 // It supports js values too.
+        },
+        {
+            "name": "amir",
+            "age": 31
+        }
+    ]
+    // cachePath store model data to the file and restore it everytime
+    // Application load again
+    cachePath: AsemanApp.homePath + "/ages.model"
+}
+```
+
+**Note**: `AsemanApp.homePath` returns standard path to store config files.
+
+And You can manage your model using below methods:
+
+```js
+var value = model.get(idx, "propertyName");
+var allValues = model.get(idx); // allValues.propertyName is equal to value
+model.clear();
+model.append({"name", "bardia", "age": 30});
+var data = model.data; // Get all data of the model as list
+var json = Tools.variantToJson(data); // Convert data to json string
+```
+
+#### AsemanListModelSource
+
+You can use `AsemanListModelSource` component to pass two or more different sources to the `AsemanListModel`:
+
+```js
+AsemanListModel {
+    AsemanListModelSource {
+        // obj is an object that has a result property, returns variant/array/map
+        source: obj.result
+        path: "data->users[2]->childeren"
+    }
+    AsemanListModelSource {
+        source: { title: "test", list: [a, b, c, d] }
+        path: "list"
+    }
+}
+```
+
+It useful when for example you want to merge two or more requests responses to one model.
+
+#### Model's Hints
+
+There is a mechanism to arrange and change model's data in easier way without even one line JavaScript code using Aseman's Models mechanism.
+This feature is Hints. You can rename keys (for example change user_name to userName), even change paths of them (for example change results.user.name to userName), change values formats (for example change gregorian date to jalali date), or ... using hints.
+
+```js
+AsemanListModel {
+	...
+	
+    // It copy userName key to results.user.name
+	ModelCopyHint {
+		path: "results->user->name"
+		targetPath: "userName"
+	}
+    
+    // It makes all results.user.nickname values upperCase
+	ModelFormatHint {
+		path: "results->user->nickname"
+		method: function(arg) { return arg.toUpperCase() }
+	}
+    
+    // It makes all keys camel case.
+    ModelCamelCaseHint {
+    }
+    
+    // It deletes results.user.age key
+    ModelDeleteHint {
+		path: "results->user->age"
+    }
+}
+```
 
 ### AsemanQml.MaterialIcons and AsemanQml.Awesome
 

@@ -9,28 +9,6 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: ["QtQuick 2.12"]
     Component {
-        name: "AsemanAbstractListModel"
-        prototype: "QAbstractListModel"
-        Method {
-            name: "get"
-            type: "QVariant"
-            Parameter { name: "index"; type: "int" }
-            Parameter { name: "role"; type: "int" }
-        }
-        Method {
-            name: "get"
-            type: "QVariant"
-            Parameter { name: "index"; type: "int" }
-            Parameter { name: "roleName"; type: "string" }
-        }
-        Method {
-            name: "get"
-            type: "QVariantMap"
-            Parameter { name: "index"; type: "int" }
-        }
-        Method { name: "roles"; type: "QStringList" }
-    }
-    Component {
         name: "AsemanApplication"
         prototype: "QObject"
         Enum {
@@ -308,88 +286,6 @@ Module {
             name: "fromTime_t"
             type: "QDateTime"
             Parameter { name: "sec"; type: "uint" }
-        }
-    }
-    Component {
-        name: "AsemanCalendarModel"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/CalendarModel 2.0"]
-        exportMetaObjectRevisions: [0]
-        Enum {
-            name: "CalendarTypes"
-            values: {
-                "CalendarGregorian": 0,
-                "CalendarJalali": 1,
-                "CalendarHijri": 2
-            }
-        }
-        Property { name: "years"; type: "QList<int>"; isReadonly: true }
-        Property { name: "months"; type: "QList<int>"; isReadonly: true }
-        Property { name: "days"; type: "QList<int>"; isReadonly: true }
-        Property { name: "hours"; type: "QList<int>"; isReadonly: true }
-        Property { name: "minutes"; type: "QList<int>"; isReadonly: true }
-        Property { name: "currentYearIndex"; type: "int"; isReadonly: true }
-        Property { name: "currentMonthIndex"; type: "int"; isReadonly: true }
-        Property { name: "currentDaysIndex"; type: "int"; isReadonly: true }
-        Property { name: "currentHoursIndex"; type: "int"; isReadonly: true }
-        Property { name: "currentMinutesIndex"; type: "int"; isReadonly: true }
-        Property { name: "dateTime"; type: "QDateTime" }
-        Property { name: "calendar"; type: "int" }
-        Property { name: "minimum"; type: "QDateTime" }
-        Property { name: "maximum"; type: "QDateTime" }
-        Signal { name: "secondsChanged" }
-        Method {
-            name: "setConvertDate"
-            Parameter { name: "yearIdx"; type: "int" }
-            Parameter { name: "monthIdx"; type: "int" }
-            Parameter { name: "dayIdx"; type: "int" }
-            Parameter { name: "hourIdx"; type: "int" }
-            Parameter { name: "minuteIdx"; type: "int" }
-        }
-        Method {
-            name: "monthName"
-            type: "string"
-            Parameter { name: "month"; type: "int" }
-        }
-    }
-    Component {
-        name: "AsemanCountriesModel"
-        prototype: "AsemanAbstractListModel"
-        exports: ["AsemanQml.Base/CountriesModel 2.0"]
-        exportMetaObjectRevisions: [0]
-        Enum {
-            name: "ColorfullListModelRoles"
-            values: {
-                "NameRole": 256,
-                "NativeNameRole": 257,
-                "TldRole": 258,
-                "Cca2Role": 259,
-                "Ccn3Role": 260,
-                "Cca3Role": 261,
-                "CurrencyRole": 262,
-                "CallingCodeRole": 263,
-                "CapitalRole": 264,
-                "AltSpellingsRole": 265,
-                "RelevanceRole": 266,
-                "RegionRole": 267,
-                "SubregionRole": 268,
-                "LanguageRole": 269,
-                "LanguageCodesRole": 270,
-                "TranslationsRole": 271,
-                "LatlngRole": 272,
-                "DemonymRole": 273,
-                "BordersRole": 274,
-                "AreaRole": 275,
-                "KeyRole": 276
-            }
-        }
-        Property { name: "count"; type: "int"; isReadonly: true }
-        Property { name: "filter"; type: "string" }
-        Property { name: "systemCountry"; type: "string"; isReadonly: true }
-        Method {
-            name: "indexOf"
-            type: "int"
-            Parameter { name: "name"; type: "string" }
         }
     }
     Component {
@@ -921,49 +817,6 @@ Module {
         }
     }
     Component {
-        name: "AsemanFileSystemModel"
-        prototype: "AsemanAbstractListModel"
-        exports: ["AsemanQml.Base/FileSystemModel 2.0"]
-        exportMetaObjectRevisions: [0]
-        Enum {
-            name: "SortFlag"
-            values: {
-                "Name": 0,
-                "Size": 1,
-                "Date": 2
-            }
-        }
-        Enum {
-            name: "DataRole"
-            values: {
-                "FilePath": 256,
-                "FileUrl": 257,
-                "FileName": 258,
-                "FileMime": 259,
-                "FileSize": 260,
-                "FileSuffix": 261,
-                "FileBaseName": 262,
-                "FileIsDir": 263,
-                "FileModifiedDate": 264,
-                "FileCreatedDate": 265
-            }
-        }
-        Property { name: "showDirs"; type: "bool" }
-        Property { name: "showDotAndDotDot"; type: "bool" }
-        Property { name: "showDirsFirst"; type: "bool" }
-        Property { name: "showFiles"; type: "bool" }
-        Property { name: "showHidden"; type: "bool" }
-        Property { name: "recursive"; type: "bool" }
-        Property { name: "nameFilters"; type: "QStringList" }
-        Property { name: "folder"; type: "string" }
-        Property { name: "limit"; type: "int" }
-        Property { name: "parentFolder"; type: "string"; isReadonly: true }
-        Property { name: "sortField"; type: "int" }
-        Property { name: "count"; type: "int"; isReadonly: true }
-        Signal { name: "listChanged" }
-        Method { name: "refresh" }
-    }
-    Component {
         name: "AsemanGlobalTranslations"
         prototype: "QObject"
         exports: ["AsemanQml.Base/Translations 2.0"]
@@ -1100,38 +953,6 @@ Module {
             Parameter { name: "modifiers"; type: "int" }
             Parameter { name: "key"; type: "int" }
             Parameter { name: "scanCode"; type: "int" }
-        }
-    }
-    Component {
-        name: "AsemanListModel"
-        prototype: "AsemanAbstractListModel"
-        Property { name: "count"; type: "int"; isReadonly: true }
-        Property { name: "cachePath"; type: "string" }
-        Property { name: "data"; type: "QVariantList" }
-        Signal { name: "listChanged" }
-        Signal { name: "dataListChanged" }
-        Method {
-            name: "insert"
-            Parameter { name: "row"; type: "int" }
-            Parameter { name: "map"; type: "QVariantMap" }
-        }
-        Method {
-            name: "append"
-            Parameter { name: "map"; type: "QVariantMap" }
-        }
-        Method {
-            name: "remove"
-            Parameter { name: "row"; type: "int" }
-        }
-        Method {
-            name: "move"
-            Parameter { name: "from"; type: "int" }
-            Parameter { name: "to"; type: "int" }
-        }
-        Method { name: "clear" }
-        Method {
-            name: "change"
-            Parameter { name: "list"; type: "QVariantList" }
         }
     }
     Component {
@@ -1357,14 +1178,6 @@ Module {
         }
     }
     Component {
-        name: "AsemanMixedListModel"
-        prototype: "AsemanAbstractListModel"
-        exports: ["AsemanQml.Base/MixedListModel 2.0"]
-        exportMetaObjectRevisions: [0]
-        Property { name: "count"; type: "int"; isReadonly: true }
-        Property { name: "models"; type: "QVariantList" }
-    }
-    Component {
         name: "AsemanMouseEventListener"
         defaultProperty: "data"
         prototype: "QQuickItem"
@@ -1518,24 +1331,6 @@ Module {
             Parameter { name: "var"; type: "QVariant" }
         }
         Method { name: "start" }
-    }
-    Component {
-        name: "AsemanQuickListModel"
-        defaultProperty: "items"
-        prototype: "AsemanListModel"
-        exports: ["AsemanQml.Base/AsemanListModel 2.0"]
-        exportMetaObjectRevisions: [0]
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        name: "AsemanQuickListModelSource"
-        prototype: "QObject"
-        exports: ["AsemanQml.Base/AsemanListModelSource 2.0"]
-        exportMetaObjectRevisions: [0]
-        Property { name: "source"; type: "QVariant" }
-        Property { name: "path"; type: "string" }
-        Property { name: "data"; type: "QVariantList"; isReadonly: true }
-        Method { name: "refresh" }
     }
     Component {
         name: "AsemanQuickObject"
@@ -2406,26 +2201,6 @@ Module {
         Method { name: "unlock"; type: "QVariant" }
         Method { name: "checkCrash"; type: "QVariant" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-    }
-    Component {
-        prototype: "QQuickGridView"
-        name: "AsemanQml.Base/FileSystemView 2.0"
-        exports: ["AsemanQml.Base/FileSystemView 2.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-        Property { name: "itemsLabelColor"; type: "QColor" }
-        Property { name: "gridWidth"; type: "double" }
-        Property { name: "root"; type: "string" }
-        Property { name: "filters"; type: "QStringList" }
-        Property { name: "showDotAndDotDot"; type: "bool" }
-        Signal {
-            name: "clickedOnFile"
-            Parameter { name: "fileUrl"; type: "QVariant" }
-        }
-        Method { name: "back"; type: "QVariant" }
-        Property { name: "tabBarRatio"; type: "double"; isReadonly: true }
-        Property { name: "tabBarHeight"; type: "double" }
     }
     Component {
         prototype: "QQuickItem"

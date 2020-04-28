@@ -2,11 +2,12 @@
 #define ASEMANQUICKLISTMODELSOURCE_H
 
 #include <QObject>
+#include <QQmlListProperty>
 #include <QVariant>
 
-#include "asemantools_global.h"
+#include "asemanquicklistmodelcopyhint.h"
 
-class LIBQTASEMAN_QML_EXPORT AsemanQuickListModelSource : public QObject
+class AsemanQuickListModelSource : public QObject
 {
     Q_OBJECT
     class Private;
@@ -14,6 +15,9 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickListModelSource : public QObject
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString path READ path WRITE setPath NOTIFY pathChanged)
     Q_PROPERTY(QVariantList data READ data NOTIFY dataChanged)
+
+    Q_PROPERTY(QQmlListProperty<AsemanAbstractQuickListModelHint> hints READ hints NOTIFY hintsChanged)
+    Q_CLASSINFO("DefaultProperty", "hints")
 
 public:
     AsemanQuickListModelSource(QObject *parent = Q_NULLPTR);
@@ -27,13 +31,22 @@ public:
 
     QVariantList data() const;
 
+    QQmlListProperty<AsemanAbstractQuickListModelHint> hints();
+
 Q_SIGNALS:
+    void hintsChanged();
     void sourceChanged();
     void pathChanged();
     void dataChanged();
 
 public Q_SLOTS:
     void refresh();
+
+private:
+    static void append(QQmlListProperty<AsemanAbstractQuickListModelHint> *p, AsemanAbstractQuickListModelHint *v);
+    static int count(QQmlListProperty<AsemanAbstractQuickListModelHint> *p);
+    static AsemanAbstractQuickListModelHint *at(QQmlListProperty<AsemanAbstractQuickListModelHint> *p, int idx);
+    static void clear(QQmlListProperty<AsemanAbstractQuickListModelHint> *p);
 
 private:
     Private *p;

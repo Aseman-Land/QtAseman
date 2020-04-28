@@ -114,6 +114,26 @@ void AsemanQuickListModel::refreshSourceData()
     change(list);
 }
 
+void AsemanQuickListModel::changed(QList<QVariantMap> list)
+{
+    QList<AsemanAbstractQuickListModelHint*> hints;
+    for (QObject *obj: p->items)
+    {
+        AsemanAbstractQuickListModelHint *hint = qobject_cast<AsemanAbstractQuickListModelHint*>(obj);
+        if (hint)
+            hints << hint;
+    }
+
+    for (qint32 i=0; i<list.count(); i++)
+    {
+        QVariantMap &l = list[i];
+        for (AsemanAbstractQuickListModelHint *h: hints)
+            l = h->analyze(l);
+    }
+
+    AsemanListModel::changed(list);
+}
+
 AsemanQuickListModel::~AsemanQuickListModel()
 {
     delete p;

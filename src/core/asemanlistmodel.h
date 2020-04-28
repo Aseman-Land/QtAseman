@@ -63,8 +63,10 @@ public Q_SLOTS:
     void clear();
     void change(const QVariantList &list);
 
+protected:
+    virtual void changed(const QList<QVariantMap> &list);
+
 private:
-    void changed(const QList<QVariantMap> &list);
     void loadCache();
     void saveCache();
 
