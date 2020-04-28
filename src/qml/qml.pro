@@ -33,7 +33,8 @@ HEADERS += \
     $$PWD/asemantoolsitem.h \
     $$PWD/asemanfileresourcemanager.h \
     $$PWD/asemanproxycomponent.h \
-    $$PWD/asemanquicklistmodel.h
+    $$PWD/asemanquicklistmodel.h \
+    asemanquicklistmodelsource.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -56,7 +57,8 @@ SOURCES += \
     $$PWD/asemantoolsitem.cpp \
     $$PWD/asemanfileresourcemanager.cpp \
     $$PWD/asemanproxycomponent.cpp \
-    $$PWD/asemanquicklistmodel.cpp
+    $$PWD/asemanquicklistmodel.cpp \
+    asemanquicklistmodelsource.cpp
 
 android {
     QT += androidextras
@@ -81,4 +83,6 @@ ios {
     SOURCES += \
         $$PWD/asemanprocess.cpp
 }
+
+DISTFILES +=
 

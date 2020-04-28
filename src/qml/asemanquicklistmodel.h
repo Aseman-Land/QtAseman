@@ -50,6 +50,9 @@ private:
     static QObject *at(QQmlListProperty<QObject> *p, int idx);
     static void clear(QQmlListProperty<QObject> *p);
 
+    void loadSources();
+    void refreshSourceData();
+
 private:
     Private *p;
 };

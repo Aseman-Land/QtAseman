@@ -57,6 +57,7 @@
 #include "asemanapplicationitem.h"
 #include "asemancalendarmodel.h"
 #include "asemanglobaltranslations.h"
+#include "asemanquicklistmodelsource.h"
 #include "asemandelegateswitch.h"
 #include "asemanmixedlistmodel.h"
 #include "asemanencrypter.h"
@@ -168,6 +169,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanDragArea>(uri, 2, 0, "MouseDragArea", exportMode);
     registerType<AsemanCalendarModel>(uri, 2, 0, "CalendarModel", exportMode);
     registerType<AsemanQuickListModel>(uri, 2, 0, "AsemanListModel", exportMode);
+    registerType<AsemanQuickListModelSource>(uri, 2, 0, "AsemanListModelSource", exportMode);
     registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
     registerType<AsemanProxyComponent>(uri, 2, 0, "ProxyComponent", exportMode);
     registerType<AsemanDelegateSwitch>(uri, 2, 0, "DelegateSwitch", exportMode);

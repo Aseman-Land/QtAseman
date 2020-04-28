@@ -231,6 +231,22 @@ var data = model.data; // Get all data of the model as list
 var json = Tools.variantToJson(data); // Convert data to json string
 ```
 
+Also you can use `AsemanListModelSource` component to pass two or more different sources to the `AsemanListModel`:
+
+```js
+AsemanListModel {
+    AsemanListModelSource {
+        // obj is an object that has a result property, returns variant/array/map
+        source: obj.result
+        path: "data->users[2]->childeren"
+    }
+    AsemanListModelSource {
+        source: { title: "test", list: [a, b, c, d] }
+        path: "list"
+    }
+}
+```
+
 #### Settings
 
 Creates a settings file in a specific path and stores settings values there:

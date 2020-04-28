@@ -7,34 +7,7 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Base 2.0'
 
 Module {
-    dependencies: [
-        "QtGraphicalEffects 1.12",
-        "QtQml 2.1",
-        "QtQml.Models 2.2",
-        "QtQuick 2.9",
-        "QtQuick.Controls 2.5",
-        "QtQuick.Controls.Fusion 2.12",
-        "QtQuick.Controls.Fusion.impl 2.12",
-        "QtQuick.Controls.Imagine 2.12",
-        "QtQuick.Controls.Imagine.impl 2.12",
-        "QtQuick.Controls.Material 2.12",
-        "QtQuick.Controls.Material.impl 2.12",
-        "QtQuick.Controls.Styles 1.4",
-        "QtQuick.Controls.Styles.Plasma 2.0",
-        "QtQuick.Controls.Universal 2.12",
-        "QtQuick.Controls.Universal.impl 2.12",
-        "QtQuick.Controls.impl 2.12",
-        "QtQuick.Extras 1.4",
-        "QtQuick.Layouts 1.4",
-        "QtQuick.Templates 2.5",
-        "QtQuick.Window 2.2",
-        "org.kde.kconfig 1.0",
-        "org.kde.kirigami 2.9",
-        "org.kde.kquickcontrolsaddons 2.0",
-        "org.kde.plasma.components 2.0",
-        "org.kde.plasma.core 2.0",
-        "org.kde.plasma.extras 2.0"
-    ]
+    dependencies: ["QtQuick 2.12"]
     Component {
         name: "AsemanAbstractListModel"
         prototype: "QAbstractListModel"
@@ -1553,6 +1526,16 @@ Module {
         exports: ["AsemanQml.Base/AsemanListModel 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+    }
+    Component {
+        name: "AsemanQuickListModelSource"
+        prototype: "QObject"
+        exports: ["AsemanQml.Base/AsemanListModelSource 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "source"; type: "QVariant" }
+        Property { name: "path"; type: "string" }
+        Property { name: "data"; type: "QVariantList"; isReadonly: true }
+        Method { name: "refresh" }
     }
     Component {
         name: "AsemanQuickObject"

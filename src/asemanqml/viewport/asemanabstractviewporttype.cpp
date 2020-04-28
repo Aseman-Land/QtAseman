@@ -155,14 +155,11 @@ void AsemanAbstractViewportType::setBlockBack(bool blockBack)
 
 bool AsemanAbstractViewportType::open() const
 {
-    return p->foregroundAttachedType? p->foregroundAttachedType->open() : p->open;
+    return p->open;
 }
 
 void AsemanAbstractViewportType::setOpen(bool open)
 {
-    if (p->foregroundAttachedType)
-        p->foregroundAttachedType->setOpen(open);
-
     if (p->open == open)
         return;
 
