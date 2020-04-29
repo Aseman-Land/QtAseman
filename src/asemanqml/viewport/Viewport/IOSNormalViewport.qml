@@ -19,7 +19,7 @@ AbstractViewportType {
     readonly property real foregroundX: (LayoutMirroring.enabled? -width : width) * (1-ratio)
 
     Behavior on openRatio {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 350 }
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 250 }
     }
 
     Rectangle {
