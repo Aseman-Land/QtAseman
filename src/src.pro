@@ -3,11 +3,11 @@ CONFIG += ordered
 SUBDIRS = \
     core \
     gui \
-    network \
     widgets \
     geo \
     multimedia \
     qml \
+    network \
     asemanqml \
     styles
 

@@ -78,8 +78,8 @@ static bool globalBackgroundCustom = true;
 // 2) There can only be one variant used for the whole application.
 static QQuickIOSStyleStyle::Variant globalVariant = QQuickIOSStyleStyle::Normal;
 
-static const QRgb backgroundColorLight = 0xFFFAFAFA;
-static const QRgb backgroundColorDark = 0xFF303030;
+static const QRgb backgroundColorLight = 0xFFF8F7F8;
+static const QRgb backgroundColorDark = 0xFF2B2B2B;
 static const QRgb dialogColorLight = 0xFFFFFFFF;
 static const QRgb dialogColorDark = 0xFF424242;
 static const QRgb primaryTextColorLight = 0xFF333333;
@@ -103,7 +103,7 @@ static const QRgb frameColorLight = hintTextColorLight;
 static const QRgb frameColorDark = hintTextColorDark;
 static const QRgb sliderForegroundColorLight = 0xFFB7B7B7;
 static const QRgb switchUncheckedTrackColorLight = 0xFFFFFFFF;
-static const QRgb switchUncheckedTrackColorDark = 0x4CFFFFFF;
+static const QRgb switchUncheckedTrackColorDark = 0xFF111111;
 static const QRgb switchDisabledTrackColorLight = 0x1E000000;
 static const QRgb switchDisabledTrackColorDark = 0x19FFFFFF;
 static const QRgb switchBorderColorLight = 0xFFE5E5E5;
