@@ -38,6 +38,7 @@ public:
     bool refreshing;
     QString error;
     QStringList ignoreKeys;
+    QRegExp ignoreRegExp;
     QVariantMap headers;
     QUrl url;
 
@@ -51,7 +52,7 @@ public:
 };
 
 AsemanNetworkRequestObject::AsemanNetworkRequestObject(QObject *parent) :
-    QObject(parent)
+    AsemanQuickObject(parent)
 {
     p = new Private;
     p->status = -1;
@@ -238,12 +239,26 @@ void AsemanNetworkRequestObject::setIgnoreKeys(const QStringList &ignoreKeys)
     Q_EMIT ignoreKeysChanged();
 }
 
+QRegExp AsemanNetworkRequestObject::ignoreRegExp() const
+{
+    return p->ignoreRegExp;
+}
+
+void AsemanNetworkRequestObject::setIgnoreRegExp(const QRegExp &ignoreRegExp)
+{
+    if (p->ignoreRegExp == ignoreRegExp)
+        return;
+
+    p->ignoreRegExp = ignoreRegExp;
+    Q_EMIT ignoreRegExpChanged();
+}
+
 QVariantMap AsemanNetworkRequestObject:: toMap() const
 {
     QVariantMap res;
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr))
+        if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) >= 0) )
             res[pr] = property(pr.toUtf8());
     return res;
 }
@@ -252,13 +267,13 @@ void AsemanNetworkRequestObject::fromMap(const QVariantMap &map)
 {
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr) && map.contains(pr))
+        if (!p->ignoreKeys.contains(pr) && map.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) >= 0))
             setProperty(pr.toUtf8(), map.value(pr));
 }
 
 QString AsemanNetworkRequestObject::toJson() const
 {
-    return QJsonDocument::fromVariant(toMap()).toJson();
+    return QString::fromUtf8( QJsonDocument::fromVariant(toMap()).toJson() );
 }
 
 void AsemanNetworkRequestObject::fromJson(const QString &json)
@@ -272,7 +287,7 @@ QString AsemanNetworkRequestObject::toFormData(bool ignoreEmpty) const
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
     {
-        if (p->ignoreKeys.contains(pr))
+        if (p->ignoreKeys.contains(pr) || (!p->ignoreRegExp.isEmpty() && pr.indexOf(p->ignoreRegExp) < 0))
             continue;
         QVariant var = property(pr.toUtf8());
         if (var.type() != QVariant::String)
@@ -299,10 +314,10 @@ void AsemanNetworkRequestObject::fromFormData(const QString &formData)
             continue;
 
         QString key = l.left(idx);
-        if (p->ignoreKeys.contains(key))
+        if (p->ignoreKeys.contains(key) || (!p->ignoreRegExp.isEmpty() && key.indexOf(p->ignoreRegExp) < 0))
             continue;
 
-        QString val = QByteArray::fromPercentEncoding(l.mid(idx+1).toUtf8());
+        QString val = QString::fromUtf8( QByteArray::fromPercentEncoding(l.mid(idx+1).toUtf8()) );
 
         map[key] = val;
     }

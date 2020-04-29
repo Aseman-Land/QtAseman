@@ -109,7 +109,6 @@ SINGLETON_PROVIDER(AsemanBackHandler        , aseman_backhandler_singleton      
 SINGLETON_PROVIDER(AsemanApplicationItem    , aseman_app_singleton               , AsemanQtToolsItemBase::application(engine))
 SINGLETON_PROVIDER(AsemanQuickViewWrapper   , aseman_qview_singleton             , AsemanQtToolsItemBase::quickView(engine))
 SINGLETON_PROVIDER(AsemanQtLogger           , aseman_logger_singleton            , AsemanQtToolsItemBase::qtLogger())
-SINGLETON_PROVIDER(AsemanFileDownloaderQueue, aseman_downloader_queue_singleton  , AsemanQtToolsItemBase::getDownloaderQueue(engine))
 SINGLETON_PROVIDER(AsemanGlobalTranslations , aseman_globaltranslations_singleton, AsemanQtToolsItemBase::globalTranslations(engine))
 #ifdef Q_OS_ANDROID
 SINGLETON_PROVIDER(AsemanJavaLayer          , aseman_javalayer_singleton       , AsemanQtToolsItemBase::javaLayer())
@@ -174,7 +173,6 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerSingletonType<AsemanApplicationItem>(uri, 2, 0, "AsemanApp", aseman_app_singleton, exportMode);
     registerSingletonType<AsemanQtLogger>(uri, 2, 0, "Logger", aseman_logger_singleton, exportMode);
     registerSingletonType<AsemanQuickViewWrapper>(uri, 2, 0, "View", aseman_qview_singleton, exportMode);
-    registerSingletonType<AsemanFileDownloaderQueue>(uri, 2, 0, "DownloaderQueue", aseman_downloader_queue_singleton, exportMode);
     registerSingletonType<AsemanGlobalTranslations>(uri, 2, 0, "Translations", aseman_globaltranslations_singleton, exportMode);
 #ifdef Q_OS_ANDROID
     registerSingletonType<AsemanJavaLayer>(uri, 2, 0, "JavaLayer", aseman_javalayer_singleton, exportMode);

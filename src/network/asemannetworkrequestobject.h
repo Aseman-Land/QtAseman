@@ -23,12 +23,14 @@
 #include <QVariantMap>
 #include <QHttpMultiPart>
 #include <QUrl>
+#include <QRegExp>
 
+#include <asemanquickobject.h>
 #include <functional>
 
 #include "asemannetwork_global.h"
 
-class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestObject : public QObject
+class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestObject : public AsemanQuickObject
 {
     Q_OBJECT
     Q_ENUMS(ContentType)
@@ -41,6 +43,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestObject : public QObject
     Q_PROPERTY(bool refreshing READ refreshing NOTIFY refreshingChanged)
     Q_PROPERTY(QString error READ error NOTIFY errorChanged)
     Q_PROPERTY(QStringList ignoreKeys READ ignoreKeys WRITE setIgnoreKeys NOTIFY ignoreKeysChanged)
+    Q_PROPERTY(QRegExp ignoreRegExp READ ignoreRegExp WRITE setIgnoreRegExp NOTIFY ignoreRegExpChanged)
     Q_PROPERTY(QString cachePath READ cachePath WRITE setCachePath NOTIFY cachePathChanged)
     Q_PROPERTY(QVariantMap headers READ headers WRITE setHeaders NOTIFY headersChanged)
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
@@ -92,6 +95,9 @@ public:
     QStringList ignoreKeys() const;
     void setIgnoreKeys(const QStringList &ignoreKeys);
 
+    QRegExp ignoreRegExp() const;
+    void setIgnoreRegExp(const QRegExp &ignoreRegExp);
+
 Q_SIGNALS:
     void responseChanged();
     void cachedDataChanged();
@@ -100,6 +106,7 @@ Q_SIGNALS:
     void refreshingChanged();
     void errorChanged();
     void ignoreKeysChanged();
+    void ignoreRegExpChanged();
     void cachePathChanged();
     void headersChanged();
     void urlChanged();

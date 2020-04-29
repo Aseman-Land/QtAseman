@@ -19,12 +19,25 @@
 #include "asemanqttoolsitemnetwork.h"
 #include "asemannetworkrequestmanager.h"
 
+#include <asemanfiledownloaderqueue.h>
+
 #include <qqml.h>
 #include <QHash>
 #include <QPointer>
 #include <QFile>
 #include <QDir>
 #include <QSet>
+#include <QQmlEngine>
+
+#define SINGLETON_PROVIDER(TYPE, FNC_NAME, NEW_CREATOR) \
+    static QObject *FNC_NAME(QQmlEngine *engine, QJSEngine *scriptEngine) { \
+        Q_UNUSED(engine) \
+        Q_UNUSED(scriptEngine) \
+        static TYPE *singleton = NEW_CREATOR; \
+        return singleton; \
+    }
+
+SINGLETON_PROVIDER(AsemanFileDownloaderQueue, aseman_downloader_queue_singleton  , AsemanQtToolsItemNetwork::getDownloaderQueue(engine))
 
 static QStringList aseman_qt_tools_indexCache;
 static QString aseman_qt_tools_destination;
@@ -38,6 +51,7 @@ void AsemanQtToolsItemNetwork::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanNetworkRequestObject>(uri, 2, 0, "NetworkRequest", exportMode);
     registerType<AsemanNetworkRequestManager>(uri, 2, 0, "NetworkRequestManager", exportMode);
     registerUncreatableType<AsemanNetworkRequestReply>(uri, 2, 0, "NetworkRequestReply", "", exportMode);
+    registerSingletonType<AsemanFileDownloaderQueue>(uri, 2, 0, "DownloaderQueue", aseman_downloader_queue_singleton, exportMode);
 
     register_list.insert(uri);
 }
@@ -150,6 +164,18 @@ void AsemanQtToolsItemNetwork::exportDocuments(const QString &destination)
 
     file.write(index.toUtf8());
     file.close();
+}
+
+AsemanFileDownloaderQueue *AsemanQtToolsItemNetwork::getDownloaderQueue(QQmlEngine *engine)
+{
+    static QHash<QQmlEngine*, QPointer<AsemanFileDownloaderQueue> > views;
+    AsemanFileDownloaderQueue *res = views.value(engine);
+    if(res)
+        return res;
+
+    res = new AsemanFileDownloaderQueue(engine);
+    views[engine] = res;
+    return res;
 }
 
 QString AsemanQtToolsItemNetwork::fixType(const QString &type)

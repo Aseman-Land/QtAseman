@@ -4,7 +4,7 @@ INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui $$PWD/../network $$PWD/../widget
 DEPENDPATH += $$PWD
 
 TARGET = QAsemanQml
-QT = core gui asemancore asemangui asemannetwork network qml quick asemanwidgets
+QT = core gui asemancore asemangui network qml quick asemanwidgets
 ios: QT += widgets
 
 MODULE = asemanqml

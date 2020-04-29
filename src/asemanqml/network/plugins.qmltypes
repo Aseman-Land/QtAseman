@@ -9,6 +9,32 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: ["QtQuick 2.12"]
     Component {
+        name: "AsemanFileDownloaderQueue"
+        prototype: "QObject"
+        exports: ["AsemanQml.Network/DownloaderQueue 2.0"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [0]
+        Property { name: "capacity"; type: "int" }
+        Property { name: "destination"; type: "string" }
+        Signal {
+            name: "finished"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "fileName"; type: "string" }
+        }
+        Signal {
+            name: "progressChanged"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "fileName"; type: "string" }
+            Parameter { name: "percent"; type: "double" }
+        }
+        Method {
+            name: "download"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "fileName"; type: "string" }
+        }
+    }
+    Component {
         name: "AsemanNetworkRequestManager"
         prototype: "QObject"
         exports: ["AsemanQml.Network/NetworkRequestManager 2.0"]
@@ -85,7 +111,8 @@ Module {
     }
     Component {
         name: "AsemanNetworkRequestObject"
-        prototype: "QObject"
+        defaultProperty: "items"
+        prototype: "AsemanQuickObject"
         exports: ["AsemanQml.Network/NetworkRequest 2.0"]
         exportMetaObjectRevisions: [0]
         Enum {
@@ -105,6 +132,7 @@ Module {
         Property { name: "refreshing"; type: "bool"; isReadonly: true }
         Property { name: "error"; type: "string"; isReadonly: true }
         Property { name: "ignoreKeys"; type: "QStringList" }
+        Property { name: "ignoreRegExp"; type: "QRegExp" }
         Property { name: "cachePath"; type: "string" }
         Property { name: "headers"; type: "QVariantMap" }
         Property { name: "url"; type: "QUrl" }
@@ -173,5 +201,11 @@ Module {
             Parameter { name: "errorCode"; type: "QNetworkReply::NetworkError" }
         }
         Method { name: "abort" }
+    }
+    Component {
+        name: "AsemanQuickObject"
+        defaultProperty: "items"
+        prototype: "QObject"
+        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
 }

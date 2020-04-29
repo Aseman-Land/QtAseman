@@ -26,7 +26,6 @@
 #include "asemanquickviewwrapper.h"
 #include "asemandesktoptools.h"
 #include <asemantexttools.h>
-#include <asemanfiledownloaderqueue.h>
 #include <asemancalendarconverter.h>
 
 #ifdef Q_OS_ANDROID
@@ -121,18 +120,6 @@ AsemanToolsItem *AsemanQtTools::tools()
     if(!res)
         res = new AsemanToolsItem();
 
-    return res;
-}
-
-AsemanFileDownloaderQueue *AsemanQtTools::getDownloaderQueue(QQmlEngine *engine)
-{
-    static QHash<QQmlEngine*, QPointer<AsemanFileDownloaderQueue> > views;
-    AsemanFileDownloaderQueue *res = views.value(engine);
-    if(res)
-        return res;
-
-    res = new AsemanFileDownloaderQueue(engine);
-    views[engine] = res;
     return res;
 }
 

@@ -47,6 +47,7 @@ public:
     static int registerUncreatableType(const char *uri, int versionMajor, int versionMinor, const char *qmlName, const QString& reason, bool exportMode);
 
     static void exportDocuments(const QString &destination);
+    static class AsemanFileDownloaderQueue *getDownloaderQueue(QQmlEngine *engine);
 
 protected:
     template<typename T>
