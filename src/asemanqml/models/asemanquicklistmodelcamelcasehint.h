@@ -29,6 +29,9 @@ protected:
     virtual QVariantMap analyze(const QVariantMap &map);
 
 private:
+    QVariant toCamelCase(const QVariant &var);
+
+private:
     Private *p;
 };
 

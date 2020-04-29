@@ -31,23 +31,54 @@ QString AsemanQuickListModelCamelCaseHint::path() const
 
 QVariantMap AsemanQuickListModelCamelCaseHint::analyze(const QVariantMap &map)
 {
-    if (p->path.isEmpty())
+    QVariant data = AsemanAbstractQuickListModelHint::getPathValue(map, p->path);
+    QVariant camelCase = toCamelCase(data);
+
+    return AsemanAbstractQuickListModelHint::setPathValue(map, p->path, camelCase.toMap()).toMap();
+}
+
+QVariant AsemanQuickListModelCamelCaseHint::toCamelCase(const QVariant &var)
+{
+    QVariant res;
+
+    switch ( static_cast<int>(var.type()) )
     {
-        qmlWarning(this) << "ModelCamelCaseHint.path is empty";
-        return map;
+    case QVariant::List:
+    {
+        QVariantList listRes;
+        const QVariantList &list = var.toList();
+        for (const QVariant &l: list)
+            listRes << toCamelCase(l);
+
+        res = listRes;
+    }
+        break;
+
+    case QVariant::Map:
+    {
+        QVariantMap map;
+        QMapIterator<QString, QVariant> i(var.toMap());
+        while (i.hasNext())
+        {
+            i.next();
+
+            QStringList parts = i.key().split('_', QString::SkipEmptyParts);
+            for (int i=1; i<parts.size(); ++i)
+                parts[i].replace(0, 1, parts[i][0].toUpper());
+
+            map[ parts.join("") ] = toCamelCase(i.value());
+        }
+
+        res = map;
+    }
+        break;
+
+    default:
+        res = var;
+        break;
     }
 
-    QVariant data = AsemanAbstractQuickListModelHint::getPathValue(map, p->path);
-
-    QStringList pathList = p->path.split(QStringLiteral("->"));
-    QStringList parts = pathList.last().split('_', QString::SkipEmptyParts);
-    for (int i=1; i<parts.size(); ++i)
-        parts[i].replace(0, 1, parts[i][0].toUpper());
-
-    pathList[pathList.count()-1] = parts.join("");
-
-    QVariantMap m = AsemanAbstractQuickListModelHint::deletePath(map, p->path).toMap();
-    return AsemanAbstractQuickListModelHint::setPathValue(m, pathList.join("->"), data).toMap();
+    return res;
 }
 
 AsemanQuickListModelCamelCaseHint::~AsemanQuickListModelCamelCaseHint()

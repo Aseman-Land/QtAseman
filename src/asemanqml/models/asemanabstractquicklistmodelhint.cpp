@@ -8,6 +8,9 @@ AsemanAbstractQuickListModelHint::AsemanAbstractQuickListModelHint(QObject *pare
 
 QVariant AsemanAbstractQuickListModelHint::getPathValue(QVariant data, const QString &path)
 {
+    if (path.isEmpty())
+        return data;
+
     QStringList pathList = path.split(QStringLiteral("->"));
     for (const QString &pt: pathList)
     {
@@ -35,6 +38,9 @@ QVariant AsemanAbstractQuickListModelHint::getPathValue(QVariant data, const QSt
 
 QVariant AsemanAbstractQuickListModelHint::setPathValue(const QVariant &data, const QString &path, const QVariant &value)
 {
+    if (path.isEmpty())
+        return value;
+
     QStringList pathList = path.split(QStringLiteral("->"));
     return setPathValue(data, pathList, value);
 }
@@ -70,6 +76,9 @@ QVariant AsemanAbstractQuickListModelHint::setPathValue(const QVariant &data, QS
 
 QVariant AsemanAbstractQuickListModelHint::deletePath(const QVariant &data, const QString &path)
 {
+    if (path.isEmpty())
+        return QVariantMap();
+
     QStringList pathList = path.split(QStringLiteral("->"));
     return deletePath(data, pathList);
 }
