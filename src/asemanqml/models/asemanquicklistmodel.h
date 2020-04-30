@@ -27,6 +27,8 @@ class AsemanQuickListModel : public AsemanListModel
     Q_OBJECT
     class Private;
 
+    Q_PROPERTY(QString sortField READ sortField WRITE setSortField NOTIFY sortFieldChanged)
+    Q_PROPERTY(bool sortDescending READ sortDescending WRITE setSortDescending NOTIFY sortDescendingChanged)
     Q_PROPERTY(QQmlListProperty<QObject> items READ items NOTIFY itemsChanged)
     Q_CLASSINFO("DefaultProperty", "items")
 
@@ -37,8 +39,19 @@ public:
     QQmlListProperty<QObject> items();
     QList<QObject*> itemsList() const;
 
+    void setSortField(const QString &sortField);
+    QString sortField() const;
+
+    void setSortDescending(bool sortDescending);
+    bool sortDescending() const;
+
 Q_SIGNALS:
     void itemsChanged();
+    void sortFieldChanged();
+    void sortDescendingChanged();
+
+public Q_SLOTS:
+    void reload();
 
 private:
     static void append(QQmlListProperty<QObject> *p, QObject *v);
@@ -46,8 +59,8 @@ private:
     static QObject *at(QQmlListProperty<QObject> *p, int idx);
     static void clear(QQmlListProperty<QObject> *p);
 
-    void loadSources();
-    void refreshSourceData();
+    void reloadItems();
+    void refreshData();
 
 protected:
     virtual void changed(const QList<QVariantMap> &list);

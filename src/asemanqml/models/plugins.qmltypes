@@ -238,7 +238,10 @@ Module {
         prototype: "AsemanListModel"
         exports: ["AsemanQml.Models/AsemanListModel 2.0"]
         exportMetaObjectRevisions: [0]
+        Property { name: "sortField"; type: "string" }
+        Property { name: "sortDescending"; type: "bool" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+        Method { name: "reload" }
     }
     Component {
         name: "AsemanQuickListModelCamelCaseHint"

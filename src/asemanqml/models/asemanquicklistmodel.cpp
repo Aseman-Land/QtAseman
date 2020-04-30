@@ -27,12 +27,18 @@ class AsemanQuickListModel::Private
 public:
     QList<QObject*> items;
     QList<AsemanQuickListModelSource*> sources;
+    QList<AsemanAbstractQuickListModelHint*> hints;
+
+    QList<QVariantMap> backupList;
+    QString sortField;
+    bool sortDescending;
 };
 
 AsemanQuickListModel::AsemanQuickListModel(QObject *parent) :
     AsemanListModel(parent)
 {
     p = new Private;
+    p->sortDescending = false;
 
     QTimer *sourceChangeTimer = new QTimer(this);
     sourceChangeTimer->setInterval(100);
@@ -42,7 +48,7 @@ AsemanQuickListModel::AsemanQuickListModel(QObject *parent) :
         sourceChangeTimer->stop();
         sourceChangeTimer->start();
     });
-    connect(sourceChangeTimer, &QTimer::timeout, this, &AsemanQuickListModel::loadSources);
+    connect(sourceChangeTimer, &QTimer::timeout, this, &AsemanQuickListModel::reloadItems);
 }
 
 QQmlListProperty<QObject> AsemanQuickListModel::items()
@@ -56,6 +62,39 @@ QQmlListProperty<QObject> AsemanQuickListModel::items()
 QList<QObject *> AsemanQuickListModel::itemsList() const
 {
     return p->items;
+}
+
+void AsemanQuickListModel::setSortField(const QString &sortField)
+{
+    if (p->sortField == sortField)
+        return;
+
+    p->sortField = sortField;
+    Q_EMIT sortFieldChanged();
+}
+
+QString AsemanQuickListModel::sortField() const
+{
+    return p->sortField;
+}
+
+void AsemanQuickListModel::setSortDescending(bool sortDescending)
+{
+    if (p->sortDescending == sortDescending)
+        return;
+
+    p->sortDescending = sortDescending;
+    Q_EMIT sortDescendingChanged();
+}
+
+bool AsemanQuickListModel::sortDescending() const
+{
+    return p->sortDescending;
+}
+
+void AsemanQuickListModel::reload()
+{
+    changed(p->backupList);
 }
 
 void AsemanQuickListModel::append(QQmlListProperty<QObject> *p, QObject *v)
@@ -84,10 +123,10 @@ void AsemanQuickListModel::clear(QQmlListProperty<QObject> *p)
     Q_EMIT aobj->itemsChanged();
 }
 
-void AsemanQuickListModel::loadSources()
+void AsemanQuickListModel::reloadItems()
 {
     while (p->sources.count())
-        disconnect(p->sources.takeFirst(), &AsemanQuickListModelSource::dataChanged, this, &AsemanQuickListModel::refreshSourceData);
+        disconnect(p->sources.takeFirst(), &AsemanQuickListModelSource::dataChanged, this, &AsemanQuickListModel::refreshData);
 
     for (QObject *obj: p->items)
     {
@@ -95,27 +134,41 @@ void AsemanQuickListModel::loadSources()
         if (!source)
             continue;
 
-        connect(source, &AsemanQuickListModelSource::dataChanged, this, &AsemanQuickListModel::refreshSourceData);
+        connect(source, &AsemanQuickListModelSource::dataChanged, this, &AsemanQuickListModel::refreshData);
         p->sources << source;
     }
 
-    refreshSourceData();
+    p->hints.clear();
+    for (QObject *obj: p->items)
+    {
+        AsemanAbstractQuickListModelHint *hint = qobject_cast<AsemanAbstractQuickListModelHint*>(obj);
+        if (!hint)
+            continue;
+
+        p->hints << hint;
+    }
+
+    refreshData();
 }
 
-void AsemanQuickListModel::refreshSourceData()
+void AsemanQuickListModel::refreshData()
 {
-    if (p->sources.isEmpty())
-        return;
+    if (p->sources.count())
+    {
+        QVariantList list;
+        for (AsemanQuickListModelSource *src: p->sources)
+            list << src->data();
 
-    QVariantList list;
-    for (AsemanQuickListModelSource *src: p->sources)
-        list << src->data();
-
-    change(list);
+        change(list);
+    }
+    else
+    if (p->hints.count())
+        changed(p->backupList);
 }
 
 void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
 {
+    p->backupList = l;
     QList<QVariantMap> list = l;
 
     QList<AsemanAbstractQuickListModelHint*> hints;
@@ -131,6 +184,24 @@ void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
         QVariantMap &l = list[i];
         for (AsemanAbstractQuickListModelHint *h: hints)
             l = h->analyze(l);
+    }
+
+    if (p->sortField.count())
+    {
+        QMap<QString, QVariantMap> sortMapStr;
+        QMap<qint32, QVariantMap> sortMapInt;
+        for (const QVariantMap &l: list)
+        {
+            QVariant val = AsemanAbstractQuickListModelHint::getPathValue(l, p->sortField);
+            if (val.type() == QVariant::Int || (val.canConvert(QVariant::Int) && val.convert(QVariant::Int)))
+                sortMapInt.insertMulti(val.toInt(), l);
+            else
+                sortMapStr.insertMulti(val.toString(), l);
+        }
+
+        list.clear();
+        list << sortMapInt.values();
+        list << sortMapStr.values();
     }
 
     AsemanListModel::changed(list);
