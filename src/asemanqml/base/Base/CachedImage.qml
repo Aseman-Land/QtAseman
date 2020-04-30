@@ -18,6 +18,7 @@
 
 import QtQuick 2.9
 import AsemanQml.Base 2.0
+import AsemanQml.Network 2.0
 import QtGraphicalEffects 1.0
 
 Item {
