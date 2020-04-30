@@ -202,6 +202,9 @@ void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
         list.clear();
         list << sortMapInt.values();
         list << sortMapStr.values();
+
+        if (p->sortDescending)
+            std::reverse(list.begin(), list.end());
     }
 
     AsemanListModel::changed(list);
