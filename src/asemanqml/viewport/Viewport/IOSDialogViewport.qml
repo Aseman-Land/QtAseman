@@ -7,7 +7,7 @@ AbstractViewportType {
 
     foreground.height: foregroundItem? foregroundItem.height : item.height
     foreground.width: foregroundItem? foregroundItem.width : item.width
-    foreground.scale: 1.1 - ratio * 0.1
+    foreground.scale: item.open? 1.1 - ratio * 0.1 : 1
     foreground.opacity: ratio
     foreground.anchors.centerIn: foreground.parent
     foreground.z: 10
