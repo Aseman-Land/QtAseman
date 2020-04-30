@@ -9,6 +9,9 @@ ViewportCore {
     property Item mainItem
     property alias count: list.count
 
+    readonly property Item currentItem: list.count? list.last().foregroundItem : null
+    readonly property string currentType: list.count? list.last().openedType : null
+
     onMainItemChanged: {
         if (!mainItem)
             return;
@@ -69,10 +72,12 @@ ViewportCore {
         if (typeObj.fillForeground)
             obj.anchors.fill = obj.parent
 
-        list.append(typeObj);
-
         typeObj.foregroundItem = obj
         typeObj.backgroundItem = lastItem
+        typeObj.openedType = type
+
+        list.append(typeObj);
+
         typeObj.viewport = viewportCore
         return obj
     }

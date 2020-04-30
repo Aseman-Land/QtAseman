@@ -12,6 +12,7 @@ AbstractViewportTypeCore {
 
     property int index
     property int count
+    property string openedType
     property real ratio: open? 1 : 0
 
     property alias background: background
