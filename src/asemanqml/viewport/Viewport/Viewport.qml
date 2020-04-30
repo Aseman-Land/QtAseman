@@ -9,8 +9,8 @@ ViewportCore {
     property Item mainItem
     property alias count: list.count
 
-    readonly property Item currentItem: list.count? list.last().foregroundItem : null
-    readonly property string currentType: list.count? list.last().openedType : null
+    readonly property Item currentItem: list.count? list.last().foregroundItem : mainItem
+    readonly property string currentType: list.count? list.last().openedType : ""
 
     onMainItemChanged: {
         if (!mainItem)
