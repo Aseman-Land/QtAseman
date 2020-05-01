@@ -32,6 +32,8 @@ public:
     QList<QVariantMap> backupList;
     QString sortField;
     bool sortDescending;
+
+    QTimer *reloadTimer;
 };
 
 AsemanQuickListModel::AsemanQuickListModel(QObject *parent) :
@@ -39,6 +41,10 @@ AsemanQuickListModel::AsemanQuickListModel(QObject *parent) :
 {
     p = new Private;
     p->sortDescending = false;
+
+    p->reloadTimer = new QTimer(this);
+    p->reloadTimer->setInterval(100);
+    p->reloadTimer->setSingleShot(true);
 
     QTimer *sourceChangeTimer = new QTimer(this);
     sourceChangeTimer->setInterval(100);
@@ -49,6 +55,8 @@ AsemanQuickListModel::AsemanQuickListModel(QObject *parent) :
         sourceChangeTimer->start();
     });
     connect(sourceChangeTimer, &QTimer::timeout, this, &AsemanQuickListModel::reloadItems);
+
+    connect(p->reloadTimer, &QTimer::timeout, this, &AsemanQuickListModel::refreshData_prv);
 }
 
 QQmlListProperty<QObject> AsemanQuickListModel::items()
@@ -152,6 +160,12 @@ void AsemanQuickListModel::reloadItems()
 }
 
 void AsemanQuickListModel::refreshData()
+{
+    p->reloadTimer->stop();
+    p->reloadTimer->start();
+}
+
+void AsemanQuickListModel::refreshData_prv()
 {
     if (p->sources.count())
     {

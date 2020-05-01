@@ -61,6 +61,7 @@ private:
 
     void reloadItems();
     void refreshData();
+    void refreshData_prv();
 
 protected:
     virtual void changed(const QList<QVariantMap> &list);
