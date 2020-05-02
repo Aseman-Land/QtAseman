@@ -593,27 +593,27 @@ This feature is Hints. You can rename keys (for example change user_name to user
 
 ```js
 AsemanListModel {
-	...
+    ...
 	
-    // It copy userName key to results.user.name
-	ModelCopyHint {
-		path: "results->user->name"
-		targetPath: "userName"
-	}
+    // Copy "results.user.name" to "userName"
+    ModelCopyHint {
+        path: "results->user->name"
+        targetPath: "userName"
+    }
     
-    // It makes all results.user.nickname values upperCase
-	ModelFormatHint {
-		path: "results->user->nickname"
-		method: function(arg) { return arg.toUpperCase() }
-	}
+    // Make all "results.user.nickname" values upperCase
+    ModelFormatHint {
+        path: "results->user->nickname"
+        method: function(arg) { return arg.toUpperCase() }
+    }
     
-    // It makes all keys camel case.
+    // Convert all keys to camel case.
     ModelCamelCaseHint {
     }
     
-    // It deletes results.user.age key
+    // Delete "results.images[0].caption"
     ModelDeleteHint {
-		path: "results->user->age"
+		path: "results->images[0]->caption"
     }
 }
 ```
