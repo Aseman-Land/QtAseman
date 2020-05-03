@@ -221,6 +221,9 @@ void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
             std::reverse(list.begin(), list.end());
     }
 
+    if (list.isEmpty() && cachePath().length())
+        return;
+
     AsemanListModel::changed(list);
 }
 

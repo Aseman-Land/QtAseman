@@ -157,6 +157,7 @@ void AsemanListModel::clear()
 {
     beginResetModel();
     p->list.clear();
+    saveCache();
     endResetModel();
     Q_EMIT countChanged();
     Q_EMIT listChanged();
