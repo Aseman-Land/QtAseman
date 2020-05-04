@@ -618,6 +618,53 @@ AsemanListModel {
 }
 ```
 
+AsemanQml.Sql
+
+Sql module provides some tools to add SQL features to your applications. It supports SQLite, MySQL, PostgreSQL and also MSSQL. Below example shows how to use it:
+
+```js
+import AsemanQml.Sql 2.0
+
+AsemanListModel {
+    id: model
+    data: mysql.select("INNER JOIN ...", "title LIKE :title and id > :id", {title: "hi%", id: 10})
+    // Also you can use it without join and also where arguments.
+}
+
+SqlObject {
+    id: mysql
+    databaseName: "TestDB"
+    driver: "QMYSQL"
+    host: "127.0.0.1"; port: 3306
+    userName: "user"; password: "password"
+    
+    table: "TestTable"
+    primaryKeys: ["id"]
+    property int id: 10
+    property string title
+    property date updateTime
+    
+    Component.onCompleted: {
+    	// It fetchs title and updateTime of id=10 to title and updateTime properties
+        fetch();
+        
+        title = "Hi :)"
+        update(); // Update value,
+    }
+}
+
+SqlObject {
+    id: sqlite
+    databaseName: "/Path/to/db"
+    driver: "QSQLITE"
+    
+    Component.onCompleted: {
+        var result = query("SOME QUERY");
+        console.debug( Tools.variantToJson(result) );
+    }
+}
+```
+
 ### AsemanQml.MaterialIcons and AsemanQml.Awesome
 
 These two modules provide access to the MaterialIcons and FontAwesome font icons. The usage is easy:

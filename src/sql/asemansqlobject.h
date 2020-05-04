@@ -86,7 +86,7 @@ public:
 
 public Q_SLOTS:
     qint32 insert(const QString &extra = QString());
-    void update(const QString &where, const QVariantMap &binds = QVariantMap());
+    void update(const QString &where = QString(), const QVariantMap &binds = QVariantMap());
 
     QVariantList select();
     QVariantList select(const QString &where, const QVariantMap &binds) { return select(QStringLiteral(""), where, QStringLiteral(""), binds); }
