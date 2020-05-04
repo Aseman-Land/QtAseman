@@ -8,6 +8,7 @@ SUBDIRS = \
     multimedia \
     qml \
     network \
+    sql \
     asemanqml \
     styles
 
