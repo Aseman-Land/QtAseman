@@ -30,10 +30,13 @@ Some main features to use on QML are:
 
 ## QtAseman 3.1.x Roadmap
 
-- iOS plugin for QtQuickControls ☑
+- iOS style for QtQuickControls ☑
 - Viewport's context menu type ⏳
 - AsemanQml.Models module ☑
-- QtCreator wizards to create Aseman Apps easily ⏳
+- AsemanQml.Sql module ☑
+- Rewrite Viewport's types ☑
+- Add Attached property to the Viewports ☑
+- QtCreator wizards to create Aseman Apps easily ☑
 
 ## How to Install
 
