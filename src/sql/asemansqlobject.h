@@ -130,4 +130,6 @@ private:
     Private *p;
 };
 
+typedef AsemanSqlObject QAsemanSqlObject;
+
 #endif // ASEMANSQLOBJECT_H

@@ -71,9 +71,6 @@ void AsemanQuickListModelSource::refresh()
     QVariantList vlist;
     switch (static_cast<int>(data.type()))
     {
-    case QVariant::List:
-        vlist = data.toList();
-        break;
     case QVariant::StringList:
     {
         QStringList list = data.toStringList();
@@ -102,6 +99,10 @@ void AsemanQuickListModelSource::refresh()
             vlist << QVariantMap( {{"key", i.key()}, {"value", i.value()}} );
         }
     }
+        break;
+    case QVariant::List:
+    default:
+        vlist = data.toList();
         break;
     }
 
