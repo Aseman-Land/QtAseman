@@ -62,6 +62,10 @@ make install
 The easiest way to build is to open it using QtCreator and click on the build icon :)
 Afterwards just run `make install` command to install it in the Qt location.
 
+### QtCreator Wizard
+
+To install QtCreator's wizards, Just copy `qtcreator/wizards/projects/qtasemanapplication/` directory to `share/qtcreator/templates/wizards/projects/` directory of the QtCreator.
+
 ## How to create a QML application using QtAseman
 
 One of the main assets of QtAseman is that you can add it to your project without any extra change to the standard structure of the default QML app.

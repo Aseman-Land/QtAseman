@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>imports/forms/ErrorDialogForm.ui.qml</file>
+        <file>imports/forms/MainForm.ui.qml</file>
+        <file>imports/forms/qmldir</file>
+        <file>imports/forms/WaitDialog.ui.qml</file>
+        <file>imports/globals/Colors.qml</file>
+        <file>imports/globals/Constants.qml</file>
+        <file>imports/globals/Fonts.qml</file>
+        <file>imports/globals/GlobalSettings.qml</file>
+        <file>imports/globals/qmldir</file>
+        <file>imports/models/ExampleModel.qml</file>
+        <file>imports/models/qmldir</file>
+        <file>imports/requests/BaseRequest.qml</file>
+        <file>imports/requests/ExampleRequest.qml</file>
+        <file>imports/requests/qmldir</file>
+        <file>routes/ViewController.qml</file>
+        <file>routes/ErrorDialog.qml</file>
+        <file>routes/WaitDialog.qml</file>
+        <file>routes/ExamplePopup.qml</file>
+        <file>main.qml</file>
+        <file>MainWindow.qml</file>
+    </qresource>
+</RCC>
