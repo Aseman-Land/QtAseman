@@ -30,12 +30,7 @@ AsemanApplication {
         localeName: settings.localeName
 
         function refreshLayouts() {
-            console.debug(translations)
-            View.layoutDirection = textDirection
-            if(localeName == "fa")
-                CalendarConv.calendar = 1
-            else
-                CalendarConv.calendar = 0
+            console.debug(textDirection)
         }
         Component.onCompleted: refreshLayouts()
         onLocaleNameChanged: refreshLayouts()

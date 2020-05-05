@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls.Material 2.1
 import "."
 
-AsemanFullWindow {
+AsemanWindow {
     id: appWindow
     width: 480
     height: 720
@@ -14,7 +14,7 @@ AsemanFullWindow {
 
     Material.theme: Material.Light
 
-    main: Page { 
+    Page {
         anchors.fill: parent
         
         Column {
@@ -23,7 +23,7 @@ AsemanFullWindow {
             
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Hello World") + translationManager.refresher
+                text: qsTr("Hello World") + Translations.refresher
             }
             
             ComboBox {
@@ -39,22 +39,6 @@ AsemanFullWindow {
             }
         }
     }
-
-    sidebar.delegate: Rectangle {
-        anchors.fill: parent
-    }
-
-    forceActiveBackButton: searchAction.active
-    headerButton.onClicked: {
-        if(pageManager.count || forceActiveBackButton)
-            BackHandler.back()
-        else
-        if(sidebar.showed)
-            sidebar.discard()
-        else
-            sidebar.show()
-    }
-    headerButton.buttonColor: "#333333"
 
     BackAction {
         id: searchAction
