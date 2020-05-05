@@ -258,7 +258,7 @@ QVariantMap AsemanNetworkRequestObject:: toMap() const
     QVariantMap res;
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) >= 0) )
+        if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) < 0) )
             res[pr] = property(pr.toUtf8());
     return res;
 }
@@ -267,7 +267,7 @@ void AsemanNetworkRequestObject::fromMap(const QVariantMap &map)
 {
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr) && map.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) >= 0))
+        if (!p->ignoreKeys.contains(pr) && map.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) < 0))
             setProperty(pr.toUtf8(), map.value(pr));
 }
 
@@ -287,7 +287,7 @@ QString AsemanNetworkRequestObject::toFormData(bool ignoreEmpty) const
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
     {
-        if (p->ignoreKeys.contains(pr) || (!p->ignoreRegExp.isEmpty() && pr.indexOf(p->ignoreRegExp) < 0))
+        if (p->ignoreKeys.contains(pr) || (!p->ignoreRegExp.isEmpty() && pr.indexOf(p->ignoreRegExp) >= 0))
             continue;
         QVariant var = property(pr.toUtf8());
         if (var.type() != QVariant::String)
@@ -314,7 +314,7 @@ void AsemanNetworkRequestObject::fromFormData(const QString &formData)
             continue;
 
         QString key = l.left(idx);
-        if (p->ignoreKeys.contains(key) || (!p->ignoreRegExp.isEmpty() && key.indexOf(p->ignoreRegExp) < 0))
+        if (p->ignoreKeys.contains(key) || (!p->ignoreRegExp.isEmpty() && key.indexOf(p->ignoreRegExp) >= 0))
             continue;
 
         QString val = QString::fromUtf8( QByteArray::fromPercentEncoding(l.mid(idx+1).toUtf8()) );

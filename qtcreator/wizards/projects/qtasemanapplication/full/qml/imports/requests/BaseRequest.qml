@@ -9,7 +9,7 @@ NetworkRequest {
     id: req
     contentType: 0 //NetworkRequest.TypeJson
     ignoreKeys: ["baseUrl", "refreshingState", "allowGlobalBusy"]
-    ignoreRegExp: /_\w+/
+    ignoreRegExp: /^_\\w+$/
     headers: {
         "Content-Type": "application/json"
     }
