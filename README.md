@@ -366,7 +366,7 @@ Viewport {
             
             // append hiComponent to the viewPort stack and open it as page
             // append() returns a refrence to the created ui object.
-            // Types are: page, activity, popup, dialog and drawer
+            // Types are: page, activity, popup, dialog, menu and drawer
             onClicked: viewPort.append(hiComponent, undefined, "page")
         }
     }
@@ -625,7 +625,7 @@ AsemanListModel {
 }
 ```
 
-AsemanQml.Sql
+### AsemanQml.Sql
 
 Sql module provides some tools to add SQL features to your applications. It supports SQLite, MySQL, PostgreSQL and also MSSQL. Below example shows how to use it:
 

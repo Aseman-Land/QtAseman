@@ -6,16 +6,26 @@ import AsemanQml.Controls 2.0
 import AsemanQml.Viewport 2.0
 
 Page {
-    
+
     property alias menuButton: menuButton
     property alias drawer: drawer
     property alias btn: btn
+    property alias menuBtn: menuBtn
 
-    Button {
-        id: btn
+    Column {
         anchors.centerIn: parent
-        font.pixelSize: 12 * Devices.fontDensity
-        text: qsTr("Hello") + Translations.refresher
+
+        Button {
+            id: menuBtn
+            font.pixelSize: 12 * Devices.fontDensity
+            text: qsTr("Menu") + Translations.refresher
+        }
+
+        Button {
+            id: btn
+            font.pixelSize: 12 * Devices.fontDensity
+            text: qsTr("Popup") + Translations.refresher
+        }
     }
 
     Header {
@@ -25,7 +35,7 @@ Page {
         color: Material.primary
         text: qsTr("App") + Translations.refresher
     }
-    
+
     Drawer {
         id: drawer
         anchors.fill: parent
@@ -33,7 +43,7 @@ Page {
             anchors.fill: parent
         }
     }
-    
+
     HeaderMenuButton {
         id: menuButton
         ratio: drawer.percent
