@@ -45,6 +45,6 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         color: Material.primary
-        text: qsTr("App") + Translations.refresher
+        text: qsTr("%{ProjectName}") + Translations.refresher
     }
 }

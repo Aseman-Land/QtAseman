@@ -5,8 +5,8 @@ import globals 1.0
 
 AsemanApplication {
     id: app
-    applicationAbout: "It's template app"
-    applicationDisplayName: "Template"
+    applicationAbout: "It's %{ProjectName} app"
+    applicationDisplayName: "%{ProjectName}"
     Component.onCompleted: {
         Fonts.init()
 

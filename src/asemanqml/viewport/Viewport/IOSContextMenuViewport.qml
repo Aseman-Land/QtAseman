@@ -18,7 +18,7 @@ AbstractViewportType {
 
     FastBlur {
         anchors.fill: parent
-        radius: Devices.isAndroid? 0 : 64
+        radius: 64
         cached: true
         source: item.background
         scale: item.background.scale

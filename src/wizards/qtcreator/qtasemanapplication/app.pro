@@ -6,8 +6,15 @@ QT += quick
 
 CONFIG += c++11
 
-QML_IMPORT_PATH += \\
-    $$PWD/qml/imports
+android {
+    QT += androidextras
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+}
+ios {
+    include(ios/ios.pri)
+}
+
+exists ($$PWD/qml/imports): QML_IMPORT_PATH += $$PWD/qml/imports
 
 SOURCES += \\
         %{MainCppFileName}
@@ -18,5 +25,3 @@ RESOURCES += qml/qml.qrc
 TRANSLATIONS += \\
     %{TsFileName}
 @endif
-
-QML_IMPORT_PATH =

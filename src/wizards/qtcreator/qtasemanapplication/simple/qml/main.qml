@@ -3,8 +3,8 @@ import AsemanQml.Base 2.0
 import AsemanQml.Controls 2.0
 
 AsemanApplication {
-    applicationAbout: "It's template app"
-    applicationDisplayName: "Template"
+    applicationAbout: "It's %{ProjectName} app"
+    applicationDisplayName: "%{ProjectName}"
 
     MainWindow {
         visible: true

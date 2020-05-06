@@ -258,6 +258,14 @@ Depends: libqt5asemancore-dev (= ${binary:Version}),
  libqt5asemangeo-dev (= ${binary:Version}),
  libqt5asemanmultimedia-dev (= ${binary:Version}),
  libqt5asemanqml-dev (= ${binary:Version}),
- qt5aseman (= ${binary:Version})
+ qt5aseman (= ${binary:Version}),
+ qt5aseman-wizards-qtcreator (= ${binary:Version})
 Description: Qt Aseman full development package, 
+ It's free and released under the GPLv3 license.
+
+Package: qt5aseman-wizards-qtcreator
+Section: libdevel
+Architecture: any
+Depends: qt5aseman (= ${binary:Version})
+Description: Qt Aseman qtcreator wizards, 
  It's free and released under the GPLv3 license.
