@@ -11,7 +11,7 @@ AbstractViewportType {
     foreground.opacity: ratio
     foreground.anchors.centerIn: foreground.parent
     foreground.z: 10
-    foreground.radius: Devices.isAndroid? 0 : 10 * Devices.density
+    foreground.radius: 10 * Devices.density
     foregroundScene.color: "transparent"
 
     Behavior on ratio {
@@ -40,13 +40,12 @@ AbstractViewportType {
         opacity: item.ratio
         radius: item.foreground.radius
         clip: true
-        visible: !Devices.isAndroid
 
         FastBlur {
             anchors.centerIn: parent
             height: item.background.height
             width: item.background.width
-            radius: Devices.isAndroid? 0 : 64
+            radius: 64
             cached: true
             source: item.background
         }
