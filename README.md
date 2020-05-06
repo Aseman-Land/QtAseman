@@ -28,7 +28,7 @@ Some main features to use on QML are:
 - Some other tools like file read/write methods, type convert methods and ...
 - Process executer tools from QML
 
-## QtAseman 3.1.x Roadmap
+## New in QtAseman 3.1.x
 
 - iOS style for QtQuickControls ☑
 - Viewport's context menu type ☑
