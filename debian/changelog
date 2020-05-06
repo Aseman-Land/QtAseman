@@ -1,4 +1,4 @@
-qtaseman (3.1.0-2aseman-focal) focal; urgency=medium
+qtaseman (3.1.0-3aseman-focal) focal; urgency=medium
 
   * Increase ios-page gesture width
   * Bugfix on ios-page
@@ -10,7 +10,7 @@ qtaseman (3.1.0-2aseman-focal) focal; urgency=medium
   * Add Attached property to the Viewports 
   * QtCreator wizards to create Aseman Apps easily 
 
- -- Aseman IO <contact@aseman.io>  Wed, 06 May 2020 12:30:00 +0330
+ -- Aseman IO <contact@aseman.io>  Wed, 06 May 2020 15:30:00 +0330
 
 
 qtaseman (3.00.1-2aseman-focal) focal; urgency=medium
