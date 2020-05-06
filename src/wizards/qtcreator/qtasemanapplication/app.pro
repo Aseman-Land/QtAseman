@@ -6,13 +6,8 @@ QT += quick
 
 CONFIG += c++11
 
-android {
-    QT += androidextras
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-}
-ios {
-    include(ios/ios.pri)
-}
+include(ios/ios.pri)
+include(android/android.pri)
 
 exists ($$PWD/qml/imports): QML_IMPORT_PATH += $$PWD/qml/imports
 

@@ -1,4 +1,4 @@
-qtaseman (3.1.0-1aseman-focal) focal; urgency=medium
+qtaseman (3.1.0-2aseman-focal) focal; urgency=medium
 
   * Increase ios-page gesture width
   * Bugfix on ios-page

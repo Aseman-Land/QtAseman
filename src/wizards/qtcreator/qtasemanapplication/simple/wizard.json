@@ -189,13 +189,43 @@
                     "target": "android/build.gradle"
                 },
                 {
+                    "source": "../android/android.pri",
+                    "target": "android/android.pri"
+                },
+                {
                     "source": "../android/res",
                     "target": "android/res",
                     "isBinary": true
                 },
                 {
-                    "source": "../ios",
-                    "target": "ios"
+                    "source": "../ios/ios.pri",
+                    "target": "ios/ios.pri"
+                },
+                {
+                    "source": "../ios/osxviewcontroller.h",
+                    "target": "ios/osxviewcontroller.h"
+                },
+                {
+                    "source": "../ios/osxviewcontroller.mm",
+                    "target": "ios/osxviewcontroller.mm"
+                },
+                {
+                    "source": "../ios/Info.plist",
+                    "target": "ios/Info.plist"
+                },
+                {
+                    "source": "../ios/Launch.xib",
+                    "target": "ios/Launch.xib"
+                },
+                {
+                    "source": "../ios/icons",
+                    "target": "ios/icons",
+                    "isBinary": true
+                },
+                {
+                    "source": "../ios/splash",
+                    "target": "ios/splash",
+                    "isBinary": true
                 },
                 {
                     "source": "../../git.ignore",
