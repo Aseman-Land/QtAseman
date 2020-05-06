@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<manifest android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android" package="land.aseman.example" android:installLocation="auto" android:versionCode="1">
-    <application android:label="-- %%INSERT_APP_NAME%% --" android:icon="@drawable/icon" android:name="land.aseman.android.AsemanApplication" android:theme="@style/splashScreenTheme">
-        <activity android:screenOrientation="portrait" android:label="-- %%INSERT_APP_NAME%% --" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="land.aseman.android.AsemanActivity">
+<manifest android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android" package="io.aseman.example" android:installLocation="auto" android:versionCode="1">
+    <application android:label="-- %%INSERT_APP_NAME%% --" android:icon="@drawable/icon" android:name="io.aseman.android.AsemanApplication" android:theme="@style/splashScreenTheme">
+        <activity android:screenOrientation="portrait" android:label="-- %%INSERT_APP_NAME%% --" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="io.aseman.android.AsemanActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
