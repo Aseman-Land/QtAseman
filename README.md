@@ -31,7 +31,7 @@ Some main features to use on QML are:
 ## QtAseman 3.1.x Roadmap
 
 - iOS style for QtQuickControls ☑
-- Viewport's context menu type ⏳
+- Viewport's context menu type ☑
 - AsemanQml.Models module ☑
 - AsemanQml.Sql module ☑
 - Rewrite Viewport's types ☑
@@ -67,7 +67,9 @@ Afterwards just run `make install` command to install it in the Qt location.
 
 ### QtCreator Wizard
 
-To install QtCreator's wizards, Just copy `qtcreator/wizards/projects/qtasemanapplication/` directory to `share/qtcreator/templates/wizards/projects/` directory of the QtCreator.
+It will install automatically on Linux based operating systems.
+
+For other Operating systems, to install QtCreator's wizards, Just copy `src/wizards/qtcreator/qtasemanapplication/` directory to `share/qtcreator/templates/wizards/projects/` directory of the QtCreator.
 
 ## How to create a QML application using QtAseman
 

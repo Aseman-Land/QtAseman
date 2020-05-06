@@ -1,0 +1,4 @@
+usr/lib/*-linux-gnu/libQAsemanSql*
+usr/lib/*-linux-gnu/cmake/Qt5QAsemanSql/*
+usr/lib/*-linux-gnu/pkgconfig/QAsemanSql.pc
+usr/lib/*-linux-gnu/qt5/mkspecs/modules/qt_lib_asemansql*

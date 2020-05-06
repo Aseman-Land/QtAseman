@@ -10,9 +10,10 @@ SUBDIRS = \
     network \
     sql \
     asemanqml \
-    styles
+    styles 
 
 android: SUBDIRS += android
+linux: !android: SUBDIRS += wizards
 
 gui.depends += core
 network.depends += core gui

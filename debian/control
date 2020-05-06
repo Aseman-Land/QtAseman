@@ -84,6 +84,20 @@ Depends: libqt5asemannetwork (= ${binary:Version})
 Description: QtNetwork Aseman tools development files, 
  It's free and released under the GPLv3 license.
 
+Package: libqt5asemansql
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QtSql Aseman tools, 
+ It's free and released under the GPLv3 license.
+
+Package: libqt5asemansql-dev
+Section: libdevel
+Architecture: any
+Depends: libqt5asemansql (= ${binary:Version})
+Description: QtSql Aseman tools development files, 
+ It's free and released under the GPLv3 license.
+
 Package: libqt5asemangeo
 Section: libs
 Architecture: any
@@ -150,6 +164,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: QtQml Aseman Network components for the Qml, 
  It's free and released under the GPLv3 license.
 
+Package: qml-module-asemansql
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: QtQml Aseman Sql components for the Qml, 
+ It's free and released under the GPLv3 license.
+
 Package: qml-module-asemanmultimedia
 Section: libs
 Architecture: any
@@ -213,6 +234,7 @@ Depends: libqt5asemancore (= ${binary:Version}),
  libqt5asemangui (= ${binary:Version}),
  libqt5asemanwidgets (= ${binary:Version}),
  libqt5asemannetwork (= ${binary:Version}),
+ libqt5asemansql (= ${binary:Version}),
  libqt5asemangeo (= ${binary:Version}),
  libqt5asemanmultimedia (= ${binary:Version}),
  libqt5asemanqml (= ${binary:Version}),
@@ -220,7 +242,8 @@ Depends: libqt5asemancore (= ${binary:Version}),
  qml-module-asemanmultimedia, qml-module-asemanawesome,
  qml-module-asemanmaterial, qml-module-asemanmodern,
  qml-module-asemancontrols, qml-module-asemanviewport,
- qml-module-asemannetwork, qml-module-asemanmodels
+ qml-module-asemannetwork, qml-module-asemanmodels,
+ qml-module-asemansql
 Description: Qt Aseman full package, 
  It's free and released under the GPLv3 license.
 
@@ -231,6 +254,7 @@ Depends: libqt5asemancore-dev (= ${binary:Version}),
  libqt5asemangui-dev (= ${binary:Version}),
  libqt5asemanwidgets-dev (= ${binary:Version}),
  libqt5asemannetwork-dev (= ${binary:Version}),
+ libqt5asemansql-dev (= ${binary:Version}),
  libqt5asemangeo-dev (= ${binary:Version}),
  libqt5asemanmultimedia-dev (= ${binary:Version}),
  libqt5asemanqml-dev (= ${binary:Version}),
