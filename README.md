@@ -643,7 +643,7 @@ AsemanListModel {
 SqlObject {
     id: mysql
     databaseName: "TestDB"
-    driver: "QMYSQL"
+    driver: SqlObject.MySQL
     host: "127.0.0.1"; port: 3306
     userName: "user"; password: "password"
     
@@ -665,7 +665,7 @@ SqlObject {
 SqlObject {
     id: sqlite
     databaseName: "/Path/to/db"
-    driver: "QSQLITE"
+    driver: SqlObject.SQLite
     
     Component.onCompleted: {
         var result = query("SOME QUERY");
