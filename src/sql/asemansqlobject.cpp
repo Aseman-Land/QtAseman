@@ -310,7 +310,7 @@ qint32 AsemanSqlObject::insert(const QString &extra)
     QString queryArgs = properties.join(QStringLiteral(", "));
     QString queryArgsBinds = QStringLiteral(":") + properties.join(QStringLiteral(", :"));
 
-    QString query = QStringLiteral("INSERT INTO ") + p->table + QStringLiteral(" (") + queryArgs + QStringLiteral(")") +
+    QString query = QStringLiteral("REPLACE INTO ") + p->table + QStringLiteral(" (") + queryArgs + QStringLiteral(")") +
                     QStringLiteral(" VALUES (") + queryArgsBinds + QStringLiteral(")");
 
     QSqlQuery q(core->get());
