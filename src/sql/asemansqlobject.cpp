@@ -456,7 +456,9 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
 
 void AsemanSqlObject::create()
 {
-    AsemanSqlObject::query(p->createQuery);
+    QStringList queries = p->createQuery.split(QStringLiteral(";"), QString::SkipEmptyParts);
+    for (const QString &q: queries)
+        AsemanSqlObject::query(q);
 }
 
 void AsemanSqlObject::drop()
