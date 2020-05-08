@@ -8,7 +8,7 @@ import globals 1.0
 NetworkRequest {
     id: req
     contentType: 0 //NetworkRequest.TypeJson
-    ignoreKeys: ["baseUrl", "refreshingState", "allowGlobalBusy"]
+    ignoreKeys: ["baseUrl", "refreshingState", "allowGlobalBusy", "allowShowErrors"]
     ignoreRegExp: /^_\\w+$/
     headers: {
         "Content-Type": "application/json"
@@ -17,6 +17,7 @@ NetworkRequest {
     readonly property string baseUrl: "https://jsonplaceholder.typicode.com"
     readonly property bool refreshingState: req.refreshing
     property bool allowGlobalBusy: false
+    property bool allowShowErrors: true
 
     property alias _networkManager: networkManager
     property bool _debug: false
@@ -49,6 +50,9 @@ NetworkRequest {
     }
 
     function _showError(title, body) {
+        if (!allowShowErrors)
+            return;
+
         Tools.jsDelayCall(500, function() {
             Viewport.controller.trigger("dialog:/general/error", {"title": title, "body": body})
         })
