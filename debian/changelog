@@ -1,3 +1,12 @@
+qtaseman (3.1.1-1aseman-focal) focal; urgency=medium
+
+  * Update Wizards
+  * Change insert query to replace on SQL module
+  * Many bugfix and Improvements on Viewports
+
+ -- Aseman IO <contact@aseman.io>  Tue, 12 May 2020 23:27:00 +0330
+
+
 qtaseman (3.1.0-3aseman-focal) focal; urgency=medium
 
   * Increase ios-page gesture width
