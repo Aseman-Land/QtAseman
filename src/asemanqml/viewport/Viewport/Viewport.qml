@@ -36,7 +36,7 @@ ViewportCore {
 
         var comObj;
         if ((cmp + "").length && cmp.status === undefined) {
-            comObj = createComponent(Qt.resolvedUrl(cmp));
+            comObj = Qt.createComponent(Qt.resolvedUrl(cmp));
         } else {
             comObj = cmp
         }
@@ -61,7 +61,7 @@ ViewportCore {
         lastItem.parent = typeObj.backgroundScene;
 
         if ((component + "").length && component.status === undefined) {
-            component = createComponent(Qt.resolvedUrl(component));
+            component = Qt.createComponent(Qt.resolvedUrl(component));
         }
         if (component.status === Component.Error) {
             console.debug(component.errorString().trim())
