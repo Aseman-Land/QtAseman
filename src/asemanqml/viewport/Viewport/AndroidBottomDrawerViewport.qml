@@ -63,7 +63,7 @@ AbstractViewportType {
             target: item.foreground
             axis: Drag.YAxis
             minimumY: 0
-            maximumY: item.height
+            maximumY: item.height - 10
             filterChildren: true
             onActiveChanged: {
                 if (dragArea.drag.active)

@@ -47,8 +47,8 @@ AbstractViewportType {
         drag {
             target: item.foreground
             axis: Drag.XAxis
-            minimumX: LayoutMirroring.enabled? -item.width : 0
-            maximumX: LayoutMirroring.enabled? 0 : item.width
+            minimumX: LayoutMirroring.enabled? -item.width + 10 : 0
+            maximumX: LayoutMirroring.enabled? 0 : item.width - 10
             filterChildren: true
             onActiveChanged: {
                 if (dragArea.drag.active)
