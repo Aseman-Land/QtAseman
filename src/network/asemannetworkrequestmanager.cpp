@@ -90,6 +90,8 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, QH
 
     addHeaderData(req, headers);
 
+    req.setRawHeader("Content-Type", "multipart/form-data; boundary=" + p->boundaryToken.toUtf8());
+
     QNetworkReply *reply = p->accessManager->post(req, parts);
     reply->setParent(this);
 
@@ -124,6 +126,8 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 
     addHeaderData(req, headers);
+
+    req.setRawHeader("Content-Type", "multipart/form-data; boundary=" + p->boundaryToken.toUtf8());
 
     QNetworkReply *reply = p->accessManager->sendCustomRequest(req, method.toUtf8(), parts);
     reply->setParent(this);
@@ -171,6 +175,8 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, QHt
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 
     addHeaderData(req, headers);
+
+    req.setRawHeader("Content-Type", "multipart/form-data; boundary=" + p->boundaryToken.toUtf8());
 
     QNetworkReply *reply = p->accessManager->put(req, parts);
     reply->setParent(this);
