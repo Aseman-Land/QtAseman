@@ -54,7 +54,17 @@ ViewportCore {
             if (typeObj.open || typeObj.ratio > 0)
                 return;
 
-            lastItem.parent = scene;
+            var last = typeObj.backgroundItem
+            var idx = list.indexOf(typeObj)
+            if (idx >= 0 && idx < list.count-1) {
+                var nextItem = list.at(idx+1);
+
+                last.parent = nextItem.backgroundScene;
+                nextItem.backgroundItem = last
+            } else {
+                last.parent = scene;
+            }
+
             list.removeAll(typeObj);
         });
 

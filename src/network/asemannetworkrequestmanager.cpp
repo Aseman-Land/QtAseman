@@ -37,7 +37,7 @@ AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
     QObject(parent)
 {
     p = new Private;
-    p->boundaryToken = "Aseman:292a15d1-64af-4ee2-82b5-2d42adb9fd43";
+    p->boundaryToken = QStringLiteral("Aseman:292a15d1-64af-4ee2-82b5-2d42adb9fd43");
 
     p->accessManager = new QNetworkAccessManager(this);
 }
@@ -194,7 +194,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(const QUrl &url,
 
 void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod)
 {
-    request->setError("");
+    request->setError(QStringLiteral(""));
     request->setResult(QVariant(), -1);
     request->setRefreshing(true);
 
@@ -256,7 +256,7 @@ QByteArray AsemanNetworkRequestManager::variantToData(const QVariant &var) const
 
 QVariant AsemanNetworkRequestManager::processData(AsemanNetworkRequestReply *reply, const QByteArray &data) const
 {
-    if (reply->headers().value("content-type").toString().contains("application/json"))
+    if (reply->headers().value(QStringLiteral("content-type")).toString().contains(QStringLiteral("application/json")))
         return QJsonDocument::fromJson(data).toVariant();
     else
         return QVariant::fromValue(data);
@@ -313,7 +313,7 @@ QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map,
             continue;
 
         if (res.count())
-            res += "\n";
+            res += QStringLiteral("\n");
 
         res += i.value().toString() + "=" + var.toString().toUtf8().toPercentEncoding();
     }
@@ -322,7 +322,7 @@ QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map,
 
 QString AsemanNetworkRequestManager::generateJson(const QVariantMap &map) const
 {
-    return QJsonDocument::fromVariant(map).toJson(QJsonDocument::Compact);
+    return QString::fromUtf8( QJsonDocument::fromVariant(map).toJson(QJsonDocument::Compact) );
 }
 
 QByteArray AsemanNetworkRequestManager::requestData(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
@@ -404,12 +404,12 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::patch(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
-    return customMethod("PATCH", request, ignoreEmptyValues);
+    return customMethod(QStringLiteral("PATCH"), request, ignoreEmptyValues);
 }
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::deleteMethod(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
-    return customMethod("DELETE", request, ignoreEmptyValues);
+    return customMethod(QStringLiteral("DELETE"), request, ignoreEmptyValues);
 }
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
