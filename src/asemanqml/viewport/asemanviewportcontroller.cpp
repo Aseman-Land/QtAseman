@@ -101,6 +101,7 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
 
         if (rx.indexIn(url) == 0)
         {
+            properties["properties"] = properties;
             properties["url"] = url;
 
             QUrl urlObj(url);

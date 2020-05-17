@@ -469,6 +469,9 @@ Component {
         
          // If you specify a url property, triggered url will put to this property
         property string url
+        
+         // If you specify a properties property, initial properties will put to this property
+        property variant properties
     }
 }
 ```
