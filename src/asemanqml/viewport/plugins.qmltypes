@@ -9,6 +9,7 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: [
         "AsemanQml.Base 2.0",
+        "AsemanQml.Modern 2.0",
         "QtGraphicalEffects 1.12",
         "QtQml 2.1",
         "QtQml.Models 2.2",
@@ -50,6 +51,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -155,6 +158,7 @@ Module {
         name: "AsemanViewportTypeAttechedProperty"
         prototype: "QObject"
         Property { name: "gestureWidth"; type: "double" }
+        Property { name: "transformOrigin"; type: "QPointF" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
         Property { name: "open"; type: "bool" }
@@ -183,6 +187,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -215,6 +221,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -245,6 +253,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -274,6 +284,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -303,6 +315,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -333,6 +347,39 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "touchToClose"; type: "bool" }
+        Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "blockBack"; type: "bool" }
+        Property { name: "blockBackIsNull"; type: "bool"; isReadonly: true }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Viewport/IOSContextMenuViewport 2.0"
+        exports: ["AsemanQml.Viewport/IOSContextMenuViewport 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "list"; type: "AsemanListObject"; isPointer: true }
+        Property { name: "fillForeground"; type: "bool" }
+        Property { name: "index"; type: "int" }
+        Property { name: "count"; type: "int" }
+        Property { name: "openedType"; type: "string" }
+        Property { name: "ratio"; type: "double" }
+        Property { name: "background"; type: "RoundedItem_QMLTYPE_2"; isReadonly: true; isPointer: true }
+        Property { name: "backgroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Property { name: "foreground"; type: "RoundedItem_QMLTYPE_2"; isReadonly: true; isPointer: true }
+        Property { name: "foregroundScene"; type: "QQuickRectangle"; isReadonly: true; isPointer: true }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "backgroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "foregroundItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "viewport"; type: "AsemanViewport"; isPointer: true }
+        Property { name: "open"; type: "bool" }
+        Property { name: "gestureWidth"; type: "double" }
+        Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -362,6 +409,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -394,6 +443,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -432,6 +483,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }
@@ -461,6 +514,8 @@ Module {
         Property { name: "open"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "gestureWidthIsNull"; type: "bool"; isReadonly: true }
+        Property { name: "transformOrigin"; type: "QPointF" }
+        Property { name: "transformOriginIsNull"; type: "bool"; isReadonly: true }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "touchToCloseIsNull"; type: "bool"; isReadonly: true }
         Property { name: "blockBack"; type: "bool" }

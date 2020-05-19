@@ -107,6 +107,29 @@ void AsemanAbstractViewportType::setGestureWidth(qreal gestureWidth)
     p->foregroundAttachedType->setGestureWidth(gestureWidth);
 }
 
+QPointF AsemanAbstractViewportType::transformOrigin() const
+{
+    return p->foregroundAttachedType? p->foregroundAttachedType->transformOrigin() : QPointF();
+}
+
+bool AsemanAbstractViewportType::transformOriginIsNull() const
+{
+    if (!p->foregroundAttachedType)
+        return false;
+
+    bool isNull;
+    p->foregroundAttachedType->transformOrigin(&isNull);
+    return isNull;
+}
+
+void AsemanAbstractViewportType::setTransformOrigin(const QPointF &transformOrigin)
+{
+    if (!p->foregroundAttachedType)
+        return;
+
+    p->foregroundAttachedType->setTransformOrigin(transformOrigin);
+}
+
 bool AsemanAbstractViewportType::touchToClose() const
 {
     return p->foregroundAttachedType? p->foregroundAttachedType->touchToClose() : false;
@@ -199,6 +222,21 @@ void AsemanViewportTypeAttechedProperty::setGestureWidth(qreal gestureWidth)
 
     mGestureWidth = gestureWidth;
     Q_EMIT gestureWidthChanged();
+}
+
+QPointF AsemanViewportTypeAttechedProperty::transformOrigin(bool *isNull) const
+{
+    if (isNull) *isNull = mTransformOrigin.isNull();
+    return mTransformOrigin;
+}
+
+void AsemanViewportTypeAttechedProperty::setTransformOrigin(const QPointF &transformOrigin)
+{
+    if (mTransformOrigin == transformOrigin)
+        return;
+
+    mTransformOrigin = transformOrigin;
+    Q_EMIT transformOriginChanged();
 }
 
 bool AsemanViewportTypeAttechedProperty::touchToClose(bool *isNull) const

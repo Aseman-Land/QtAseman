@@ -495,6 +495,7 @@ ViewportType.gestureWidth: 10 // Change touch/mouse gesture area's width
 ViewportType.touchToClose: false // Disable touch background to close feature
 ViewportType.blockBack: true // Disable press back to close feature
 ViewportType.open: false // Close current page of the viewport
+ViewportType.transformOrigin: Qt.point(10, 20) // Sets transform origin on some types like menu
 ```
 
 ### AsemanQml.Network
