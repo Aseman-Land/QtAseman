@@ -35,6 +35,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
+        disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
     }
 
@@ -46,6 +47,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
+        connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
     }
 
@@ -54,6 +56,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     Q_EMIT touchToCloseChanged();
     Q_EMIT openChanged();
     Q_EMIT blockBackChanged();
+    Q_EMIT typeTransformOriginChanged();
 }
 
 QQuickItem *AsemanAbstractViewportType::backgroundItem() const
@@ -107,27 +110,27 @@ void AsemanAbstractViewportType::setGestureWidth(qreal gestureWidth)
     p->foregroundAttachedType->setGestureWidth(gestureWidth);
 }
 
-QPointF AsemanAbstractViewportType::transformOrigin() const
+QPointF AsemanAbstractViewportType::typeTransformOrigin() const
 {
-    return p->foregroundAttachedType? p->foregroundAttachedType->transformOrigin() : QPointF();
+    return p->foregroundAttachedType? p->foregroundAttachedType->typeTransformOrigin() : QPointF();
 }
 
-bool AsemanAbstractViewportType::transformOriginIsNull() const
+bool AsemanAbstractViewportType::typeTransformOriginIsNull() const
 {
     if (!p->foregroundAttachedType)
         return false;
 
     bool isNull;
-    p->foregroundAttachedType->transformOrigin(&isNull);
+    p->foregroundAttachedType->typeTransformOrigin(&isNull);
     return isNull;
 }
 
-void AsemanAbstractViewportType::setTransformOrigin(const QPointF &transformOrigin)
+void AsemanAbstractViewportType::setTypeTransformOrigin(const QPointF &typeTransformOrigin)
 {
     if (!p->foregroundAttachedType)
         return;
 
-    p->foregroundAttachedType->setTransformOrigin(transformOrigin);
+    p->foregroundAttachedType->setTypeTransformOrigin(typeTransformOrigin);
 }
 
 bool AsemanAbstractViewportType::touchToClose() const
@@ -224,19 +227,19 @@ void AsemanViewportTypeAttechedProperty::setGestureWidth(qreal gestureWidth)
     Q_EMIT gestureWidthChanged();
 }
 
-QPointF AsemanViewportTypeAttechedProperty::transformOrigin(bool *isNull) const
+QPointF AsemanViewportTypeAttechedProperty::typeTransformOrigin(bool *isNull) const
 {
-    if (isNull) *isNull = mTransformOrigin.isNull();
-    return mTransformOrigin;
+    if (isNull) *isNull = mTypeTransformOrigin.isNull();
+    return mTypeTransformOrigin;
 }
 
-void AsemanViewportTypeAttechedProperty::setTransformOrigin(const QPointF &transformOrigin)
+void AsemanViewportTypeAttechedProperty::setTypeTransformOrigin(const QPointF &typeTransformOrigin)
 {
-    if (mTransformOrigin == transformOrigin)
+    if (mTypeTransformOrigin == typeTransformOrigin)
         return;
 
-    mTransformOrigin = transformOrigin;
-    Q_EMIT transformOriginChanged();
+    mTypeTransformOrigin = typeTransformOrigin;
+    Q_EMIT typeTransformOriginChanged();
 }
 
 bool AsemanViewportTypeAttechedProperty::touchToClose(bool *isNull) const

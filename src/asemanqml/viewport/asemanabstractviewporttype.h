@@ -15,8 +15,8 @@ class AsemanAbstractViewportType : public QQuickItem
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
     Q_PROPERTY(bool gestureWidthIsNull READ gestureWidthIsNull NOTIFY gestureWidthChanged)
 
-    Q_PROPERTY(QPointF transformOrigin READ transformOrigin WRITE setTransformOrigin NOTIFY transformOriginChanged)
-    Q_PROPERTY(bool transformOriginIsNull READ transformOriginIsNull NOTIFY transformOriginChanged)
+    Q_PROPERTY(QPointF typeTransformOrigin READ typeTransformOrigin WRITE setTypeTransformOrigin NOTIFY typeTransformOriginChanged)
+    Q_PROPERTY(bool typeTransformOriginIsNull READ typeTransformOriginIsNull NOTIFY typeTransformOriginChanged)
 
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool touchToCloseIsNull READ touchToCloseIsNull NOTIFY touchToCloseChanged)
@@ -43,9 +43,9 @@ public:
     bool gestureWidthIsNull() const;
     void setGestureWidth(qreal gestureWidth);
 
-    QPointF transformOrigin() const;
-    bool transformOriginIsNull() const;
-    void setTransformOrigin(const QPointF &transformOrigin);
+    QPointF typeTransformOrigin() const;
+    bool typeTransformOriginIsNull() const;
+    void setTypeTransformOrigin(const QPointF &typeTransformOrigin);
 
     bool touchToClose() const;
     bool touchToCloseIsNull() const;
@@ -60,7 +60,7 @@ public:
 
 Q_SIGNALS:
     void gestureWidthChanged();
-    void transformOriginChanged();
+    void typeTransformOriginChanged();
     void touchToCloseChanged();
     void blockBackChanged();
     void foregroundItemChanged();
@@ -83,7 +83,7 @@ public:
 class AsemanViewportTypeAttechedProperty : public QObject {
     Q_OBJECT
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
-    Q_PROPERTY(QPointF transformOrigin READ transformOrigin WRITE setTransformOrigin NOTIFY transformOriginChanged)
+    Q_PROPERTY(QPointF transformOrigin READ typeTransformOrigin WRITE setTypeTransformOrigin NOTIFY typeTransformOriginChanged)
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
     Q_PROPERTY(bool open READ open WRITE setOpen NOTIFY openChanged)
@@ -95,8 +95,8 @@ public:
     qreal gestureWidth(bool *isNull = Q_NULLPTR) const;
     void setGestureWidth(qreal gestureWidth);
 
-    QPointF transformOrigin(bool *isNull = Q_NULLPTR) const;
-    void setTransformOrigin(const QPointF &point);
+    QPointF typeTransformOrigin(bool *isNull = Q_NULLPTR) const;
+    void setTypeTransformOrigin(const QPointF &point);
 
     bool touchToClose(bool *isNull = Q_NULLPTR) const;
     void setTouchToClose(bool touchToClose);
@@ -109,7 +109,7 @@ public:
 
 Q_SIGNALS:
     void gestureWidthChanged();
-    void transformOriginChanged();
+    void typeTransformOriginChanged();
     void touchToCloseChanged();
     void blockBackChanged();
     void openChanged();
@@ -118,7 +118,7 @@ private:
     QVariant mGestureWidth;
     QVariant mTouchToClose;
     QVariant mBlockBack;
-    QPointF mTransformOrigin;
+    QPointF mTypeTransformOrigin;
     bool mOpen;
 };
 

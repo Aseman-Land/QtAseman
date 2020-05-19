@@ -5,24 +5,30 @@ import AsemanQml.Base 2.0
 AbstractViewportType {
     id: item
 
-    background.transformOrigin: item.transformOriginIsNull? Qt.point(width/2, height/2) : item.transformOrigin
     background.transform: Scale {
-        origin.x: item.transformOriginIsNull? item.width/2 : item.transformOrigin.x
-        origin.y: item.transformOriginIsNull? item.height/2 : item.transformOrigin.y
+        origin.x: listener.result.x
+        origin.y: listener.result.y
         xScale: 1 + ratio * 0.1
         yScale: 1 + ratio * 0.1
     }
 
-    foreground.transformOrigin: item.transformOriginIsNull? Qt.point(width/2, height/2) : item.transformOrigin
     foreground.transform: Scale {
-        origin.x: item.transformOriginIsNull? item.width/2 : item.transformOrigin.x
-        origin.y: item.transformOriginIsNull? item.height/2 : item.transformOrigin.y
+        origin.x: listener.result.x
+        origin.y: listener.result.y
         xScale: 0.5 + ratio * 0.5
         yScale: 0.5 + ratio * 0.5
     }
     foreground.opacity: ratio
     foreground.z: 10
     foregroundScene.color: "transparent"
+
+    PointMapListener {
+        id: listener
+        source: item.foregroundItem
+        dest: item
+        x: item.typeTransformOriginIsNull? 0 : item.typeTransformOrigin.x
+        y: item.typeTransformOriginIsNull? 0 : item.typeTransformOrigin.y
+    }
 
     Behavior on ratio {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 250 }
@@ -36,8 +42,8 @@ AbstractViewportType {
         scale: item.background.scale
         opacity: ratio
         transform: Scale {
-            origin.x: item.transformOriginIsNull? item.width/2 : item.transformOrigin.x
-            origin.y: item.transformOriginIsNull? item.height/2 : item.transformOrigin.y
+            origin.x: listener.result.x
+            origin.y: listener.result.y
             xScale: 1 + ratio * 0.1
             yScale: 1 + ratio * 0.1
         }
