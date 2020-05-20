@@ -26,6 +26,7 @@
 #include <QDataStream>
 #include <QFile>
 #include <QDir>
+#include <QJSValue>
 
 class AsemanNetworkRequestObject::Private
 {
@@ -259,7 +260,12 @@ QVariantMap AsemanNetworkRequestObject:: toMap() const
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
         if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) < 0) )
-            res[pr] = property(pr.toUtf8());
+        {
+            QVariant var = property(pr.toUtf8());
+            if (QString::fromUtf8(var.typeName()) == QStringLiteral("QJSValue"))
+                var = var.value<QJSValue>().toVariant();
+            res[pr] = var;
+        }
     return res;
 }
 

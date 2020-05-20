@@ -4,7 +4,7 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TARGET = QAsemanNetwork
-QT = core network asemancore asemangui asemanqml
+QT = core network asemancore asemangui asemanqml qml
 
 MODULE = asemannetwork
 
