@@ -14,3 +14,4 @@ BackAction 2.0 BackAction.qml
 CrashController 2.0 CrashController.qml
 RoundedItem 2.0 RoundedItem.qml
 CoverList 2.0 CoverList.qml
+DelayPropertySwitch 2.0 DelayPropertySwitch.qml

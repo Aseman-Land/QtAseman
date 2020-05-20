@@ -7,7 +7,36 @@ import QtQuick.tooling 1.2
 // 'qmlplugindump -nonrelocatable AsemanQml.Base 2.0'
 
 Module {
-    dependencies: ["QtQuick 2.12"]
+    dependencies: [
+        "QtGraphicalEffects 1.12",
+        "QtQml 2.1",
+        "QtQml.Models 2.2",
+        "QtQuick 2.9",
+        "QtQuick.Controls 2.5",
+        "QtQuick.Controls.Fusion 2.12",
+        "QtQuick.Controls.Fusion.impl 2.12",
+        "QtQuick.Controls.IOSStyle 2.12",
+        "QtQuick.Controls.IOSStyle.impl 2.12",
+        "QtQuick.Controls.Imagine 2.12",
+        "QtQuick.Controls.Imagine.impl 2.12",
+        "QtQuick.Controls.Material 2.12",
+        "QtQuick.Controls.Material.impl 2.12",
+        "QtQuick.Controls.Styles 1.4",
+        "QtQuick.Controls.Styles.Plasma 2.0",
+        "QtQuick.Controls.Universal 2.12",
+        "QtQuick.Controls.Universal.impl 2.12",
+        "QtQuick.Controls.impl 2.12",
+        "QtQuick.Extras 1.4",
+        "QtQuick.Layouts 1.4",
+        "QtQuick.Templates 2.5",
+        "QtQuick.Window 2.2",
+        "org.kde.kconfig 1.0",
+        "org.kde.kirigami 2.9",
+        "org.kde.kquickcontrolsaddons 2.0",
+        "org.kde.plasma.components 2.0",
+        "org.kde.plasma.core 2.0",
+        "org.kde.plasma.extras 2.0"
+    ]
     Component {
         name: "AsemanApplication"
         prototype: "QObject"
@@ -757,13 +786,8 @@ Module {
     Component {
         name: "AsemanFileDownloaderQueue"
         prototype: "QObject"
-        exports: [
-            "AsemanQml.Base/DownloaderQueue 2.0",
-            "AsemanQml.Base/FileDownloaderQueue 2.0"
-        ]
-        isCreatable: false
-        isSingleton: true
-        exportMetaObjectRevisions: [0, 0]
+        exports: ["AsemanQml.Base/FileDownloaderQueue 2.0"]
+        exportMetaObjectRevisions: [0]
         Property { name: "capacity"; type: "int" }
         Property { name: "destination"; type: "string" }
         Signal {
@@ -2200,6 +2224,18 @@ Module {
         Method { name: "startMonitoring"; type: "QVariant" }
         Method { name: "unlock"; type: "QVariant" }
         Method { name: "checkCrash"; type: "QVariant" }
+        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+    }
+    Component {
+        prototype: "QObject"
+        name: "AsemanQml.Base/DelayPropertySwitch 2.0"
+        exports: ["AsemanQml.Base/DelayPropertySwitch 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "items"
+        Property { name: "switchProperty"; type: "QVariant" }
+        Property { name: "targetProperty"; type: "QVariant" }
+        Property { name: "delay"; type: "int" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
