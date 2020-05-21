@@ -1,3 +1,16 @@
+qtaseman (3.1.2-1aseman-focal) focal; urgency=medium
+
+  * Network multipart requests bugfix
+  * Add close support for items placed on the middle of the Viewport's
+  * Add ViewportControllers initial properties to `property variant properies`
+  * Add ViewportType.transformOrigin. It currently used on the Viewport's menu type
+  * Checkboxes wrong colors bugfix
+  * Add js values support for NetworkRequestObjects
+  * Add DelayPropertySwitch component
+
+ -- Aseman IO <contact@aseman.io>  Thu, 21 May 2020 04:27:00 +0330
+
+
 qtaseman (3.1.1-1aseman-focal) focal; urgency=medium
 
   * Update Wizards
