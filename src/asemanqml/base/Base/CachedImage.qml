@@ -48,6 +48,8 @@ Item {
     property alias verticalAlignment: image.verticalAlignment
 
     property string fileName: {
+        if (source.length == 0)
+            return "";
         var name = Tools.md5(source) + "." + Tools.fileSuffix(source)
         var dir = AsemanApp.homePath + "/cache/"
         Tools.mkDir(dir)
