@@ -9,6 +9,7 @@ AbstractViewportType {
 
     background.scale: 1 - (realRatio * 0.05)
     background.transformOrigin: Item.Bottom
+    background.clip: true
 
     foreground.z: 10
     foreground.y: height * (1-ratio)
