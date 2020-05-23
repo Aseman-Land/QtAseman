@@ -36,7 +36,7 @@ AbstractViewportType {
 
     FastBlur {
         anchors.fill: parent
-        radius: 64
+        radius: Devices.isAndroid? 0 : 64
         cached: true
         source: item.background
         scale: item.background.scale
@@ -46,6 +46,12 @@ AbstractViewportType {
             origin.y: listener.result.y
             xScale: 1 + ratio * 0.1
             yScale: 1 + ratio * 0.1
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            opacity: Devices.isAndroid? 0.7 : 0.3
+            color: Devices.isAndroid? "#000" : "#888"
         }
 
         MouseArea {
