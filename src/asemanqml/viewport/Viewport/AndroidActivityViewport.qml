@@ -14,7 +14,6 @@ AbstractViewportType {
     foreground.z: 10
     foreground.y: height * (1-ratio)
     foreground.parent: dragArea
-    foregroundScene.anchors.topMargin: -Devices.statusBarHeight
 
     property real openRatio: open? 1 : 0
     property real mouseRatio: 1
