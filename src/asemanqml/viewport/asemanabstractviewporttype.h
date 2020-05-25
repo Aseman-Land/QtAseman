@@ -1,6 +1,7 @@
 #ifndef ASEMANABSTRACTVIEWPORTTYPE_H
 #define ASEMANABSTRACTVIEWPORTTYPE_H
 
+#include <QPointer>
 #include <QQuickItem>
 
 class AsemanViewport;
@@ -23,6 +24,9 @@ class AsemanAbstractViewportType : public QQuickItem
 
     Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
     Q_PROPERTY(bool blockBackIsNull READ blockBackIsNull NOTIFY blockBackChanged)
+
+    Q_PROPERTY(QQuickItem* sourceObject READ sourceObject WRITE setSourceObject NOTIFY sourceObjectChanged)
+    Q_PROPERTY(bool sourceObjectIsNull READ sourceObjectIsNull NOTIFY sourceObjectChanged)
 
     class Private;
 
@@ -55,6 +59,10 @@ public:
     bool blockBackIsNull() const;
     void setBlockBack(bool blockBack);
 
+    QQuickItem *sourceObject() const;
+    bool sourceObjectIsNull() const;
+    void setSourceObject(QQuickItem *item);
+
     bool open() const;
     void setOpen(bool open);
 
@@ -66,6 +74,7 @@ Q_SIGNALS:
     void foregroundItemChanged();
     void backgroundItemChanged();
     void viewportChanged();
+    void sourceObjectChanged();
     void openChanged();
 
 private:
@@ -86,6 +95,7 @@ class AsemanViewportTypeAttechedProperty : public QObject {
     Q_PROPERTY(QPointF transformOrigin READ typeTransformOrigin WRITE setTypeTransformOrigin NOTIFY typeTransformOriginChanged)
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
+    Q_PROPERTY(QQuickItem* sourceObject READ sourceObject WRITE setSourceObject NOTIFY sourceObjectChanged)
     Q_PROPERTY(bool open READ open WRITE setOpen NOTIFY openChanged)
 
 public:
@@ -104,6 +114,9 @@ public:
     bool blockBack(bool *isNull = Q_NULLPTR) const;
     void setBlockBack(bool blockBack);
 
+    QQuickItem *sourceObject(bool *isNull = Q_NULLPTR) const;
+    void setSourceObject(QQuickItem *item);
+
     bool open() const;
     void setOpen(bool open);
 
@@ -112,6 +125,7 @@ Q_SIGNALS:
     void typeTransformOriginChanged();
     void touchToCloseChanged();
     void blockBackChanged();
+    void sourceObjectChanged();
     void openChanged();
 
 private:
@@ -119,6 +133,7 @@ private:
     QVariant mTouchToClose;
     QVariant mBlockBack;
     QPointF mTypeTransformOrigin;
+    QPointer<QQuickItem> mSourceObject;
     bool mOpen;
 };
 

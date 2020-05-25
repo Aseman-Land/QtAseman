@@ -37,6 +37,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
+        disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::sourceObjectChanged, this, &AsemanAbstractViewportType::sourceObjectChanged);
     }
 
     p->foregroundItem = foregroundItem;
@@ -49,6 +50,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::openChanged, this, &AsemanAbstractViewportType::openChanged);
+        connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::sourceObjectChanged, this, &AsemanAbstractViewportType::sourceObjectChanged);
     }
 
     Q_EMIT foregroundItemChanged();
@@ -57,6 +59,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     Q_EMIT openChanged();
     Q_EMIT blockBackChanged();
     Q_EMIT typeTransformOriginChanged();
+    Q_EMIT sourceObjectChanged();
 }
 
 QQuickItem *AsemanAbstractViewportType::backgroundItem() const
@@ -179,6 +182,29 @@ void AsemanAbstractViewportType::setBlockBack(bool blockBack)
     p->foregroundAttachedType->setBlockBack(blockBack);
 }
 
+QQuickItem *AsemanAbstractViewportType::sourceObject() const
+{
+    return p->foregroundAttachedType? p->foregroundAttachedType->sourceObject() : Q_NULLPTR;
+}
+
+bool AsemanAbstractViewportType::sourceObjectIsNull() const
+{
+    if (!p->foregroundAttachedType)
+        return false;
+
+    bool isNull;
+    p->foregroundAttachedType->sourceObject(&isNull);
+    return isNull;
+}
+
+void AsemanAbstractViewportType::setSourceObject(QQuickItem *item)
+{
+    if (!p->foregroundAttachedType)
+        return;
+
+    p->foregroundAttachedType->setSourceObject(item);
+}
+
 bool AsemanAbstractViewportType::open() const
 {
     return p->foregroundAttachedType? p->foregroundAttachedType->open() : p->open;
@@ -208,6 +234,7 @@ AsemanViewportTypeAttechedProperty *AsemanViewportType::qmlAttachedProperties(QO
 
 AsemanViewportTypeAttechedProperty::AsemanViewportTypeAttechedProperty(QObject *parent) :
     QObject(parent),
+    mSourceObject(Q_NULLPTR),
     mOpen(true)
 {
 }
@@ -270,6 +297,22 @@ void AsemanViewportTypeAttechedProperty::setBlockBack(bool blockBack)
 
     mBlockBack = blockBack;
     Q_EMIT blockBackChanged();
+}
+
+QQuickItem *AsemanViewportTypeAttechedProperty::sourceObject(bool *isNull) const
+{
+    if (isNull) *isNull = mSourceObject.isNull();
+    return mSourceObject;
+
+}
+
+void AsemanViewportTypeAttechedProperty::setSourceObject(QQuickItem *item)
+{
+    if (mSourceObject == item)
+        return;
+
+    mSourceObject = item;
+    Q_EMIT sourceObjectChanged();
 }
 
 bool AsemanViewportTypeAttechedProperty::open() const
