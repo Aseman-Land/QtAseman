@@ -60,14 +60,4 @@ AbstractViewportType {
             onClicked: if (item.touchToCloseIsNull || item.touchToClose) item.open = false
         }
     }
-
-    FastBlur {
-        width: item.sourceObject? item.sourceObject.width : 0
-        height: item.sourceObject? item.sourceObject.height : 0
-        source: item.sourceObject
-        visible: item.sourceObject
-        radius: 0
-        z: 1000
-        opacity: ratio
-    }
 }
