@@ -64,6 +64,8 @@ void AsemanHashObject::insert(const QString &key, const QVariant &value)
 {
     p->hash.insert(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 
@@ -79,6 +81,8 @@ void AsemanHashObject::insertMulti(const QString &key, const QVariant &value)
 {
     p->hash.insertMulti(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 
@@ -94,6 +98,8 @@ void AsemanHashObject::remove(const QString &key)
 {
     p->hash.remove(key);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 
@@ -110,6 +116,8 @@ void AsemanHashObject::remove(const QString &key, const QVariant &value)
 {
     p->hash.remove(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 
@@ -218,6 +226,11 @@ QVariantList AsemanHashObject::values(const QString &key)
     return p->hash.values(key);
 }
 
+QVariantList AsemanHashObject::values() const
+{
+    return p->hash.values();
+}
+
 
 /*!
     \brief Returns true if the hash contains an item with the \a key;
@@ -254,6 +267,8 @@ void AsemanHashObject::clear()
         return;
     p->hash.clear();
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 

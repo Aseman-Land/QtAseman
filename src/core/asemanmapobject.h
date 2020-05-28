@@ -29,6 +29,8 @@ class LIBQTASEMAN_CORE_EXPORT AsemanMapObject : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(QVariantList values READ values NOTIFY valuesChanged)
+    Q_PROPERTY(QStringList keys READ keys NOTIFY keysChanged)
 
 public:
     AsemanMapObject(QObject *parent = Q_NULLPTR);
@@ -45,6 +47,7 @@ public:
     Q_INVOKABLE QStringList keys();
     Q_INVOKABLE QVariant value( const QString & key );
     Q_INVOKABLE QVariantList values( const QString & key );
+    QVariantList values() const;
 
     Q_INVOKABLE QVariant containt( const QString & key );
     Q_INVOKABLE QVariant containt( const QString & key, const QVariant & value );
@@ -58,6 +61,8 @@ public:
 
 Q_SIGNALS:
     void countChanged();
+    void valuesChanged();
+    void keysChanged();
 
 private:
     AsemanMapObjectPrivate *p;

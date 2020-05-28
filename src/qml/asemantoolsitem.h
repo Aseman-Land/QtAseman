@@ -17,7 +17,7 @@ public:
     virtual ~AsemanToolsItem();
 
 public Q_SLOTS:
-    static QString variantToJson(QVariant value);
+    static QString variantToJson(QVariant value, bool compact = false);
     static QVariant jsonToVariant(const QString &json);
 
     void jsDelayCall(int ms, const QJSValue &value);

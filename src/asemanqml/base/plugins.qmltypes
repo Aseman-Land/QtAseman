@@ -856,6 +856,8 @@ Module {
         exports: ["AsemanQml.Base/HashObject 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "values"; type: "QVariantList"; isReadonly: true }
+        Property { name: "keys"; type: "QStringList"; isReadonly: true }
         Method {
             name: "insert"
             Parameter { name: "key"; type: "string" }
@@ -1061,6 +1063,8 @@ Module {
         exports: ["AsemanQml.Base/MapObject 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "values"; type: "QVariantList"; isReadonly: true }
+        Property { name: "keys"; type: "QStringList"; isReadonly: true }
         Method {
             name: "insert"
             Parameter { name: "key"; type: "string" }
@@ -2006,6 +2010,12 @@ Module {
         isCreatable: false
         isSingleton: true
         exportMetaObjectRevisions: [0]
+        Method {
+            name: "variantToJson"
+            type: "string"
+            Parameter { name: "value"; type: "QVariant" }
+            Parameter { name: "compact"; type: "bool" }
+        }
         Method {
             name: "variantToJson"
             type: "string"

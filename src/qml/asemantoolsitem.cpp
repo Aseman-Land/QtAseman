@@ -21,10 +21,10 @@ QVariant AsemanToolsItem::jsonToVariant(const QString &json)
     return QJsonDocument::fromJson(json.toUtf8()).toVariant();
 }
 
-QString AsemanToolsItem::variantToJson(QVariant value)
+QString AsemanToolsItem::variantToJson(QVariant value, bool compact)
 {
     value = value.value<QJSValue>().toVariant();
-    return QString::fromUtf8(QJsonDocument::fromVariant(value).toJson(QJsonDocument::Indented));
+    return QString::fromUtf8(QJsonDocument::fromVariant(value).toJson(compact? QJsonDocument::Compact : QJsonDocument::Indented));
 }
 
 void AsemanToolsItem::jsDelayCall(int ms, const QJSValue &value)

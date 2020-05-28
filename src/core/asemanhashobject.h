@@ -29,10 +29,14 @@ class LIBQTASEMAN_CORE_EXPORT AsemanHashObject : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(QVariantList values READ values NOTIFY valuesChanged)
+    Q_PROPERTY(QStringList keys READ keys NOTIFY keysChanged)
 
 public:
     AsemanHashObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanHashObject();
+
+    QVariantList values() const;
 
 public Q_SLOTS:
     void insert(const QString & key, const QVariant & value );
@@ -57,6 +61,8 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void countChanged();
+    void valuesChanged();
+    void keysChanged();
 
 private:
     AsemanHashObjectPrivate *p;

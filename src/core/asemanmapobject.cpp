@@ -39,24 +39,32 @@ void AsemanMapObject::insert(const QString &key, const QVariant &value)
 {
     p->map.insert(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 void AsemanMapObject::insertMulti(const QString &key, const QVariant &value)
 {
     p->map.insertMulti(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 void AsemanMapObject::remove(const QString &key)
 {
     p->map.remove(key);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 void AsemanMapObject::remove(const QString &key, const QVariant &value)
 {
     p->map.remove(key,value);
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 QVariant AsemanMapObject::key(const QVariant &value)
@@ -89,6 +97,11 @@ QVariantList AsemanMapObject::values(const QString &key)
     return p->map.values(key);
 }
 
+QVariantList AsemanMapObject::values() const
+{
+    return p->map.values();
+}
+
 QVariant AsemanMapObject::containt(const QString &key)
 {
     return contains(key);
@@ -115,6 +128,8 @@ void AsemanMapObject::clear()
         return;
     p->map.clear();
     Q_EMIT countChanged();
+    Q_EMIT valuesChanged();
+    Q_EMIT keysChanged();
 }
 
 int AsemanMapObject::count()
