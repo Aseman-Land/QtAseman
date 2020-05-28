@@ -1,3 +1,16 @@
+qtaseman (3.1.3-1aseman-focal) focal; urgency=medium
+
+  * Add keys and values properties to HashObject and MapObject
+  * Add compact support to Tools.variantToJson function
+  * Transparent background for none viewport type
+  * ViewportType.sourceObject property which is not used on any types currently
+  * Improve Viewport's ContextMenu on Android
+  * Add Viewport's float type which is ios-popup on ios and android-activity on android
+  * Some improvement and bugfixes
+
+ -- Aseman IO <contact@aseman.io>  Fri, 29 May 2020 00:30:00 +0330
+
+
 qtaseman (3.1.2-1aseman-focal) focal; urgency=medium
 
   * Network multipart requests bugfix
