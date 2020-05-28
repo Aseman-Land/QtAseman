@@ -2239,6 +2239,26 @@ Module {
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
+        prototype: "QQuickGridView"
+        name: "AsemanQml.Base/FileSystemView 2.0"
+        exports: ["AsemanQml.Base/FileSystemView 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "itemsLabelColor"; type: "QColor" }
+        Property { name: "gridWidth"; type: "double" }
+        Property { name: "root"; type: "string" }
+        Property { name: "filters"; type: "QStringList" }
+        Property { name: "showDotAndDotDot"; type: "bool" }
+        Signal {
+            name: "clickedOnFile"
+            Parameter { name: "fileUrl"; type: "QVariant" }
+        }
+        Method { name: "back"; type: "QVariant" }
+        Property { name: "tabBarRatio"; type: "double"; isReadonly: true }
+        Property { name: "tabBarHeight"; type: "double" }
+    }
+    Component {
         prototype: "QQuickItem"
         name: "AsemanQml.Base/MaterialFrame 2.0"
         exports: ["AsemanQml.Base/MaterialFrame 2.0"]
