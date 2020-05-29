@@ -673,6 +673,8 @@ SqlObject {
     
     Component.onCompleted: {
         var result = query("SOME QUERY");
+        // You can use queryAsync("SOME QUERY", {...binds...}, function(res){...})
+        // Method to run queries in async mode
         console.debug( Tools.variantToJson(result) );
     }
 }
