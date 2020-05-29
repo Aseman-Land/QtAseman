@@ -20,7 +20,10 @@
 #define ASEMANSQLOBJECT_H
 
 #include <QObject>
+#include <QThread>
 #include <QVariant>
+
+#include <functional>
 
 #include "asemansql_global.h"
 
@@ -40,7 +43,7 @@ class LIBQTASEMAN_SQL_EXPORT AsemanSqlObject : public QObject
     Q_ENUMS(DriverTypes)
 
     class Private;
-    class Core;
+    friend class AsemanSqlObjectAsync;
 
 public:
     enum DriverTypes {
@@ -51,6 +54,8 @@ public:
         ODBC,
         MSSQL
     };
+
+    class Core;
 
     AsemanSqlObject(QObject *parent = Q_NULLPTR);
     virtual ~AsemanSqlObject();
@@ -83,6 +88,8 @@ public:
     void setCreateQuery(const QString &createQuery);
 
     QString lastError() const;
+
+    void queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result)> callback);
 
 public Q_SLOTS:
     qint32 insert(const QString &extra = QString());
@@ -117,19 +124,45 @@ Q_SIGNALS:
     void createQueryChanged();
     void lastErrorChanged();
 
+protected:
+    QVariantMap prepareBinds(const QVariantMap &binds) const;
+    static QVariantList generateResult(class QSqlQuery &res);
+
 private:
-    Core *init();
+    void initialize();
+    Core *init(const QString &forceConnectionName = QString());
     void refreshKey();
 
     void setLastError(const QString &lastError);
     int queryExec(class QSqlQuery &q);
 
-    QStringList properties();
+    QStringList properties() const;
 
 private:
     Private *p;
 };
 
 typedef AsemanSqlObject QAsemanSqlObject;
+
+class AsemanSqlObjectAsync: public QThread
+{
+    Q_OBJECT
+
+public:
+    AsemanSqlObjectAsync(AsemanSqlObject::Core *core, const QString &query, const QVariantMap &binds, QObject *parent = Q_NULLPTR);
+    virtual ~AsemanSqlObjectAsync();
+
+Q_SIGNALS:
+    void error(const QString &error);
+    void result(const QVariantList &result);
+
+protected:
+    void run() override;
+
+private:
+    AsemanSqlObject::Core *mCore;
+    QString mQuery;
+    QVariantMap mBinds;
+};
 
 #endif // ASEMANSQLOBJECT_H

@@ -9,10 +9,20 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: ["QtQuick 2.12"]
     Component {
-        name: "AsemanSqlObject"
-        prototype: "QObject"
+        name: "AsemanQuickSqlObject"
+        prototype: "AsemanSqlObject"
         exports: ["AsemanQml.Sql/SqlObject 2.0"]
         exportMetaObjectRevisions: [0]
+        Method {
+            name: "queryAsync"
+            Parameter { name: "query"; type: "string" }
+            Parameter { name: "binds"; type: "QVariantMap" }
+            Parameter { name: "callback"; type: "QJSValue" }
+        }
+    }
+    Component {
+        name: "AsemanSqlObject"
+        prototype: "QObject"
         Enum {
             name: "DriverTypes"
             values: {
@@ -49,6 +59,7 @@ Module {
             name: "update"
             Parameter { name: "where"; type: "string" }
         }
+        Method { name: "update" }
         Method { name: "select"; type: "QVariantList" }
         Method {
             name: "select"

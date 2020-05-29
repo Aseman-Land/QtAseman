@@ -32,6 +32,8 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QJsonDocument>
+#include <QMutex>
+#include <QUuid>
 
 #define MSSQL_FIX_VALUE(VALUE) { \
         switch ( static_cast<qint32>(VALUE.type()) ) { \
@@ -73,15 +75,21 @@ public:
 class AsemanSqlObject::Core {
 public:
     ~Core() {
+        QMutexLocker locker(&mutex);
+        if (_db->isOpen())
+            _db->close();
+
         delete _db;
         if(_connectionName.length()) {
             QSqlDatabase::removeDatabase(_connectionName);
         }
+
         objects.remove(_connectionName);
     }
 
     QSqlDatabase &get() { return *_db; }
     static Core *getInstance(const QString &driver, const QString &connectionName) {
+        QMutexLocker locker(&mutex);
         Core *res = objects.value(connectionName);
         if(!res)
         {
@@ -101,11 +109,14 @@ private:
 
     QString _connectionName;
     QSqlDatabase *_db = new QSqlDatabase;
+
+    static QMutex mutex;
     static QHash<QString, Core*> objects;
 };
 
 QHash<AsemanSqlObject*, AsemanSqlObject::Core*> AsemanSqlObject::Private::cores;
 QHash<QString, AsemanSqlObject::Core*> AsemanSqlObject::Core::objects;
+QMutex AsemanSqlObject::Core::mutex;
 
 
 AsemanSqlObject::AsemanSqlObject(QObject *parent) :
@@ -117,7 +128,12 @@ AsemanSqlObject::AsemanSqlObject(QObject *parent) :
     p->initTimer->setSingleShot(true);
     p->initTimer->setInterval(100);
 
-    connect(p->initTimer, &QTimer::timeout, this, &AsemanSqlObject::init);
+    connect(p->initTimer, &QTimer::timeout, this, &AsemanSqlObject::initialize);
+}
+
+void AsemanSqlObject::initialize()
+{
+    init();
 }
 
 void AsemanSqlObject::setDriver(const QVariant &driver)
@@ -418,6 +434,44 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
     QSqlQuery q(core->get());
     q.prepare(query);
 
+    QVariantMap fixedBinds = prepareBinds(binds);
+    QMapIterator<QString, QVariant> i(fixedBinds);
+    while (i.hasNext())
+    {
+        i.next();
+        q.bindValue(i.key(), i.value());
+    }
+
+    if (!queryExec(q))
+        return QVariantList();
+
+    return generateResult(q);
+}
+
+void AsemanSqlObject::queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result)> callback)
+{
+    Core *core = init(QUuid::createUuid().toString());
+    QVariantMap fixedBinds = prepareBinds(binds);
+
+    AsemanSqlObjectAsync *async = new AsemanSqlObjectAsync(core, query, fixedBinds);
+
+    connect(async, &AsemanSqlObjectAsync::error, this, [this](const QString &error){
+        setLastError(error);
+    });
+    connect(async, &AsemanSqlObjectAsync::result, this, [callback](const QVariantList &result){
+        callback(result);
+    });
+    connect(async, &AsemanSqlObjectAsync::finished, async, [async](){
+        async->deleteLater();
+    });
+
+    async->start();
+}
+
+QVariantMap AsemanSqlObject::prepareBinds(const QVariantMap &binds) const
+{
+    QVariantMap res;
+
     QStringList properties = AsemanSqlObject::properties();
     for (const QString &key: properties)
     {
@@ -425,7 +479,7 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
         if (p->driver.toInt() == MSSQL)
             MSSQL_FIX_VALUE(value)
 
-        q.bindValue(":" + key, value);
+        res[":" + key] = value;
     }
 
     QMapIterator<QString, QVariant> i(binds);
@@ -436,11 +490,15 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
         if (p->driver.toInt() == MSSQL)
             MSSQL_FIX_VALUE(value)
 
-        q.bindValue(":" + i.key(), value);
+        res[":" + i.key()] = value;
     }
-    if (!queryExec(q))
-        return res;
 
+    return res;
+}
+
+QVariantList AsemanSqlObject::generateResult(QSqlQuery &q)
+{
+    QVariantList res;
     while (q.next())
     {
         QSqlRecord r = q.record();
@@ -450,7 +508,6 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
 
         res << map;
     }
-
     return res;
 }
 
@@ -503,7 +560,7 @@ int AsemanSqlObject::queryExec(QSqlQuery &q)
     return ret;
 }
 
-QStringList AsemanSqlObject::properties()
+QStringList AsemanSqlObject::properties() const
 {
     QStringList res;
 
@@ -531,10 +588,12 @@ QStringList AsemanSqlObject::properties()
     return res;
 }
 
-AsemanSqlObject::Core *AsemanSqlObject::init()
+AsemanSqlObject::Core *AsemanSqlObject::init(const QString &forceConnectionName)
 {
-    p->initTimer->stop();
-    Core *core = Core::getInstance(p->driverStr, p->key);
+    if (forceConnectionName.isEmpty())
+        p->initTimer->stop();
+
+    Core *core = Core::getInstance(p->driverStr, (forceConnectionName.count()? forceConnectionName : p->key));
     if (!core->get().isOpen())
     {
         if (p->databaseNameTemplate.count())
@@ -560,6 +619,9 @@ AsemanSqlObject::Core *AsemanSqlObject::init()
         if (!core->get().open())
             setLastError(core->get().lastError().text());
     }
+
+    if (forceConnectionName.count())
+        return core;
 
     if (Private::cores.value(this) == core)
         return core;
@@ -592,4 +654,37 @@ AsemanSqlObject::~AsemanSqlObject()
         delete oldCore;
 
     delete p;
+}
+
+
+AsemanSqlObjectAsync::AsemanSqlObjectAsync(AsemanSqlObject::Core *core, const QString &query, const QVariantMap &binds, QObject *parent) :
+    QThread(parent),
+    mCore(core),
+    mQuery(query),
+    mBinds(binds)
+{
+}
+
+void AsemanSqlObjectAsync::run()
+{
+    QSqlDatabase db = mCore->get();
+    QSqlQuery q(db);
+    q.prepare(mQuery);
+
+    QMapIterator<QString, QVariant> i(mBinds);
+    while (i.hasNext())
+    {
+        i.next();
+        q.bindValue(i.key(), i.value());
+    }
+
+    if (!q.exec())
+        Q_EMIT error(q.lastError().text());
+    else
+        Q_EMIT result( AsemanSqlObject::generateResult(q) );
+}
+
+AsemanSqlObjectAsync::~AsemanSqlObjectAsync()
+{
+    delete mCore;
 }

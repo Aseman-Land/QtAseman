@@ -17,7 +17,7 @@
 */
 
 #include "asemanqttoolsitemsql.h"
-#include "asemansqlobject.h"
+#include "asemanquicksqlobject.h"
 
 #include <qqml.h>
 #include <QHash>
@@ -44,7 +44,7 @@ void AsemanQtToolsItemSql::registerTypes(const char *uri, bool exportMode)
     if(register_list.contains(uri) && !exportMode)
         return;
 
-    registerType<AsemanSqlObject>(uri, 2, 0, "SqlObject", exportMode);
+    registerType<AsemanQuickSqlObject>(uri, 2, 0, "SqlObject", exportMode);
 
     register_list.insert(uri);
 }
