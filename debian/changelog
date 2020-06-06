@@ -1,3 +1,10 @@
+qtaseman (3.1.4-1aseman-focal) focal; urgency=medium
+
+  * Add queryAsync to SqlObject which run sql queries in async mode.
+
+ -- Aseman IO <contact@aseman.io>  Sat, 06 Jun 2020 13:40:00 +0330
+
+
 qtaseman (3.1.3-1aseman-focal) focal; urgency=medium
 
   * Add keys and values properties to HashObject and MapObject
