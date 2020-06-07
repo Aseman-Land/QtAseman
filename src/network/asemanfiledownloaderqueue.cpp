@@ -77,7 +77,7 @@ QString AsemanFileDownloaderQueue::destination() const
 
 void AsemanFileDownloaderQueue::download(const QString &url, const QString &fileName)
 {
-    if( QFileInfo(p->destination+"/"+fileName).exists() )
+    if( QFileInfo((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + fileName).exists() )
     {
         Q_EMIT progressChanged(url, fileName, 100);
         Q_EMIT finished(url, fileName);
@@ -102,7 +102,7 @@ void AsemanFileDownloaderQueue::finishedSlt(const QByteArray &data)
     const QSet<QString> names = p->names.value(url);
     for(const QString &name: names)
     {
-        QFile file(p->destination + "/" + name);
+        QFile file((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + name);
         if(!file.open(QFile::WriteOnly))
             continue;
 

@@ -114,7 +114,9 @@ void AsemanFileDownloaderQueueItem::finished(const QString &url, const QString &
     if(p->source != url || p->fileName != fileName)
         return;
 
-    p->result = AsemanDevices::localFilesPrePath() + p->queue->destination() + "/" + fileName;
+    QString dest = (p->queue->destination().count()? p->queue->destination() + QStringLiteral("/") : QStringLiteral(""));
+
+    p->result = AsemanDevices::localFilesPrePath() + dest + fileName;
     Q_EMIT resultChanged();
 
     p->percent = 100;
