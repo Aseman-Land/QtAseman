@@ -23,6 +23,7 @@
 #include <QAction>
 #include <QDebug>
 #include <QGuiApplication>
+#include <QPainterPath>
 
 class AsemanSystemTrayPrivate
 {
