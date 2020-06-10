@@ -526,6 +526,9 @@ NetworkRequest {
     // Properties will post as json file map
     property string username: "test"
     property string password: "pass1234"
+        
+    // If you specified url property with TypeForm, It will send file, Else send it as string
+    property url filePath
 
     onServerError: ; // server error codes
     onClientError: ; // client error codes

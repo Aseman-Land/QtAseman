@@ -25,6 +25,10 @@
 #include <QJsonDocument>
 #include <QHttpMultiPart>
 #include <QJsonDocument>
+#include <asemantools.h>
+#include <QFile>
+#include <QMimeDatabase>
+#include <QFileInfo>
 
 class AsemanNetworkRequestManager::Private
 {
@@ -286,14 +290,35 @@ QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap 
     {
         i.next();
         QVariant var = i.value();
-        if (var.type() != QVariant::String)
-            var.convert(QVariant::String);
+        if (var.type() == QVariant::Url)
+        {
+            QUrl source = var.toUrl();
+            const QString filePath = AsemanTools::urlToLocalPath(source);
 
-        QHttpPart part;
-        part.setHeader(QNetworkRequest::ContentDispositionHeader,QVariant("form-data; name=\"" + i.key().toUtf8() + "\""));
-        part.setBody(i.value().toString().toUtf8());
+            QFile *file = new QFile(filePath);
+            file->open(QIODevice::ReadOnly);
+            file->setParent(parts);
 
-        parts->append(part);
+            QMimeDatabase mimeDb;
+
+            QHttpPart imagePart;
+            imagePart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(mimeDb.mimeTypeForFile(filePath).name()));
+            imagePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"" + i.key().toUtf8() + "\"; filename=\"" + QFileInfo(filePath).fileName() + "\""));
+            imagePart.setBodyDevice(file);
+
+            parts->append(imagePart);
+        }
+        else
+        {
+            if (var.type() != QVariant::String)
+                var.convert(QVariant::String);
+
+            QHttpPart part;
+            part.setHeader(QNetworkRequest::ContentDispositionHeader,QVariant("form-data; name=\"" + i.key().toUtf8() + "\""));
+            part.setBody(i.value().toString().toUtf8());
+
+            parts->append(part);
+        }
     }
 
     return parts;
