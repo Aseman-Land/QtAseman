@@ -152,6 +152,16 @@ Module {
             name: "serverError"
             Parameter { name: "status"; type: "int" }
         }
+        Signal {
+            name: "uploadProgress"
+            Parameter { name: "bytesSent"; type: "qlonglong" }
+            Parameter { name: "bytesTotal"; type: "qlonglong" }
+        }
+        Signal {
+            name: "downloadProgress"
+            Parameter { name: "bytesReceived"; type: "qlonglong" }
+            Parameter { name: "bytesTotal"; type: "qlonglong" }
+        }
         Method { name: "toMap"; type: "QVariantMap" }
         Method {
             name: "fromMap"

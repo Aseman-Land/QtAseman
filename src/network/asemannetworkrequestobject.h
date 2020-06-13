@@ -115,6 +115,8 @@ Q_SIGNALS:
     void unsuccessfull(qint32 status);
     void clientError(qint32 status);
     void serverError(qint32 status);
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 public Q_SLOTS:
     QVariantMap toMap() const;

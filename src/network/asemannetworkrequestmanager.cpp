@@ -217,6 +217,8 @@ void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply
         req->setError(errorString);
         req->setRefreshing(false);
     });
+    connect(reply, &AsemanNetworkRequestReply::uploadProgress, req, &AsemanNetworkRequestObject::uploadProgress);
+    connect(reply, &AsemanNetworkRequestReply::downloadProgress, req, &AsemanNetworkRequestObject::downloadProgress);
 }
 
 QUrlQuery AsemanNetworkRequestManager::queryOfMap(const QVariantMap &keys) const
