@@ -60,7 +60,7 @@ Item {
 
             var s0 = control.IOSStyle.switchCheckedTrackColor
             var s1 = Qt.darker(control.IOSStyle.switchUncheckedTrackColor, 1.1)
-            var pos = control.visualPosition
+            var pos = LayoutMirroring.enabled? control.visualPosition : 1 - control.visualPosition
             return Qt.rgba( s0.r*(1-pos) + s1.r*pos, s0.g*(1-pos) + s1.g*pos, s0.b*(1-pos) + s1.b*pos )
         }
 
