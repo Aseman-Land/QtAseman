@@ -48,7 +48,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.graphics.Color;
-import android.support.annotation.RequiresApi;
 import android.os.Build.VERSION_CODES;
 import android.os.Build;
 
@@ -86,15 +85,18 @@ public class AsemanActivity extends QtActivity
         return _transparentNavigationBar;
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     public String createNotificationChannel(String channelId ,String channelName){
-        NotificationChannel chan = new NotificationChannel(channelId,
-                channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.createNotificationChannel(chan);
-        return channelId;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan = new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_NONE);
+            chan.setLightColor(Color.BLUE);
+            chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(chan);
+            return channelId;
+        } else {
+            return "";
+        }
     }
 
     public boolean startNotification(int id, String title, String body, String iconPath, String icon, String channelId, boolean sound, boolean vibrate)

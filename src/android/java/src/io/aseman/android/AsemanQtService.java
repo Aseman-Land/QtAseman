@@ -50,7 +50,6 @@ import android.content.res.Resources;
 import android.content.Context;
 import android.app.NotificationChannel;
 import android.graphics.Color;
-import android.support.annotation.RequiresApi;
 import android.os.Build.VERSION_CODES;
 import android.os.Build;
 
@@ -72,15 +71,18 @@ public class AsemanQtService extends QtService {
         super.onCreate();
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     public String createNotificationChannel(String channelId ,String channelName){
-        NotificationChannel chan = new NotificationChannel(channelId,
-                channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.createNotificationChannel(chan);
-        return channelId;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan = new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_NONE);
+            chan.setLightColor(Color.BLUE);
+            chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(chan);
+            return channelId;
+        } else {
+            return "";
+        }
     }
 
     public boolean startForeground(int id, String title, String msg, String iconPath, String icon, String channelId) {
