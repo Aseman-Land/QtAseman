@@ -102,7 +102,12 @@ void AsemanListModel::setData(const QVariantList &data)
 
     QList<QVariantMap> list;
     for (const QVariant &d: data)
-        list << d.toMap();
+    {
+        auto m = d.toMap();
+        m[QStringLiteral("94d4191b6b08")] = list.count();
+
+        list << m;
+    }
 
     changed(list);
     Q_EMIT dataListChanged();
