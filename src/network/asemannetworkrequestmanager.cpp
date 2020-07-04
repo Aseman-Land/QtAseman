@@ -328,7 +328,7 @@ QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap 
 
 QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map, bool ignoreEmpty) const
 {
-    QString res;
+    QUrlQuery query;
     QMapIterator<QString, QVariant> i(map);
     while (i.hasNext())
     {
@@ -339,12 +339,9 @@ QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map,
         if (ignoreEmpty && var.toString().isEmpty())
             continue;
 
-        if (res.count())
-            res += QStringLiteral("\n");
-
-        res += i.value().toString() + "=" + var.toString().toUtf8().toPercentEncoding();
+        query.addQueryItem(i.key(), var.toString());
     }
-    return res;
+    return query.query();
 }
 
 QString AsemanNetworkRequestManager::generateJson(const QVariantMap &map) const
