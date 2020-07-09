@@ -7,7 +7,7 @@ AbstractViewportType {
     fillForeground: true
     ratio: openRatio * mouseRatio
 
-    background.scale: iosBelowIndex < 2? 1 - (realRatio * ((topPadSize -  background.radius) * 2) / height) : 1
+    background.scale: Math.min(1, iosBelowIndex < 2? 1 - (realRatio * ((topPadSize -  background.radius) * 2) / height) : 1)
     background.transformOrigin: Item.Center
     background.radius: 10 * Devices.density
 
