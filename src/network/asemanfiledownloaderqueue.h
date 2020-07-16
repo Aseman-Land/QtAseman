@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QVariantMap>
 
 #include "asemannetwork_global.h"
 
@@ -43,7 +44,7 @@ public:
     QString destination() const;
 
 public Q_SLOTS:
-    void download(const QString &url, const QString &fileName);
+    void download(const QString &url, const QString &fileName, const QVariantMap &header = QVariantMap());
 
 Q_SIGNALS:
     void capacityChanged();

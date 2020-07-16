@@ -32,7 +32,7 @@ public:
     QStack<AsemanDownloader*> inactiveItems;
     QSet<AsemanDownloader*> activeItems;
     QQueue<QString> queue;
-    QHash<QString, QSet<QString> > names;
+    QHash<QString, QPair<QSet<QString>, QVariantMap> > names;
 
     int capacity;
     QString destination;
@@ -75,7 +75,7 @@ QString AsemanFileDownloaderQueue::destination() const
     return p->destination;
 }
 
-void AsemanFileDownloaderQueue::download(const QString &url, const QString &fileName)
+void AsemanFileDownloaderQueue::download(const QString &url, const QString &fileName, const QVariantMap &header)
 {
     if( QFileInfo((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + fileName).exists() )
     {
@@ -84,7 +84,10 @@ void AsemanFileDownloaderQueue::download(const QString &url, const QString &file
         return;
     }
 
-    p->names[url].insert(fileName);
+    auto pair = p->names[url];
+    pair.first.insert(fileName);
+    pair.second = header;
+
     if(p->queue.contains(url))
         return;
 
@@ -99,8 +102,8 @@ void AsemanFileDownloaderQueue::finishedSlt(const QByteArray &data)
         return;
 
     const QString &url = downloader->path();
-    const QSet<QString> names = p->names.value(url);
-    for(const QString &name: names)
+    auto names = p->names.value(url).first;
+    for (auto name: names)
     {
         QFile file((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + name);
         if(!file.open(QFile::WriteOnly))
@@ -127,7 +130,7 @@ void AsemanFileDownloaderQueue::recievedBytesChanged()
     const qint64 recieved = downloader->recievedBytes();
     const qreal percent = ((qreal)recieved/total)*100;
     const QString &url = downloader->path();
-    const QSet<QString> names = p->names.value(url);
+    const QSet<QString> names = p->names.value(url).first;
     for(const QString &name: names)
         Q_EMIT progressChanged(url, name, percent);
 }
@@ -144,7 +147,10 @@ void AsemanFileDownloaderQueue::next()
         return;
 
     const QString &url = p->queue.takeFirst();
+    auto item = p->names.value(url);
+
     downloader->setPath(url);
+    downloader->setHeader(item.second);
     downloader->start();
 }
 

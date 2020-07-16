@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QVariantMap>
 
 #include "asemannetwork_global.h"
 
@@ -35,6 +36,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanDownloader : public QObject
     Q_PROPERTY(QString path READ path WRITE setPath NOTIFY pathChanged)
     Q_PROPERTY(int downloaderId READ downloaderId WRITE setDownloaderId NOTIFY downloaderIdChanged)
     Q_PROPERTY(bool downloading READ downloading NOTIFY downloadingChanged)
+    Q_PROPERTY(QVariantMap header READ header WRITE setHeader NOTIFY headerChanged)
 
     Q_OBJECT
 public:
@@ -53,6 +55,9 @@ public:
     void setDownloaderId( int id );
     int downloaderId() const;
 
+    void setHeader(const QVariantMap &header);
+    QVariantMap header() const;
+
     bool downloading() const;
 
 public Q_SLOTS:
@@ -66,6 +71,7 @@ Q_SIGNALS:
     void downloaderIdChanged();
     void pathChanged();
     void downloadingChanged();
+    void headerChanged();
     void error( const QStringList & error );
     void finished( const QByteArray & data );
     void finishedWithId( int id, const QByteArray & data );

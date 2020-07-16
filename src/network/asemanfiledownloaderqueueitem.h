@@ -20,6 +20,7 @@
 #define ASEMANFILEDOWNLOADERQUEUEITEM_H
 
 #include <QObject>
+#include <QVariantMap>
 
 #include "asemannetwork_global.h"
 
@@ -30,6 +31,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanFileDownloaderQueueItem : public QObject
     Q_OBJECT
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString fileName READ fileName WRITE setFileName NOTIFY fileNameChanged)
+    Q_PROPERTY(QVariantMap header READ header WRITE setHeader NOTIFY headerChanged)
     Q_PROPERTY(qreal percent READ percent NOTIFY percentChanged)
     Q_PROPERTY(AsemanFileDownloaderQueue* downloaderQueue READ downloaderQueue WRITE setDownloaderQueue NOTIFY downloaderQueueChanged)
     Q_PROPERTY(QString result READ result NOTIFY resultChanged)
@@ -44,6 +46,9 @@ public:
     void setFileName(const QString &name);
     QString fileName() const;
 
+    void setHeader(const QVariantMap &header);
+    QVariantMap header() const;
+
     qreal percent() const;
 
     void setDownloaderQueue(AsemanFileDownloaderQueue *queue);
@@ -57,6 +62,7 @@ Q_SIGNALS:
     void resultChanged();
     void fileNameChanged();
     void percentChanged();
+    void headerChanged();
 
 private Q_SLOTS:
     void finished(const QString &url, const QString &fileName);

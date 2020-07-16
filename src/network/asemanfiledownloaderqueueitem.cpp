@@ -29,6 +29,7 @@ public:
     QString source;
     QString result;
     QString fileName;
+    QVariantMap header;
     qreal percent;
 };
 
@@ -69,6 +70,20 @@ void AsemanFileDownloaderQueueItem::setFileName(const QString &name)
 QString AsemanFileDownloaderQueueItem::fileName() const
 {
     return p->fileName;
+}
+
+void AsemanFileDownloaderQueueItem::setHeader(const QVariantMap &header)
+{
+    if (p->header == header)
+        return;
+
+    p->header = header;
+    Q_EMIT headerChanged();
+}
+
+QVariantMap AsemanFileDownloaderQueueItem::header() const
+{
+    return p->header;
 }
 
 qreal AsemanFileDownloaderQueueItem::percent() const
@@ -139,7 +154,7 @@ void AsemanFileDownloaderQueueItem::refresh()
     if(!p->queue)
         return;
 
-    p->queue->download(p->source, p->fileName);
+    p->queue->download(p->source, p->fileName, p->header);
 }
 
 AsemanFileDownloaderQueueItem::~AsemanFileDownloaderQueueItem()

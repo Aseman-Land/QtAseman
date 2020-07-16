@@ -39,6 +39,7 @@ public:
     QString path;
 
     int downloader_id;
+    QVariantMap header;
 };
 
 AsemanDownloader::AsemanDownloader(QObject *parent) :
@@ -104,6 +105,20 @@ int AsemanDownloader::downloaderId() const
     return p->downloader_id;
 }
 
+void AsemanDownloader::setHeader(const QVariantMap &header)
+{
+    if (p->header == header)
+        return;
+
+    p->header = header;
+    Q_EMIT headerChanged();
+}
+
+QVariantMap AsemanDownloader::header() const
+{
+    return p->header;
+}
+
 bool AsemanDownloader::downloading() const
 {
     return p->reply;
@@ -119,6 +134,14 @@ void AsemanDownloader::start()
     init_manager();
 
     QNetworkRequest request = QNetworkRequest(QUrl(p->path));
+    for (auto [key, value]: p->header.toStdMap())
+    {
+        if (value.type() != QVariant::String)
+            value.convert(QVariant::String);
+
+        request.setRawHeader(key.toUtf8(), value.toString().toUtf8());
+    }
+
     p->reply = p->manager->get(request);
 
 #ifndef QT_NO_SSL

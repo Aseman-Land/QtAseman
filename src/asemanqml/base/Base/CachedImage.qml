@@ -31,6 +31,7 @@ Item {
 
     property alias radius: mask.radius
     property alias source: queueItem.source
+    property alias header: queueItem.header
     property alias percent: queueItem.percent
     readonly property string cachedSource: image.source
 
