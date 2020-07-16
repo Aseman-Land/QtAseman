@@ -84,7 +84,7 @@ void AsemanFileDownloaderQueue::download(const QString &url, const QString &file
         return;
     }
 
-    auto pair = p->names[url];
+    auto &pair = p->names[url];
     pair.first.insert(fileName);
     pair.second = header;
 
