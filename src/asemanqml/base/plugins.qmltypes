@@ -127,8 +127,17 @@ Module {
         isCreatable: false
         isSingleton: true
         exportMetaObjectRevisions: [0, 0]
+        Enum {
+            name: "StatusBarStyles"
+            values: {
+                "StatusBarStyleLight": 0,
+                "StatusBarStyleDark": 1,
+                "StatusBarStyleAuto": 2
+            }
+        }
         Property { name: "proxy"; type: "AsemanNetworkProxy"; isPointer: true }
         Property { name: "applicationId"; type: "string" }
+        Property { name: "statusBarStyle"; type: "int" }
         Property { name: "isRunning"; type: "bool"; isReadonly: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal {

@@ -38,6 +38,9 @@
 #ifdef Q_OS_ANDROID
 #include <QtAndroid>
 #endif
+#ifdef Q_OS_IOS
+#include "private/quickios/quickios.h"
+#endif
 
 static AsemanApplicationItem *aseman_app_singleton = 0;
 static QSet<AsemanApplicationItem*> aseman_app_objects;
@@ -52,6 +55,9 @@ public:
 
     static QtLocalPeer *peer;
     QPointer<AsemanNetworkProxy> proxy;
+
+    qint32 statusBarStyle = AsemanApplicationItem::StatusBarStyleAuto;
+    QTimer *statusbarStyleTimer_ios;
 };
 
 QtLocalPeer *AsemanApplicationItemPrivate::peer = 0;
@@ -67,6 +73,15 @@ AsemanApplicationItem::AsemanApplicationItem() :
     AsemanApplication()
 {
     p = new AsemanApplicationItemPrivate;
+
+#ifdef Q_OS_IOS
+    p->statusbarStyleTimer_ios = new QTimer(this);
+    p->statusbarStyleTimer_ios->setSingleShot(true);
+    connect(p->statusbarStyleTimer_ios, &QTimer::timeout, this, [this](){
+        setStatusBarStyle(p->statusBarStyle);
+        p->statusbarStyleTimer_ios->start(2000);
+    });
+#endif
 }
 
 bool AsemanApplicationItem::aseman_app_init()
@@ -124,6 +139,48 @@ bool AsemanApplicationItem::isRunning()
         return AsemanApplicationItemPrivate::peer->isClient();
 
     return false;
+}
+
+int AsemanApplicationItem::statusBarStyle()
+{
+    return p->statusBarStyle;
+}
+
+void AsemanApplicationItem::setStatusBarStyle(int statusBarStyle)
+{
+    QuickIOS::StatusBarStyle style = QuickIOS::StatusBarStyleDefault;
+    switch (statusBarStyle)
+    {
+    case StatusBarStyleLight:
+        style = QuickIOS::StatusBarStyleLightContent;
+        break;
+    case StatusBarStyleDark:
+        style = QuickIOS::StatusBarStyleBlackTranslucent;
+        break;
+    case StatusBarStyleAuto:
+        style = QuickIOS::StatusBarStyleDefault;
+        break;
+    }
+
+    QuickIOS::setStatusBarStyle(style);
+
+    if (p->statusBarStyle == statusBarStyle)
+        return;
+
+    p->statusBarStyle = statusBarStyle;
+    switch (statusBarStyle)
+    {
+    case StatusBarStyleLight:
+    case StatusBarStyleDark:
+        p->statusbarStyleTimer_ios->stop();
+        p->statusbarStyleTimer_ios->start(1);
+        break;
+    case StatusBarStyleAuto:
+        p->statusbarStyleTimer_ios->stop();
+        break;
+    }
+
+    Q_EMIT statusBarStyleChanged();
 }
 
 void AsemanApplicationItem::sendMessage(const QString &msg)

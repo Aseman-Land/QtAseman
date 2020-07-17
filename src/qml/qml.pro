@@ -1,3 +1,7 @@
+ios {
+    CONFIG += no_app_extension_api_only
+}
+
 load(qt_build_config)
 
 INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui $$PWD/../network $$PWD/../widgets
@@ -69,10 +73,7 @@ macx {
     QT += macextras
 }
 ios {
-    HEADERS += \
-        $$PWD/private/osxviewcontroller.h
-    SOURCES += \
-        $$PWD/private/osxviewcontroller.mm
+    include(private/quickios/quickios.pri)
 } else {
     HEADERS += \
         $$PWD/asemanprocess.h
@@ -81,4 +82,3 @@ ios {
 }
 
 DISTFILES +=
-

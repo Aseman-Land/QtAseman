@@ -1,11 +1,20 @@
 #include "asemandevicesitem.h"
 #include "asemandesktoptools.h"
+#include "asemanapplicationitem.h"
 
 #include <QQmlEngine>
+#include <QMimeDatabase>
+#include <QTimer>
 
 #if defined(QT_WIDGETS_LIB)
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <asemantools.h>
+#endif
+
+#ifdef Q_OS_IOS
+#include "private/quickios/qiimagepicker.h"
+#include "private/quickios/quickios.h"
 #endif
 
 #ifdef Q_OS_ANDROID
@@ -29,18 +38,46 @@ AsemanDevicesItem::AsemanDevicesItem(QObject *parent) :
     connect( p->java_layer, &AsemanJavaLayer::incomingImage, this, &AsemanDevicesItem::incoming_image, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::selectImageResult, this, &AsemanDevicesItem::select_image_result, Qt::QueuedConnection );
 #endif
+#ifdef Q_OS_IOS
+    QuickIOS::registerTypes();
+#endif
 }
 
 bool AsemanDevicesItem::getOpenPictures()
 {
-#ifdef Q_OS_ANDROID
-    return p->java_layer->getOpenPictures();
+    QString path;
+
+#if defined(Q_OS_ANDROID)
+    p->java_layer->getOpenPictures();
+    return true;
+#elif defined(Q_OS_IOS)
+    QIImagePicker *picker = new QIImagePicker(this);
+
+    connect(picker, &QIImagePicker::referenceUrlChanged, this, [picker](){
+        QString tempPath = AsemanApplication::tempPath() + QStringLiteral("/aseman-ios-picker");
+        if (picker->referenceUrl().toLower().contains(QStringLiteral("png")))
+            tempPath += QStringLiteral(".png");
+        else
+            tempPath += QStringLiteral(".jpg");
+
+        picker->save(tempPath);
+    });
+    connect(picker, &QIImagePicker::saved, this, [this, picker](QString url){
+        url = AsemanTools::urlToLocalPath(url);
+        Q_EMIT selectImageResult(url);
+        picker->close();
+        QTimer::singleShot(1000, picker, &QIImagePicker::deleteLater);
+    });
+
+    picker->show();
+    return true;
 #else
-#if defined(Q_OS_IOS) && defined(QT_WIDGETS_LIB)
-    QString path = QFileDialog::getOpenFileName(Q_NULLPTR, QStringLiteral(""), QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).last());
+#if defined(QT_WIDGETS_LIB)
+    path = QFileDialog::getOpenFileName(Q_NULLPTR, QStringLiteral(""), QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).last());
 #else
-    QString path = AsemanDesktopTools::getOpenFileName();
+    path = AsemanDesktopTools::getOpenFileName();
 #endif
+
     if(path.isEmpty())
         return false;
 

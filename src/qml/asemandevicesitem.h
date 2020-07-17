@@ -11,6 +11,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanDevicesItem: public AsemanDevices
 {
     Q_OBJECT
 public:
+
     AsemanDevicesItem(QObject *parent = Q_NULLPTR);
     virtual ~AsemanDevicesItem();
 

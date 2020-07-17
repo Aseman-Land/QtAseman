@@ -40,11 +40,20 @@ class LIBQTASEMAN_QML_EXPORT AsemanApplicationItem : public AsemanApplication
     Q_PROPERTY(AsemanNetworkProxy* proxy READ proxy WRITE setProxy NOTIFY proxyChanged)
     Q_PROPERTY(QString applicationId READ applicationId WRITE setApplicationId NOTIFY applicationIdChanged)
     Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
+    Q_PROPERTY(int statusBarStyle READ statusBarStyle WRITE setStatusBarStyle NOTIFY statusBarStyleChanged)
 
     Q_PROPERTY(QQmlListProperty<QObject> items READ items NOTIFY itemsChanged)
     Q_CLASSINFO("DefaultProperty", "items")
 
+    Q_ENUMS(StatusBarStyles)
+
 public:
+    enum StatusBarStyles {
+        StatusBarStyleLight,
+        StatusBarStyleDark,
+        StatusBarStyleAuto
+    };
+
     AsemanApplicationItem(QQmlEngine *engine);
     AsemanApplicationItem();
     virtual ~AsemanApplicationItem();
@@ -60,6 +69,9 @@ public:
     QQmlListProperty<QObject> items();
     QList<QObject*> itemsList() const;
 
+    int statusBarStyle();
+    void setStatusBarStyle(int statusBarStyle);
+
 public Q_SLOTS:
     void sendMessage(const QString &msg);
 
@@ -72,6 +84,7 @@ Q_SIGNALS:
     void isRunningChanged();
     void messageReceived(const QString &msg);
     void itemsChanged();
+    void statusBarStyleChanged();
 
 private:
     static void append(QQmlListProperty<QObject> *p, QObject *v);
