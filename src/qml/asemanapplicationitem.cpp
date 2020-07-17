@@ -170,6 +170,7 @@ void AsemanApplicationItem::setStatusBarStyle(int statusBarStyle)
         return;
 
     p->statusBarStyle = statusBarStyle;
+#ifdef Q_OS_IOS
     switch (statusBarStyle)
     {
     case StatusBarStyleLight:
@@ -181,6 +182,7 @@ void AsemanApplicationItem::setStatusBarStyle(int statusBarStyle)
         p->statusbarStyleTimer_ios->stop();
         break;
     }
+#endif
 
     Q_EMIT statusBarStyleChanged();
 }
