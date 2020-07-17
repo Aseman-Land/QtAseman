@@ -148,6 +148,7 @@ int AsemanApplicationItem::statusBarStyle()
 
 void AsemanApplicationItem::setStatusBarStyle(int statusBarStyle)
 {
+#ifdef Q_OS_IOS
     QuickIOS::StatusBarStyle style = QuickIOS::StatusBarStyleDefault;
     switch (statusBarStyle)
     {
@@ -163,6 +164,7 @@ void AsemanApplicationItem::setStatusBarStyle(int statusBarStyle)
     }
 
     QuickIOS::setStatusBarStyle(style);
+#endif
 
     if (p->statusBarStyle == statusBarStyle)
         return;
