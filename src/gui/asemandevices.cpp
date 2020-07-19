@@ -529,7 +529,7 @@ qreal AsemanDevices::statusBarHeight()
         return 0;
 
 #ifdef Q_OS_IOS
-    return AsemanObjectiveCLayer::statusBarHeight()*density();
+    return AsemanObjectiveCLayer::statusBarHeight();
 #else
     static qreal result = 0;
     if(result == 0.0)
@@ -555,7 +555,11 @@ qreal AsemanDevices::navigationBarHeight()
 #ifdef Q_OS_ANDROID
         result = density()*(AsemanJavaLayer::instance()->navigationBarHeight()/deviceDensity());
 #else
+#ifdef Q_OS_IOS
+        result = AsemanObjectiveCLayer::navigationBarHeight();
+#else
         result = 44*density();
+#endif
 #endif
     }
     return result;
@@ -1196,7 +1200,11 @@ void AsemanDevices::refreshTransparentNavigationBar()
 #ifdef Q_OS_ANDROID
     p->transparentNavigationBar = AsemanJavaLayer::instance()->transparentNavigationBar();
 #else
+#ifdef Q_OS_IOS
+    p->transparentNavigationBar = (AsemanObjectiveCLayer::navigationBarHeight() > 0.1);
+#else
     p->transparentNavigationBar = false;
+#endif
 #endif
 }
 

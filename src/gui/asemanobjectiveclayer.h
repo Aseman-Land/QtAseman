@@ -8,6 +8,7 @@ class AsemanObjectiveCLayer
 public:
     AsemanObjectiveCLayer();
     static qreal statusBarHeight();
+    static qreal navigationBarHeight();
 };
 
 typedef AsemanObjectiveCLayer QAsemanObjectiveCLayer;
