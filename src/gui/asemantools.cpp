@@ -396,6 +396,11 @@ QString AsemanTools::urlToLocalPath(const QUrl &url)
     QString res = url.toLocalFile();
     if(res.isEmpty() || url.toString().contains(QStringLiteral("#")))
         res = url.toString();
+
+#ifdef Q_OS_WIN
+    if (url.toLocalFile().left(2) == QStringLiteral("//"))
+        return QStringLiteral("//") + res.mid(res.indexOf(QStringLiteral("//")) + 2);
+#endif
     if(res.left(6) == QStringLiteral("file:/"))
         res = res.mid(6);
 
