@@ -168,17 +168,13 @@ void AsemanSqlObject::setDriver(const QVariant &driver)
             p->databaseNameTemplate =
         #ifdef Q_OS_LINUX
                        QStringLiteral("DRIVER={ODBC Driver 17 for SQL Server};"
-                               "SERVER=%HOSTADDRESS%;"
-                               "DATABASE=%DATABASENAME%;"
-                               "UID=%USERNAME%;"
-                               "PWD=%PASSWORD%;");
         #else
                        QStringLiteral("DRIVER={SQL Server};"
+        #endif
                                "SERVER=%HOSTADDRESS%;"
                                "DATABASE=%DATABASENAME%;"
                                "UID=%USERNAME%;"
                                "PWD=%PASSWORD%;");
-        #endif
             p->driverStr = QStringLiteral("QODBC");
             break;
 

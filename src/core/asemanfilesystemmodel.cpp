@@ -98,10 +98,7 @@
 
 #include "asemanfilesystemmodel.h"
 
-#if QT_CONFIG(filesystemwatcher)
-#   include <QFileSystemWatcher>
-#endif
-
+#include <QFileSystemWatcher>
 #include <QDir>
 #include <QMimeData>
 #include <QMimeDatabase>
@@ -131,10 +128,7 @@ public:
     QList<QFileInfo> list;
     QMimeDatabase mdb;
 
-#if QT_CONFIG(filesystemwatcher)
     QFileSystemWatcher *watcher;
-#endif
-
     QTimer *refresh_timer;
 };
 
@@ -238,15 +232,13 @@ AsemanFileSystemModel::AsemanFileSystemModel(QObject *parent) :
     p->recursive = false;
     p->limit = 0;
 
-#if QT_CONFIG(filesystemwatcher)
     p->watcher = new QFileSystemWatcher(this);
-
-    connect(p->watcher, &QFileSystemWatcher::directoryChanged, this, &AsemanFileSystemModel::refresh);
-    connect(p->watcher, &QFileSystemWatcher::fileChanged, this, &AsemanFileSystemModel::refresh);
-#endif
 
     p->refresh_timer = new QTimer(this);
     p->refresh_timer->setInterval(10);
+
+    connect(p->watcher, &QFileSystemWatcher::fileChanged, this, &AsemanFileSystemModel::refresh);
+    connect(p->watcher, &QFileSystemWatcher::directoryChanged, this, &AsemanFileSystemModel::refresh);
 
     connect(p->refresh_timer, &QTimer::timeout, this, &AsemanFileSystemModel::reinit_buffer);
 }
@@ -418,14 +410,12 @@ void AsemanFileSystemModel::setFolder(const QString &url)
     if(p->folder == url)
         return;
 
-#if QT_CONFIG(filesystemwatcher)
     if(!p->folder.isEmpty())
         p->watcher->removePath(p->folder);
 
     p->folder = url;
     if(!p->folder.isEmpty())
         p->watcher->addPath(p->folder);
-#endif
 
     Q_EMIT folderChanged();
 

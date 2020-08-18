@@ -31,8 +31,10 @@
 #include <QDir>
 #include <QStringList>
 #include <QTextDocument>
-#ifndef Q_OS_IOS
-#include <QProcess>
+#if QT_CONFIG(processenvironment)
+#   ifndef Q_OS_IOS
+#       include <QProcess>
+#   endif
 #endif
 #include <QTimerEvent>
 #include <QUuid>
@@ -479,6 +481,7 @@ QVariantMap AsemanTools::colorHsl(const QColor &clr)
 
 bool AsemanTools::createVideoThumbnail(const QString &video, const QString &output, QString ffmpegPath)
 {
+#if QT_CONFIG(processenvironment)
 #ifdef Q_OS_IOS
     Q_UNUSED(video)
     Q_UNUSED(output)
@@ -486,20 +489,20 @@ bool AsemanTools::createVideoThumbnail(const QString &video, const QString &outp
     return false;
 #else
     if(ffmpegPath.isEmpty())
-#ifdef Q_OS_WIN
+#   ifdef Q_OS_WIN
         ffmpegPath = QCoreApplication::applicationDirPath() + "/ffmpeg.exe";
-#else
-#ifdef Q_OS_MAC
+#   else
+#       ifdef Q_OS_MAC
         ffmpegPath = QCoreApplication::applicationDirPath() + "/ffmpeg";
-#else
+#       else
     {
         if(QFileInfo::exists(QStringLiteral("/usr/bin/avconv")))
             ffmpegPath = QStringLiteral("/usr/bin/avconv");
         else
             ffmpegPath = QStringLiteral("ffmpeg");
     }
-#endif
-#endif
+#       endif
+#   endif
 
     QStringList args;
     args << QStringLiteral("-itsoffset");
@@ -522,6 +525,9 @@ bool AsemanTools::createVideoThumbnail(const QString &video, const QString &outp
     prc.waitForFinished();
 
     return prc.exitCode() == 0;
+#endif
+#else
+    return false;
 #endif
 }
 
