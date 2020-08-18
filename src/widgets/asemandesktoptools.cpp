@@ -18,9 +18,7 @@
 
 #include "asemandesktoptools.h"
 
-#if QT_CONFIG(processenvironment)
-#   include <QProcess>
-#endif
+#include <QProcess>
 #include <QStringList>
 #include <QPalette>
 #include <QEventLoop>
@@ -291,8 +289,7 @@ QObject *AsemanDesktopTools::currentMenuObject() const
 
 QString AsemanDesktopTools::getOpenFileName(QWindow *window, const QString & title, const QString &filter, const QString &startPath)
 {
-#if QT_CONFIG(processenvironment)
-#   if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
+#if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
     const int dsession = desktopSession();
     switch( dsession )
     {
@@ -354,26 +351,22 @@ QString AsemanDesktopTools::getOpenFileName(QWindow *window, const QString & tit
     }
 
     return QString();
-#   else
-#       if defined(QT_WIDGETS_LIB)
+#else
+#if defined(QT_WIDGETS_LIB)
     return QFileDialog::getOpenFileName(0, title, startPath, filter);
-#       else
+#else
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
     Q_UNUSED(startPath)
     return QString();
-#       endif
-#   endif
-#else
-    return QString();
+#endif
 #endif
 }
 
 QStringList AsemanDesktopTools::getOpenFileNames(QWindow *window, const QString &title, const QString &filter, const QString &startPath)
 {
-#if QT_CONFIG(processenvironment)
-#   if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
+#if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
     const int dsession = desktopSession();
     switch( dsession )
     {
@@ -435,25 +428,22 @@ QStringList AsemanDesktopTools::getOpenFileNames(QWindow *window, const QString 
     }
 
     return QStringList();
-#   else
-#       if defined(QT_WIDGETS_LIB)
+#else
+#if defined(QT_WIDGETS_LIB)
     return QFileDialog::getOpenFileNames(0, title, startPath, filter);
-#       endif
+#else
+#endif
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
     Q_UNUSED(startPath)
-    return QStringList();
-#   endif
-#else
     return QStringList();
 #endif
 }
 
 QString AsemanDesktopTools::getSaveFileName(QWindow *window, const QString &title, const QString &filter, const QString &startPath)
 {
-#if QT_CONFIG(processenvironment)
-#   if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
+#if defined(DESKTOP_DEVICE) && defined(QT_WIDGETS_LIB)
     const int dsession = desktopSession();
     switch( dsession )
     {
@@ -517,19 +507,16 @@ QString AsemanDesktopTools::getSaveFileName(QWindow *window, const QString &titl
     }
 
     return QString();
-#   else
-#       if defined(QT_WIDGETS_LIB)
+#else
+#if defined(QT_WIDGETS_LIB)
     return QFileDialog::getSaveFileName(0, title, startPath, filter);
-#       else
+#else
     Q_UNUSED(window)
     Q_UNUSED(title)
     Q_UNUSED(filter)
     Q_UNUSED(startPath)
     return QString();
-#       endif
-#   endif
-#else
-    return QString();
+#endif
 #endif
 }
 

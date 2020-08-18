@@ -635,8 +635,7 @@ QColor QQuickIOSStyleStyle::switchDisabledTrackColor() const
 
 QColor QQuickIOSStyleStyle::switchDisabledHandleColor() const
 {
-    //    return m_theme == Light ? color(Grey, Shade400) : color(Grey, Shade800);
-    return QColor();// error on ci
+//    return m_theme == Light ? color(Grey, Shade400) : color(Grey, Shade800);
 }
 
 QColor QQuickIOSStyleStyle::scrollBarColor() const
@@ -692,7 +691,7 @@ QColor QQuickIOSStyleStyle::tooltipColor() const
 {
     if (m_explicitBackground)
         return backgroundColor();
-    return QColor(Qt::gray);
+//    return color(Grey);
 }
 
 QColor QQuickIOSStyleStyle::toolBarColor() const

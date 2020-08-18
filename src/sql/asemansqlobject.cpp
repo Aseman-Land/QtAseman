@@ -171,10 +171,10 @@ void AsemanSqlObject::setDriver(const QVariant &driver)
         #else
                        QStringLiteral("DRIVER={SQL Server};"
         #endif
-                               "SERVER=%HOSTADDRESS%;"
-                               "DATABASE=%DATABASENAME%;"
-                               "UID=%USERNAME%;"
-                               "PWD=%PASSWORD%;");
+                       "SERVER=%HOSTADDRESS%;"
+                       "DATABASE=%DATABASENAME%;"
+                       "UID=%USERNAME%;"
+                       "PWD=%PASSWORD%;");
             p->driverStr = QStringLiteral("QODBC");
             break;
 

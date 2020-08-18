@@ -49,9 +49,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QMimeData>
-#if QT_CONFIG(processenvironment)
-#   include <QProcess>
-#endif
+#include <QProcess>
 #include <QGuiApplication>
 #include <QCryptographicHash>
 #include <QTimer>
@@ -385,7 +383,7 @@ QString AsemanDevices::deviceId()
     static QString cg_hostId;
     if(!cg_hostId.isEmpty())
         return cg_hostId;
-#if QT_CONFIG(processenvironment)
+
     QProcess prc;
 #ifdef Q_OS_WIN
     prc.start(QStringLiteral("wmic"), {QStringLiteral("csproduct"), QStringLiteral("get"), QStringLiteral("UUID")});
@@ -403,9 +401,6 @@ QString AsemanDevices::deviceId()
     return cg_hostId;
 #else
     return QStringLiteral("noid");
-#endif
-#else
-    return QStringLiteral("");
 #endif
 }
 

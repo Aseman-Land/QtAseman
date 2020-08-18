@@ -19,18 +19,14 @@
 #include "asemanprocess.h"
 
 #include <QPointer>
-#if QT_CONFIG(processenvironment)
-#   include <QProcess>
-#endif
+#include <QProcess>
 
 class AsemanProcess::Private
 {
 public:
     QString command;
     QStringList arguments;
-#if QT_CONFIG(processenvironment)
     QPointer<QProcess> process;
-#endif
 };
 
 AsemanProcess::AsemanProcess(QObject *parent) :
@@ -64,7 +60,6 @@ void AsemanProcess::setArguments(const QStringList &arguments)
 
 void AsemanProcess::start()
 {
-#if QT_CONFIG(processenvironment)
     if(p->process)
         p->process->terminate();
 
@@ -89,18 +84,15 @@ void AsemanProcess::start()
     p->process->start(p->command, p->arguments);
 
     Q_EMIT runningChanged();
-#endif
 }
 
 void AsemanProcess::terminate()
 {
-#if QT_CONFIG(processenvironment)
     if(!p->process)
         return;
 
     p->process->terminate();
     Q_EMIT runningChanged();
-#endif
 }
 
 QStringList AsemanProcess::arguments() const
@@ -110,16 +102,10 @@ QStringList AsemanProcess::arguments() const
 
 bool AsemanProcess::running() const
 {
-#if QT_CONFIG(processenvironment)
     return p->process;
-#else
-    return false;
-#endif
 }
 
 AsemanProcess::~AsemanProcess()
 {
-#if QT_CONFIG(processenvironment)
     delete p;
-#endif
 }

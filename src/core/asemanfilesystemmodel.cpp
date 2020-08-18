@@ -237,8 +237,8 @@ AsemanFileSystemModel::AsemanFileSystemModel(QObject *parent) :
     p->refresh_timer = new QTimer(this);
     p->refresh_timer->setInterval(10);
 
-    connect(p->watcher, &QFileSystemWatcher::fileChanged, this, &AsemanFileSystemModel::refresh);
     connect(p->watcher, &QFileSystemWatcher::directoryChanged, this, &AsemanFileSystemModel::refresh);
+    connect(p->watcher, &QFileSystemWatcher::fileChanged, this, &AsemanFileSystemModel::refresh);
 
     connect(p->refresh_timer, &QTimer::timeout, this, &AsemanFileSystemModel::reinit_buffer);
 }

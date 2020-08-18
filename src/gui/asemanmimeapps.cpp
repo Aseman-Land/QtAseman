@@ -25,9 +25,7 @@
 #include <QHash>
 #include <QSettings>
 #ifndef Q_OS_IOS
-#   if QT_CONFIG(processenvironment)
-#      include <QProcess>
-#   endif
+#include <QProcess>
 #endif
 #include <QMimeDatabase>
 #include <QMimeType>
@@ -199,7 +197,7 @@ void AsemanMimeApps::openFiles(const QString &app, const QStringList &files)
 {
     if( !mime_apps_items.contains(app) )
         return;
-#if QT_CONFIG(processenvironment)
+
 #ifdef Q_OS_IOS
     Q_UNUSED(files)
 #else
@@ -270,7 +268,6 @@ void AsemanMimeApps::openFiles(const QString &app, const QStringList &files)
             QProcess::startDetached( cmd, targs );
         }
     }
-#endif
 #endif
 }
 
