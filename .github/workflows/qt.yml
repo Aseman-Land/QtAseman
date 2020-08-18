@@ -15,9 +15,6 @@ jobs:
           - android
           - msvc2019
           - msvc2019_64
-          - winrt_x64_msvc2019
-          - winrt_x86_msvc2019
-          - winrt_armv7_msvc2019
           - mingw81_64
           - mingw81_32
           - clang_64
@@ -30,12 +27,6 @@ jobs:
           - platform: msvc2019_64
             os: windows-latest
           - platform: msvc2019
-            os: windows-latest
-          - platform: winrt_x64_msvc2019
-            os: windows-latest
-          - platform: winrt_x86_msvc2019
-            os: windows-latest
-          - platform: winrt_armv7_msvc2019
             os: windows-latest
           - platform: mingw81_64
             os: windows-latest
