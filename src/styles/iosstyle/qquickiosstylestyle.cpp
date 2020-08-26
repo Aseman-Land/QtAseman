@@ -636,6 +636,7 @@ QColor QQuickIOSStyleStyle::switchDisabledTrackColor() const
 QColor QQuickIOSStyleStyle::switchDisabledHandleColor() const
 {
 //    return m_theme == Light ? color(Grey, Shade400) : color(Grey, Shade800);
+    return QColor();
 }
 
 QColor QQuickIOSStyleStyle::scrollBarColor() const
