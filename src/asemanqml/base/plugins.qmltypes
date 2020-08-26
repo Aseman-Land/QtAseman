@@ -127,17 +127,8 @@ Module {
         isCreatable: false
         isSingleton: true
         exportMetaObjectRevisions: [0, 0]
-        Enum {
-            name: "StatusBarStyles"
-            values: {
-                "StatusBarStyleLight": 0,
-                "StatusBarStyleDark": 1,
-                "StatusBarStyleAuto": 2
-            }
-        }
         Property { name: "proxy"; type: "AsemanNetworkProxy"; isPointer: true }
         Property { name: "applicationId"; type: "string" }
-        Property { name: "statusBarStyle"; type: "int" }
         Property { name: "isRunning"; type: "bool"; isReadonly: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal {
@@ -730,6 +721,7 @@ Module {
         Property { name: "path"; type: "string" }
         Property { name: "downloaderId"; type: "int" }
         Property { name: "downloading"; type: "bool"; isReadonly: true }
+        Property { name: "header"; type: "QVariantMap" }
         Signal {
             name: "error"
             Parameter { name: "error"; type: "QStringList" }
@@ -814,6 +806,12 @@ Module {
             name: "download"
             Parameter { name: "url"; type: "string" }
             Parameter { name: "fileName"; type: "string" }
+            Parameter { name: "header"; type: "QVariantMap" }
+        }
+        Method {
+            name: "download"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "fileName"; type: "string" }
         }
     }
     Component {
@@ -823,6 +821,7 @@ Module {
         exportMetaObjectRevisions: [0]
         Property { name: "source"; type: "string" }
         Property { name: "fileName"; type: "string" }
+        Property { name: "header"; type: "QVariantMap" }
         Property { name: "percent"; type: "double"; isReadonly: true }
         Property { name: "downloaderQueue"; type: "AsemanFileDownloaderQueue"; isPointer: true }
         Property { name: "result"; type: "string"; isReadonly: true }
@@ -1695,6 +1694,11 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method {
+            name: "decodeJwt"
+            type: "QVariantMap"
+            Parameter { name: "token"; type: "string" }
+        }
+        Method {
             name: "className"
             type: "string"
             Parameter { name: "obj"; type: "QObject"; isPointer: true }
@@ -2200,6 +2204,7 @@ Module {
         Property { name: "fileName"; type: "string" }
         Property { name: "radius"; type: "double" }
         Property { name: "source"; type: "string" }
+        Property { name: "header"; type: "QVariantMap" }
         Property { name: "percent"; type: "double"; isReadonly: true }
         Property { name: "fillMode"; type: "int" }
         Property { name: "asynchronous"; type: "bool" }

@@ -136,6 +136,8 @@ public Q_SLOTS:
     static void deleteFile(const QString &file);
     static void clearDirectory(const QString &dir);
 
+    static QVariantMap decodeJwt(const QString &token);
+
     static void setProperty( QObject *obj, const QString & property, const QVariant & v );
     static QVariant property( QObject *obj, const QString & property );
 

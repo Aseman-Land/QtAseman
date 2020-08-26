@@ -711,6 +711,17 @@ void AsemanTools::clearDirectory(const QString &pt)
         deleteFile(path+"/"+f);
 }
 
+QVariantMap AsemanTools::decodeJwt(const QString &token)
+{
+    QVariantMap res;
+
+    QStringList parts = token.split(".");
+    if (parts.length() > 0) res["header"] = QJsonDocument::fromJson( QByteArray::fromBase64( parts[0].toUtf8() ) ).toVariant();
+    if (parts.length() > 1) res["body"] = QJsonDocument::fromJson( QByteArray::fromBase64( parts[1].toUtf8() ) ).toVariant();
+
+    return res;
+}
+
 void AsemanTools::setProperty(QObject *obj, const QString &property, const QVariant &v)
 {
     if( !obj || property.isEmpty() )
