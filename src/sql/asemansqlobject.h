@@ -89,7 +89,7 @@ public:
 
     QString lastError() const;
 
-    void queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result)> callback);
+    void queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result, const QString &error)> callback);
 
 public Q_SLOTS:
     qint32 insert(const QString &extra = QString());

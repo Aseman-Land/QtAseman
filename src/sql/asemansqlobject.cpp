@@ -448,18 +448,19 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
     return generateResult(q);
 }
 
-void AsemanSqlObject::queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result)> callback)
+void AsemanSqlObject::queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result, const QString &error)> callback)
 {
     Core *core = init(QUuid::createUuid().toString());
     QVariantMap fixedBinds = prepareBinds(binds);
 
     AsemanSqlObjectAsync *async = new AsemanSqlObjectAsync(core, query, fixedBinds);
 
-    connect(async, &AsemanSqlObjectAsync::error, this, [this](const QString &error){
+    connect(async, &AsemanSqlObjectAsync::error, this, [this, callback](const QString &error){
         setLastError(error);
+        callback(QVariantList(), error);
     });
     connect(async, &AsemanSqlObjectAsync::result, this, [callback](const QVariantList &result){
-        callback(result);
+        callback(result, QString());
     });
     connect(async, &AsemanSqlObjectAsync::finished, async, [async](){
         async->deleteLater();
