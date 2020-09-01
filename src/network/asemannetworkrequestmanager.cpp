@@ -35,12 +35,23 @@ class AsemanNetworkRequestManager::Private
 public:
     QNetworkAccessManager *accessManager;
     QString boundaryToken;
+    static int fullLog_env;
 };
+
+int AsemanNetworkRequestManager::Private::fullLog_env = -1;
 
 AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
     QObject(parent)
 {
     p = new Private;
+
+#ifdef QT_DEBUG
+    if (Private::fullLog_env == -1)
+        Private::fullLog_env = (qgetenv("QTASEMAN_NETWORK_DEBUG_MODE") == "true"? 1 : 0);
+#else
+    Private::fullLog_env = 0;
+#endif
+
     p->boundaryToken = QStringLiteral("Aseman:292a15d1-64af-4ee2-82b5-2d42adb9fd43");
 
     p->accessManager = new QNetworkAccessManager(this);
@@ -59,6 +70,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(const QUrl &_url, co
     req.setMaximumRedirectsAllowed(10);
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, POST url:" << url.toString();
+
     addHeaderData(req, headers);
 
     QNetworkReply *reply = p->accessManager->get(req);
@@ -76,6 +90,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, co
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
+
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, POST url:" << url.toString() << "data-length:" << data.length();
 
     QNetworkReply *reply = p->accessManager->post(req, data);
     reply->setParent(this);
@@ -96,6 +113,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, QH
 
     req.setRawHeader("Content-Type", "multipart/form-data; boundary=\"" + p->boundaryToken.toUtf8() + "\"");
 
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, POST url:" << url.toString() << "data-length: uncalculatble";
+
     QNetworkReply *reply = p->accessManager->post(req, parts);
     reply->setParent(this);
 
@@ -113,6 +133,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
+
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, " + method.toUpper().toUtf8() + " url:" << url.toString() << "data-length:" << data.length();
 
     QNetworkReply *reply = p->accessManager->sendCustomRequest(req, method.toUtf8(), data);
     reply->setParent(this);
@@ -132,6 +155,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
     addHeaderData(req, headers);
 
     req.setRawHeader("Content-Type", "multipart/form-data; boundary=\"" + p->boundaryToken.toUtf8() + "\"");
+
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, " + method.toUpper().toUtf8() + " url:" << url.toString() << "data-length: uncalculatble";
 
     QNetworkReply *reply = p->accessManager->sendCustomRequest(req, method.toUtf8(), parts);
     reply->setParent(this);
@@ -163,6 +189,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, con
 
     addHeaderData(req, headers);
 
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, PUT url:" << url.toString() << "data-length:" + data.size();
+
     QNetworkReply *reply = p->accessManager->put(req, data);
     reply->setParent(this);
 
@@ -181,6 +210,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, QHt
     addHeaderData(req, headers);
 
     req.setRawHeader("Content-Type", "multipart/form-data; boundary=\"" + p->boundaryToken.toUtf8() + "\"");
+
+    if (Private::fullLog_env)
+        qDebug() << "QtAseman::Network, POST url:" << url.toString() << "data-length: uncalculatble";
 
     QNetworkReply *reply = p->accessManager->put(req, parts);
     reply->setParent(this);
