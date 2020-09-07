@@ -46,6 +46,7 @@ import android.os.Handler;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.content.ContentResolver;
+import android.support.v4.content.FileProvider;
 
 import java.io.File;
 import java.io.InputStream;
@@ -328,10 +329,13 @@ public class AsemanJavaLayer
         Context oContext;
         oContext = AsemanApplication.getAppContext();
 
+        File file = new File(path);
+        Uri photoURI = FileProvider.getUriForFile(oContext, oContext.getApplicationContext().getPackageName() + ".provider", file);
+
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType(type);
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+path));
+        intent.putExtra(Intent.EXTRA_STREAM, photoURI);
 
         try {
 
@@ -340,7 +344,7 @@ public class AsemanJavaLayer
             oContext.startActivity(new_intent);
 
         } catch(Exception e) {
-            Log.e("Share" , "Exception:" , e);
+            Log.e("Share File" , "Exception:" , e);
             return false;
         }
         return true;
@@ -352,14 +356,18 @@ public class AsemanJavaLayer
         Context oContext;
         oContext = AsemanApplication.getAppContext();
 
+        File file = new File(path);
+        Uri photoURI = FileProvider.getUriForFile(oContext, oContext.getApplicationContext().getPackageName() + ".provider", file);
+
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType(type);
-        intent.setDataAndType(Uri.parse(path),type);
+        intent.setDataAndType(photoURI,type);
 
         try {
             oContext.startActivity(intent);
         } catch(Exception e) {
+            Log.e("Open File" , "Exception:" , e);
             return false;
         }
         return true;
