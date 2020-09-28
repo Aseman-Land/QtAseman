@@ -30,7 +30,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestReply : public QObject
     class Private;
 
 public:
-    AsemanNetworkRequestReply(QNetworkReply *reply = Q_NULLPTR);
+    AsemanNetworkRequestReply(bool ignoreSslErrors, QNetworkReply *reply = Q_NULLPTR);
     virtual ~AsemanNetworkRequestReply();
 
     qint32 statusCode() const;

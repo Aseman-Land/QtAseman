@@ -46,6 +46,7 @@ Module {
         exports: ["AsemanQml.Network/NetworkRequestManager 2.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "boundaryToken"; type: "string" }
+        Property { name: "ignoreSslErrors"; type: "bool" }
         Method {
             name: "get"
             type: "AsemanNetworkRequestReply*"
@@ -142,6 +143,7 @@ Module {
         Property { name: "cachePath"; type: "string" }
         Property { name: "headers"; type: "QVariantMap" }
         Property { name: "url"; type: "QUrl" }
+        Property { name: "ignoreSslErrors"; type: "bool" }
         Signal {
             name: "successfull"
             Parameter { name: "status"; type: "int" }

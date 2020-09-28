@@ -29,7 +29,7 @@ public:
     bool finishedEmited;
 };
 
-AsemanNetworkRequestReply::AsemanNetworkRequestReply(QNetworkReply *reply) :
+AsemanNetworkRequestReply::AsemanNetworkRequestReply(bool ignoreSslErrors, QNetworkReply *reply) :
     QObject(reply)
 {
     p = new Private;
@@ -39,8 +39,23 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(QNetworkReply *reply) :
     connect(reply, &QNetworkReply::readyRead, this, [this](){
         p->buffer += p->reply->readAll();
     });
-    connect(reply, &QNetworkReply::sslErrors, this, [this](const QList<QSslError> &errors){
-        p->reply->ignoreSslErrors(errors);
+    connect(reply, &QNetworkReply::sslErrors, this, [this, ignoreSslErrors](const QList<QSslError> &errors){
+        if (ignoreSslErrors)
+            p->reply->ignoreSslErrors(errors);
+        else
+        {
+            QString errorString;
+            for (auto err: errors)
+            {
+                if (err.errorString().count())
+                    errorString += QStringLiteral(": ") + err.errorString() + QStringLiteral("\n");
+            }
+
+            Q_EMIT error(errorString, QNetworkReply::UnknownServerError);
+
+            p->reply->deleteLater();
+            deleteLater();
+        }
     });
     connect(reply, &QNetworkReply::finished, this, [this](){
         if (p->finishedEmited)
@@ -67,7 +82,7 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(QNetworkReply *reply) :
 
         QString errorString = var.toString().remove(QStringLiteral("QNetworkReply::"));
         if (reply->errorString().count())
-            errorString += ": " + reply->errorString();
+            errorString += QStringLiteral(": ") + reply->errorString();
 
         Q_EMIT error(errorString, err);
 

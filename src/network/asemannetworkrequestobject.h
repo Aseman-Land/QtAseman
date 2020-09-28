@@ -47,6 +47,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestObject : public AsemanQuick
     Q_PROPERTY(QString cachePath READ cachePath WRITE setCachePath NOTIFY cachePathChanged)
     Q_PROPERTY(QVariantMap headers READ headers WRITE setHeaders NOTIFY headersChanged)
     Q_PROPERTY(QUrl url READ url WRITE setUrl NOTIFY urlChanged)
+    Q_PROPERTY(bool ignoreSslErrors READ ignoreSslErrors WRITE setIgnoreSslErrors NOTIFY ignoreSslErrorsChanged)
 
     class Private;
     friend class AsemanNetworkRequestManager;
@@ -98,6 +99,9 @@ public:
     QRegExp ignoreRegExp() const;
     void setIgnoreRegExp(const QRegExp &ignoreRegExp);
 
+    void setIgnoreSslErrors(bool ignoreSslErrors);
+    bool ignoreSslErrors() const;
+
 Q_SIGNALS:
     void responseChanged();
     void cachedDataChanged();
@@ -117,6 +121,7 @@ Q_SIGNALS:
     void serverError(qint32 status);
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void ignoreSslErrorsChanged();
 
 public Q_SLOTS:
     QVariantMap toMap() const;

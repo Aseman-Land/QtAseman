@@ -36,6 +36,7 @@ public:
     QNetworkAccessManager *accessManager;
     QString boundaryToken;
     static int fullLog_env;
+    bool ignoreSslErrors;
 };
 
 int AsemanNetworkRequestManager::Private::fullLog_env = -1;
@@ -44,6 +45,7 @@ AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
     QObject(parent)
 {
     p = new Private;
+    p->ignoreSslErrors = false;
 
 #ifdef QT_DEBUG
     if (Private::fullLog_env == -1)
@@ -57,7 +59,7 @@ AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
     p->accessManager = new QNetworkAccessManager(this);
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(const QUrl &_url, const QVariantMap &keys, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequestObject *request, const QUrl &_url, const QVariantMap &keys, const QVariantMap &headers)
 {
     const QUrlQuery query = queryOfMap(keys);
 
@@ -76,12 +78,12 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(const QUrl &_url, co
     addHeaderData(req, headers);
 
     QNetworkReply *reply = p->accessManager->get(req);
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, const QByteArray &data, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -97,12 +99,12 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, co
     QNetworkReply *reply = p->accessManager->post(req, data);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -119,12 +121,12 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(const QUrl &url, QH
     QNetworkReply *reply = p->accessManager->post(req, parts);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -140,12 +142,12 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
     QNetworkReply *reply = p->accessManager->sendCustomRequest(req, method.toUtf8(), data);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -162,24 +164,24 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
     QNetworkReply *reply = p->accessManager->sendCustomRequest(req, method.toUtf8(), parts);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethodForm(const QString &method, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethodForm(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
 {
     QHttpMultiPart *parts = generateFormData(formData);
-    return AsemanNetworkRequestManager::customMethod(method, url, parts, headers);
+    return AsemanNetworkRequestManager::customMethod(request, method, url, parts, headers);
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(AsemanNetworkRequestObject *request, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
 {
     QHttpMultiPart *parts = generateFormData(formData);
-    return AsemanNetworkRequestManager::post(url, parts, headers);
+    return AsemanNetworkRequestManager::post(request, url, parts, headers);
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, const QByteArray &data, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -190,17 +192,17 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, con
     addHeaderData(req, headers);
 
     if (Private::fullLog_env)
-        qDebug() << "QtAseman::Network, PUT url:" << url.toString() << "data-length:" + data.size();
+        qDebug() << "QtAseman::Network, PUT url:" << url.toString() << "data-length:" + QString::number(data.size());
 
     QNetworkReply *reply = p->accessManager->put(req, data);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;
     req.setUrl(url);
@@ -217,15 +219,15 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(const QUrl &url, QHt
     QNetworkReply *reply = p->accessManager->put(req, parts);
     reply->setParent(this);
 
-    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(reply);
+    AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
     return reqReply;
 }
 
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(AsemanNetworkRequestObject *request, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
 {
     QHttpMultiPart *parts = generateFormData(formData);
-    return AsemanNetworkRequestManager::put(url, parts, headers);
+    return AsemanNetworkRequestManager::put(request, url, parts, headers);
 }
 
 void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod)
@@ -425,10 +427,24 @@ QString AsemanNetworkRequestManager::boundaryToken() const
     return p->boundaryToken;
 }
 
+void AsemanNetworkRequestManager::setIgnoreSslErrors(bool ignoreSslErrors)
+{
+    if (p->ignoreSslErrors == ignoreSslErrors)
+        return;
+
+    p->ignoreSslErrors = ignoreSslErrors;
+    Q_EMIT ignoreSslErrorsChanged();
+}
+
+bool AsemanNetworkRequestManager::ignoreSslErrors() const
+{
+    return p->ignoreSslErrors;
+}
+
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     QVariantMap keys = ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap();
-    AsemanNetworkRequestReply *reply = get(request->url(), keys, request->headers());
+    AsemanNetworkRequestReply *reply = get(request, request->url(), keys, request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
@@ -438,9 +454,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = postForm(request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
+        reply = postForm(request, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = post(request->url(), requestData(request, ignoreEmptyValues), request->headers());
+        reply = post(request, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
@@ -450,9 +466,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = putForm(request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
+        reply = putForm(request, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = put(request->url(), requestData(request, ignoreEmptyValues), request->headers());
+        reply = put(request, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;
@@ -472,9 +488,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QStri
 {
     AsemanNetworkRequestReply *reply;
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
-        reply = customMethodForm(method, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
+        reply = customMethodForm(request, method, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-        reply = customMethod(method, request->url(), requestData(request, ignoreEmptyValues), request->headers());
+        reply = customMethod(request, method, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
     return reply;

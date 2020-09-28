@@ -42,6 +42,7 @@ public:
     QRegExp ignoreRegExp;
     QVariantMap headers;
     QUrl url;
+    bool ignoreSslErrors;
 
     std::function<void ()> refresherMethod_cpp;
     QTimer *refreshTimer;
@@ -61,6 +62,7 @@ AsemanNetworkRequestObject::AsemanNetworkRequestObject(QObject *parent) :
     p->storeLock = false;
     p->refresherMethod_cpp = Q_NULLPTR;
     p->contentType = TypeForm;
+    p->ignoreSslErrors = false;
 
     p->refreshTimer = new QTimer(this);
     p->refreshTimer->setInterval(100);
@@ -252,6 +254,20 @@ void AsemanNetworkRequestObject::setIgnoreRegExp(const QRegExp &ignoreRegExp)
 
     p->ignoreRegExp = ignoreRegExp;
     Q_EMIT ignoreRegExpChanged();
+}
+
+void AsemanNetworkRequestObject::setIgnoreSslErrors(bool ignoreSslErrors)
+{
+    if (p->ignoreSslErrors == ignoreSslErrors)
+        return;
+
+    p->ignoreSslErrors = ignoreSslErrors;
+    Q_EMIT ignoreSslErrorsChanged();
+}
+
+bool AsemanNetworkRequestObject::ignoreSslErrors() const
+{
+    return p->ignoreSslErrors;
 }
 
 QVariantMap AsemanNetworkRequestObject:: toMap() const
