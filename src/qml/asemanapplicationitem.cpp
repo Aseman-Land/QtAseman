@@ -82,6 +82,20 @@ AsemanApplicationItem::AsemanApplicationItem() :
         p->statusbarStyleTimer_ios->start(2000);
     });
 #endif
+
+    auto app = qobject_cast<QGuiApplication*>(QGuiApplication::instance());
+    if (app)
+    {
+        connect(app, &QGuiApplication::applicationStateChanged, this, [this](Qt::ApplicationState state){
+            switch (static_cast<int>(state))
+            {
+            case Qt::ApplicationActive:
+                p->statusbarStyleTimer_ios->stop();
+                p->statusbarStyleTimer_ios->start(10);
+                break;
+            }
+        });
+    }
 }
 
 bool AsemanApplicationItem::aseman_app_init()
