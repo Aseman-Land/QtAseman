@@ -81,7 +81,6 @@ AsemanApplicationItem::AsemanApplicationItem() :
         setStatusBarStyle(p->statusBarStyle);
         p->statusbarStyleTimer_ios->start(2000);
     });
-#endif
 
     auto app = qobject_cast<QGuiApplication*>(QGuiApplication::instance());
     if (app)
@@ -96,6 +95,7 @@ AsemanApplicationItem::AsemanApplicationItem() :
             }
         });
     }
+#endif
 }
 
 bool AsemanApplicationItem::aseman_app_init()
