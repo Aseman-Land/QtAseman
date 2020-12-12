@@ -56,11 +56,12 @@ public:
     static QtLocalPeer *peer;
     QPointer<AsemanNetworkProxy> proxy;
 
-    qint32 statusBarStyle = AsemanApplicationItem::StatusBarStyleAuto;
+    static qint32 statusBarStyle;
     QTimer *statusbarStyleTimer_ios;
 };
 
 QtLocalPeer *AsemanApplicationItemPrivate::peer = 0;
+qint32 AsemanApplicationItemPrivate::statusBarStyle = AsemanApplicationItem::StatusBarStyleAuto;
 
 
 AsemanApplicationItem::AsemanApplicationItem(QQmlEngine *engine) :
@@ -78,6 +79,9 @@ AsemanApplicationItem::AsemanApplicationItem() :
     p->statusbarStyleTimer_ios = new QTimer(this);
     p->statusbarStyleTimer_ios->setSingleShot(true);
     connect(p->statusbarStyleTimer_ios, &QTimer::timeout, this, [this](){
+        if (p->engine)
+            return;
+
         setStatusBarStyle(p->statusBarStyle);
         p->statusbarStyleTimer_ios->start(2000);
     });
@@ -86,6 +90,9 @@ AsemanApplicationItem::AsemanApplicationItem() :
     if (app)
     {
         connect(app, &QGuiApplication::applicationStateChanged, this, [this](Qt::ApplicationState state){
+            if (p->engine)
+                return;
+
             switch (static_cast<int>(state))
             {
             case Qt::ApplicationActive:
