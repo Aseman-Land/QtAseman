@@ -36,7 +36,8 @@ HEADERS += \
     $$PWD/asemandevicesitem.h \
     $$PWD/asemantoolsitem.h \
     $$PWD/asemanfileresourcemanager.h \
-    $$PWD/asemanproxycomponent.h 
+    $$PWD/asemanproxycomponent.h  \
+    asemanapplicationsingleton.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -58,7 +59,8 @@ SOURCES += \
     $$PWD/asemandevicesitem.cpp \
     $$PWD/asemantoolsitem.cpp \
     $$PWD/asemanfileresourcemanager.cpp \
-    $$PWD/asemanproxycomponent.cpp
+    $$PWD/asemanproxycomponent.cpp \
+    asemanapplicationsingleton.cpp
 
 android {
     QT += androidextras

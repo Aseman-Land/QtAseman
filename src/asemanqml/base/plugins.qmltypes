@@ -121,13 +121,8 @@ Module {
         name: "AsemanApplicationItem"
         defaultProperty: "items"
         prototype: "AsemanApplication"
-        exports: [
-            "AsemanQml.Base/AsemanApp 2.0",
-            "AsemanQml.Base/AsemanApplicationBase 2.0"
-        ]
-        isCreatable: false
-        isSingleton: true
-        exportMetaObjectRevisions: [0, 0]
+        exports: ["AsemanQml.Base/AsemanApplicationBase 2.0"]
+        exportMetaObjectRevisions: [0]
         Enum {
             name: "StatusBarStyles"
             values: {
@@ -160,6 +155,15 @@ Module {
             Parameter { name: "persmissions"; type: "QStringList" }
             Parameter { name: "callback"; type: "QJSValue" }
         }
+    }
+    Component {
+        name: "AsemanApplicationSingleton"
+        defaultProperty: "items"
+        prototype: "AsemanApplicationItem"
+        exports: ["AsemanQml.Base/AsemanApp 2.0"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [0]
     }
     Component {
         name: "AsemanAutoStartManager"

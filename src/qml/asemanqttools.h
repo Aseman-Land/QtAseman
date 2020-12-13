@@ -33,7 +33,7 @@ public:
     static void initializeEngine(QQmlEngine *engine, const char *uri);
 
     static class AsemanQuickViewWrapper *quickView(QQmlEngine *engine);
-    static class AsemanApplicationItem *application(QQmlEngine *engine);
+    static class AsemanApplicationSingleton *application(QQmlEngine *engine);
     static class AsemanDesktopTools *desktopTools();
     static class AsemanDevicesItem *devices();
     static class AsemanQtLogger *qtLogger();

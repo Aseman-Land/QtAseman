@@ -24,6 +24,7 @@
 #include "asemantoolsitem.h"
 #include "asemanapplicationitem.h"
 #include "asemanquickviewwrapper.h"
+#include "asemanapplicationsingleton.h"
 #include "asemandesktoptools.h"
 #include <asemantexttools.h>
 #include <asemancalendarconverter.h>
@@ -61,11 +62,11 @@ AsemanQuickViewWrapper *AsemanQtTools::quickView(QQmlEngine *engine)
     return res;
 }
 
-AsemanApplicationItem *AsemanQtTools::application(QQmlEngine *engine)
+AsemanApplicationSingleton *AsemanQtTools::application(QQmlEngine *engine)
 {
-    static QPointer<AsemanApplicationItem> res;
+    static QPointer<AsemanApplicationSingleton> res;
     if(!res)
-        res = new AsemanApplicationItem(engine);
+        res = new AsemanApplicationSingleton(engine);
 
     return res;
 }

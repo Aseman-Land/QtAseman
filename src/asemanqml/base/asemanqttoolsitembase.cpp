@@ -29,6 +29,7 @@
 #include "asemancalendarconverter.h"
 #include "asemanimagecoloranalizor.h"
 #include "asemandesktoptools.h"
+#include "asemanapplicationsingleton.h"
 #include "asemansettings.h"
 #include "asemanmimedata.h"
 #include "asemanfileresourcemanager.h"
@@ -100,16 +101,16 @@
         return singleton; \
     }
 
-SINGLETON_PROVIDER(AsemanDevicesItem        , aseman_devices_singleton           , AsemanQtToolsItemBase::devices())
-SINGLETON_PROVIDER(AsemanToolsItem          , aseman_tools_singleton             , AsemanQtToolsItemBase::tools())
-SINGLETON_PROVIDER(AsemanTextTools          , aseman_text_tools_singleton        , AsemanQtToolsItemBase::textTools())
-SINGLETON_PROVIDER(AsemanDesktopTools       , aseman_desktoptools_singleton      , AsemanQtToolsItemBase::desktopTools())
-SINGLETON_PROVIDER(AsemanCalendarConverter  , aseman_calendarconv_singleton      , AsemanQtToolsItemBase::calendar(engine))
-SINGLETON_PROVIDER(AsemanBackHandler        , aseman_backhandler_singleton       , AsemanQtToolsItemBase::backHandler(engine))
-SINGLETON_PROVIDER(AsemanApplicationItem    , aseman_app_singleton               , AsemanQtToolsItemBase::application(engine))
-SINGLETON_PROVIDER(AsemanQuickViewWrapper   , aseman_qview_singleton             , AsemanQtToolsItemBase::quickView(engine))
-SINGLETON_PROVIDER(AsemanQtLogger           , aseman_logger_singleton            , AsemanQtToolsItemBase::qtLogger())
-SINGLETON_PROVIDER(AsemanGlobalTranslations , aseman_globaltranslations_singleton, AsemanQtToolsItemBase::globalTranslations(engine))
+SINGLETON_PROVIDER(AsemanDevicesItem         , aseman_devices_singleton           , AsemanQtToolsItemBase::devices())
+SINGLETON_PROVIDER(AsemanToolsItem           , aseman_tools_singleton             , AsemanQtToolsItemBase::tools())
+SINGLETON_PROVIDER(AsemanTextTools           , aseman_text_tools_singleton        , AsemanQtToolsItemBase::textTools())
+SINGLETON_PROVIDER(AsemanDesktopTools        , aseman_desktoptools_singleton      , AsemanQtToolsItemBase::desktopTools())
+SINGLETON_PROVIDER(AsemanCalendarConverter   , aseman_calendarconv_singleton      , AsemanQtToolsItemBase::calendar(engine))
+SINGLETON_PROVIDER(AsemanBackHandler         , aseman_backhandler_singleton       , AsemanQtToolsItemBase::backHandler(engine))
+SINGLETON_PROVIDER(AsemanApplicationSingleton, aseman_app_singleton               , AsemanQtToolsItemBase::application(engine))
+SINGLETON_PROVIDER(AsemanQuickViewWrapper    , aseman_qview_singleton             , AsemanQtToolsItemBase::quickView(engine))
+SINGLETON_PROVIDER(AsemanQtLogger            , aseman_logger_singleton            , AsemanQtToolsItemBase::qtLogger())
+SINGLETON_PROVIDER(AsemanGlobalTranslations  , aseman_globaltranslations_singleton, AsemanQtToolsItemBase::globalTranslations(engine))
 #ifdef Q_OS_ANDROID
 SINGLETON_PROVIDER(AsemanJavaLayer          , aseman_javalayer_singleton       , AsemanQtToolsItemBase::javaLayer())
 #endif
@@ -170,7 +171,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerSingletonType<AsemanDesktopTools>(uri, 2, 0, "Desktop", aseman_desktoptools_singleton, exportMode);
     registerSingletonType<AsemanCalendarConverter>(uri, 2, 0, "CalendarConv", aseman_calendarconv_singleton, exportMode);
     registerSingletonType<AsemanBackHandler>(uri, 2, 0, "BackHandler", aseman_backhandler_singleton, exportMode);
-    registerSingletonType<AsemanApplicationItem>(uri, 2, 0, "AsemanApp", aseman_app_singleton, exportMode);
+    registerSingletonType<AsemanApplicationSingleton>(uri, 2, 0, "AsemanApp", aseman_app_singleton, exportMode);
     registerSingletonType<AsemanQtLogger>(uri, 2, 0, "Logger", aseman_logger_singleton, exportMode);
     registerSingletonType<AsemanQuickViewWrapper>(uri, 2, 0, "View", aseman_qview_singleton, exportMode);
     registerSingletonType<AsemanGlobalTranslations>(uri, 2, 0, "Translations", aseman_globaltranslations_singleton, exportMode);

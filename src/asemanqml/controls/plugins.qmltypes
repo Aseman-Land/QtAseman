@@ -9,34 +9,37 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: [
         "QtGraphicalEffects 1.12",
-        "QtQml 2.1",
+        "QtQml 2.7",
         "QtQml.Models 2.2",
+        "QtQml.WorkerScript 2.15",
         "QtQuick 2.9",
         "QtQuick.Controls 2.5",
-        "QtQuick.Controls.Fusion 2.12",
-        "QtQuick.Controls.Fusion.impl 2.12",
-        "QtQuick.Controls.Imagine 2.12",
-        "QtQuick.Controls.Imagine.impl 2.12",
-        "QtQuick.Controls.Material 2.12",
-        "QtQuick.Controls.Material.impl 2.12",
+        "QtQuick.Controls.Fusion 2.15",
+        "QtQuick.Controls.Fusion.impl 2.15",
+        "QtQuick.Controls.IOSStyle 2.12",
+        "QtQuick.Controls.IOSStyle.impl 2.12",
+        "QtQuick.Controls.Imagine 2.15",
+        "QtQuick.Controls.Imagine.impl 2.15",
+        "QtQuick.Controls.Material 2.15",
+        "QtQuick.Controls.Material.impl 2.15",
         "QtQuick.Controls.Styles 1.4",
         "QtQuick.Controls.Styles.Plasma 2.0",
-        "QtQuick.Controls.Universal 2.12",
-        "QtQuick.Controls.Universal.impl 2.12",
-        "QtQuick.Controls.impl 2.12",
+        "QtQuick.Controls.Universal 2.15",
+        "QtQuick.Controls.Universal.impl 2.15",
+        "QtQuick.Controls.impl 2.15",
         "QtQuick.Extras 1.4",
         "QtQuick.Layouts 1.4",
         "QtQuick.Templates 2.5",
-        "QtQuick.Window 2.2",
+        "QtQuick.Window 2.6",
         "org.kde.kconfig 1.0",
         "org.kde.kirigami 2.9",
         "org.kde.kquickcontrolsaddons 2.0",
-        "org.kde.plasma.components 2.0",
+        "org.kde.plasma.components 3.0",
         "org.kde.plasma.core 2.0",
         "org.kde.plasma.extras 2.0"
     ]
     Component {
-        prototype: "QObject"
+        prototype: "AsemanApplicationItem"
         name: "AsemanQml.Controls/AsemanApplication 2.0"
         exports: ["AsemanQml.Controls/AsemanApplication 2.0"]
         exportMetaObjectRevisions: [0]
@@ -44,104 +47,6 @@ Module {
         defaultProperty: "items"
         Property { name: "source"; type: "QUrl" }
         Property { name: "appMain"; type: "QQuickWindow"; isReadonly: true; isPointer: true }
-        Property { name: "proxy"; type: "AsemanNetworkProxy"; isPointer: true }
-        Property { name: "applicationId"; type: "string" }
-        Property { name: "isRunning"; type: "bool"; isReadonly: true }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
-        Signal {
-            name: "messageReceived"
-            Parameter { name: "msg"; type: "string" }
-        }
-        Method {
-            name: "sendMessage"
-            Parameter { name: "msg"; type: "string" }
-        }
-        Method {
-            name: "checkPermissions"
-            type: "bool"
-            Parameter { name: "persmission"; type: "string" }
-        }
-        Method {
-            name: "requestPermissions"
-            type: "QVariantMap"
-            Parameter { name: "persmissions"; type: "QStringList" }
-            Parameter { name: "callback"; type: "QJSValue" }
-        }
-        Enum {
-            name: "ApplicationType"
-            values: {
-                "NoneApplication": 0,
-                "GuiApplication": 1,
-                "CoreApplication": 2
-            }
-        }
-        Enum {
-            name: "ApplicationState"
-            values: {
-                "ApplicationSuspended": 0,
-                "ApplicationHidden": 1,
-                "ApplicationInactive": 2,
-                "ApplicationActive": 4
-            }
-        }
-        Property { name: "homePath"; type: "string"; isReadonly: true }
-        Property { name: "startPath"; type: "string"; isReadonly: true }
-        Property { name: "appPath"; type: "string"; isReadonly: true }
-        Property { name: "appFilePath"; type: "string"; isReadonly: true }
-        Property { name: "logPath"; type: "string" }
-        Property { name: "confsPath"; type: "string"; isReadonly: true }
-        Property { name: "tempPath"; type: "string"; isReadonly: true }
-        Property { name: "backupsPath"; type: "string"; isReadonly: true }
-        Property { name: "cameraPath"; type: "string"; isReadonly: true }
-        Property { name: "appType"; type: "int"; isReadonly: true }
-        Property { name: "isDebug"; type: "bool"; isReadonly: true }
-        Property { name: "globalFont"; type: "QFont" }
-        Property { name: "applicationName"; type: "string" }
-        Property { name: "applicationVersion"; type: "string" }
-        Property { name: "organizationName"; type: "string" }
-        Property { name: "organizationDomain"; type: "string" }
-        Property { name: "applicationAbout"; type: "string" }
-        Property { name: "qpaNoTextHandles"; type: "bool" }
-        Property { name: "windowIcon"; type: "QUrl" }
-        Property { name: "applicationState"; type: "int"; isReadonly: true }
-        Property { name: "applicationDisplayName"; type: "string" }
-        Property { name: "platformName"; type: "string"; isReadonly: true }
-        Property { name: "quitOnLastWindowClosed"; type: "bool" }
-        Signal { name: "fakeSignal" }
-        Signal { name: "globalFontFamilyChanged" }
-        Signal { name: "globalMonoFontFamilyChanged" }
-        Signal { name: "languageUpdated" }
-        Signal { name: "backRequest" }
-        Signal { name: "clickedOnDock" }
-        Signal { name: "lastWindowClosed" }
-        Method { name: "refreshTranslations" }
-        Method { name: "back" }
-        Method { name: "exec"; type: "int" }
-        Method {
-            name: "exit"
-            Parameter { name: "retcode"; type: "int" }
-        }
-        Method { name: "exit" }
-        Method {
-            name: "sleep"
-            Parameter { name: "ms"; type: "qulonglong" }
-        }
-        Method {
-            name: "setSetting"
-            Parameter { name: "key"; type: "string" }
-            Parameter { name: "value"; type: "QVariant" }
-        }
-        Method {
-            name: "readSetting"
-            type: "QVariant"
-            Parameter { name: "key"; type: "string" }
-            Parameter { name: "defaultValue"; type: "QVariant" }
-        }
-        Method {
-            name: "readSetting"
-            type: "QVariant"
-            Parameter { name: "key"; type: "string" }
-        }
     }
     Component {
         prototype: "QQuickApplicationWindow"
@@ -154,7 +59,7 @@ Module {
         Property { name: "try_close"; type: "bool" }
         Property { name: "portrait"; type: "bool"; isReadonly: true }
         Property { name: "masterPalette"; type: "QQuickSystemPalette"; isReadonly: true; isPointer: true }
-        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_3"; isReadonly: true; isPointer: true }
+        Property { name: "tooltip"; type: "Tooltip_QMLTYPE_4"; isReadonly: true; isPointer: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
         Method {
@@ -305,7 +210,7 @@ Module {
         Property { name: "currentIndex"; type: "int" }
         Property {
             name: "currentItem"
-            type: "HelperPoint_QMLTYPE_42"
+            type: "HelperPoint_QMLTYPE_46"
             isReadonly: true
             isPointer: true
         }
