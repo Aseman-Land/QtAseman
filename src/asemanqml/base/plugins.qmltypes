@@ -9,31 +9,32 @@ import QtQuick.tooling 1.2
 Module {
     dependencies: [
         "QtGraphicalEffects 1.12",
-        "QtQml 2.1",
+        "QtQml 2.7",
         "QtQml.Models 2.2",
+        "QtQml.WorkerScript 2.15",
         "QtQuick 2.9",
         "QtQuick.Controls 2.5",
-        "QtQuick.Controls.Fusion 2.12",
-        "QtQuick.Controls.Fusion.impl 2.12",
+        "QtQuick.Controls.Fusion 2.15",
+        "QtQuick.Controls.Fusion.impl 2.15",
         "QtQuick.Controls.IOSStyle 2.12",
         "QtQuick.Controls.IOSStyle.impl 2.12",
-        "QtQuick.Controls.Imagine 2.12",
-        "QtQuick.Controls.Imagine.impl 2.12",
-        "QtQuick.Controls.Material 2.12",
-        "QtQuick.Controls.Material.impl 2.12",
+        "QtQuick.Controls.Imagine 2.15",
+        "QtQuick.Controls.Imagine.impl 2.15",
+        "QtQuick.Controls.Material 2.15",
+        "QtQuick.Controls.Material.impl 2.15",
         "QtQuick.Controls.Styles 1.4",
         "QtQuick.Controls.Styles.Plasma 2.0",
-        "QtQuick.Controls.Universal 2.12",
-        "QtQuick.Controls.Universal.impl 2.12",
-        "QtQuick.Controls.impl 2.12",
+        "QtQuick.Controls.Universal 2.15",
+        "QtQuick.Controls.Universal.impl 2.15",
+        "QtQuick.Controls.impl 2.15",
         "QtQuick.Extras 1.4",
         "QtQuick.Layouts 1.4",
         "QtQuick.Templates 2.5",
-        "QtQuick.Window 2.2",
+        "QtQuick.Window 2.6",
         "org.kde.kconfig 1.0",
         "org.kde.kirigami 2.9",
         "org.kde.kquickcontrolsaddons 2.0",
-        "org.kde.plasma.components 2.0",
+        "org.kde.plasma.components 3.0",
         "org.kde.plasma.core 2.0",
         "org.kde.plasma.extras 2.0"
     ]
@@ -127,9 +128,18 @@ Module {
         isCreatable: false
         isSingleton: true
         exportMetaObjectRevisions: [0, 0]
+        Enum {
+            name: "StatusBarStyles"
+            values: {
+                "StatusBarStyleLight": 0,
+                "StatusBarStyleDark": 1,
+                "StatusBarStyleAuto": 2
+            }
+        }
         Property { name: "proxy"; type: "AsemanNetworkProxy"; isPointer: true }
         Property { name: "applicationId"; type: "string" }
         Property { name: "isRunning"; type: "bool"; isReadonly: true }
+        Property { name: "statusBarStyle"; type: "int" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal {
             name: "messageReceived"
@@ -1694,11 +1704,6 @@ Module {
             Parameter { name: "path"; type: "string" }
         }
         Method {
-            name: "decodeJwt"
-            type: "QVariantMap"
-            Parameter { name: "token"; type: "string" }
-        }
-        Method {
             name: "className"
             type: "string"
             Parameter { name: "obj"; type: "QObject"; isPointer: true }
@@ -1865,6 +1870,11 @@ Module {
         Method {
             name: "clearDirectory"
             Parameter { name: "dir"; type: "string" }
+        }
+        Method {
+            name: "decodeJwt"
+            type: "QVariantMap"
+            Parameter { name: "token"; type: "string" }
         }
         Method {
             name: "setProperty"
@@ -2182,7 +2192,7 @@ Module {
         Property { name: "tabBarMargin"; type: "double" }
     }
     Component {
-        prototype: "QObject"
+        prototype: "AsemanQuickObject"
         name: "AsemanQml.Base/BackAction 2.0"
         exports: ["AsemanQml.Base/BackAction 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2191,7 +2201,6 @@ Module {
         Property { name: "active"; type: "bool" }
         Property { name: "callback"; type: "QVariant" }
         Property { name: "disableBack"; type: "bool" }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -2235,7 +2244,7 @@ Module {
         Property { name: "currentIndex"; type: "int" }
     }
     Component {
-        prototype: "QObject"
+        prototype: "AsemanQuickObject"
         name: "AsemanQml.Base/CrashController 2.0"
         exports: ["AsemanQml.Base/CrashController 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2248,10 +2257,9 @@ Module {
         Method { name: "startMonitoring"; type: "QVariant" }
         Method { name: "unlock"; type: "QVariant" }
         Method { name: "checkCrash"; type: "QVariant" }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
-        prototype: "QObject"
+        prototype: "AsemanQuickObject"
         name: "AsemanQml.Base/DelayPropertySwitch 2.0"
         exports: ["AsemanQml.Base/DelayPropertySwitch 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2260,7 +2268,6 @@ Module {
         Property { name: "switchProperty"; type: "QVariant" }
         Property { name: "targetProperty"; type: "QVariant" }
         Property { name: "delay"; type: "int" }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
         prototype: "QQuickGridView"
@@ -2302,7 +2309,7 @@ Module {
         defaultProperty: "data"
     }
     Component {
-        prototype: "QObject"
+        prototype: "AsemanQuickObject"
         name: "AsemanQml.Base/PointMapListener 2.0"
         exports: ["AsemanQml.Base/PointMapListener 2.0"]
         exportMetaObjectRevisions: [0]
@@ -2313,7 +2320,6 @@ Module {
         Property { name: "x"; type: "double" }
         Property { name: "y"; type: "double" }
         Property { name: "result"; type: "QPointF"; isReadonly: true }
-        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
