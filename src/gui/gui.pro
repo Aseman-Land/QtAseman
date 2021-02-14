@@ -57,4 +57,6 @@ ios: {
         $$PWD/asemanobjectiveclayer.mm
     HEADERS += \
         $$PWD/asemanobjectiveclayer.h
+
+    LIBS +=  -framework Contacts -lobjc
 }

@@ -204,6 +204,7 @@ public Q_SLOTS:
     void share(const QString & subject, const QString & message );
     bool openFile( const QString & address );
     bool shareFile(const QString &address);
+    bool saveToGallery(const QString &filePath);
     void callNumber( const QString & number );
     void setClipboard( const QString & text );
     void setClipboardData(AsemanMimeData *mime);

@@ -41,6 +41,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QDir>
+#include <QImageWriter>
 #include <QFileInfo>
 #include <QFile>
 #include <QClipboard>
@@ -1050,6 +1051,19 @@ bool AsemanDevices::shareFile(const QString &address)
 #endif
 }
 
+bool AsemanDevices::saveToGallery(const QString &filePath)
+{
+#ifdef Q_OS_IOS
+    AsemanObjectiveCLayer::saveToCameraRoll(filePath);
+#else
+    auto path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/Gilas/Downloads";
+    QDir().mkpath(path);
+
+    QImageWriter writer(path + "/" + name);
+    writer.write(img);
+#endif
+}
+
 void AsemanDevices::callNumber(const QString &number)
 {
     Q_UNUSED(number)
@@ -1140,6 +1154,11 @@ QVariantList AsemanDevices::getContactList(std::function<void(const QVariantList
     }
     else
         res = QJsonDocument::fromJson(p->java_layer->getContactList().toUtf8()).toVariant().toList();
+#endif
+#ifdef Q_OS_IOS
+    if (asyncCallback)
+        AsemanObjectiveCLayer::getContactList(asyncCallback);
+    return res;
 #endif
 
     if (asyncCallback)

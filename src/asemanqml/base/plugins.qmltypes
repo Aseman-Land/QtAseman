@@ -723,6 +723,11 @@ Module {
             type: "QVariantList"
             Parameter { name: "asyncCallback"; type: "QJSValue" }
         }
+        Method {
+            name: "saveToGallery"
+            type: "bool"
+            Parameter { name: "path"; type: "string" }
+        }
     }
     Component {
         name: "AsemanDownloader"
