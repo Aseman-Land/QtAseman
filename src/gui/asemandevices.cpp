@@ -1059,8 +1059,8 @@ bool AsemanDevices::saveToGallery(const QString &filePath)
     auto path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/Gilas/Downloads";
     QDir().mkpath(path);
 
-    QImageWriter writer(path + "/" + name);
-    writer.write(img);
+    QImageWriter writer(path + "/" + filePath.mid(filePath.lastIndexOf(QStringLiteral("/"))+1));
+    writer.write(QImage(filePath));
 #endif
 }
 
