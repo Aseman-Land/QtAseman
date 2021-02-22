@@ -1056,12 +1056,13 @@ bool AsemanDevices::saveToGallery(const QString &filePath)
 #ifdef Q_OS_IOS
     AsemanObjectiveCLayer::saveToCameraRoll(filePath);
 #else
-    auto path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/Gilas/Downloads";
+    auto path = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + QStringLiteral("/") + QCoreApplication::applicationName();
     QDir().mkpath(path);
 
     QImageWriter writer(path + "/" + filePath.mid(filePath.lastIndexOf(QStringLiteral("/"))+1));
     writer.write(QImage(filePath));
 #endif
+    return true;
 }
 
 void AsemanDevices::callNumber(const QString &number)

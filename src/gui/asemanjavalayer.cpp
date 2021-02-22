@@ -177,12 +177,13 @@ bool AsemanJavaLayer::stopNotification(qint32 id)
     return res;
 }
 
-QString AsemanJavaLayer::createNotificationChannel(const QString &channelId, const QString &channelName)
+QString AsemanJavaLayer::createNotificationChannel(const QString &channelId, const QString &channelName, int importance)
 {
     QAndroidJniObject jchannelId = QAndroidJniObject::fromString(channelId);
     QAndroidJniObject jchannelName = QAndroidJniObject::fromString(channelName);
-    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
-                                             jchannelId.object<jstring>(), jchannelName.object<jstring>()).toString();
+    jint jimportance = importance;
+    QString res = p->object.callObjectMethod(__FUNCTION__, "(Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/String;",
+                                             jchannelId.object<jstring>(), jchannelName.object<jstring>(), jimportance).toString();
     return res;
 }
 

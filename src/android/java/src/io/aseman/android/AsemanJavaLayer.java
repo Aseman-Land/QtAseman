@@ -541,13 +541,13 @@ public class AsemanJavaLayer
         return true;
     }
 
-    public String createNotificationChannel(String channelId ,String channelName){
+    public String createNotificationChannel(String channelId ,String channelName, int importance){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if(AsemanActivity.getActivityInstance() != null)
-                return AsemanActivity.getActivityInstance().createNotificationChannel(channelId, channelName);
+                return AsemanActivity.getActivityInstance().createNotificationChannel(channelId, channelName, importance);
             else
             if(AsemanQtService.getServiceInstance() != null)
-                return AsemanQtService.getServiceInstance().createNotificationChannel(channelId, channelName);
+                return AsemanQtService.getServiceInstance().createNotificationChannel(channelId, channelName, importance);
         } else {
             return "";
         }

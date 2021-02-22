@@ -71,10 +71,10 @@ public class AsemanQtService extends QtService {
         super.onCreate();
     }
 
-    public String createNotificationChannel(String channelId ,String channelName){
+    public String createNotificationChannel(String channelId ,String channelName, int importance){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel chan = new NotificationChannel(channelId,
-                    channelName, NotificationManager.IMPORTANCE_NONE);
+                    channelName, importance);
             chan.setLightColor(Color.BLUE);
             chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -117,6 +117,10 @@ public class AsemanQtService extends QtService {
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        int detaults = 0;
+        if(sound) detaults |= Notification.DEFAULT_SOUND;
+        if(vibrate) detaults |= Notification.DEFAULT_VIBRATE;
+
         Notification.Builder builder = new Notification.Builder(this);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(channelId);
         Notification notification =
@@ -126,10 +130,8 @@ public class AsemanQtService extends QtService {
             .setSmallIcon(R.getIdentifier(icon, iconPath, getPackageName()))
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setDefaults(detaults)
             .build();
-
-        if(sound) notification.defaults |= Notification.DEFAULT_SOUND;
-        if(vibrate) notification.defaults |= Notification.DEFAULT_VIBRATE;
 
         m_notificationManager.notify(id, notification);
         return true;

@@ -27,9 +27,20 @@ class AsemanJavaLayerPrivate;
 class LIBQTASEMAN_CORE_EXPORT AsemanJavaLayer : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(ImportanceTypes)
+
 public:
     AsemanJavaLayer();
     virtual ~AsemanJavaLayer();
+
+    enum ImportanceTypes {
+        ImportanceDefault = 3,
+        ImportanceHigh = 4,
+        ImportanceLow = 2,
+        ImportanceMax = 5,
+        ImportanceMin = 1,
+        ImportanceNone = 0,
+    };
 
     static AsemanJavaLayer *instance();
 
@@ -78,7 +89,7 @@ public Q_SLOTS:
     bool stopForeground(bool removeNotification);
     bool startNotification(qint32 id, const QString &title, const QString &msg, const QString &iconPath, const QString &icon, const QString &channelId, bool sound = false, bool vibrate = false);
     bool stopNotification(qint32 id);
-    QString createNotificationChannel(const QString &channelId ,const QString &channelName);
+    QString createNotificationChannel(const QString &channelId ,const QString &channelName, int importance = ImportanceLow);
 
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
