@@ -195,7 +195,7 @@ public:
 
     QVariantMap deviceDetails();
 
-    QVariantList getContactList(std::function<void(const QVariantList &res)> asyncCallback = Q_NULLPTR);
+    static QVariantList getContactList(std::function<void(const QVariantList &res)> asyncCallback = Q_NULLPTR);
 
 public Q_SLOTS:
     void hideKeyboard();

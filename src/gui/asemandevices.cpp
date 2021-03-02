@@ -1139,22 +1139,23 @@ QVariantList AsemanDevices::getContactList(std::function<void(const QVariantList
             }
 
         public:
-            ContactThreaded(QObject *parent): QThread(parent) {}
+            ContactThreaded(QObject *parent = Q_NULLPTR): QThread(parent) {}
             virtual ~ContactThreaded() {}
             QVariantList result;
         };
 
-        ContactThreaded *thread = new ContactThreaded(this);
-        connect(thread, &ContactThreaded::finished, this, [thread, asyncCallback](){
+        auto currentThread = QThread::currentThread();
+        ContactThreaded *thread = new ContactThreaded;
+        connect(thread, &ContactThreaded::finished, currentThread, [thread, asyncCallback](){
             asyncCallback(thread->result);
             thread->deleteLater();
-        });
+        },  Qt::QueuedConnection);
         thread->start();
 
         return res;
     }
     else
-        res = QJsonDocument::fromJson(p->java_layer->getContactList().toUtf8()).toVariant().toList();
+        res = QJsonDocument::fromJson(AsemanJavaLayer::instance()->getContactList().toUtf8()).toVariant().toList();
 #endif
 #ifdef Q_OS_IOS
     if (asyncCallback)
