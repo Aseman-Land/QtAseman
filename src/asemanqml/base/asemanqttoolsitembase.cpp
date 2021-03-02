@@ -40,9 +40,6 @@
 #include "asemanwindowdetails.h"
 #include "asemanautostartmanager.h"
 #include "asemanhostchecker.h"
-#include "asemannetworkmanager.h"
-#include "asemannetworkmanageritem.h"
-#include "asemannetworksleepmanager.h"
 #include "asemannetworkproxy.h"
 #include "asemanquickobject.h"
 #include "asemankeyhandler.h"
@@ -87,6 +84,12 @@
 #endif
 #if defined(Q_OS_LINUX) && defined(QT_DBUS_LIB)
 #include "asemankdewallet.h"
+#endif
+
+#ifndef Q_OS_WASM
+#include "asemannetworkmanager.h"
+#include "asemannetworkmanageritem.h"
+#include "asemannetworksleepmanager.h"
 #endif
 
 #include <qqml.h>
@@ -155,14 +158,18 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanMimeApps>(uri, 2, 0, "MimeApps", exportMode);
 #endif
     registerType<AsemanHostChecker>(uri, 2, 0, "HostChecker", exportMode);
-    registerType<AsemanNetworkManager>(uri, 2, 0, "NetworkManager", exportMode);
-    registerType<AsemanNetworkSleepManager>(uri, 2, 0, "NetworkSleepManager", exportMode);
     registerType<AsemanNetworkProxy>(uri, 2, 0, "NetworkProxy", exportMode);
     registerType<AsemanTitleBarColorGrabber>(uri, 2, 0, "TitleBarColorGrabber", exportMode);
     registerType<AsemanDragArea>(uri, 2, 0, "MouseDragArea", exportMode);
     registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
     registerType<AsemanProxyComponent>(uri, 2, 0, "ProxyComponent", exportMode);
     registerType<AsemanDelegateSwitch>(uri, 2, 0, "DelegateSwitch", exportMode);
+
+#ifndef Q_OS_WASM
+    registerType<AsemanNetworkSleepManager>(uri, 2, 0, "NetworkSleepManager", exportMode);
+    registerType<AsemanNetworkManager>(uri, 2, 0, "NetworkManager", exportMode);
+    registerUncreatableType<AsemanNetworkManagerItem>(uri, 2, 0, "NetworkManagerItem", QStringLiteral("It must create using NetworkManager component."), exportMode);
+#endif
 
 
     registerSingletonType<AsemanDevicesItem>(uri, 2, 0, "Devices", aseman_devices_singleton, exportMode);
@@ -181,7 +188,6 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
 
     registerUncreatableType<QScreen>(uri, 2, 0, "Screen", QStringLiteral(""), exportMode);
     registerUncreatableType<AsemanDesktopTools>(uri, 2, 0, "AsemanDesktopTools", QStringLiteral("It's a singleton class"), exportMode);
-    registerUncreatableType<AsemanNetworkManagerItem>(uri, 2, 0, "NetworkManagerItem", QStringLiteral("It must create using NetworkManager component."), exportMode);
 
 #ifdef QZXING_SUPPORTED
     registerType<QZXing>(uri, 2, 0, "QZXing", exportMode);

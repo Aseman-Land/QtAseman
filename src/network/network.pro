@@ -17,10 +17,7 @@ HEADERS += \
     $$PWD/asemanfiledownloaderqueue.h \
     $$PWD/asemanfiledownloaderqueueitem.h \
     $$PWD/asemanhostchecker.h \
-    $$PWD/asemannetworkmanager.h \
-    $$PWD/asemannetworkmanageritem.h \
     $$PWD/asemannetworkproxy.h \
-    $$PWD/asemannetworksleepmanager.h \
     $$PWD/asemannetwork_global.h \
     $$PWD/asemansocketinterface.h \
     $$PWD/asemannetworkrequestobject.h \
@@ -32,11 +29,20 @@ SOURCES += \
     $$PWD/asemanfiledownloaderqueue.cpp \
     $$PWD/asemanfiledownloaderqueueitem.cpp \
     $$PWD/asemanhostchecker.cpp \
-    $$PWD/asemannetworkmanager.cpp \
-    $$PWD/asemannetworkmanageritem.cpp \
     $$PWD/asemannetworkproxy.cpp \
-    $$PWD/asemannetworksleepmanager.cpp \
     $$PWD/asemansocketinterface.cpp \
     $$PWD/asemannetworkrequestobject.cpp \
     $$PWD/asemannetworkrequestmanager.cpp \
     $$PWD/asemannetworkrequestreply.cpp
+
+!wasm {
+    HEADERS += \
+        $$PWD/asemannetworkmanager.h \
+        $$PWD/asemannetworksleepmanager.h \
+        $$PWD/asemannetworkmanageritem.h
+
+    SOURCES += \
+        $$PWD/asemannetworkmanager.cpp \
+        $$PWD/asemannetworksleepmanager.cpp \
+        $$PWD/asemannetworkmanageritem.cpp
+}

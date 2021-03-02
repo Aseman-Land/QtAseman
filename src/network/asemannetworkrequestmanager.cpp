@@ -23,12 +23,15 @@
 #include <QDebug>
 #include <QPointer>
 #include <QJsonDocument>
-#include <QHttpMultiPart>
 #include <QJsonDocument>
 #include <asemantools.h>
 #include <QFile>
 #include <QMimeDatabase>
 #include <QFileInfo>
+
+#if QT_CONFIG(http)
+#include <QHttpMultiPart>
+#endif
 
 class AsemanNetworkRequestManager::Private
 {
@@ -104,6 +107,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
     return reqReply;
 }
 
+#if QT_CONFIG(http)
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;
@@ -180,6 +184,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(AsemanNetworkRe
     QHttpMultiPart *parts = generateFormData(formData);
     return AsemanNetworkRequestManager::post(request, url, parts, headers);
 }
+#endif
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
@@ -202,6 +207,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
     return reqReply;
 }
 
+#if QT_CONFIG(http)
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;
@@ -229,6 +235,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(AsemanNetworkReq
     QHttpMultiPart *parts = generateFormData(formData);
     return AsemanNetworkRequestManager::put(request, url, parts, headers);
 }
+#endif
 
 void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod)
 {
@@ -316,6 +323,7 @@ void AsemanNetworkRequestManager::addHeaderData(QNetworkRequest &request, const 
     }
 }
 
+#if QT_CONFIG(http)
 QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap &map)
 {
     QHttpMultiPart *parts = new QHttpMultiPart(this);
@@ -359,6 +367,7 @@ QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap 
 
     return parts;
 }
+#endif
 
 QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map, bool ignoreEmpty) const
 {
@@ -453,9 +462,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequest
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
+#if QT_CONFIG(http)
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
         reply = postForm(request, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
+#endif
         reply = post(request, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
@@ -465,9 +476,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
+#if QT_CONFIG(http)
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
         reply = putForm(request, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
+#endif
         reply = put(request, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
@@ -487,9 +500,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::deleteMethod(AsemanNetwo
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(const QString &method, AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
+#if QT_CONFIG(http)
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
         reply = customMethodForm(request, method, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
+#endif
         reply = customMethod(request, method, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });

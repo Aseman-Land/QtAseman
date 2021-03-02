@@ -21,7 +21,6 @@
 
 #include <QObject>
 #include <QVariantMap>
-#include <QHttpMultiPart>
 #include <QUrl>
 #include <QRegExp>
 

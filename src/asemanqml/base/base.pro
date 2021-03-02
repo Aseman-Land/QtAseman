@@ -4,8 +4,7 @@ IMPORT_VERSION = 2.0
 VERSION_REVISION = 2
 
 INCLUDEPATH += $$PWD
-QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets \
-    quick
+QT += core gui network asemanqml asemangui asemancore asemannetwork asemanwidgets quick
 
 HEADERS += \
     $$PWD/asemanqmlplugin.h \

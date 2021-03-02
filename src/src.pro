@@ -4,11 +4,14 @@ SUBDIRS = \
     core \
     gui \
     widgets \
-    geo \
     multimedia \
     qml \
-    network \
-    sql \
+    network
+
+qtHaveModule(geo): SUBDIRS += geo
+qtHaveModule(sql): SUBDIRS += sql
+
+SUBDIRS += \
     asemanqml \
     styles 
 

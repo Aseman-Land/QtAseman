@@ -40,9 +40,12 @@
 #include <QImageReader>
 #include <QJsonDocument>
 #include <QThread>
+#include <QImageWriter>
+
+#ifndef Q_OS_WASM
 #include <QRunnable>
 #include <QThreadPool>
-#include <QImageWriter>
+#endif
 
 class AsemanToolsPrivate
 {
@@ -270,6 +273,7 @@ QSize AsemanTools::imageSize(const QString &_path)
 
 void AsemanTools::imageResize(const QString &_path, const QSize &size, const QString &dest, QObject *base, std::function<void (bool)> callback)
 {
+#ifndef Q_OS_WASM
     QString path = _path;
     if(path.left(AsemanDevices::localFilesPrePath().size()) == AsemanDevices::localFilesPrePath())
         path = path.mid(AsemanDevices::localFilesPrePath().size());
@@ -313,6 +317,7 @@ void AsemanTools::imageResize(const QString &_path, const QSize &size, const QSt
     run->_callback = callback;
 
     QThreadPool::globalInstance()->start(run);
+#endif
 }
 
 bool AsemanTools::writeFile(const QString &path, const QVariant &data, bool compress)

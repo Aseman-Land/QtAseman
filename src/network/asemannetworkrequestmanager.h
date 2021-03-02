@@ -23,7 +23,6 @@
 #include <QObject>
 #include <QUrlQuery>
 #include <QVariantMap>
-#include <QHttpMultiPart>
 
 #include "asemannetworkrequestobject.h"
 #include "asemannetworkrequestreply.h"
@@ -31,6 +30,10 @@
 #include <functional>
 
 #include "asemannetwork_global.h"
+
+#if QT_CONFIG(http)
+class QHttpMultiPart;
+#endif
 
 class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestManager : public QObject
 {
@@ -66,15 +69,19 @@ public Q_SLOTS:
 protected:
     virtual AsemanNetworkRequestReply *get(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QVariantMap &keys = QVariantMap(), const QVariantMap &headers = QVariantMap());
     virtual AsemanNetworkRequestReply *post(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QByteArray &data, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *post(AsemanNetworkRequestObject *request, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *postForm(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
     virtual AsemanNetworkRequestReply *put(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QByteArray &data, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *put(AsemanNetworkRequestObject *request, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *putForm(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
     virtual AsemanNetworkRequestReply *customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &apiUrl, const QByteArray &data, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
-    virtual AsemanNetworkRequestReply *customMethodForm(AsemanNetworkRequestObject *request, const QString &method, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
     virtual void processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod = Q_NULLPTR);
+
+#if QT_CONFIG(http)
+    virtual AsemanNetworkRequestReply *postForm(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
+    virtual AsemanNetworkRequestReply *putForm(AsemanNetworkRequestObject *request, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
+    virtual AsemanNetworkRequestReply *customMethodForm(AsemanNetworkRequestObject *request, const QString &method, const QUrl &apiUrl, const QVariantMap &formData, const QVariantMap &headers = QVariantMap());
+
+    virtual AsemanNetworkRequestReply *post(AsemanNetworkRequestObject *request, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
+    virtual AsemanNetworkRequestReply *put(AsemanNetworkRequestObject *request, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
+    virtual AsemanNetworkRequestReply *customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &apiUrl, QHttpMultiPart *parts, const QVariantMap &headers = QVariantMap());
+#endif
 
 private:
     QUrlQuery queryOfMap(const QVariantMap &keys) const;
@@ -82,7 +89,10 @@ private:
     QVariant processData(AsemanNetworkRequestReply *reply, const QByteArray &data) const;
     void addHeaderData(QNetworkRequest &request, const QVariantMap &headers);
 
+#if QT_CONFIG(http)
     QHttpMultiPart *generateFormData(const QVariantMap &map);
+#endif
+
     QString generateWWWFormData(const QVariantMap &map, bool ignoreEmpty = false) const;
     QString generateJson(const QVariantMap &map) const;
     QByteArray requestData(AsemanNetworkRequestObject *request, bool ignoreEmptyValues);

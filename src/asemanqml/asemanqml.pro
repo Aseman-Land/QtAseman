@@ -10,5 +10,6 @@ SUBDIRS += \
     controls \
     network \
     viewport \
-    models \
-    sql
+    models
+
+qtHaveModule(sql): SUBDIRS += sql

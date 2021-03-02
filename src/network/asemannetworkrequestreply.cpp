@@ -39,6 +39,7 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(bool ignoreSslErrors, QNetw
     connect(reply, &QNetworkReply::readyRead, this, [this](){
         p->buffer += p->reply->readAll();
     });
+#if QT_CONFIG(ssl)
     connect(reply, &QNetworkReply::sslErrors, this, [this, ignoreSslErrors](const QList<QSslError> &errors){
         if (ignoreSslErrors)
             p->reply->ignoreSslErrors(errors);
@@ -57,6 +58,7 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(bool ignoreSslErrors, QNetw
             deleteLater();
         }
     });
+#endif
     connect(reply, &QNetworkReply::finished, this, [this](){
         if (p->finishedEmited)
             return ;
