@@ -3,7 +3,9 @@ TARGETPATH = AsemanQml/Sql
 IMPORT_VERSION = 2.0
 
 INCLUDEPATH += $$PWD
-QT += core gui sql asemanqml asemangui asemancore asemansql
+QT += core gui asemanqml asemangui asemancore asemansql
+
+qtHaveModule(sql): SUBDIRS += sql
 
 HEADERS += \
     $$PWD/asemansqlplugin.h \

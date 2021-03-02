@@ -6,10 +6,10 @@ SUBDIRS = \
     widgets \
     multimedia \
     qml \
-    network
+    network \
+    sql
 
 qtHaveModule(geo): SUBDIRS += geo
-qtHaveModule(sql): SUBDIRS += sql
 
 SUBDIRS += \
     asemanqml \

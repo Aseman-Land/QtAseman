@@ -18,10 +18,13 @@
 
 #include "asemansqlobject.h"
 
+#ifdef QT_SQL_LIB
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QSqlError>
+#endif
+
 #include <QTimer>
 #include <QDataStream>
 #include <QBuffer>
@@ -76,6 +79,7 @@ class AsemanSqlObject::Core {
 public:
     ~Core() {
         QMutexLocker locker(&mutex);
+#ifdef QT_SQL_LIB
         if (_db->isOpen())
             _db->close();
 
@@ -83,19 +87,27 @@ public:
         if(_connectionName.length()) {
             QSqlDatabase::removeDatabase(_connectionName);
         }
+#endif
 
         objects.remove(_connectionName);
     }
 
+#ifdef QT_SQL_LIB
     QSqlDatabase &get() { return *_db; }
+#endif
+
     static Core *getInstance(const QString &driver, const QString &connectionName) {
         QMutexLocker locker(&mutex);
         Core *res = objects.value(connectionName);
+#ifdef QT_SQL_LIB
         if(!res)
         {
             res = new Core(driver, connectionName);
             objects[connectionName] = res;
         }
+#else
+        Q_UNUSED(driver)
+#endif
         return res;
     }
 
@@ -103,12 +115,16 @@ private:
     Core(const QString &driver, const QString &connectionName):
         _connectionName(connectionName)
     {
+#ifdef QT_SQL_LIB
         *_db = QSqlDatabase::addDatabase(driver, connectionName);
+#endif
         objects.insert(_connectionName, this);
     }
 
     QString _connectionName;
+#ifdef QT_SQL_LIB
     QSqlDatabase *_db = new QSqlDatabase;
+#endif
 
     static QMutex mutex;
     static QHash<QString, Core*> objects;
@@ -317,6 +333,7 @@ QString AsemanSqlObject::lastError() const
 
 qint32 AsemanSqlObject::insert(const QString &extra)
 {
+#ifdef QT_SQL_LIB
     Core *core = init();
 
     QStringList properties = AsemanSqlObject::properties();
@@ -344,6 +361,9 @@ qint32 AsemanSqlObject::insert(const QString &extra)
         return 0;
     else
         return q.lastInsertId().toInt();
+#else
+    return 0;
+#endif
 }
 
 void AsemanSqlObject::update(const QString &_where, const QVariantMap &binds)
@@ -428,7 +448,7 @@ void AsemanSqlObject::deleteQuery(const QString &where, const QVariantMap &binds
 QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &binds)
 {
     QVariantList res;
-
+#ifdef QT_SQL_LIB
     Core *core = init();
 
     QSqlQuery q(core->get());
@@ -446,6 +466,9 @@ QVariantList AsemanSqlObject::query(const QString &query, const QVariantMap &bin
         return QVariantList();
 
     return generateResult(q);
+#else
+    return res;
+#endif
 }
 
 void AsemanSqlObject::queryAsync(const QString &query, const QVariantMap &binds, std::function<void (QVariantList result, const QString &error)> callback)
@@ -500,6 +523,7 @@ QVariantMap AsemanSqlObject::prepareBinds(const QVariantMap &binds) const
 QVariantList AsemanSqlObject::generateResult(QSqlQuery &q)
 {
     QVariantList res;
+#ifdef QT_SQL_LIB
     while (q.next())
     {
         QSqlRecord r = q.record();
@@ -509,6 +533,7 @@ QVariantList AsemanSqlObject::generateResult(QSqlQuery &q)
 
         res << map;
     }
+#endif
     return res;
 }
 
@@ -552,6 +577,7 @@ void AsemanSqlObject::setLastError(const QString &lastError)
     Q_EMIT lastErrorChanged();
 }
 
+#ifdef QT_SQL_LIB
 int AsemanSqlObject::queryExec(QSqlQuery &q)
 {
     bool ret = q.exec();
@@ -560,6 +586,7 @@ int AsemanSqlObject::queryExec(QSqlQuery &q)
 
     return ret;
 }
+#endif
 
 QStringList AsemanSqlObject::properties() const
 {
@@ -595,6 +622,7 @@ AsemanSqlObject::Core *AsemanSqlObject::init(const QString &forceConnectionName)
         p->initTimer->stop();
 
     Core *core = Core::getInstance(p->driverStr, (forceConnectionName.count()? forceConnectionName : p->key));
+#ifdef QT_SQL_LIB
     if (!core->get().isOpen())
     {
         if (p->databaseNameTemplate.count())
@@ -620,6 +648,7 @@ AsemanSqlObject::Core *AsemanSqlObject::init(const QString &forceConnectionName)
         if (!core->get().open())
             setLastError(core->get().lastError().text());
     }
+#endif
 
     if (forceConnectionName.count())
         return core;
@@ -668,6 +697,7 @@ AsemanSqlObjectAsync::AsemanSqlObjectAsync(AsemanSqlObject::Core *core, const QS
 
 void AsemanSqlObjectAsync::run()
 {
+#ifdef QT_SQL_LIB
     QSqlDatabase db = mCore->get();
     QSqlQuery q(db);
     q.prepare(mQuery);
@@ -683,6 +713,9 @@ void AsemanSqlObjectAsync::run()
         Q_EMIT error(q.lastError().text());
     else
         Q_EMIT result( AsemanSqlObject::generateResult(q) );
+#else
+    Q_EMIT error(QStringLiteral("SQL not supported. Rebuilt Qt and AsemanQml with sql support."));
+#endif
 }
 
 AsemanSqlObjectAsync::~AsemanSqlObjectAsync()

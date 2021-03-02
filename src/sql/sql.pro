@@ -4,7 +4,10 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TARGET = QAsemanSql
-QT = core sql asemancore
+QT = core asemancore
+
+
+qtHaveModule(sql): QT += sql
 
 MODULE = asemansql
 

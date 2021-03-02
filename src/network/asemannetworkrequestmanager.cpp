@@ -129,6 +129,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
 
     return reqReply;
 }
+#endif
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
@@ -151,6 +152,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetwo
     return reqReply;
 }
 
+#if QT_CONFIG(http)
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, QHttpMultiPart *parts, const QVariantMap &headers)
 {
     QNetworkRequest req;

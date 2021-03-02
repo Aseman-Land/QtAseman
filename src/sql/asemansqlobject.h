@@ -134,7 +134,9 @@ private:
     void refreshKey();
 
     void setLastError(const QString &lastError);
+#ifdef QT_SQL_LIB
     int queryExec(class QSqlQuery &q);
+#endif
 
     QStringList properties() const;
 
