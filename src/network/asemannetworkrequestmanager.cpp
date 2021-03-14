@@ -24,7 +24,6 @@
 #include <QPointer>
 #include <QJsonDocument>
 #include <QJsonDocument>
-#include <asemantools.h>
 #include <QFile>
 #include <QMimeDatabase>
 #include <QFileInfo>
@@ -131,6 +130,19 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
 }
 #endif
 
+AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(AsemanNetworkRequestObject *request, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
+{
+#if QT_CONFIG(http)
+    QHttpMultiPart *parts = generateFormData(formData);
+    return AsemanNetworkRequestManager::post(request, url, parts, headers);
+#else
+    QByteArray data = generateForm(formData).toUtf8();
+    QVariantMap newHeaders = headers;
+    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    return AsemanNetworkRequestManager::post(request, url, data, newHeaders);
+#endif
+}
+
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
     QNetworkRequest req;
@@ -174,19 +186,20 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetwo
 
     return reqReply;
 }
+#endif
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethodForm(AsemanNetworkRequestObject *request, const QString &method, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
 {
+#if QT_CONFIG(http)
     QHttpMultiPart *parts = generateFormData(formData);
     return AsemanNetworkRequestManager::customMethod(request, method, url, parts, headers);
-}
-
-AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(AsemanNetworkRequestObject *request, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
-{
-    QHttpMultiPart *parts = generateFormData(formData);
-    return AsemanNetworkRequestManager::post(request, url, parts, headers);
-}
+#else
+    QByteArray data = generateForm(formData).toUtf8();
+    QVariantMap newHeaders = headers;
+    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    return AsemanNetworkRequestManager::customMethod(request, method, url, data, newHeaders);
 #endif
+}
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequestObject *request, const QUrl &url, const QByteArray &data, const QVariantMap &headers)
 {
@@ -231,13 +244,20 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
 
     return reqReply;
 }
+#endif
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(AsemanNetworkRequestObject *request, const QUrl &url, const QVariantMap &formData, const QVariantMap &headers)
 {
+#if QT_CONFIG(http)
     QHttpMultiPart *parts = generateFormData(formData);
     return AsemanNetworkRequestManager::put(request, url, parts, headers);
-}
+#else
+    QByteArray data = generateForm(formData).toUtf8();
+    QVariantMap newHeaders = headers;
+    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    return AsemanNetworkRequestManager::put(request, url, data, newHeaders);
 #endif
+}
 
 void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod)
 {
@@ -339,7 +359,7 @@ QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap 
         if (var.type() == QVariant::Url)
         {
             QUrl source = var.toUrl();
-            const QString filePath = AsemanTools::urlToLocalPath(source);
+            const QString filePath = source.toLocalFile();
 
             QFile *file = new QFile(filePath);
             file->open(QIODevice::ReadOnly);
@@ -389,6 +409,29 @@ QString AsemanNetworkRequestManager::generateWWWFormData(const QVariantMap &map,
     return query.query();
 }
 
+QString AsemanNetworkRequestManager::generateForm(const QVariantMap &map, bool ignoreEmpty) const
+{
+    QString query;
+    QMapIterator<QString, QVariant> i(map);
+    while (i.hasNext())
+    {
+        i.next();
+        QVariant var = i.value();
+        if (var.type() != QVariant::String)
+            var.convert(QVariant::String);
+        if (ignoreEmpty && var.toString().isEmpty())
+            continue;
+
+        query += QStringLiteral("--%1\r\nContent-Disposition: form-data; name=\"%2\"\r\n\r\n%3\r\n")
+                .arg(p->boundaryToken)
+                .arg(i.key())
+                .arg(var.toString());
+    }
+
+    query += "--" + p->boundaryToken + "--\r\n";
+    return query;
+}
+
 QString AsemanNetworkRequestManager::generateJson(const QVariantMap &map) const
 {
     return QString::fromUtf8( QJsonDocument::fromVariant(map).toJson(QJsonDocument::Compact) );
@@ -398,6 +441,8 @@ QByteArray AsemanNetworkRequestManager::requestData(AsemanNetworkRequestObject *
 {
     switch (static_cast<qint32>(request->contentType()))
     {
+    case AsemanNetworkRequestObject::TypeForm:
+        return generateForm(ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()).toUtf8();
     case AsemanNetworkRequestObject::TypeWWWForm:
         return generateWWWFormData(ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()).toUtf8();
     case AsemanNetworkRequestObject::TypeJson:
@@ -464,11 +509,9 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequest
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkRequestObject *request, bool ignoreEmptyValues)
 {
     AsemanNetworkRequestReply *reply;
-#if QT_CONFIG(http)
     if (request->contentType() == AsemanNetworkRequestObject::TypeForm)
         reply = postForm(request, request->url(), (ignoreEmptyValues? removeEmptyValues(request->toMap()) : request->toMap()), request->headers());
     else
-#endif
         reply = post(request, request->url(), requestData(request, ignoreEmptyValues), request->headers());
 
     processPostedRequest(reply, request, [this, reply](const QByteArray &data) -> QVariant { return processData(reply, data); });
