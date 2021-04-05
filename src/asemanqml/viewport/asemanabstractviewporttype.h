@@ -16,6 +16,9 @@ class AsemanAbstractViewportType : public QQuickItem
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
     Q_PROPERTY(bool gestureWidthIsNull READ gestureWidthIsNull NOTIFY gestureWidthChanged)
 
+    Q_PROPERTY(qreal maximumWidth READ maximumWidth WRITE setMaximumWidth NOTIFY maximumWidthChanged)
+    Q_PROPERTY(bool maximumWidthIsNull READ maximumWidthIsNull NOTIFY maximumWidthChanged)
+
     Q_PROPERTY(QPointF typeTransformOrigin READ typeTransformOrigin WRITE setTypeTransformOrigin NOTIFY typeTransformOriginChanged)
     Q_PROPERTY(bool typeTransformOriginIsNull READ typeTransformOriginIsNull NOTIFY typeTransformOriginChanged)
 
@@ -47,6 +50,10 @@ public:
     bool gestureWidthIsNull() const;
     void setGestureWidth(qreal gestureWidth);
 
+    qreal maximumWidth() const;
+    bool maximumWidthIsNull() const;
+    void setMaximumWidth(qreal maximumWidth);
+
     QPointF typeTransformOrigin() const;
     bool typeTransformOriginIsNull() const;
     void setTypeTransformOrigin(const QPointF &typeTransformOrigin);
@@ -68,6 +75,7 @@ public:
 
 Q_SIGNALS:
     void gestureWidthChanged();
+    void maximumWidthChanged();
     void typeTransformOriginChanged();
     void touchToCloseChanged();
     void blockBackChanged();
@@ -92,6 +100,7 @@ public:
 class AsemanViewportTypeAttechedProperty : public QObject {
     Q_OBJECT
     Q_PROPERTY(qreal gestureWidth READ gestureWidth WRITE setGestureWidth NOTIFY gestureWidthChanged)
+    Q_PROPERTY(qreal maximumWidth READ maximumWidth WRITE setMaximumWidth NOTIFY maximumWidthChanged)
     Q_PROPERTY(QPointF transformOrigin READ typeTransformOrigin WRITE setTypeTransformOrigin NOTIFY typeTransformOriginChanged)
     Q_PROPERTY(bool touchToClose READ touchToClose WRITE setTouchToClose NOTIFY touchToCloseChanged)
     Q_PROPERTY(bool blockBack READ blockBack WRITE setBlockBack NOTIFY blockBackChanged)
@@ -104,6 +113,9 @@ public:
 
     qreal gestureWidth(bool *isNull = Q_NULLPTR) const;
     void setGestureWidth(qreal gestureWidth);
+
+    qreal maximumWidth(bool *isNull = Q_NULLPTR) const;
+    void setMaximumWidth(qreal maximumWidth);
 
     QPointF typeTransformOrigin(bool *isNull = Q_NULLPTR) const;
     void setTypeTransformOrigin(const QPointF &point);
@@ -122,6 +134,7 @@ public:
 
 Q_SIGNALS:
     void gestureWidthChanged();
+    void maximumWidthChanged();
     void typeTransformOriginChanged();
     void touchToCloseChanged();
     void blockBackChanged();
@@ -130,6 +143,7 @@ Q_SIGNALS:
 
 private:
     QVariant mGestureWidth;
+    QVariant mMaximumWidth;
     QVariant mTouchToClose;
     QVariant mBlockBack;
     QPointF mTypeTransformOrigin;
