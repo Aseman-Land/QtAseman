@@ -549,7 +549,7 @@ DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_
     property.day = parts.day;
     property.month = parts.month;
     property.year = parts.year;
-    property.day_of_week = cal.dayOfWeek(date);
+    property.day_of_week = ((date.dayOfWeek()+1) % 7)+1;
     property.leap = cal.isLeapYear(parts.year);
 
     return property;
@@ -777,7 +777,7 @@ DateProperty AsemanCalendarConverterCore::toDateHijri( qint64 days_from_hijri_ze
     property.day = parts.day;
     property.month = parts.month;
     property.year = parts.year;
-    property.day_of_week = cal.dayOfWeek(date);
+    property.day_of_week = ((date.dayOfWeek()+1) % 7)+1;
     property.leap = cal.isLeapYear(parts.year);
 
     return property;
