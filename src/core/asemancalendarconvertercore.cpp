@@ -21,6 +21,10 @@
 #include <QObject>
 #include <QDebug>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+#include <QCalendar>
+#endif
+
 int aseman_gregorian_months_start[13]      = {0,31,59,90,120,151,181,212,243,273,304,334,365};
 int aseman_gregorian_leap_months_start[13] = {0,31,60,91,121,152,182,213,244,274,305,335,366};
 
@@ -231,11 +235,6 @@ int AsemanCalendarConverterCore::daysOfMonth(qint64 y, int m)
     return res;
 }
 
-bool AsemanCalendarConverterCore::isLeapGregorian( qint64 year )
-{
-    return (year%4==0 && year%100!=0) || year%400==0;
-}
-
 QString AsemanCalendarConverterCore::monthNamesGregorian(int m)
 {
     switch( m )
@@ -286,29 +285,62 @@ QString AsemanCalendarConverterCore::dayNameGregorian(int d)
     switch( d )
     {
     case 1:
-        return QStringLiteral("Sunday");
-        break;
-    case 2:
         return QStringLiteral("Monday");
         break;
-    case 3:
+    case 2:
         return QStringLiteral("Tuesday");
         break;
-    case 4:
+    case 3:
         return QStringLiteral("Wednesday");
         break;
-    case 5:
+    case 4:
         return QStringLiteral("Thuresday");
         break;
-    case 6:
+    case 5:
         return QStringLiteral("Friday");
         break;
-    case 7:
+    case 6:
         return QStringLiteral("Saturday");
+        break;
+    case 7:
+        return QStringLiteral("Sunday");
         break;
     }
 
     return QString();
+}
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+bool AsemanCalendarConverterCore::isLeapGregorian( qint64 year )
+{
+    QCalendar cal(QCalendar::System::Jalali);
+    return cal.isLeapYear(year);
+}
+
+qint64 AsemanCalendarConverterCore::fromDateGregorian( qint64 year , int month , int day )
+{
+    return QDate(year, month, day).toJulianDay();
+}
+
+DateProperty AsemanCalendarConverterCore::toDateGregorian( qint64 days_from_gregorian_zero )
+{
+    const auto date = QDate::fromJulianDay(days_from_gregorian_zero);
+
+    DateProperty property;
+    property.day = date.day();
+    property.month = date.month();
+    property.year = date.year();
+    property.day_of_week = date.dayOfWeek();
+    property.leap = date.isLeapYear(date.year());
+
+    return property;
+}
+
+#else
+
+bool AsemanCalendarConverterCore::isLeapGregorian( qint64 year )
+{
+    return (year%4==0 && year%100!=0) || year%400==0;
 }
 
 qint64 AsemanCalendarConverterCore::fromDateGregorian( qint64 year , int month , int day )
@@ -416,11 +448,7 @@ DateProperty AsemanCalendarConverterCore::toDateGregorian( qint64 days_from_greg
 
     return property;
 }
-
-bool AsemanCalendarConverterCore::isLeapJalali( qint64 year )
-{
-    return (year%4==0 && year%100!=0) || year%400==0;
-}
+#endif
 
 QString AsemanCalendarConverterCore::monthNamesJalali(int m)
 {
@@ -495,6 +523,43 @@ QString AsemanCalendarConverterCore::dayNameJalali(int d)
     }
 
     return QString();
+}
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+
+bool AsemanCalendarConverterCore::isLeapJalali( qint64 year )
+{
+    QCalendar cal(QCalendar::System::Jalali);
+    return cal.isLeapYear(year);
+}
+
+qint64 AsemanCalendarConverterCore::fromDateJalali( qint64 year , int month , int day )
+{
+    QCalendar cal(QCalendar::System::Jalali);
+    return cal.dateFromParts(year, month, day).toJulianDay();
+}
+
+DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_zero )
+{
+    const auto date = QDate::fromJulianDay(days_from_jalali_zero);
+    QCalendar cal(QCalendar::System::Jalali);
+    auto parts = cal.partsFromDate(date);
+
+    DateProperty property;
+    property.day = parts.day;
+    property.month = parts.month;
+    property.year = parts.year;
+    property.day_of_week = cal.dayOfWeek(date);
+    property.leap = cal.isLeapYear(parts.year);
+
+    return property;
+}
+
+#else
+
+bool AsemanCalendarConverterCore::isLeapJalali( qint64 year )
+{
+    return (year%4==0 && year%100!=0) || year%400==0;
 }
 
 qint64 AsemanCalendarConverterCore::fromDateJalali( qint64 year , int month , int day )
@@ -584,11 +649,11 @@ DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_
     month++;
 
     DateProperty property;
-        property.day = day;
-        property.month = month;
-        property.year = year;
-        property.day_of_week = (days_from_jalali_zero-3) % 7;
-        property.leap = leap;
+    property.day = day-1;
+    property.month = month;
+    property.year = year;
+    property.day_of_week = (days_from_jalali_zero-2) % 7;
+    property.leap = leap;
 
     if( property.day_of_week < 0 )
         property.day_of_week = 6 + property.day_of_week;
@@ -596,6 +661,7 @@ DateProperty AsemanCalendarConverterCore::toDateJalali( qint64 days_from_jalali_
 
     return property;
 }
+#endif
 
 int AsemanCalendarConverterCore::leapIndexHijri( qint64 year )
 {
@@ -692,6 +758,33 @@ qint64 AsemanCalendarConverterCore::leapsNumberHijri( qint64 year )
     return 0;
 }
 
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+
+qint64 AsemanCalendarConverterCore::fromDateHijri( qint64 year , int month , int day )
+{
+    QCalendar cal(QCalendar::System::IslamicCivil);
+    return cal.dateFromParts(year, month, day).toJulianDay();
+}
+
+DateProperty AsemanCalendarConverterCore::toDateHijri( qint64 days_from_hijri_zero )
+{
+    const auto date = QDate::fromJulianDay(days_from_hijri_zero);
+    QCalendar cal(QCalendar::System::IslamicCivil);
+    auto parts = cal.partsFromDate(date);
+
+    DateProperty property;
+    property.day = parts.day;
+    property.month = parts.month;
+    property.year = parts.year;
+    property.day_of_week = cal.dayOfWeek(date);
+    property.leap = cal.isLeapYear(parts.year);
+
+    return property;
+}
+
+#else
+
 qint64 AsemanCalendarConverterCore::fromDateHijri( qint64 year , int month , int day )
 {
     int leap_index = leapIndexHijri( year );
@@ -774,6 +867,7 @@ DateProperty AsemanCalendarConverterCore::toDateHijri( qint64 days_from_hijri_ze
 
     return property;
 }
+#endif
 
 AsemanCalendarConverterCore::~AsemanCalendarConverterCore()
 {
