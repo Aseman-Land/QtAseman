@@ -7,6 +7,7 @@ AndroidDialogViewport 2.0 AndroidDialogViewport.qml
 IOSBottomDrawerViewport 2.0 IOSBottomDrawerViewport.qml
 IOSDialogViewport 2.0 IOSDialogViewport.qml
 IOSNormalViewport 2.0 IOSNormalViewport.qml
+SplitedViewport 2.0 SplitedViewport.qml
 IOSPopupViewport 2.0 IOSPopupViewport.qml
 IOSContextMenuViewport 2.0 IOSContextMenuViewport.qml
 NoneViewport 2.0 NoneViewport.qml

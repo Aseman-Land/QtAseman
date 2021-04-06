@@ -5,6 +5,7 @@ import AsemanQml.Base 2.0
 AbstractViewportType {
     id: item
 
+    foreground.x: foregroundItem? -foregroundItem.x : 0
     foreground.height: foregroundItem? foregroundItem.height : item.height
     foreground.z: 10
     foreground.parent: dragArea
@@ -31,13 +32,15 @@ AbstractViewportType {
     }
 
     Item {
-        width: item.foreground.width
+        width: foregroundItem? foregroundItem.width : item.width
+        x: foregroundItem? foregroundItem.x : 0
         height: item.height - dragArea.y - item.foreground.y
         anchors.bottom: parent.bottom
         z: 5
         clip: true
 
         FastBlur {
+            x: foregroundItem? -foregroundItem.x : 0
             anchors.bottom: parent.bottom
             height: item.background.height
             width: item.background.width
@@ -53,18 +56,15 @@ AbstractViewportType {
     }
 
     MouseArea {
-        anchors.top: parent.top
-        anchors.bottom: dragArea.top
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
         visible: item.touchToCloseIsNull || item.touchToClose
         onClicked: open = false
     }
 
     MouseArea {
         id: dragArea
-        anchors.left: parent.left
-        anchors.right: parent.right
+        width: foregroundItem? foregroundItem.width : item.width
+        x: foregroundItem? foregroundItem.x : 0
         height: item.gestureWidthIsNull? item.foreground.height : item.gestureWidth
         y: parent.height - item.foreground.height * item.ratio
         z: 10

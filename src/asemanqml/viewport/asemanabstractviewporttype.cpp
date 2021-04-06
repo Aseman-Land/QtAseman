@@ -33,6 +33,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     if (p->foregroundAttachedType)
     {
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
+        disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::maximumWidthChanged, this, &AsemanAbstractViewportType::maximumWidthChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
         disconnect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
@@ -46,6 +47,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
     if (p->foregroundAttachedType)
     {
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::gestureWidthChanged, this, &AsemanAbstractViewportType::gestureWidthChanged);
+        connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::maximumWidthChanged, this, &AsemanAbstractViewportType::maximumWidthChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::touchToCloseChanged, this, &AsemanAbstractViewportType::touchToCloseChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::blockBackChanged, this, &AsemanAbstractViewportType::blockBackChanged);
         connect(p->foregroundAttachedType, &AsemanViewportTypeAttechedProperty::typeTransformOriginChanged, this, &AsemanAbstractViewportType::typeTransformOriginChanged);
@@ -55,6 +57,7 @@ void AsemanAbstractViewportType::setForegroundItem(QQuickItem *foregroundItem)
 
     Q_EMIT foregroundItemChanged();
     Q_EMIT gestureWidthChanged();
+    Q_EMIT maximumWidthChanged();
     Q_EMIT touchToCloseChanged();
     Q_EMIT openChanged();
     Q_EMIT blockBackChanged();
@@ -111,6 +114,29 @@ void AsemanAbstractViewportType::setGestureWidth(qreal gestureWidth)
         return;
 
     p->foregroundAttachedType->setGestureWidth(gestureWidth);
+}
+
+qreal AsemanAbstractViewportType::maximumWidth() const
+{
+    return p->foregroundAttachedType? p->foregroundAttachedType->maximumWidth() : 0;
+}
+
+bool AsemanAbstractViewportType::maximumWidthIsNull() const
+{
+    if (!p->foregroundAttachedType)
+        return false;
+
+    bool isNull;
+    p->foregroundAttachedType->maximumWidth(&isNull);
+    return isNull;
+}
+
+void AsemanAbstractViewportType::setMaximumWidth(qreal maximumWidth)
+{
+    if (!p->foregroundAttachedType)
+        return;
+
+    p->foregroundAttachedType->setMaximumWidth(maximumWidth);
 }
 
 QPointF AsemanAbstractViewportType::typeTransformOrigin() const
@@ -252,6 +278,22 @@ void AsemanViewportTypeAttechedProperty::setGestureWidth(qreal gestureWidth)
 
     mGestureWidth = gestureWidth;
     Q_EMIT gestureWidthChanged();
+}
+
+qreal AsemanViewportTypeAttechedProperty::maximumWidth(bool *isNull) const
+{
+    if (isNull) *isNull = mMaximumWidth.isNull();
+    return mMaximumWidth.toReal();
+
+}
+
+void AsemanViewportTypeAttechedProperty::setMaximumWidth(qreal maximumWidth)
+{
+    if (mMaximumWidth == maximumWidth)
+        return;
+
+    mMaximumWidth = maximumWidth;
+    Q_EMIT maximumWidthChanged();
 }
 
 QPointF AsemanViewportTypeAttechedProperty::typeTransformOrigin(bool *isNull) const

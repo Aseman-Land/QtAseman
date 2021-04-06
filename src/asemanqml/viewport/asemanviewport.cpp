@@ -66,6 +66,7 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
 #endif
 
     p->defaultItems << new AsemanViewportItem("none", "NoneViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("splitted", "SplitedViewport.qml", this);
 }
 
 QQmlListProperty<AsemanViewportItem> AsemanViewport::items()
