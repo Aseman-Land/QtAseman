@@ -13,6 +13,7 @@ AbstractViewportType {
 
     foreground.z: 10
     foreground.y: height * (1-ratio)
+    foreground.height: item.height
     foreground.parent: dragArea
 
     property real openRatio: open? 1 : 0
