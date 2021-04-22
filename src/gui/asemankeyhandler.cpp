@@ -92,6 +92,14 @@ bool AsemanKeyHandler::eventFilter(QObject *watched, QEvent *ev)
 
     switch(static_cast<int>(ev->type()))
     {
+    case QEvent::ActivationChange:
+    {
+        setModifiers(0);
+        setKey(0);
+        setScanCode(0);
+    }
+        break;
+
     case QEvent::KeyPress:
     {
         QKeyEvent *e = static_cast<QKeyEvent*>(ev);
