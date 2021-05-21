@@ -7,7 +7,8 @@ SUBDIRS = \
     multimedia \
     qml \
     network \
-    sql
+    sql \
+    httpserver
 
 qtHaveModule(geo): SUBDIRS += geo
 

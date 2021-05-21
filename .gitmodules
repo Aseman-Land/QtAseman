@@ -1,0 +1,3 @@
+[submodule "src/httpserver/qhttp"]
+	path = src/httpserver/qhttp
+	url = https://github.com/Aseman-Land/qhttp.git

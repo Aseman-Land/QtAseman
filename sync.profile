@@ -7,4 +7,5 @@
     "QAsemanGeo" => "$basedir/src/geo",
     "QAsemanQml" => "$basedir/src/qml",
     "QAsemanMultimedia" => "$basedir/src/multimedia",
+    "QAsemanHttpServer" => "$basedir/src/httpserver",
 );
