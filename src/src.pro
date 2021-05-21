@@ -7,8 +7,9 @@ SUBDIRS = \
     multimedia \
     qml \
     network \
-    sql \
-    httpserver
+    sql
+
+exists($$PWD/httpserver/qhttp/qhttp.pro): SUBDIRS += httpserver
 
 qtHaveModule(geo): SUBDIRS += geo
 
