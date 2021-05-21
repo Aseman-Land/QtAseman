@@ -54,7 +54,7 @@ and to install development files install `qt5aseman-dev` package.
 QtAseman uses standard Qt module mechanisms and it only depends on Qt libraries. Therefor it's quite easy to build on all platforms. Just clone it and build it easily:
 
 ```bash
-git clone https://github.com/Aseman-Land/QtAseman.git
+git clone https://github.com/Aseman-Land/QtAseman.git --recursive
 cd QtAseman
 mkdir build && cd build
 qmake -r ..
@@ -707,6 +707,30 @@ If you need to access advanced options or create components inherited from QtAse
 
 ```
 QT += asemancore asemangui asemanqml asemannetwork asemanwidgets asemangeo
+```
+
+### AsemanHttpServer
+
+AsemanHttpServer is a [qhttp](https://github.com/azadkuh/qhttp) fork, that create routing API for it. So it's async, thread supports and easy to use:
+
+```c++
+AsemanHttpServer server;
+
+// Sync
+server.route("/hello/sync", AsemanHttpServer::HttpMethod::GET, [](const AsemanHttpServer::Request &) {
+    return QStringLiteral("Hello Sync");
+});
+
+// ASync
+server.route("/hello/async", AsemanHttpServer::HttpMethod::GET, [](const AsemanHttpServer::Request &, AsemanHttpServer::Responder *responder) {
+    responder->write(QStringLiteral("Hello ASync"));
+});
+
+// ASync Threaded (It will run on another thread automatically)
+server.route("/hello/async", AsemanHttpServer::HttpMethod::GET, [](const AsemanHttpServer::Request &, AsemanHttpServer::Responder *responder) {
+    // Runs on another thread
+    responder->write(QStringLiteral("Hello ASync"));
+}, true);
 ```
 
 ## Documents
