@@ -178,7 +178,31 @@ public:
 
     template<typename T>
     T arg(const QString &key) const {
+        const auto &path = mUrl.path();
+
+        const auto &pathParts = path.split('/');
+        const auto &routePathParts = path.split('/');
+
+        const QString &lookup = QStringLiteral("<") + key + QStringLiteral(">");
+        int idx = routePathParts.indexOf(lookup);
+        if (idx > -1 && idx < pathParts.count())
+            return qvariant_cast<T>(QVariant::fromValue(pathParts.value(idx)));
+        else
+            return qvariant_cast<T>(QVariant());
+    }
+
+    template<typename T>
+    T query(const QString &key) const {
         return qvariant_cast<T>(QVariant::fromValue(mQuery.queryItemValue(key)));
+    }
+
+    template<typename T>
+    T query(const QString &key, T defaultValue) const {
+        auto val = mQuery.queryItemValue(key);
+        if (val.isEmpty())
+            return defaultValue;
+
+        return qvariant_cast<T>(QVariant::fromValue(val));
     }
 
 private:
@@ -190,6 +214,7 @@ private:
     QString mRemoteAddress;
     QUrl mUrl;
     QUrlQuery mQuery;
+    QString mRoutePath;
 
 };
 

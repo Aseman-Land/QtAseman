@@ -232,6 +232,7 @@ void AsemanHttpServer::Private::call(AsemanHttpServer *parent, const AsemanHttpS
     request.mMethod = static_cast<AsemanHttpServer::HttpMethod>(req->method());
     request.mRemoteAddress = req->remoteAddress();
     request.mBody = req->collectedData();
+    request.mRoutePath = pk.path;
 
     if (pk.async)
     {
