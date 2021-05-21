@@ -181,7 +181,7 @@ public:
         const auto &path = mUrl.path();
 
         const auto &pathParts = path.split('/');
-        const auto &routePathParts = path.split('/');
+        const auto &routePathParts = mRoutePath.split('/');
 
         const QString &lookup = QStringLiteral("<") + key + QStringLiteral(">");
         int idx = routePathParts.indexOf(lookup);
