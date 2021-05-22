@@ -5,6 +5,7 @@
 #include <QMutex>
 #include <QObject>
 #include <QUrlQuery>
+#include <QVariant>
 
 #include <functional>
 
