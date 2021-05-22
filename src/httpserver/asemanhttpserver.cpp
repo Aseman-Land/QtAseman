@@ -26,13 +26,14 @@ public:
 
     QHttpServer *server;
     QHash<int, QHash<QString, QList<CallbackPack>>> routes;
+    QHash<QHttpRequest*, QByteArray> requestsData;
 
     QThreadPool *pool;
 
     void route(CallbackPack callback);
     void handle(AsemanHttpServer *parent, QHttpRequest* req, QHttpResponse* res);
     void call_auto(AsemanHttpServer *parent, const CallbackPack &pk, QHttpRequest *, QHttpResponse *res);
-    void call(AsemanHttpServer *parent, const CallbackPack &pk, QHttpRequest *, QHttpResponse *res);
+    void call(AsemanHttpServer *parent, const CallbackPack &pk, QHttpRequest *, QHttpResponse *res, const QByteArray &data);
 };
 
 AsemanHttpServer::AsemanHttpServer(QObject *parent)
@@ -193,6 +194,10 @@ void AsemanHttpServer::Private::handle(AsemanHttpServer *parent, QHttpRequest *r
 
 void AsemanHttpServer::Private::call_auto(AsemanHttpServer *parent, const AsemanHttpServer::Private::CallbackPack &pk, QHttpRequest *req, QHttpResponse *res)
 {
+    QObject::connect(req, &QHttpRequest::data, parent, [this, req](QByteArray data){
+        requestsData[req] += data;
+    });
+
     QObject::connect(req, &QHttpRequest::end, parent, [parent, pk, req, res, this](){
         if (pk.thread)
         {
@@ -203,9 +208,10 @@ void AsemanHttpServer::Private::call_auto(AsemanHttpServer *parent, const Aseman
                 AsemanHttpServer::Private::CallbackPack pk;
                 QHttpRequest *req;
                 QHttpResponse *res;
+                QByteArray data;
 
                 void run() {
-                    parent->p->call(parent, pk, req, res);
+                    parent->p->call(parent, pk, req, res, data);
                 }
             };
 
@@ -214,16 +220,17 @@ void AsemanHttpServer::Private::call_auto(AsemanHttpServer *parent, const Aseman
             r->pk = pk;
             r->req = req;
             r->res = res;
+            r->data = requestsData.take(req);
             r->setAutoDelete(true);
 
             pool->start(r);
         }
         else
-            call(parent, pk, req, res);
+            call(parent, pk, req, res, requestsData.take(req));
     });
 }
 
-void AsemanHttpServer::Private::call(AsemanHttpServer *parent, const AsemanHttpServer::Private::CallbackPack &pk, QHttpRequest *req, QHttpResponse *res)
+void AsemanHttpServer::Private::call(AsemanHttpServer *parent, const AsemanHttpServer::Private::CallbackPack &pk, QHttpRequest *req, QHttpResponse *res, const QByteArray &data)
 {
     Request request;
     request.mUrl = req->url();
@@ -231,7 +238,7 @@ void AsemanHttpServer::Private::call(AsemanHttpServer *parent, const AsemanHttpS
     request.mHeaders = req->headers();
     request.mMethod = static_cast<AsemanHttpServer::HttpMethod>(req->method());
     request.mRemoteAddress = req->remoteAddress();
-    request.mBody = req->collectedData();
+    request.mBody = data;
     request.mRoutePath = pk.path;
 
     if (pk.async)
