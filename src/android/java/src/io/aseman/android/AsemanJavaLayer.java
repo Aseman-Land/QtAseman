@@ -334,6 +334,7 @@ public class AsemanJavaLayer
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setType(type);
         intent.putExtra(Intent.EXTRA_STREAM, photoURI);
 
@@ -361,6 +362,7 @@ public class AsemanJavaLayer
 
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setType(type);
         intent.setDataAndType(photoURI,type);
 
