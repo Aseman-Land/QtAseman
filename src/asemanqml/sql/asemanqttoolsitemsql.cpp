@@ -31,7 +31,7 @@
     static QObject *FNC_NAME(QQmlEngine *engine, QJSEngine *scriptEngine) { \
         Q_UNUSED(engine) \
         Q_UNUSED(scriptEngine) \
-        static TYPE *singleton = NEW_CREATOR; \
+        TYPE *singleton = NEW_CREATOR; \
         return singleton; \
     }
 

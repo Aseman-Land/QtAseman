@@ -46,125 +46,63 @@ void AsemanQtTools::initializeEngine(QQmlEngine *engine, const char *uri)
 
 AsemanQuickViewWrapper *AsemanQtTools::quickView(QQmlEngine *engine)
 {
-    static QHash<QQmlEngine*, QPointer<AsemanQuickViewWrapper> > views;
-    AsemanQuickViewWrapper *res = views.value(engine);
-    if(res)
-        return res;
-
     AsemanQuickView *view = new AsemanQuickView(engine, Q_NULLPTR);
-    if(view)
-    {
-        res = new AsemanQuickViewWrapper(view, engine);
-        views[engine] = res;
-        return res;
-    }
-
-    return res;
+    return new AsemanQuickViewWrapper(view, engine);
 }
 
 AsemanApplicationSingleton *AsemanQtTools::application(QQmlEngine *engine)
 {
-    static QPointer<AsemanApplicationSingleton> res;
-    if(!res)
-        res = new AsemanApplicationSingleton(engine);
-
-    return res;
+    return new AsemanApplicationSingleton(engine);
 }
 
 AsemanDesktopTools *AsemanQtTools::desktopTools()
 {
-    static QPointer<AsemanDesktopTools> res = 0;
-    if(!res)
-        res = new AsemanDesktopTools();
-
-    return res;
+    return new AsemanDesktopTools();
 }
 
 AsemanDevicesItem *AsemanQtTools::devices()
 {
-    static QPointer<AsemanDevicesItem> res = 0;
-    if(!res)
-        res = new AsemanDevicesItem();
-
-    return res;
+    return new AsemanDevicesItem();
 }
 
 AsemanQtLogger *AsemanQtTools::qtLogger()
 {
-    static QPointer<AsemanQtLogger> res = 0;
-    if(!res)
-    {
-        QString path = QString::fromUtf8(qgetenv("ASEMAN_LOG_PATH"));
-        if(path.isEmpty())
-            path = AsemanApplicationItem::logPath() + "/log";
+    QString path = QString::fromUtf8(qgetenv("ASEMAN_LOG_PATH"));
+    if(path.isEmpty())
+        path = AsemanApplicationItem::logPath() + "/log";
 
-        res = new AsemanQtLogger(path);
-    }
-
-    return res;
+    return new AsemanQtLogger(path);
 }
 
 #ifdef Q_OS_ANDROID
 AsemanJavaLayer *AsemanQtTools::javaLayer()
 {
-    static QPointer<AsemanJavaLayer> res = 0;
-    if(!res)
-        res = new AsemanJavaLayer();
-
-    return res;
+    return new AsemanJavaLayer();
 }
 #endif
 
 AsemanToolsItem *AsemanQtTools::tools()
 {
-    static QPointer<AsemanToolsItem> res = 0;
-    if(!res)
-        res = new AsemanToolsItem();
-
-    return res;
+    qDebug() << "://";
+    return new AsemanToolsItem();
 }
 
 AsemanTextTools *AsemanQtTools::textTools()
 {
-    static QPointer<AsemanTextTools> res = 0;
-    if(!res)
-        res = new AsemanTextTools();
-
-    return res;
+    return new AsemanTextTools();
 }
 
-AsemanCalendarConverter *AsemanQtTools::calendar(QQmlEngine *engine)
+AsemanCalendarConverter *AsemanQtTools::calendar(QQmlEngine *)
 {
-    static QHash<QQmlEngine*, QPointer<AsemanCalendarConverter> > views;
-    AsemanCalendarConverter *res = views.value(engine);
-    if(res)
-        return res;
-
-    res = new AsemanCalendarConverter();
-    views[engine] = res;
-    return res;
+    return new AsemanCalendarConverter();
 }
 
-AsemanBackHandler *AsemanQtTools::backHandler(QQmlEngine *engine)
+AsemanBackHandler *AsemanQtTools::backHandler(QQmlEngine *)
 {
-    static QHash<QQmlEngine*, QPointer<AsemanBackHandler> > views;
-    AsemanBackHandler *res = views.value(engine);
-    if(res)
-        return res;
-
-    res = new AsemanBackHandler();
-    views[engine] = res;
-    return res;
+    return new AsemanBackHandler();
 }
 
-AsemanGlobalTranslations *AsemanQtTools::globalTranslations(QQmlEngine *engine)
+AsemanGlobalTranslations *AsemanQtTools::globalTranslations(QQmlEngine *)
 {
-    static QHash<QQmlEngine*, QPointer<AsemanGlobalTranslations> > translations;
-    AsemanGlobalTranslations *res = translations.value(engine);
-    if(res)
-        return res;
-
-    res = new AsemanGlobalTranslations();
-    translations[engine] = res;
-    return res;
+    return new AsemanGlobalTranslations();
 }

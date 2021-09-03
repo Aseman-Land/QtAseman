@@ -33,7 +33,7 @@
     static QObject *FNC_NAME(QQmlEngine *engine, QJSEngine *scriptEngine) { \
         Q_UNUSED(engine) \
         Q_UNUSED(scriptEngine) \
-        static TYPE *singleton = NEW_CREATOR; \
+        TYPE *singleton = NEW_CREATOR; \
         return singleton; \
     }
 
@@ -168,14 +168,7 @@ void AsemanQtToolsItemNetwork::exportDocuments(const QString &destination)
 
 AsemanFileDownloaderQueue *AsemanQtToolsItemNetwork::getDownloaderQueue(QQmlEngine *engine)
 {
-    static QHash<QQmlEngine*, QPointer<AsemanFileDownloaderQueue> > views;
-    AsemanFileDownloaderQueue *res = views.value(engine);
-    if(res)
-        return res;
-
-    res = new AsemanFileDownloaderQueue(engine);
-    views[engine] = res;
-    return res;
+    return new AsemanFileDownloaderQueue(engine);
 }
 
 QString AsemanQtToolsItemNetwork::fixType(const QString &type)
