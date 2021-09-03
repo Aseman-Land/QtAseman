@@ -83,7 +83,6 @@ AsemanJavaLayer *AsemanQtTools::javaLayer()
 
 AsemanToolsItem *AsemanQtTools::tools()
 {
-    qDebug() << "://";
     return new AsemanToolsItem();
 }
 
