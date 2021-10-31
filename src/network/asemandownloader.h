@@ -37,6 +37,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanDownloader : public QObject
     Q_PROPERTY(int downloaderId READ downloaderId WRITE setDownloaderId NOTIFY downloaderIdChanged)
     Q_PROPERTY(bool downloading READ downloading NOTIFY downloadingChanged)
     Q_PROPERTY(QVariantMap header READ header WRITE setHeader NOTIFY headerChanged)
+    Q_PROPERTY(bool ignoreSslErrors READ ignoreSslErrors WRITE setIgnoreSslErrors NOTIFY ignoreSslErrorsChanged)
 
     Q_OBJECT
 public:
@@ -60,6 +61,9 @@ public:
 
     bool downloading() const;
 
+    bool ignoreSslErrors() const;
+    void setIgnoreSslErrors(bool newIgnoreSslErrors);
+
 public Q_SLOTS:
     void start();
     void stop();
@@ -76,6 +80,7 @@ Q_SIGNALS:
     void finished( const QByteArray & data );
     void finishedWithId( int id, const QByteArray & data );
     void failed();
+    void ignoreSslErrorsChanged();
 
 private Q_SLOTS:
     void downloadFinished(QNetworkReply *reply);

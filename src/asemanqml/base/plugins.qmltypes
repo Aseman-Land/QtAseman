@@ -739,6 +739,7 @@ Module {
         Property { name: "destination"; type: "string" }
         Property { name: "path"; type: "string" }
         Property { name: "downloaderId"; type: "int" }
+        Property { name: "ignoreSslErrors"; type: "bool" }
         Property { name: "downloading"; type: "bool"; isReadonly: true }
         Property { name: "header"; type: "QVariantMap" }
         Signal {
@@ -841,6 +842,7 @@ Module {
         Property { name: "source"; type: "string" }
         Property { name: "fileName"; type: "string" }
         Property { name: "header"; type: "QVariantMap" }
+        Property { name: "ignoreSslErrors"; type: "bool" }
         Property { name: "percent"; type: "double"; isReadonly: true }
         Property { name: "downloaderQueue"; type: "AsemanFileDownloaderQueue"; isPointer: true }
         Property { name: "result"; type: "string"; isReadonly: true }
@@ -2226,6 +2228,7 @@ Module {
         Property { name: "percent"; type: "double"; isReadonly: true }
         Property { name: "fillMode"; type: "int" }
         Property { name: "asynchronous"; type: "bool" }
+        Property { name: "ignoreSslErrors"; type: "bool" }
         Property { name: "cache"; type: "bool" }
         Property { name: "horizontalAlignment"; type: "int" }
         Property { name: "mirror"; type: "bool" }

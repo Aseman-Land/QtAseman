@@ -35,6 +35,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanFileDownloaderQueueItem : public QObject
     Q_PROPERTY(qreal percent READ percent NOTIFY percentChanged)
     Q_PROPERTY(AsemanFileDownloaderQueue* downloaderQueue READ downloaderQueue WRITE setDownloaderQueue NOTIFY downloaderQueueChanged)
     Q_PROPERTY(QString result READ result NOTIFY resultChanged)
+    Q_PROPERTY(bool ignoreSslErrors READ ignoreSslErrors WRITE setIgnoreSslErrors NOTIFY ignoreSslErrorsChanged)
 
 public:
     AsemanFileDownloaderQueueItem(QObject *parent = Q_NULLPTR);
@@ -56,6 +57,9 @@ public:
 
     QString result() const;
 
+    bool ignoreSslErrors() const;
+    void setIgnoreSslErrors(bool newIgnoreSslErrors);
+
 Q_SIGNALS:
     void sourceChanged();
     void downloaderQueueChanged();
@@ -63,6 +67,7 @@ Q_SIGNALS:
     void fileNameChanged();
     void percentChanged();
     void headerChanged();
+    void ignoreSslErrorsChanged();
 
 private Q_SLOTS:
     void finished(const QString &url, const QString &fileName);
@@ -70,6 +75,7 @@ private Q_SLOTS:
 
 private:
     void refresh();
+    void download();
 
 private:
     AsemanFileDownloaderQueueItemPrivate *p;

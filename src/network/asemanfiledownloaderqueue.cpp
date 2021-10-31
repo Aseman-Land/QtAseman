@@ -25,14 +25,22 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
+#include <QDebug>
 
 class AsemanFileDownloaderQueuePrivate
 {
 public:
+    struct QueueItem
+    {
+        QSet<QString> fileNames;
+        QVariantMap headers;
+        bool ignoreSslErrors = false;
+    };
+
     QStack<AsemanDownloader*> inactiveItems;
     QSet<AsemanDownloader*> activeItems;
     QQueue<QString> queue;
-    QHash<QString, QPair<QSet<QString>, QVariantMap> > names;
+    QHash<QString, QueueItem> names;
 
     int capacity;
     QString destination;
@@ -75,7 +83,7 @@ QString AsemanFileDownloaderQueue::destination() const
     return p->destination;
 }
 
-void AsemanFileDownloaderQueue::download(const QString &url, const QString &fileName, const QVariantMap &header)
+void AsemanFileDownloaderQueue::download(const QString &url, const QString &fileName, const QVariantMap &header, bool ignoreSslErrors)
 {
     if( QFileInfo((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + fileName).exists() )
     {
@@ -85,8 +93,9 @@ void AsemanFileDownloaderQueue::download(const QString &url, const QString &file
     }
 
     auto &pair = p->names[url];
-    pair.first.insert(fileName);
-    pair.second = header;
+    pair.fileNames.insert(fileName);
+    pair.headers = header;
+    pair.ignoreSslErrors = ignoreSslErrors;
 
     if(p->queue.contains(url))
         return;
@@ -102,7 +111,7 @@ void AsemanFileDownloaderQueue::finishedSlt(const QByteArray &data)
         return;
 
     const QString &url = downloader->path();
-    auto names = p->names.value(url).first;
+    auto names = p->names.value(url).fileNames;
     for (auto name: names)
     {
         QFile file((p->destination.count()? p->destination + QStringLiteral("/") : QStringLiteral("")) + name);
@@ -130,7 +139,7 @@ void AsemanFileDownloaderQueue::recievedBytesChanged()
     const qint64 recieved = downloader->recievedBytes();
     const qreal percent = ((qreal)recieved/total)*100;
     const QString &url = downloader->path();
-    const QSet<QString> names = p->names.value(url).first;
+    const QSet<QString> names = p->names.value(url).fileNames;
     for(const QString &name: names)
         Q_EMIT progressChanged(url, name, percent);
 }
@@ -150,7 +159,8 @@ void AsemanFileDownloaderQueue::next()
     auto item = p->names.value(url);
 
     downloader->setPath(url);
-    downloader->setHeader(item.second);
+    downloader->setIgnoreSslErrors(item.ignoreSslErrors);
+    downloader->setHeader(item.headers);
     downloader->start();
 }
 

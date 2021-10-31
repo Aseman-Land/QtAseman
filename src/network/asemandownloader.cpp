@@ -40,6 +40,7 @@ public:
 
     int downloader_id;
     QVariantMap header;
+    bool ignoreSslErrors;
 };
 
 AsemanDownloader::AsemanDownloader(QObject *parent) :
@@ -51,6 +52,7 @@ AsemanDownloader::AsemanDownloader(QObject *parent) :
     p->total_bytes = 1;
     p->manager = 0;
     p->downloader_id = -1;
+    p->ignoreSslErrors = false;
 }
 
 qint64 AsemanDownloader::recievedBytes() const
@@ -221,6 +223,10 @@ void AsemanDownloader::sslErrors(const QList<QSslError> &list)
     QStringList res;
 #ifndef Q_OS_IOS
 #ifndef QT_NO_SSL
+    auto reply = qobject_cast<QNetworkReply*>(sender());
+    if (reply && p->ignoreSslErrors)
+        reply->ignoreSslErrors(list);
+
     for(const QSslError &error: list)
         res << error.errorString();
 #endif
@@ -249,6 +255,19 @@ void AsemanDownloader::init_manager()
 
     p->manager = new QNetworkAccessManager(this);
     connect(p->manager, &QNetworkAccessManager::finished, this, &AsemanDownloader::downloadFinished);
+}
+
+bool AsemanDownloader::ignoreSslErrors() const
+{
+    return p->ignoreSslErrors;
+}
+
+void AsemanDownloader::setIgnoreSslErrors(bool newIgnoreSslErrors)
+{
+    if (p->ignoreSslErrors == newIgnoreSslErrors)
+        return;
+    p->ignoreSslErrors = newIgnoreSslErrors;
+    Q_EMIT ignoreSslErrorsChanged();
 }
 
 AsemanDownloader::~AsemanDownloader()

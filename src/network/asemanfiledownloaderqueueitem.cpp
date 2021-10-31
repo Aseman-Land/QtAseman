@@ -21,16 +21,20 @@
 #include "asemandevices.h"
 
 #include <QPointer>
+#include <QTimer>
+#include <QDebug>
 
 class AsemanFileDownloaderQueueItemPrivate
 {
 public:
+    bool ignoreSslErrors;
     QPointer<AsemanFileDownloaderQueue> queue;
     QString source;
     QString result;
     QString fileName;
     QVariantMap header;
     qreal percent;
+    QTimer *timer;
 };
 
 AsemanFileDownloaderQueueItem::AsemanFileDownloaderQueueItem(QObject *parent) :
@@ -38,6 +42,13 @@ AsemanFileDownloaderQueueItem::AsemanFileDownloaderQueueItem(QObject *parent) :
 {
     p = new AsemanFileDownloaderQueueItemPrivate;
     p->percent = 0;
+    p->ignoreSslErrors = false;
+
+    p->timer = new QTimer(this);
+    p->timer->setInterval(5);
+    p->timer->setSingleShot(true);
+
+    connect(p->timer, &QTimer::timeout, this, &AsemanFileDownloaderQueueItem::download);
 }
 
 void AsemanFileDownloaderQueueItem::setSource(const QString &url)
@@ -149,12 +160,32 @@ void AsemanFileDownloaderQueueItem::progressChanged(const QString &url, const QS
 
 void AsemanFileDownloaderQueueItem::refresh()
 {
+    p->timer->stop();
+    p->timer->start();
+}
+
+void AsemanFileDownloaderQueueItem::download()
+{
     if(p->source.isEmpty() || p->fileName.isEmpty())
         return;
     if(!p->queue)
         return;
 
-    p->queue->download(p->source, p->fileName, p->header);
+    p->queue->download(p->source, p->fileName, p->header, p->ignoreSslErrors);
+}
+
+bool AsemanFileDownloaderQueueItem::ignoreSslErrors() const
+{
+    return p->ignoreSslErrors;
+}
+
+void AsemanFileDownloaderQueueItem::setIgnoreSslErrors(bool newIgnoreSslErrors)
+{
+    if (p->ignoreSslErrors == newIgnoreSslErrors)
+        return;
+    p->ignoreSslErrors = newIgnoreSslErrors;
+    refresh();
+    Q_EMIT ignoreSslErrorsChanged();
 }
 
 AsemanFileDownloaderQueueItem::~AsemanFileDownloaderQueueItem()

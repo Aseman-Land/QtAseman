@@ -33,6 +33,7 @@ Item {
     property alias source: queueItem.source
     property alias header: queueItem.header
     property alias percent: queueItem.percent
+    property alias ignoreSslErrors: queueItem.ignoreSslErrors
     readonly property string cachedSource: image.source
 
     property alias fillMode: image.fillMode
@@ -45,6 +46,7 @@ Item {
     property alias progress: image.progress
     property alias smooth: image.smooth
     property alias sourceSize: image.sourceSize
+    property alias status: image.status
     property alias status: image.status
     property alias verticalAlignment: image.verticalAlignment
 

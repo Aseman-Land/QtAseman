@@ -44,7 +44,7 @@ public:
     QString destination() const;
 
 public Q_SLOTS:
-    void download(const QString &url, const QString &fileName, const QVariantMap &header = QVariantMap());
+    void download(const QString &url, const QString &fileName, const QVariantMap &header = QVariantMap(), bool ignoreSslErrors = false);
 
 Q_SIGNALS:
     void capacityChanged();
