@@ -41,6 +41,7 @@ Q_SIGNALS:
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void error(const QString &errorString, QNetworkReply::NetworkError errorCode);
+    void sslErrors(const QString &errorString);
 
 public Q_SLOTS:
     void abort();

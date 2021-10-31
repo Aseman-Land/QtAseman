@@ -138,6 +138,7 @@ Module {
         Property { name: "status"; type: "int"; isReadonly: true }
         Property { name: "refreshing"; type: "bool"; isReadonly: true }
         Property { name: "error"; type: "string"; isReadonly: true }
+        Property { name: "sslErrors"; type: "string"; isReadonly: true }
         Property { name: "ignoreKeys"; type: "QStringList" }
         Property { name: "ignoreRegExp"; type: "QRegExp" }
         Property { name: "cachePath"; type: "string" }

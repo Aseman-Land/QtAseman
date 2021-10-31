@@ -41,6 +41,7 @@ class LIBQTASEMAN_NETWORK_EXPORT AsemanNetworkRequestObject : public AsemanQuick
     Q_PROPERTY(qint32 status READ status NOTIFY statusChanged)
     Q_PROPERTY(bool refreshing READ refreshing NOTIFY refreshingChanged)
     Q_PROPERTY(QString error READ error NOTIFY errorChanged)
+    Q_PROPERTY(QString sslErrors READ sslErrors NOTIFY sslErrorsChanged)
     Q_PROPERTY(QStringList ignoreKeys READ ignoreKeys WRITE setIgnoreKeys NOTIFY ignoreKeysChanged)
     Q_PROPERTY(QRegExp ignoreRegExp READ ignoreRegExp WRITE setIgnoreRegExp NOTIFY ignoreRegExpChanged)
     Q_PROPERTY(QString cachePath READ cachePath WRITE setCachePath NOTIFY cachePathChanged)
@@ -101,6 +102,9 @@ public:
     void setIgnoreSslErrors(bool ignoreSslErrors);
     bool ignoreSslErrors() const;
 
+    QString sslErrors() const;
+    void setSslErrors(const QString &sslErrors);
+
 Q_SIGNALS:
     void responseChanged();
     void cachedDataChanged();
@@ -121,6 +125,7 @@ Q_SIGNALS:
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void ignoreSslErrorsChanged();
+    void sslErrorsChanged();
 
 public Q_SLOTS:
     QVariantMap toMap() const;

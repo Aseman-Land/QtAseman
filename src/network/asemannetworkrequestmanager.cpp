@@ -262,6 +262,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(AsemanNetworkReq
 void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply *reply, AsemanNetworkRequestObject *request, std::function<QVariant (QByteArray)> dataConvertMethod)
 {
     request->setError(QStringLiteral(""));
+    request->setSslErrors(QStringLiteral(""));
     request->setResult(QVariant(), -1);
     request->setRefreshing(true);
 
@@ -280,6 +281,11 @@ void AsemanNetworkRequestManager::processPostedRequest(AsemanNetworkRequestReply
         req->setError(errorString);
         req->setRefreshing(false);
     });
+#if QT_CONFIG(ssl)
+    connect(reply, &AsemanNetworkRequestReply::sslErrors, this, [req](const QString &errorString){
+        req->setSslErrors(errorString);
+    });
+#endif
     connect(reply, &AsemanNetworkRequestReply::uploadProgress, req, &AsemanNetworkRequestObject::uploadProgress);
     connect(reply, &AsemanNetworkRequestReply::downloadProgress, req, &AsemanNetworkRequestObject::downloadProgress);
 }

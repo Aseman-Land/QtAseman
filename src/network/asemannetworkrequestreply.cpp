@@ -53,6 +53,7 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(bool ignoreSslErrors, QNetw
             }
 
             Q_EMIT error(errorString, QNetworkReply::UnknownServerError);
+            Q_EMIT sslErrors(errorString);
 
             p->reply->deleteLater();
             deleteLater();

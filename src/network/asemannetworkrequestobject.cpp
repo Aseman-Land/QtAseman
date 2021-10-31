@@ -38,6 +38,7 @@ public:
     qint32 contentType;
     bool refreshing;
     QString error;
+    QString sslErrors;
     QStringList ignoreKeys;
     QRegExp ignoreRegExp;
     QVariantMap headers;
@@ -268,6 +269,20 @@ void AsemanNetworkRequestObject::setIgnoreSslErrors(bool ignoreSslErrors)
 bool AsemanNetworkRequestObject::ignoreSslErrors() const
 {
     return p->ignoreSslErrors;
+}
+
+QString AsemanNetworkRequestObject::sslErrors() const
+{
+    return p->sslErrors;
+}
+
+void AsemanNetworkRequestObject::setSslErrors(const QString &sslErrors)
+{
+    if (sslErrors == p->sslErrors)
+        return;
+
+    p->sslErrors = sslErrors;
+    Q_EMIT sslErrorsChanged();
 }
 
 QVariantMap AsemanNetworkRequestObject:: toMap() const
