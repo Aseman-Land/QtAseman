@@ -47,7 +47,6 @@ Item {
     property alias smooth: image.smooth
     property alias sourceSize: image.sourceSize
     property alias status: image.status
-    property alias status: image.status
     property alias verticalAlignment: image.verticalAlignment
 
     property string fileName: {
