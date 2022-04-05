@@ -8,6 +8,7 @@ ViewportCore {
     property bool androidStyle: Devices.isAndroid
     property Item mainItem
     property alias count: list.count
+    property alias list: list.list
 
     readonly property Item currentItem: list.count? list.last().foregroundItem : mainItem
     readonly property string currentType: list.count? list.last().openedType : ""
