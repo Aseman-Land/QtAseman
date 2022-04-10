@@ -19,7 +19,10 @@
 #ifndef ASEMANNETWORKMANAGERITEM_H
 #define ASEMANNETWORKMANAGERITEM_H
 
+
 #include <QObject>
+
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include <QNetworkConfiguration>
 #include "asemannetworkmanager.h"
 
@@ -122,5 +125,7 @@ private:
 };
 
 typedef AsemanNetworkManagerItem QAsemanNetworkManagerItem;
+
+#endif
 
 #endif // ASEMANNETWORKMANAGERITEM_H

@@ -20,6 +20,7 @@
 
 #include <QVariantList>
 #include <QDebug>
+#include <QDateTime>
 
 class AsemanListObjectPrivate
 {
@@ -128,7 +129,11 @@ void AsemanListObject::replace(int index, const QVariant &v)
 
 void AsemanListObject::swap(int idx0, int idx1)
 {
-    p->list.swap(idx0, idx1);
+    const auto val_0 = p->list.value(idx0);
+    const auto val_1 = p->list.value(idx1);
+
+    p->list[idx0] = val_1;
+    p->list[idx1] = val_0;
 }
 
 int AsemanListObject::count() const
@@ -171,11 +176,6 @@ QVariantList AsemanListObject::toList() const
 bool AsemanListObject::contains(const QVariant &v) const
 {
     return p->list.contains(v);
-}
-
-void AsemanListObject::sort()
-{
-    std::stable_sort(p->list.begin(), p->list.end());
 }
 
 AsemanListObject::~AsemanListObject()

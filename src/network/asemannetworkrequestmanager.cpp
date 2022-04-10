@@ -72,7 +72,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequest
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
 
     if (Private::fullLog_env)
         qDebug() << "QtAseman::Network, POST url:" << url.toString();
@@ -90,7 +94,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
@@ -112,7 +120,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
 
     addHeaderData(req, headers);
 
@@ -148,7 +160,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetwo
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
@@ -170,7 +186,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetwo
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
 
     addHeaderData(req, headers);
 
@@ -206,7 +226,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
@@ -228,7 +252,11 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
     QNetworkRequest req;
     req.setUrl(url);
     req.setMaximumRedirectsAllowed(10);
+#ifdef ASEMAN_QT6
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+#else
     req.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
 
     addHeaderData(req, headers);
 

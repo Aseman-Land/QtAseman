@@ -28,10 +28,10 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanUnityTaskbarButtonEngine : public AsemanA
 public:
     AsemanUnityTaskbarButtonEngine();
 
-    void updateBadgeNumber(int number);
-    void updateProgress(qreal progress);
-    void updateLauncher(const QString &launcher);
-    void userAttention();
+    void updateBadgeNumber(int number) Q_DECL_OVERRIDE;
+    void updateProgress(qreal progress) Q_DECL_OVERRIDE;
+    void updateLauncher(const QString &launcher) Q_DECL_OVERRIDE;
+    void userAttention() Q_DECL_OVERRIDE;
 
 private:
     void update(const QString &launcher, qint64 badgeNumber, qreal progress, bool userAttention);

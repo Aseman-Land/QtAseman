@@ -54,19 +54,19 @@ void AsemanQtToolsItemSql::registerFiles(const QString &filesLocation, const cha
     QFile file(filesLocation + QStringLiteral("/qmldir"));
     if(file.open(QFile::ReadOnly))
     {
-        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), QString::SkipEmptyParts);
+        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         file.close();
 
         for(const QString &l: lines)
         {
-            QStringList parts = l.trimmed().split(QStringLiteral(" "), QString::SkipEmptyParts);
+            QStringList parts = l.trimmed().split(QStringLiteral(" "), Qt::SkipEmptyParts);
             bool singleton = false;
             if(parts.count() && parts.first() == "singleton")
                 singleton = parts.takeFirst().count();
             if(parts.length() != 3)
                 continue;
 
-            QStringList version = parts.at(1).split(QStringLiteral("."), QString::SkipEmptyParts);
+            QStringList version = parts.at(1).split(QStringLiteral("."), Qt::SkipEmptyParts);
             if(version.count() != 2)
                 continue;
 

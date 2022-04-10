@@ -285,7 +285,7 @@ private Q_SLOTS:
     void keyboard_changed();
 
 protected:
-    void timerEvent(QTimerEvent *e);
+    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE;
     void refreshTransparentStatusBar();
     void refreshTransparentNavigationBar();
 

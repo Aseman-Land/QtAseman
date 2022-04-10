@@ -18,9 +18,11 @@
 
 #include "asemanqttoolsitemmultimedia.h"
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include "asemanaudiorecorder.h"
 #include "asemanaudioencodersettings.h"
 #include "asemanmultimediadatabase.h"
+#endif
 
 #include <qqml.h>
 #include <QHash>
@@ -31,6 +33,7 @@
 static QStringList aseman_qt_tools_indexCache;
 static QString aseman_qt_tools_destination;
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 static QObject *aseman_multimedia_AsemanMultimediaDatabase(QQmlEngine *engine, QJSEngine *scriptEngine) {
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)
@@ -40,6 +43,7 @@ static QObject *aseman_multimedia_AsemanMultimediaDatabase(QQmlEngine *engine, Q
 
     return singleton;
 }
+#endif
 
 void AsemanQtToolsItemMultimedia::registerTypes(const char *uri, bool exportMode)
 {
@@ -47,9 +51,11 @@ void AsemanQtToolsItemMultimedia::registerTypes(const char *uri, bool exportMode
     if(register_list.contains(uri) && !exportMode)
         return;
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     registerType<AsemanAudioRecorder>(uri, 2, 0, "AudioRecorder", exportMode);
     registerType<AsemanAudioEncoderSettings>(uri, 2, 0, "AudioEncoderSettings", exportMode);
     registerSingletonType<AsemanMultimediaDatabase>(uri, 2, 0, "MultimediaDatabase", aseman_multimedia_AsemanMultimediaDatabase, exportMode);
+#endif
 
     register_list.insert(uri);
 }
@@ -59,19 +65,19 @@ void AsemanQtToolsItemMultimedia::registerFiles(const QString &filesLocation, co
     QFile file(filesLocation + QStringLiteral("/qmldir"));
     if(file.open(QFile::ReadOnly))
     {
-        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), QString::SkipEmptyParts);
+        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         file.close();
 
         for(const QString &l: lines)
         {
-            QStringList parts = l.trimmed().split(QStringLiteral(" "), QString::SkipEmptyParts);
+            QStringList parts = l.trimmed().split(QStringLiteral(" "), Qt::SkipEmptyParts);
             bool singleton = false;
             if(parts.count() && parts.first() == "singleton")
                 singleton = parts.takeFirst().count();
             if(parts.length() != 3)
                 continue;
 
-            QStringList version = parts.at(1).split(QStringLiteral("."), QString::SkipEmptyParts);
+            QStringList version = parts.at(1).split(QStringLiteral("."), Qt::SkipEmptyParts);
             if(version.count() != 2)
                 continue;
 

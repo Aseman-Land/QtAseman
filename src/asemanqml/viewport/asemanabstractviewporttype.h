@@ -4,7 +4,8 @@
 #include <QPointer>
 #include <QQuickItem>
 
-class AsemanViewport;
+#include "asemanviewport.h"
+
 class AsemanAbstractViewportType : public QQuickItem
 {
     Q_OBJECT

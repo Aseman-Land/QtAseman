@@ -304,7 +304,11 @@ QString AsemanDesktopTools::getOpenFileName(QWindow *window, const QString & tit
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/kdialog"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -330,7 +334,11 @@ QString AsemanDesktopTools::getOpenFileName(QWindow *window, const QString & tit
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/zenity"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -381,7 +389,11 @@ QStringList AsemanDesktopTools::getOpenFileNames(QWindow *window, const QString 
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/kdialog"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -407,7 +419,11 @@ QStringList AsemanDesktopTools::getOpenFileNames(QWindow *window, const QString 
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/zenity"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -458,7 +474,11 @@ QString AsemanDesktopTools::getSaveFileName(QWindow *window, const QString &titl
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/kdialog"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -486,7 +506,11 @@ QString AsemanDesktopTools::getSaveFileName(QWindow *window, const QString &titl
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/zenity"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -537,7 +561,11 @@ QString AsemanDesktopTools::getExistingDirectory(QWindow *window, const QString 
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/kdialog"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);
@@ -563,7 +591,11 @@ QString AsemanDesktopTools::getExistingDirectory(QWindow *window, const QString 
 
             QProcess process;
             QEventLoop loop;
-            connect(&process, static_cast<void (QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+            connect(&process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#else
+            connect(&process, &QProcess::finished, &loop, &QEventLoop::quit, Qt::QueuedConnection );
+#endif
 
             process.start(QStringLiteral("/usr/bin/zenity"), args );
             loop.exec(QEventLoop::ExcludeUserInputEvents);

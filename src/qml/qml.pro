@@ -8,7 +8,7 @@ INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui $$PWD/../network $$PWD/../widget
 DEPENDPATH += $$PWD
 
 TARGET = QAsemanQml
-QT = core gui asemancore asemangui network qml quick asemanwidgets
+QT = core gui asemancore asemangui network qml quick asemanwidgets asemannetwork
 ios: QT += widgets
 
 MODULE = asemanqml
@@ -37,7 +37,7 @@ HEADERS += \
     $$PWD/asemantoolsitem.h \
     $$PWD/asemanfileresourcemanager.h \
     $$PWD/asemanproxycomponent.h  \
-    asemanapplicationsingleton.h
+    $$PWD/asemanapplicationsingleton.h
 
 SOURCES += \
     $$PWD/asemanapplicationitem.cpp \
@@ -60,7 +60,7 @@ SOURCES += \
     $$PWD/asemantoolsitem.cpp \
     $$PWD/asemanfileresourcemanager.cpp \
     $$PWD/asemanproxycomponent.cpp \
-    asemanapplicationsingleton.cpp
+    $$PWD/asemanapplicationsingleton.cpp
 
 android {
     QT += androidextras

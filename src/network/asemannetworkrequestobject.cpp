@@ -40,7 +40,7 @@ public:
     QString error;
     QString sslErrors;
     QStringList ignoreKeys;
-    QRegExp ignoreRegExp;
+    QRegularExpression ignoreRegExp;
     QVariantMap headers;
     QUrl url;
     bool ignoreSslErrors;
@@ -55,7 +55,7 @@ public:
 };
 
 AsemanNetworkRequestObject::AsemanNetworkRequestObject(QObject *parent) :
-    AsemanQuickObject(parent)
+    AsemanNetworkQuickObject(parent)
 {
     p = new Private;
     p->status = -1;
@@ -243,12 +243,12 @@ void AsemanNetworkRequestObject::setIgnoreKeys(const QStringList &ignoreKeys)
     Q_EMIT ignoreKeysChanged();
 }
 
-QRegExp AsemanNetworkRequestObject::ignoreRegExp() const
+QRegularExpression AsemanNetworkRequestObject::ignoreRegExp() const
 {
     return p->ignoreRegExp;
 }
 
-void AsemanNetworkRequestObject::setIgnoreRegExp(const QRegExp &ignoreRegExp)
+void AsemanNetworkRequestObject::setIgnoreRegExp(const QRegularExpression &ignoreRegExp)
 {
     if (p->ignoreRegExp == ignoreRegExp)
         return;
@@ -290,7 +290,7 @@ QVariantMap AsemanNetworkRequestObject:: toMap() const
     QVariantMap res;
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) < 0) )
+        if (!p->ignoreKeys.contains(pr) && (p->ignoreRegExp.pattern().isEmpty() || pr.indexOf(p->ignoreRegExp) < 0) )
         {
             QVariant var = property(pr.toUtf8());
             if (QString::fromUtf8(var.typeName()) == QStringLiteral("QJSValue"))
@@ -304,7 +304,7 @@ void AsemanNetworkRequestObject::fromMap(const QVariantMap &map)
 {
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
-        if (!p->ignoreKeys.contains(pr) && map.contains(pr) && (p->ignoreRegExp.isEmpty() || pr.indexOf(p->ignoreRegExp) < 0))
+        if (!p->ignoreKeys.contains(pr) && map.contains(pr) && (p->ignoreRegExp.pattern().isEmpty() || pr.indexOf(p->ignoreRegExp) < 0))
             setProperty(pr.toUtf8(), map.value(pr));
 }
 
@@ -324,7 +324,7 @@ QString AsemanNetworkRequestObject::toFormData(bool ignoreEmpty) const
     const QStringList &properties = AsemanNetworkRequestObject::properties();
     for (const QString &pr: properties)
     {
-        if (p->ignoreKeys.contains(pr) || (!p->ignoreRegExp.isEmpty() && pr.indexOf(p->ignoreRegExp) >= 0))
+        if (p->ignoreKeys.contains(pr) || (!p->ignoreRegExp.pattern().isEmpty() && pr.indexOf(p->ignoreRegExp) >= 0))
             continue;
         QVariant var = property(pr.toUtf8());
         if (var.type() != QVariant::String)
@@ -343,7 +343,7 @@ QString AsemanNetworkRequestObject::toFormData(bool ignoreEmpty) const
 void AsemanNetworkRequestObject::fromFormData(const QString &formData)
 {
     QVariantMap map;
-    QStringList lines = formData.split(QStringLiteral("\n"), QString::SkipEmptyParts);
+    QStringList lines = formData.split(QStringLiteral("\n"), Qt::SkipEmptyParts);
     for (const QString &l: lines)
     {
         qint32 idx = l.indexOf(QStringLiteral("="));
@@ -351,7 +351,7 @@ void AsemanNetworkRequestObject::fromFormData(const QString &formData)
             continue;
 
         QString key = l.left(idx);
-        if (p->ignoreKeys.contains(key) || (!p->ignoreRegExp.isEmpty() && key.indexOf(p->ignoreRegExp) >= 0))
+        if (p->ignoreKeys.contains(key) || (!p->ignoreRegExp.pattern().isEmpty() && key.indexOf(p->ignoreRegExp) >= 0))
             continue;
 
         QString val = QString::fromUtf8( QByteArray::fromPercentEncoding(l.mid(idx+1).toUtf8()) );

@@ -37,7 +37,7 @@ AsemanMapObject::AsemanMapObject(QObject *parent) :
 
 void AsemanMapObject::insert(const QString &key, const QVariant &value)
 {
-    p->map.insert(key,value);
+    p->map.replace(key,value);
     Q_EMIT countChanged();
     Q_EMIT valuesChanged();
     Q_EMIT keysChanged();
@@ -45,7 +45,7 @@ void AsemanMapObject::insert(const QString &key, const QVariant &value)
 
 void AsemanMapObject::insertMulti(const QString &key, const QVariant &value)
 {
-    p->map.insertMulti(key,value);
+    p->map.insert(key,value);
     Q_EMIT countChanged();
     Q_EMIT valuesChanged();
     Q_EMIT keysChanged();
@@ -140,11 +140,15 @@ int AsemanMapObject::count()
 QVariantMap AsemanMapObject::toMap() const
 {
     QVariantMap map;
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QMapIterator<QString, QVariant> i(p->map);
+#else
+    QMultiMapIterator<QString, QVariant> i(p->map);
+#endif
     while(i.hasNext())
     {
         i.next();
-        map.insertMulti(i.key(), i.value());
+        map.insert(i.key(), i.value());
     }
     return map;
 }

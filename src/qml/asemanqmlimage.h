@@ -40,7 +40,7 @@ public:
     AsemanQmlImage(QQuickItem *parent = Q_NULLPTR);
     virtual ~AsemanQmlImage();
 
-    virtual void paint(QPainter *painter);
+    virtual void paint(QPainter *painter) Q_DECL_OVERRIDE;
 
     void setSource(const QUrl &source);
     QUrl source() const;

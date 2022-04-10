@@ -29,9 +29,9 @@ public:
     AsemanWinTaskbarButtonEngine();
     virtual ~AsemanWinTaskbarButtonEngine();
 
-    void updateBadgeNumber(int number);
-    void updateProgress(qreal progress);
-    void updateWindow(class QWindow *window);
+    void updateBadgeNumber(int number) Q_DECL_OVERRIDE;
+    void updateProgress(qreal progress) Q_DECL_OVERRIDE;
+    void updateWindow(class QWindow *window) Q_DECL_OVERRIDE;
 
 private:
     QImage generateIcon(int count);

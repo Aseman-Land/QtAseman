@@ -95,7 +95,7 @@ public:
     QtLockedFile(const QString &name);
     virtual ~QtLockedFile();
 
-    bool open(OpenMode mode);
+    bool open(OpenMode mode) Q_DECL_OVERRIDE;
 
     bool lock(LockMode mode, bool block = true);
     bool unlock();

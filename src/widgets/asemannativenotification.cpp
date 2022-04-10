@@ -19,6 +19,8 @@
 #include "asemannativenotification.h"
 #include "asemannativenotificationitem.h"
 
+#include <QHash>
+
 class AsemanNativeNotificationPrivate
 {
 public:

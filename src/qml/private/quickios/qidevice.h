@@ -4,6 +4,10 @@
 #include <QObject>
 #include <QVariantMap>
 
+#include <QtGlobal>
+
+#ifdef Q_OS_IOS
+
 /// Device information provider
 
 class QIDevice : public QObject
@@ -32,7 +36,7 @@ public:
     QString identifierForVendor() const;
     void setIdentifierForVendor(const QString &identifierForVendor);
 
-signals:
+Q_SIGNALS:
     void screenFillStatusBarChanged();
     void screenHeightChanged();
     void screenWidthChanged();
@@ -51,5 +55,7 @@ private:
 
     QString m_identifierForVendor;
 };
+
+#endif
 
 #endif // QIDEVICE_H

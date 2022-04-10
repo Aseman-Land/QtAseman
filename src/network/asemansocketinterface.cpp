@@ -329,10 +329,17 @@ QVariant AsemanSocketInterface::call(QObject *obj, const QString &member, Qt::Co
     if( type == QMetaType::Void )
         result = QVariant();
     else
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     if( is_pointer )
         result = QVariant( type , &res );
     else
         result = QVariant( type , res );
+#else
+    if( is_pointer )
+        result = QVariant( QMetaType(type) , &res );
+    else
+        result = QVariant( QMetaType(type) , res );
+#endif
 
     QMetaType::destroy(type, res);
     if( type == QMetaType::type("QVariant") )

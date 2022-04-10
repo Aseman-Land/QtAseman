@@ -539,7 +539,7 @@ QVariantList AsemanSqlObject::generateResult(QSqlQuery &q)
 
 void AsemanSqlObject::create()
 {
-    QStringList queries = p->createQuery.split(QStringLiteral(";"), QString::SkipEmptyParts);
+    QStringList queries = p->createQuery.split(QStringLiteral(";"), Qt::SkipEmptyParts);
     for (const QString &q: queries)
         AsemanSqlObject::query(q);
 }

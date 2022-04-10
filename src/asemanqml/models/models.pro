@@ -5,6 +5,8 @@ IMPORT_VERSION = 2.0
 INCLUDEPATH += $$PWD
 QT += core gui network asemanqml asemangui asemancore quick
 
+greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
+
 HEADERS += \
     $$PWD/asemanmodelsplugin.h \
     $$PWD/asemanqttoolsitemmodels.h  \

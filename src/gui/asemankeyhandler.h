@@ -41,7 +41,7 @@ Q_SIGNALS:
 public Q_SLOTS:
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
     void setKey(qint32 key);
     void setModifiers(qint32 modifiers);
 

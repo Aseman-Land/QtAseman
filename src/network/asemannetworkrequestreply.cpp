@@ -79,7 +79,12 @@ AsemanNetworkRequestReply::AsemanNetworkRequestReply(bool ignoreSslErrors, QNetw
     });
     connect(reply, &QNetworkReply::uploadProgress, this, &AsemanNetworkRequestReply::uploadProgress);
     connect(reply, &QNetworkReply::downloadProgress, this, &AsemanNetworkRequestReply::downloadProgress);
-    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), this, [this, reply](QNetworkReply::NetworkError err){
+#ifdef ASEMAN_QT6
+    connect(reply, &QNetworkReply::errorOccurred,
+#else
+    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
+#endif
+            this, [this, reply](QNetworkReply::NetworkError err){
         QVariant var = QVariant::fromValue<QNetworkReply::NetworkError>(err);
         var.convert(QVariant::String);
 

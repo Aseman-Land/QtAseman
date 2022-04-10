@@ -207,7 +207,7 @@ Q_SIGNALS:
     void lastWindowClosed();
 
 protected:
-    bool eventFilter(QObject *o, QEvent *e);
+    bool eventFilter(QObject *o, QEvent *e) Q_DECL_OVERRIDE;
 
 private:
     void init();

@@ -20,6 +20,8 @@
  * #include it in simpleqtcryptor.c for faster serpent
  */
 
+#include <QtGlobal>
+
 #define WITH_SERPENT_FAST_SBOX
 
 const quint16 serpent_sbox_fast_data[] = {

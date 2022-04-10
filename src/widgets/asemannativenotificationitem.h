@@ -31,7 +31,7 @@ class LIBQTASEMAN_WIDGETS_EXPORT AsemanNativeNotificationItem : public QWidget
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
 
 public:
-    AsemanNativeNotificationItem(QWidget *parent = 0);
+    AsemanNativeNotificationItem(QWidget *parent = Q_NULLPTR);
     virtual ~AsemanNativeNotificationItem();
 
     void setColor(const QColor &color);
@@ -48,8 +48,8 @@ Q_SIGNALS:
     void colorChanged();
 
 protected:
-    void resizeEvent(QResizeEvent *e);
-    void mouseReleaseEvent(QMouseEvent *e);
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void refreshSize();

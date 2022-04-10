@@ -7,6 +7,8 @@ DEPENDPATH += $$PWD
 TARGET = QAsemanGui
 QT = core gui asemancore
 
+greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
+
 MODULE = asemangui
 
 static: DEFINES += ASEMAN_STATIC_BUILD

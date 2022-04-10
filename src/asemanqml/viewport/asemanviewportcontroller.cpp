@@ -125,7 +125,7 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
     }
 
     AsemanViewportAttechedProperty attachProperty(p->viewport);
-    AsemanViewportController *parentController = attachProperty.controller();
+    AsemanViewportController *parentController = static_cast<AsemanViewportController*>(attachProperty.controller());
     if (parentController && p->allowRecursiveTrigger)
         return parentController->lookup(url, properties, viewport);
     else

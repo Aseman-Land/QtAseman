@@ -32,6 +32,7 @@
 #include <QFile>
 #include <QRegExp>
 #include <QDebug>
+#include <QRegularExpression>
 
 class AsemanMimeAppsItem
 {
@@ -123,11 +124,11 @@ void init_mimeApps()
         item.comment     = conf.value(QStringLiteral("Desktop Entry/Comment"));
         item.path        = conf.value(QStringLiteral("Desktop Entry/Path"));
         item.command     = conf.value(QStringLiteral("Desktop Entry/Exec"));
-        item.mimes       = conf.value(QStringLiteral("Desktop Entry/MimeType")).split(QRegExp(QStringLiteral("(\\;|\\:)")),QString::SkipEmptyParts);
+        item.mimes       = conf.value(QStringLiteral("Desktop Entry/MimeType")).split(QRegularExpression(QStringLiteral("(\\;|\\:)")),Qt::SkipEmptyParts);
 
         for(const QString &m: item.mimes)
         {
-            mime_apps_apps.insertMulti( m.toLower(), d );
+            mime_apps_apps.insert( m.toLower(), d );
             mime_apps_items.insert( d, item );
         }
     }
@@ -206,7 +207,7 @@ void AsemanMimeApps::openFiles(const QString &app, const QStringList &files)
     QString cmd;
     QStringList args;
 
-    const QStringList & command_splits = item.command.split(QStringLiteral(" "),QString::SkipEmptyParts);
+    const QStringList & command_splits = item.command.split(QStringLiteral(" "),Qt::SkipEmptyParts);
 
     cmd = command_splits.first();
     args = command_splits.mid(1);

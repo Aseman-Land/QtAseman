@@ -64,9 +64,13 @@ void AsemanProcess::start()
         p->process->terminate();
 
     QProcess *process = new QProcess(this);
-    process->setReadChannelMode(QProcess::ForwardedChannels);
+    process->setProcessChannelMode(QProcess::ForwardedChannels);
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     connect(process, static_cast<void(QProcess::*)(int)>(&QProcess::finished), this, [process](int){
+#else
+    connect(process, &QProcess::finished, this, [process](int){
+#endif
         process->deleteLater();
     });
     connect(process, &QProcess::destroyed, this, [this, process](){

@@ -23,6 +23,7 @@
 #include <QVariantMap>
 
 #include "asemannetwork_global.h"
+#include "asemanfiledownloaderqueue.h"
 
 class AsemanFileDownloaderQueue;
 class AsemanFileDownloaderQueueItemPrivate;

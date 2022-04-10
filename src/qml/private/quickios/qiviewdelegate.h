@@ -2,6 +2,10 @@
 // QIViewDelegate - A universal delegate class for listening event
 //
 
+#include <QtGlobal>
+
+#ifdef Q_OS_IOS
+
 #include <UIKit/UIKit.h>
 
 @interface QIViewDelegate : NSObject<UIAlertViewDelegate,
@@ -21,3 +25,5 @@
     void (^ imagePickerControllerDidCancel)(UIImagePickerController* picker);
 }
 @end
+
+#endif

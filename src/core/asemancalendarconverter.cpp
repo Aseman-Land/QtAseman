@@ -386,7 +386,7 @@ int AsemanCalendarConverter::convertDateToDays(const QDate &date)
  */
 QDateTime AsemanCalendarConverter::fromTime_t(uint sec)
 {
-    return QDateTime::fromTime_t(sec);
+    return QDateTime::fromSecsSinceEpoch(sec);
 }
 
 AsemanCalendarConverter::~AsemanCalendarConverter()

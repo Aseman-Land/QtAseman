@@ -244,9 +244,9 @@ class CFB : public LayerMode {
 public:
     CFB(QSharedPointer<Key> k, Algorithm a);
     virtual ~CFB();
-    QByteArray encrypt(const QByteArray plain, bool end = false);
-    QByteArray decrypt(const QByteArray cipher, bool end = false);
-    void reset();
+    QByteArray encrypt(const QByteArray plain, bool end = false) Q_DECL_OVERRIDE;
+    QByteArray decrypt(const QByteArray cipher, bool end = false) Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
 private:
     QByteArray buffer;
     int bufferpos;
@@ -258,9 +258,9 @@ class CBC : public LayerMode {
 public:
     CBC(QSharedPointer<Key> k, Algorithm a);
     virtual ~CBC();
-    QByteArray encrypt(const QByteArray plain, bool end);
-    QByteArray decrypt(const QByteArray cipher, bool end);
-    void reset();
+    QByteArray encrypt(const QByteArray plain, bool end) Q_DECL_OVERRIDE;
+    QByteArray decrypt(const QByteArray cipher, bool end) Q_DECL_OVERRIDE;
+    void reset() Q_DECL_OVERRIDE;
 private:
     QByteArray buffer;
     QByteArray cbcBuffer;
