@@ -35,8 +35,8 @@
 ****************************************************************************/
 
 import QtQuick 2.12
-import QtQuick.Controls.IOSStyle 2.12
-import QtQuick.Controls.IOSStyle.impl 2.12
+import QtQuick.Controls.IOSStyle 2.0
+import QtQuick.Controls.IOSStyle.impl 2.0
 
 /*
    An effect for standard IOSStyle Design elevation shadows. Useful for using as \c layer.effect.

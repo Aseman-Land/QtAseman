@@ -40,6 +40,7 @@
 #include "qquickiosstyletheme_p.h"
 #include "qquickiosstyleripple_p.h"
 
+#include <QDir>
 #include <QQmlContext>
 
 #ifdef QT_QUICKCONTROLS2IMPL_LIB
@@ -84,6 +85,10 @@ void QtQuickControls2IOSStyleStylePlugin::registerTypes(const char *uri)
     auto resolvedUrl = [](const QString &path) -> QUrl {
         return QUrl(QStringLiteral("qrc:/qt-project.org/imports/QtQuick/Controls/IOSStyle/") + path);
     };
+
+    auto list = QDir(QStringLiteral(":/qt-project.org/imports/QtQuick/Controls/IOSStyle/")).entryList({QStringLiteral("*.qml")});
+    for (const auto &l: list)
+        qmlRegisterType(resolvedUrl(l), uri, 2, 12, QString(l).remove(QStringLiteral(".qml")).toUtf8());
 #endif
 
     qmlRegisterType<QQuickIOSStyleRipple>(import, 2, 0, "Ripple");

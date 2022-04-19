@@ -37,8 +37,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
-import QtQuick.Controls.IOSStyle 2.12
-import QtQuick.Controls.IOSStyle.impl 2.12
+import QtQuick.Controls.IOSStyle 2.0
+import QtQuick.Controls.IOSStyle.impl 2.0
 import QtQuick.Window 2.12
 
 T.Menu {
