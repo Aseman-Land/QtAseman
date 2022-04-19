@@ -1,12 +1,14 @@
+
+
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2020 The Qt Company Ltd.
 ** Copyright (C) 2017 Jolla Ltd, author: <gunnar.sletta@jollamobile.com>
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Qt Graphical Effects module.
+** This file is part of the Qt Graphical Effects module of the Qt Toolkit.
 **
-** $QT_BEGIN_LICENSE:LGPL$
+** $QT_BEGIN_LICENSE:BSD$
 ** Commercial License Usage
 ** Licensees holding valid commercial Qt licenses may use this file in
 ** accordance with the commercial license agreement provided with the
@@ -15,31 +17,42 @@
 ** and conditions see https://www.qt.io/terms-conditions. For further
 ** information use the contact form at https://www.qt.io/contact-us.
 **
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
 **
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or (at your option) the GNU General
-** Public license version 3 or any later version approved by the KDE Free
-** Qt Foundation. The licenses are as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
-** included in the packaging of this file. Please review the following
-** information to ensure the GNU General Public License requirements will
-** be met: https://www.gnu.org/licenses/gpl-2.0.html and
-** https://www.gnu.org/licenses/gpl-3.0.html.
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-
 import QtQuick 2.12
-import QtGraphicalEffects.private 1.0
+import QtGraphicalEffects
+
 
 /*!
     \qmltype Glow
@@ -47,13 +60,8 @@ import QtGraphicalEffects.private 1.0
     \since QtGraphicalEffects 1.0
     \inherits QtQuick2::Item
     \ingroup qtgraphicaleffects-glow
-    \brief Generates a halo like glow around the source item.
-
-    The Glow effect blurs the alpha channel of the source and colorizes it
-    with \l {Glow::color}{color} and places it behind the source, resulting in a halo or glow
-    around the object. The quality of the blurred edge can be controlled using
-    \l samples and \l radius and the strength of the glow can be changed using
-    \l spread.
+    \brief Generates a blurred and colorized image of the source and places it
+    behind the original, giving impression that the source is glowing.
 
     \table
     \header
@@ -64,13 +72,6 @@ import QtGraphicalEffects.private 1.0
         \li \image Glow_butterfly.png
     \endtable
 
-    The glow is created by blurring the image live using a gaussian blur.
-    Performing blur live is a costly operation. Fullscreen gaussian blur with
-    even a moderate number of samples will only run at 60 fps on highend
-    graphics hardware.
-
-    \note This effect is available when running with OpenGL.
-
     \section1 Example
 
     The following example shows how to apply the effect.
@@ -78,16 +79,8 @@ import QtGraphicalEffects.private 1.0
 
 */
 Item {
-    id: root
+    id: rootItem
 
-    DropShadowBase {
-        id: dps
-        anchors.fill: parent
-        color: "white"
-        spread: 0.5
-        horizontalOffset: 0
-        verticalOffset: 0
-    }
 
     /*!
         This property defines the source item that is going to be used as source
@@ -96,27 +89,15 @@ Item {
         \note It is not supported to let the effect include itself, for
         instance by setting source to the effect's parent.
     */
-    property alias source: dps.source
+    property variant source
+
 
     /*!
         Radius defines the softness of the glow. A larger radius causes the
         edges of the glow to appear more blurry.
 
-        Depending on the radius value, value of the \l{Glow::samples}{samples}
-        should be set to sufficiently large to ensure the visual quality.
-
-        The ideal blur is achieved by selecting \c samples and \c radius such
-        that \c {samples = 1 + radius * 2}, such as:
-
-        \table
-        \header \li Radius             \li Samples
-        \row    \li 0 \e{(no blur)}    \li 1
-        \row    \li 1                  \li 3
-        \row    \li 2                  \li 5
-        \row    \li 3                  \li 7
-        \endtable
-
-        By default, the property is set to \c {floor(samples/2)}.
+        The value ranges from 0.0 (no blur) to inf. By default, the property is
+        set to \c 0.0 (no blur).
 
         \table
         \header
@@ -132,10 +113,6 @@ Item {
             \li \b { radius: 6 }
             \li \b { radius: 12 }
         \row
-            \li \l samples: 25
-            \li \l samples: 25
-            \li \l samples: 25
-        \row
             \li \l color: #ffffff
             \li \l color: #ffffff
             \li \l color: #ffffff
@@ -145,41 +122,15 @@ Item {
             \li \l spread: 0
         \endtable
     */
-    property alias radius: dps.radius
+    property real radius: 0.0
+
 
     /*!
-        This property defines how many samples are taken per pixel when edge
-        softening blur calculation is done. Larger value produces better
-        quality, but is slower to render.
-
-        Ideally, this value should be twice as large as the highest required
-        radius value plus one, such as:
-
-        \table
-        \header \li Radius             \li Samples
-        \row    \li 0 \e{(no blur)}    \li 1
-        \row    \li 1                  \li 3
-        \row    \li 2                  \li 5
-        \row    \li 3                  \li 7
-        \endtable
-
-        By default, the property is set to \c 9.
-
-        This property is not intended to be animated. Changing this property will
-        cause the underlying OpenGL shaders to be recompiled.
-    */
-    property alias samples: dps.samples
-
-    /*!
-        This property defines how large part of the glow color is strengthened
+        This property defines how large part of the glow color is strenghtened
         near the source edges.
 
         The values range from 0.0 to 1.0. By default, the property is set to \c
         0.5.
-
-        \note The implementation is optimized for medium and low spread values.
-        Depending on the source, spread values closer to 1.0 may yield visually
-        asymmetrical results.
 
         \table
         \header
@@ -199,16 +150,13 @@ Item {
             \li \l radius: 8
             \li \l radius: 8
         \row
-            \li \l samples: 17
-            \li \l samples: 17
-            \li \l samples: 17
-        \row
             \li \l color: #ffffff
             \li \l color: #ffffff
             \li \l color: #ffffff
         \endtable
     */
-    property alias spread: dps.spread
+    property real spread: 0.0
+
 
     /*!
         This property defines the RGBA color value which is used for the glow.
@@ -233,27 +181,14 @@ Item {
             \li \l radius: 8
             \li \l radius: 8
         \row
-            \li \l samples: 17
-            \li \l samples: 17
-            \li \l samples: 17
-        \row
             \li \l spread: 0.5
             \li \l spread: 0.5
             \li \l spread: 0.5
         \endtable
 
     */
-    property alias color: dps.color
+    property color color: "white"
 
-    /*!
-        \internal
-
-        Starting Qt 5.6, this property has no effect. It is left here
-        for source compatibility only.
-
-        ### Qt 6: remove
-    */
-    property bool fast: false
 
     /*!
         This property allows the effect output pixels to be cached in order to
@@ -269,19 +204,17 @@ Item {
         By default, the property is set to \c false.
 
     */
-    property alias cached: dps.cached
+    property bool cached: false
+
 
     /*!
         This property determines whether or not the effect has a transparent
         border.
 
-        When set to \c true, the exterior of the item is padded with a
-        transparent edge, making sampling outside the source texture use
+        When set to \c true, the exterior of the item is padded with a 1 pixel
+        wide transparent edge, making sampling outside the source texture use
         transparency instead of the edge pixels. Without this property, an
         image which has opaque edges will not get a blurred edge.
-
-        By default, the property is set to \c true. Set it to false if the source
-        already has a transparent edge to make the blurring a tiny bit faster.
 
         In the snippet below, the Rectangle on the left has transparent borders
         and has blurred edges, whereas the Rectangle on the right does not.
@@ -290,5 +223,37 @@ Item {
 
         \image Glow-transparentBorder.png
     */
-    property alias transparentBorder: dps.transparentBorder
+    property bool transparentBorder: false
+
+    Loader {
+        anchors.fill: parent
+        sourceComponent: fastGlow
+    }
+
+    Component {
+        id: fastGlow
+        FastGlow {
+            anchors.fill: parent
+            source: sourceProxy.output
+            blur: Math.pow(rootItem.radius / 64.0, 0.4)
+            color: rootItem.color
+            cached: rootItem.cached
+            spread: rootItem.spread
+            transparentBorder: rootItem.transparentBorder
+        }
+    }
+
+    SourceProxy {
+        id: sourceProxy
+        input: rootItem.source
+        sourceRect: rootItem.transparentBorder ? Qt.rect(
+                                                     -1, -1,
+                                                     parent.width + 2.0,
+                                                     parent.height + 2.0) : Qt.rect(
+                                                     0, 0, 0, 0)
+    }
+    ShaderEffect {
+        anchors.fill: parent
+        property variant source: sourceProxy.output
+    }
 }

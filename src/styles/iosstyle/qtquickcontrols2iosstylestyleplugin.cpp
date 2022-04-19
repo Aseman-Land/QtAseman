@@ -40,6 +40,7 @@
 #include "qquickiosstyletheme_p.h"
 #include "qquickiosstyleripple_p.h"
 
+#include <QQmlContext>
 
 #ifdef QT_QUICKCONTROLS2IMPL_LIB
 #include <QtQuickControls2/private/qquickstyleplugin_p.h>
@@ -79,9 +80,9 @@ void QtQuickControls2IOSStyleStylePlugin::registerTypes(const char *uri)
     QByteArray import = QByteArray(uri) + ".impl";
     qmlRegisterModule(import, 2, QT_VERSION_MINOR); // Qt 5.12->2.12, 5.13->2.13...
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     auto resolvedUrl = [](const QString &path) -> QUrl {
-        return QUrl::fromLocalFile(path);
+        return QUrl(QStringLiteral("qrc:/qt-project.org/imports/QtQuick/Controls/IOSStyle/") + path);
     };
 #endif
 

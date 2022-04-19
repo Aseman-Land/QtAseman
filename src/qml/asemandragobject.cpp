@@ -24,6 +24,7 @@
 #include <QMimeData>
 #include <QDebug>
 #include <QPixmap>
+#include <QQmlContext>
 
 class AsemanDragObjectPrivate
 {
@@ -92,8 +93,15 @@ QQuickItem *AsemanDragObject::source() const
     return p->source;
 }
 
-void AsemanDragObject::setImage(const QUrl &url)
+void AsemanDragObject::setImage(const QUrl &_url)
 {
+    QUrl url = _url;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    const QQmlContext *context = qmlContext(this);
+    if (context)
+        url = context->resolvedUrl(url);
+#endif
+
     if(p->image == url)
         return;
 

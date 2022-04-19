@@ -117,6 +117,13 @@ class QQuickIOSStyleStyle : public QQuickAttachedObject
     Q_PROPERTY(int switchDelegateVerticalPadding READ switchDelegateVerticalPadding CONSTANT FINAL)
     Q_PROPERTY(int tooltipHeight READ tooltipHeight CONSTANT FINAL)
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    QML_NAMED_ELEMENT(IOSStyle)
+    QML_ATTACHED(QQuickIOSStyleStyle)
+    QML_UNCREATABLE("")
+    QML_ADDED_IN_VERSION(2, 0)
+#endif
+
 public:
     enum Theme {
         Light,

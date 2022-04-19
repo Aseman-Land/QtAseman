@@ -18,10 +18,12 @@
 
 #include "asemanviewportcontrollerroute.h"
 
+#include <QQmlContext>
+
 class AsemanViewportControllerRoute::Private
 {
 public:
-    RegExp route;
+    QRegularExpression route;
     QVariant component;
     QString viewportType;
 };
@@ -32,12 +34,12 @@ AsemanViewportControllerRoute::AsemanViewportControllerRoute(QObject *parent) :
     p = new Private;
 }
 
-RegExp AsemanViewportControllerRoute::route() const
+QRegularExpression AsemanViewportControllerRoute::route() const
 {
     return p->route;
 }
 
-void AsemanViewportControllerRoute::setRoute(const RegExp &route)
+void AsemanViewportControllerRoute::setRoute(const QRegularExpression &route)
 {
     if (p->route == route)
         return;
@@ -77,7 +79,16 @@ QUrl AsemanViewportControllerRoute::source() const
 
 void AsemanViewportControllerRoute::setSource(const QUrl &sourceComponent)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    const QQmlContext *context = qmlContext(this);
+    auto loadUrl = sourceComponent;
+    if (context)
+        loadUrl = context->resolvedUrl(sourceComponent);
+
+    setComponent( QVariant::fromValue(loadUrl) );
+#else
     setComponent( QVariant::fromValue(sourceComponent) );
+#endif
 }
 
 QString AsemanViewportControllerRoute::viewportType() const

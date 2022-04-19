@@ -98,10 +98,6 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
     {
         auto rx = r->route();
         rx.setPattern( "^" + rx.pattern() + "$" );
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-        rx.setMinimal(false);
-#endif
-
         if (url.indexOf(rx) == 0)
         {
             properties["properties"] = properties;
