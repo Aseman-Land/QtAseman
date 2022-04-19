@@ -40,8 +40,15 @@
 #include "qquickiosstyletheme_p.h"
 #include "qquickiosstyleripple_p.h"
 
+
+#ifdef QT_QUICKCONTROLS2IMPL_LIB
+#include <QtQuickControls2/private/qquickstyleplugin_p.h>
+#include <QtQuickControls2Impl/private/qquickpaddedrectangle_p.h>
+#include <QtQuickTemplates2/private/qquicktheme_p.h>
+#else
 #include <QtQuickControls2/private/qquickstyleselector_p.h>
 #include <QtQuickControls2/private/qquickpaddedrectangle_p.h>
+#endif
 
 QT_BEGIN_NAMESPACE
 
@@ -71,6 +78,12 @@ void QtQuickControls2IOSStyleStylePlugin::registerTypes(const char *uri)
 
     QByteArray import = QByteArray(uri) + ".impl";
     qmlRegisterModule(import, 2, QT_VERSION_MINOR); // Qt 5.12->2.12, 5.13->2.13...
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
+    auto resolvedUrl = [](const QString &path) -> QUrl {
+        return QUrl::fromLocalFile(path);
+    };
+#endif
 
     qmlRegisterType<QQuickIOSStyleRipple>(import, 2, 0, "Ripple");
     qmlRegisterType(resolvedUrl(QStringLiteral("BoxShadow.qml")), import, 2, 0, "BoxShadow");

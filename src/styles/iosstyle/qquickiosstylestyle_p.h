@@ -49,7 +49,12 @@
 //
 
 #include <QtGui/qcolor.h>
+
+#ifdef QT_QUICKCONTROLS2IMPL_LIB
+#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
+#else
 #include <QtQuickControls2/private/qquickattachedobject_p.h>
+#endif
 
 QT_BEGIN_NAMESPACE
 

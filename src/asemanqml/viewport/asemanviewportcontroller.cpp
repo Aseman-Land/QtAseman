@@ -24,6 +24,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+
 class AsemanViewportController::Private
 {
 public:
@@ -95,11 +96,13 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
 
     for (AsemanViewportControllerRoute *r: p->routes)
     {
-        QRegExp rx = r->route();
+        auto rx = r->route();
         rx.setPattern( "^" + rx.pattern() + "$" );
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
         rx.setMinimal(false);
+#endif
 
-        if (rx.indexIn(url) == 0)
+        if (url.indexOf(rx) == 0)
         {
             properties["properties"] = properties;
             properties["url"] = url;

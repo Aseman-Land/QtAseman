@@ -39,9 +39,14 @@
 #include <QtCore/qmath.h>
 #include <QtQuick/private/qquickitem_p.h>
 #include <QtQuick/private/qsgadaptationlayer_p.h>
-#include <QtQuickControls2/private/qquickanimatednode_p.h>
 #include <QtQuickTemplates2/private/qquickabstractbutton_p.h>
 #include <QtQuickTemplates2/private/qquickabstractbutton_p_p.h>
+
+#ifdef QT_QUICKCONTROLS2IMPL_LIB
+#include <QtQuickControls2Impl/private/qquickanimatednode_p.h>
+#else
+#include <QtQuickControls2/private/qquickanimatednode_p.h>
+#endif
 
 QT_BEGIN_NAMESPACE
 

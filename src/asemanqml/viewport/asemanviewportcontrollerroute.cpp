@@ -21,7 +21,7 @@
 class AsemanViewportControllerRoute::Private
 {
 public:
-    QRegExp route;
+    RegExp route;
     QVariant component;
     QString viewportType;
 };
@@ -32,12 +32,12 @@ AsemanViewportControllerRoute::AsemanViewportControllerRoute(QObject *parent) :
     p = new Private;
 }
 
-QRegExp AsemanViewportControllerRoute::route() const
+RegExp AsemanViewportControllerRoute::route() const
 {
     return p->route;
 }
 
-void AsemanViewportControllerRoute::setRoute(const QRegExp &route)
+void AsemanViewportControllerRoute::setRoute(const RegExp &route)
 {
     if (p->route == route)
         return;
