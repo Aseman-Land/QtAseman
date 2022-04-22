@@ -172,9 +172,9 @@ AsemanViewportAttechedProperty::AsemanViewportAttechedProperty(QObject *parent) 
 {
 }
 
-AsemanViewportController *AsemanViewportAttechedProperty::controller() const
+QObject *AsemanViewportAttechedProperty::controller() const
 {
-    QList<AsemanViewportController*> controllers = allControllers();
+    const auto controllers = allControllers();
     if (controllers.isEmpty())
     {
         qmlWarning(this) << "There is no controller attached to the viewport.";
@@ -183,9 +183,12 @@ AsemanViewportController *AsemanViewportAttechedProperty::controller() const
     return controllers.first();
 }
 
-QList<AsemanViewportController*> AsemanViewportAttechedProperty::allControllers() const
+QList<QObject *> AsemanViewportAttechedProperty::allControllers() const
 {
-    return AsemanViewportController::controllers( AsemanViewportAttechedProperty::viewport() );
+    QList<QObject*> list;
+    for (auto o: AsemanViewportController::controllers( AsemanViewportAttechedProperty::viewport() ))
+        list << o;
+    return list;
 }
 
 AsemanViewport *AsemanViewportAttechedProperty::viewport() const

@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QVariantMap>
+#include <QSslError>
 
 #include "asemannetwork_global.h"
 

@@ -25,7 +25,8 @@
 
 #include "asemantools_global.h"
 
-class AsemanMimeData;
+#include <asemanmimedata.h>
+
 class AsemanDragObjectPrivate;
 class LIBQTASEMAN_QML_EXPORT AsemanDragObject : public QObject
 {

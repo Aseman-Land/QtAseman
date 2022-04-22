@@ -115,7 +115,11 @@ void AsemanHostChecker::createSocket()
     if(p->socket)
     {
         disconnect(p->socket, &QTcpSocket::stateChanged, this, &AsemanHostChecker::socketStateChanged);
+#ifdef ASEMAN_QT6
+        disconnect(p->socket, &QAbstractSocket::errorOccurred,
+#else
         disconnect(p->socket, static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
+#endif
                    this, &AsemanHostChecker::socketError);
         p->socket->deleteLater();
     }
@@ -123,7 +127,11 @@ void AsemanHostChecker::createSocket()
     p->socket = new QTcpSocket(this);
 
     connect(p->socket, &QTcpSocket::stateChanged, this, &AsemanHostChecker::socketStateChanged);
+#ifdef ASEMAN_QT6
+    connect(p->socket, &QAbstractSocket::errorOccurred,
+#else
     connect(p->socket, static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
+#endif
             this, &AsemanHostChecker::socketError);
 }
 

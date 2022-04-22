@@ -277,14 +277,14 @@ void AsemanFontHandler::openFontChooser()
     layout->setContentsMargins(0,0,0,0);
     layout->setSpacing(1);
 
-    connect(comboBox, static_cast<void (QComboBox::*)(const QString&)>(&QComboBox::currentIndexChanged), this, &AsemanFontHandler::currentIndexChanged);
+    connect(comboBox, &QComboBox::currentTextChanged, this, &AsemanFontHandler::currentIndexChanged);
     connect(fontDlg , &QFontDialog::currentFontChanged, this, &AsemanFontHandler::currentFontChanged);
 
     connect(fontDlg, &QFontDialog::accepted, &dialog, &QDialog::accept);
     connect(fontDlg, &QFontDialog::rejected, &dialog, &QDialog::reject);
 
     comboBox->setCurrentText(QStringLiteral("latin"));
-    comboBox->currentIndexChanged(QStringLiteral("latin"));
+    comboBox->currentTextChanged(QStringLiteral("latin"));
 
     if(dialog.exec() == QDialog::Accepted)
         p->fonts = p->combo_cache[comboBox];

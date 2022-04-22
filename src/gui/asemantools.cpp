@@ -31,6 +31,8 @@
 #include <QDir>
 #include <QStringList>
 #include <QTextDocument>
+#include <QRegExp>
+#include <QRegularExpression>
 #ifndef Q_OS_IOS
 #include <QProcess>
 #endif
@@ -381,7 +383,7 @@ QStringList AsemanTools::stringLinks(const QString &str)
     while ((pos = links_rxp.indexIn(str, pos)) != -1)
     {
         QString link = links_rxp.cap(1);
-        if(link.indexOf(QRegExp(QStringLiteral("\\w+\\:\\/\\/"))) == -1)
+        if(link.indexOf(QRegularExpression(QStringLiteral("\\w+\\:\\/\\/"))) == -1)
             link = QStringLiteral("http://") + link;
 
         links << link;
@@ -616,7 +618,7 @@ QString AsemanTools::createUuid()
 QString AsemanTools::stringRemove(QString str, const QString &text, bool regExp)
 {
     if(regExp)
-        return str.remove( QRegExp(text) );
+        return str.remove( QRegularExpression(text) );
     else
         return str.remove(text);
 }
@@ -624,7 +626,7 @@ QString AsemanTools::stringRemove(QString str, const QString &text, bool regExp)
 QString AsemanTools::stringReplace(QString str, const QString &text, const QString &replace, bool regExp)
 {
     if(regExp)
-        return str.replace(QRegExp(text), replace);
+        return str.replace(QRegularExpression(text), replace);
     else
         return str.replace(text, replace);
 }
@@ -878,10 +880,17 @@ QVariant AsemanTools::call(QObject *obj, const QString &member, Qt::ConnectionTy
     if( type == QMetaType::Void )
         result = QVariant();
     else
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     if( is_pointer )
         result = QVariant( type , &res );
     else
         result = QVariant( type , res );
+#else
+    if( is_pointer )
+        result = QVariant( QMetaType(type) , &res );
+    else
+        result = QVariant( QMetaType(type) , res );
+#endif
 
     if( type == QMetaType::type("QVariant") )
         return result.value<QVariant>();

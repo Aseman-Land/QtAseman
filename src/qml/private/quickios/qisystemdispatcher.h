@@ -1,6 +1,12 @@
-#pragma once
+#ifndef QQISystemDispatcher_H
+#define QQISystemDispatcher_H
+
 #include <QObject>
 #include <QVariantMap>
+
+#include <QtGlobal>
+
+#ifdef Q_OS_IOS
 
 /// QISystemMessenger provides an simple async messaging interface between C/C++/QML and Objective-C source code.
 /**
@@ -39,3 +45,6 @@ private:
     explicit QISystemDispatcher(QObject* parent = 0);
 
 };
+
+#endif
+#endif

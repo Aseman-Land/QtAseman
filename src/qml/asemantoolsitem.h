@@ -26,7 +26,7 @@ public Q_SLOTS:
     static void setInAppStoreProperty(QObject *store, const QString &propertyName, const QString &value);
 
 protected:
-    void timerEvent(QTimerEvent *e);
+    void timerEvent(QTimerEvent *e) Q_DECL_OVERRIDE;
 
 private:
     AsemanToolsItemPrivate *p;

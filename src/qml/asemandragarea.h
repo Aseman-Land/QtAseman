@@ -33,7 +33,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanDragArea : public QQuickItem
     Q_PROPERTY(int mouseY READ mouseY NOTIFY mouseYChanged)
 
 public:
-    AsemanDragArea(QQuickItem *parent = 0);
+    AsemanDragArea(QQuickItem *parent = Q_NULLPTR);
     virtual ~AsemanDragArea();
 
     void setMinimum(int min);
@@ -56,7 +56,7 @@ Q_SIGNALS:
     void released();
 
 protected:
-    bool childMouseEventFilter(QQuickItem *item, QEvent *event);
+    bool childMouseEventFilter(QQuickItem *item, QEvent *event) Q_DECL_OVERRIDE;
 
 private:
     AsemanDragAreaPrivate *p;

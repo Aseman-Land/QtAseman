@@ -36,7 +36,7 @@
 
 import QtQuick 2.9
 import QtQuick.Templates 2.12 as T
-import QtQuick.Controls.IOSStyle 2.12
+import QtQuick.Controls.IOSStyle 2.0
 
 T.BusyIndicator {
     id: control

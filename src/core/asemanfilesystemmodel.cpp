@@ -573,7 +573,7 @@ QVariant AsemanFileSystemModel::data(const QModelIndex &index, int role) const
         break;
 
     case FileCreatedDate:
-        result = info.created();
+        result = info.birthTime();
         break;
     }
 

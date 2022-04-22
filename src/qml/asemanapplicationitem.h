@@ -31,6 +31,7 @@
 #include <QQmlListProperty>
 
 #include "asemantools_global.h"
+#include "asemannetworkproxy.h"
 
 class AsemanNetworkProxy;
 class AsemanApplicationItemPrivate;

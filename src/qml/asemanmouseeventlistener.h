@@ -51,7 +51,7 @@ Q_SIGNALS:
     void mouseReleased();
 
 protected:
-    bool childMouseEventFilter(QQuickItem *item, QEvent *event);
+    bool childMouseEventFilter(QQuickItem *item, QEvent *event) Q_DECL_OVERRIDE;
 
 private:
     AsemanMouseEventListenerPrivate *p;

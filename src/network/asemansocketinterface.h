@@ -74,7 +74,7 @@ private:
                                                                 const QVariant & v7 = QVariant(),
                                                                 const QVariant & v8 = QVariant(),
                                                                 const QVariant & v9 = QVariant(),
-                                                                bool *isVoid = 0);
+                                                                bool *isVoid = Q_NULLPTR);
 
 private:
     Private *p;

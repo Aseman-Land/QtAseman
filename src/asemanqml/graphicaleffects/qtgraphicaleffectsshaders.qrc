@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/qt-project.org/imports/QtGraphicalEffects">
+        <file>shaders_ng/brightnesscontrast.frag.qsb</file>
+        <file>shaders_ng/colorize.frag.qsb</file>
+        <file>shaders_ng/coloroverlay.frag.qsb</file>
+        <file>shaders_ng/conicalgradient_mask.frag.qsb</file>
+        <file>shaders_ng/conicalgradient_nomask.frag.qsb</file>
+        <file>shaders_ng/desaturate.frag.qsb</file>
+        <file>shaders_ng/displace.frag.qsb</file>
+        <file>shaders_ng/fastblur_internal.frag.qsb</file>
+        <file>shaders_ng/fastblur_internal.vert.qsb</file>
+        <file>shaders_ng/fastblur.frag.qsb</file>
+        <file>shaders_ng/fastglow.frag.qsb</file>
+        <file>shaders_ng/gammaadjust.frag.qsb</file>
+        <file>shaders_ng/huesaturation.frag.qsb</file>
+        <file>shaders_ng/leveladjust.frag.qsb</file>
+        <file>shaders_ng/lineargradient_mask.frag.qsb</file>
+        <file>shaders_ng/lineargradient_nomask.frag.qsb</file>
+        <file>shaders_ng/lineargradient.vert.qsb</file>
+        <file>shaders_ng/opacitymask_invert.frag.qsb</file>
+        <file>shaders_ng/opacitymask.frag.qsb</file>
+        <file>shaders_ng/radialgradient_mask.frag.qsb</file>
+        <file>shaders_ng/radialgradient_nomask.frag.qsb</file>
+        <file>shaders_ng/radialgradient.vert.qsb</file>
+        <file>shaders_ng/rectangularglow.frag.qsb</file>
+        <file>shaders_ng/thresholdmask.frag.qsb</file>
+    </qresource>
+</RCC>

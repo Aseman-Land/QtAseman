@@ -36,11 +36,11 @@ public:
     AsemanListModel(QObject *parent = Q_NULLPTR);
     virtual ~AsemanListModel();
 
-    int rowCount(const QModelIndex & parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    int rowCount(const QModelIndex & parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
 
-    QHash<qint32,QByteArray> roleNames() const;
+    QHash<qint32,QByteArray> roleNames() const Q_DECL_OVERRIDE;
     int count() const;
 
     void setCachePath(const QString &path);

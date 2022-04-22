@@ -31,7 +31,7 @@
 #include <QToolButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QApplication>
 #include <QTimer>
 #include <QPixmap>
@@ -45,7 +45,7 @@ public:
     virtual ~DialogScene(){}
 
 protected:
-    void paintEvent(QPaintEvent *e){
+    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE {
         Q_UNUSED(e)
         QPainter painter(this);
         painter.setRenderHint( QPainter::Antialiasing , true );
@@ -240,7 +240,11 @@ void AsemanNativeNotificationItem::refreshSize()
 {
     QRect rect( 0, 0, width(), height() );
 
-    const QRect &scr = QApplication::desktop()->availableGeometry();
+    const auto screens = QApplication::screens();
+    if (screens.isEmpty())
+        return;
+
+    const QRect &scr = screens.first()->availableGeometry();
 
     p->scene->setGeometry( rect );
 

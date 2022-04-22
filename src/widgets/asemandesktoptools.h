@@ -89,13 +89,13 @@ public:
     QObject *currentMenuObject() const;
 
 public Q_SLOTS:
-    static QString getOpenFileName(QWindow *window = 0, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
-    static QStringList getOpenFileNames(QWindow *window = 0, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
-    static QString getSaveFileName(QWindow *window = 0, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
-    static QString getExistingDirectory(QWindow *window = 0, const QString &title = QString(), const QString & startPath = QDir::homePath());
-    static QFont getFont(QWindow *window = 0, const QString &title = QString(), const QFont &font = QFont());
+    static QString getOpenFileName(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
+    static QStringList getOpenFileNames(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
+    static QString getSaveFileName(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QString &filter = QString(), const QString & startPath = QDir::homePath() );
+    static QString getExistingDirectory(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QString & startPath = QDir::homePath());
+    static QFont getFont(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QFont &font = QFont());
     static QColor getColor(const QColor &color = QColor());
-    static QString getText(QWindow *window = 0, const QString &title = QString(), const QString &text = QString(), const QString &defaultText = QString());
+    static QString getText(QWindow *window = Q_NULLPTR, const QString &title = QString(), const QString &text = QString(), const QString &defaultText = QString());
     int showMenu( const QVariantList & actions, QPoint point = QPoint() );
     static bool yesOrNo(QWindow *window, const QString &title, const QString &text, int type = Warning);
     static void showMessage(QWindow *window, const QString &title, const QString &text, int type = Information);
@@ -112,7 +112,7 @@ Q_SIGNALS:
     void tooltipChanged();
 
 private:
-    QMenu *menuOf(const QVariantList &list, QList<QAction*> *actions = 0, QMenu *parent = 0);
+    QMenu *menuOf(const QVariantList &list, QList<QAction*> *actions = Q_NULLPTR, QMenu *parent = Q_NULLPTR);
 
 private:
     AsemanDesktopToolsPrivate *p;

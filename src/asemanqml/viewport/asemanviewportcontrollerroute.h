@@ -20,15 +20,15 @@
 #define ASEMANVIEWPORTCONTROLLERROUTE_H
 
 #include <QObject>
-#include <QRegExp>
 #include <QVariant>
 #include <QUrl>
 #include <QQmlComponent>
+#include <QRegularExpression>
 
 class AsemanViewportControllerRoute : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QRegExp route READ route WRITE setRoute NOTIFY routeChanged)
+    Q_PROPERTY(QRegularExpression route READ route WRITE setRoute NOTIFY routeChanged)
     Q_PROPERTY(QQmlComponent* sourceComponent READ sourceComponent WRITE setSourceComponent NOTIFY componentChanged)
     Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY componentChanged)
     Q_PROPERTY(QString viewportType READ viewportType WRITE setViewportType NOTIFY viewportTypeChanged)
@@ -40,8 +40,8 @@ public:
     AsemanViewportControllerRoute(QObject *parent = Q_NULLPTR);
     virtual ~AsemanViewportControllerRoute();
 
-    QRegExp route() const;
-    void setRoute(const QRegExp &route);
+    QRegularExpression route() const;
+    void setRoute(const QRegularExpression &route);
 
     QVariant component() const;
     void setComponent(const QVariant &component);

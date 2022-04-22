@@ -120,6 +120,15 @@ QStringList AsemanSettings::keys() const
     return result;
 }
 
+void AsemanSettings::sync()
+{
+    if(!p->settings)
+        return;
+
+    p->settings->sync();
+    initProperties();
+}
+
 void AsemanSettings::propertyChanged()
 {
     if(sender() != this)
@@ -142,6 +151,12 @@ void AsemanSettings::initProperties()
 {
     if(!p->settings || p->caregory.isEmpty())
         return;
+
+    for (const auto &signalSign: p->signalsProperties.keys())
+        disconnect(this, QByteArray(QByteArray::number(QSIGNAL_CODE)+signalSign),
+                   this, SLOT(propertyChanged()));
+
+    p->signalsProperties.clear();
 
     const QMetaObject *meta = metaObject();
     for(int i=0; i<meta->propertyCount(); i++)

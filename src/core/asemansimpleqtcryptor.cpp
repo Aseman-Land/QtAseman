@@ -554,8 +554,8 @@ Error DecryptorWizard::decryptToEnd(const QByteArray &cipher, QByteArray &plain)
 
 QByteArray InitializationVector::getVector8() {
     QByteArray ret(8, 0);
-    quint32 A = ((quint32)(qrand())) ^ ((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
-    quint32 B = ((quint32)(qrand())) ^ ((quint32)(QDate::currentDate().daysTo(QDate(2999,12,31))));
+    quint32 A = ((quint32)(rand())) ^ ((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
+    quint32 B = ((quint32)(rand())) ^ ((quint32)(QDate::currentDate().daysTo(QDate(2999,12,31))));
     qToLittleEndian(A, (uchar *)(ret.data()));
     qToLittleEndian(B, (uchar *)(ret.data() + 4));
     ret[0] = ( (uchar)(ret[0]) | 128 );
@@ -564,10 +564,10 @@ QByteArray InitializationVector::getVector8() {
 
 QByteArray InitializationVector::getVector16() {
     QByteArray ret(16, 0);
-    quint32 A = ((quint32)(qrand())) ^ ((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
-    quint32 B = ((quint32)(qrand())) ^ ((quint32)(QDate::currentDate().daysTo(QDate(2999,12,31))));
-    quint32 C = (quint32)(qrand());
-    quint32 D = (quint32)(qrand());
+    quint32 A = ((quint32)(rand())) ^ ((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
+    quint32 B = ((quint32)(rand())) ^ ((quint32)(QDate::currentDate().daysTo(QDate(2999,12,31))));
+    quint32 C = (quint32)(rand());
+    quint32 D = (quint32)(rand());
     qToLittleEndian(A, (uchar *)(ret.data()));
     qToLittleEndian(B, (uchar *)(ret.data() + 4));
     qToLittleEndian(C, (uchar *)(ret.data() + 8));
@@ -577,7 +577,7 @@ QByteArray InitializationVector::getVector16() {
 }
 
 void InitializationVector::initiate() {
-    qsrand((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
+    srand((quint32)(QTime::currentTime().msecsTo(QTime(23,59,59,999))));
 }
 
 /* *** CBC *** */

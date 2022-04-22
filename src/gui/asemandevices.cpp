@@ -58,6 +58,7 @@
 #include <QSysInfo>
 #include <QJsonDocument>
 #include <QThread>
+#include <QStandardPaths>
 
 #ifdef ASEMAN_MULTIMEDIA
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
@@ -993,7 +994,7 @@ QVariantMap AsemanDevices::deviceDetails()
 QStringList AsemanDevices::getLastImages(qint32 offset, qint32 count)
 {
 #ifdef Q_OS_ANDROID
-    return p->java_layer->getLastImages(offset, count).split(QStringLiteral("\n"), QString::SkipEmptyParts);
+    return p->java_layer->getLastImages(offset, count).split(QStringLiteral("\n"), Qt::SkipEmptyParts);
 #else
     return QStringList();
 #endif

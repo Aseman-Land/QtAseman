@@ -208,9 +208,9 @@ void AsemanQuickListModel::changed(const QList<QVariantMap> &l)
         {
             QVariant val = AsemanAbstractQuickListModelHint::getPathValue(l, p->sortField);
             if (val.type() == QVariant::Int || (val.canConvert(QVariant::Int) && val.convert(QVariant::Int)))
-                sortMapInt.insertMulti(val.toInt(), l);
+                sortMapInt.insert(val.toInt(), l);
             else
-                sortMapStr.insertMulti(val.toString(), l);
+                sortMapStr.insert(val.toString(), l);
         }
 
         list.clear();

@@ -98,7 +98,16 @@ QHash<qint32, QByteArray> AsemanMixedListModel::roleNames() const
     roles[RolesModelName] = "modelName";
 
     for(QAbstractListModel *model: p->models)
-        roles.unite( model->roleNames() );
+    {
+        const auto &roleNames = model->roleNames();
+        auto it = roleNames.begin();
+        const auto end = roleNames.end();
+        while (it != end)
+        {
+            roles[it.key()] = it.value();
+            it++;
+        }
+    }
 
     return roles;
 }

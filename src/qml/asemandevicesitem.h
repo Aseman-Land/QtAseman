@@ -16,7 +16,7 @@ public:
     virtual ~AsemanDevicesItem();
 
 public Q_SLOTS:
-    bool getOpenPictures();
+    bool getOpenPictures() Q_DECL_OVERRIDE;
     QVariantList getContactList(QJSValue asyncCallback);
 
 Q_SIGNALS:

@@ -296,7 +296,7 @@ void AsemanCountriesModel::init_buff()
     }
 
     QString data = QString::fromUtf8(file.readAll());
-    QStringList splits = data.split(QStringLiteral("\n"),QString::SkipEmptyParts);
+    QStringList splits = data.split(QStringLiteral("\n"),Qt::SkipEmptyParts);
     if( splits.isEmpty() )
         return;
 

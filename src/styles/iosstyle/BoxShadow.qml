@@ -35,8 +35,8 @@
 ****************************************************************************/
 
 import QtQuick 2.12
-import QtQuick.Controls.IOSStyle 2.12
-import QtQuick.Controls.IOSStyle.impl 2.12
+import QtQuick.Controls.IOSStyle 2.0
+import QtQuick.Controls.IOSStyle.impl 2.0
 
 /*
    A implementation of CSS's box-shadow, used by ElevationEffect for a IOSStyle Design

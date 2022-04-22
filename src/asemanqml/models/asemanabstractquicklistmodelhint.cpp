@@ -1,5 +1,7 @@
 #include "asemanabstractquicklistmodelhint.h"
 
+#include <QRegExp>
+
 AsemanAbstractQuickListModelHint::AsemanAbstractQuickListModelHint(QObject *parent) :
     QObject(parent)
 {

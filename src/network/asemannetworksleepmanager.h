@@ -21,6 +21,8 @@
 
 #include <QObject>
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+
 #include "asemannetwork_global.h"
 
 class AsemanNetworkSleepManagerPrivate;
@@ -85,5 +87,6 @@ private:
 };
 
 typedef AsemanNetworkSleepManager QAsemanNetworkSleepManager;
+#endif
 
 #endif // ASEMANNETWORKSLEEPMANAGER_H

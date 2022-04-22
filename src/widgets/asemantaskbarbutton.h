@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QVariant>
+#include <QWindow>
 
 #include "asemanwidgets_global.h"
 

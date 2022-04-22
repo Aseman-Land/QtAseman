@@ -95,26 +95,24 @@ AsemanHttpServer::~AsemanHttpServer()
 
 void AsemanHttpServer::route(const QString &path, HttpMethod method, AsemanHttpServer::AsyncRouteCallback callback, bool threaded)
 {
-    Private::CallbackPack pack = {
-        .async = callback,
-        .sync = Q_NULLPTR,
-        .thread = threaded,
-        .path = path,
-        .method = method,
-    };
+    Private::CallbackPack pack;
+    pack.async = callback;
+    pack.sync = Q_NULLPTR;
+    pack.thread = threaded;
+    pack.path = path;
+    pack.method = method;
 
     p->route(pack);
 }
 
 void AsemanHttpServer::route(const QString &path, HttpMethod method, AsemanHttpServer::SyncRouteCallback callback, bool threaded)
 {
-    Private::CallbackPack pack = {
-        .async = Q_NULLPTR,
-        .sync = callback,
-        .thread = threaded,
-        .path = path,
-        .method = method,
-    };
+    Private::CallbackPack pack;
+    pack.async = Q_NULLPTR;
+    pack.sync = callback;
+    pack.thread = threaded;
+    pack.path = path;
+    pack.method = method;
 
     p->route(pack);
 }

@@ -1,6 +1,10 @@
 #ifndef QUICKIOS_H
 #define QUICKIOS_H
 
+#include <QtGlobal>
+
+#ifdef Q_OS_IOS
+
 #include <QtPlugin>
 #include <QQuickWindow>
 #include <QObject>
@@ -26,5 +30,7 @@ public Q_SLOTS:
     static void setStatusBarStyle(StatusBarStyle style);
     static void setStatusBarHidden(bool hidden, int animation);
 };
+
+#endif
 
 #endif // QUICKIOS_H

@@ -62,7 +62,7 @@ QVariant AsemanQuickListModelCamelCaseHint::toCamelCase(const QVariant &var)
         {
             i.next();
 
-            QStringList parts = i.key().split('_', QString::SkipEmptyParts);
+            QStringList parts = i.key().split('_', Qt::SkipEmptyParts);
             for (int i=1; i<parts.size(); ++i)
                 parts[i].replace(0, 1, parts[i][0].toUpper());
 

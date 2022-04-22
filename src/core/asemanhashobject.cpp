@@ -62,7 +62,7 @@ AsemanHashObject::AsemanHashObject(QObject *parent) :
  */
 void AsemanHashObject::insert(const QString &key, const QVariant &value)
 {
-    p->hash.insert(key,value);
+    p->hash.replace(key,value);
     Q_EMIT countChanged();
     Q_EMIT valuesChanged();
     Q_EMIT keysChanged();
@@ -79,7 +79,7 @@ void AsemanHashObject::insert(const QString &key, const QVariant &value)
  */
 void AsemanHashObject::insertMulti(const QString &key, const QVariant &value)
 {
-    p->hash.insertMulti(key,value);
+    p->hash.insert(key,value);
     Q_EMIT countChanged();
     Q_EMIT valuesChanged();
     Q_EMIT keysChanged();
@@ -293,11 +293,15 @@ int AsemanHashObject::count()
 QVariantMap AsemanHashObject::toMap() const
 {
     QVariantMap map;
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QHashIterator<QString, QVariant> i(p->hash);
+#else
+    QMultiHashIterator<QString, QVariant> i(p->hash);
+#endif
     while(i.hasNext())
     {
         i.next();
-        map.insertMulti(i.key(), i.value());
+        map.insert(i.key(), i.value());
     }
     return map;
 }

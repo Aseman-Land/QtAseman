@@ -45,6 +45,7 @@ public Q_SLOTS:
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
     void remove(const QString &key);
     QStringList keys() const;
+    void sync();
 
 Q_SIGNALS:
     void categoryChanged();

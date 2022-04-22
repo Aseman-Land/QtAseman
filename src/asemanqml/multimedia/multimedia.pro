@@ -3,7 +3,9 @@ TARGETPATH = AsemanQml/Multimedia
 IMPORT_VERSION = 2.0
 
 INCLUDEPATH += $$PWD
-QT += core gui network asemanqml asemangui asemancore asemanmultimedia
+QT += core gui network asemanqml asemangui asemancore
+
+lessThan(QT_MAJOR_VERSION, 6): QT += asemanmultimedia
 
 HEADERS += \
     $$PWD/asemanmultimediaplugin.h \

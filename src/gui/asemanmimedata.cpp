@@ -21,6 +21,7 @@
 #include <QClipboard>
 #include <QDataStream>
 #include <QGuiApplication>
+#include <QIODevice>
 #include <QMimeData>
 
 class AsemanMimeDataPrivate

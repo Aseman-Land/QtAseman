@@ -29,8 +29,8 @@ public:
     AsemanMacTaskbarButtonEngine(){}
     virtual ~AsemanMacTaskbarButtonEngine(){}
 
-    void updateBadgeNumber(int number);
-    void updateProgress(qreal progress);
+    void updateBadgeNumber(int number) Q_DECL_OVERRIDE;
+    void updateProgress(qreal progress) Q_DECL_OVERRIDE;
 };
 
 #endif // ASEMANMACTASKBARBUTTONENGINE_H

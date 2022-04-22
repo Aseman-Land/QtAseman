@@ -166,9 +166,11 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanDelegateSwitch>(uri, 2, 0, "DelegateSwitch", exportMode);
 
 #ifndef Q_OS_WASM
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     registerType<AsemanNetworkSleepManager>(uri, 2, 0, "NetworkSleepManager", exportMode);
     registerType<AsemanNetworkManager>(uri, 2, 0, "NetworkManager", exportMode);
     registerUncreatableType<AsemanNetworkManagerItem>(uri, 2, 0, "NetworkManagerItem", QStringLiteral("It must create using NetworkManager component."), exportMode);
+#endif
 #endif
 
 
@@ -204,19 +206,19 @@ void AsemanQtToolsItemBase::registerFiles(const QString &filesLocation, const ch
     QFile file(filesLocation + QStringLiteral("/qmldir"));
     if(file.open(QFile::ReadOnly))
     {
-        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), QString::SkipEmptyParts);
+        QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         file.close();
 
         for(const QString &l: lines)
         {
-            QStringList parts = l.trimmed().split(QStringLiteral(" "), QString::SkipEmptyParts);
+            QStringList parts = l.trimmed().split(QStringLiteral(" "), Qt::SkipEmptyParts);
             bool singleton = false;
             if(parts.count() && parts.first() == "singleton")
                 singleton = parts.takeFirst().count();
             if(parts.length() != 3)
                 continue;
 
-            QStringList version = parts.at(1).split(QStringLiteral("."), QString::SkipEmptyParts);
+            QStringList version = parts.at(1).split(QStringLiteral("."), Qt::SkipEmptyParts);
             if(version.count() != 2)
                 continue;
 

@@ -1,6 +1,10 @@
 #ifndef QIIMAGEPICKER_H
 #define QIIMAGEPICKER_H
 
+#include <QtGlobal>
+
+#ifdef Q_OS_IOS
+
 #include <QObject>
 #include <QImage>
 #include <QVariantMap>
@@ -95,5 +99,7 @@ private:
 
     bool m_busy;
 };
+
+#endif
 
 #endif // QIIMAGEPICKER_H

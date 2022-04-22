@@ -11,4 +11,6 @@ SUBDIRS += \
     network \
     viewport \
     models \
-    sql
+    sql \
+
+greaterThan(QT_MAJOR_VERSION, 5): SUBDIRS += graphicaleffects

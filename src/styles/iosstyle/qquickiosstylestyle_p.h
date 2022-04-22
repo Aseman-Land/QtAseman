@@ -49,7 +49,12 @@
 //
 
 #include <QtGui/qcolor.h>
+
+#ifdef QT_QUICKCONTROLS2IMPL_LIB
+#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
+#else
 #include <QtQuickControls2/private/qquickattachedobject_p.h>
+#endif
 
 QT_BEGIN_NAMESPACE
 
@@ -111,6 +116,13 @@ class QQuickIOSStyleStyle : public QQuickAttachedObject
     Q_PROPERTY(int menuItemVerticalPadding READ menuItemVerticalPadding CONSTANT FINAL)
     Q_PROPERTY(int switchDelegateVerticalPadding READ switchDelegateVerticalPadding CONSTANT FINAL)
     Q_PROPERTY(int tooltipHeight READ tooltipHeight CONSTANT FINAL)
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    QML_NAMED_ELEMENT(IOSStyle)
+    QML_ATTACHED(QQuickIOSStyleStyle)
+    QML_UNCREATABLE("")
+    QML_ADDED_IN_VERSION(2, 0)
+#endif
 
 public:
     enum Theme {

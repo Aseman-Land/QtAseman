@@ -25,6 +25,7 @@
 #include <QTranslator>
 #include <QDir>
 #include <QDebug>
+#include <QRegExp>
 
 class AsemanTranslationManager::Private
 {

@@ -7,6 +7,7 @@
 #include <QImage>
 #include <QFileInfo>
 #include <QCryptographicHash>
+#include <QQmlContext>
 
 class AsemanQmlImage::Private
 {
@@ -71,8 +72,15 @@ void AsemanQmlImage::paint(QPainter *painter)
     painter->drawImage(x, y, p->cacheImage);
 }
 
-void AsemanQmlImage::setSource(const QUrl &source)
+void AsemanQmlImage::setSource(const QUrl &_src)
 {
+    QUrl source = _src;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    const QQmlContext *context = qmlContext(this);
+    if (context)
+        source = context->resolvedUrl(source);
+#endif
+
     if(p->source == source)
         return;
 

@@ -52,7 +52,10 @@ bool AsemanListModel::setData(const QModelIndex &index, const QVariant &value, i
 
 QHash<qint32, QByteArray> AsemanListModel::roleNames() const
 {
-    QSet<QByteArray> inserteds = p->roleNames.values().toSet();
+    QSet<QByteArray> inserteds;
+    for (const auto &v: p->roleNames.values())
+        inserteds.insert(v);
+
     for(const QVariantMap &map: p->list)
     {
         QStringList keys = map.keys();

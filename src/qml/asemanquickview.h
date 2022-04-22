@@ -21,6 +21,7 @@
 
 #include <QQuickView>
 #include <QQmlEngine>
+#include <QQuickItem>
 
 #include "asemantools_global.h"
 
@@ -95,7 +96,7 @@ Q_SIGNALS:
     void offlineStoragePathChanged();
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
 
 private:
     AsemanQuickViewPrivate *p;

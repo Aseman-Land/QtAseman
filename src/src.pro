@@ -4,10 +4,13 @@ SUBDIRS = \
     core \
     gui \
     widgets \
-    multimedia \
-    qml \
     network \
+    qml \
     sql
+
+lessThan(QT_MAJOR_VERSION, 6): { # Deprecated Modules
+    SUBDIRS += multimedia
+}
 
 exists($$PWD/httpserver/qhttp/qhttp.pro): SUBDIRS += httpserver
 

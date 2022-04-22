@@ -581,6 +581,7 @@ Module {
         defaultProperty: "data"
         Property { name: "androidStyle"; type: "bool" }
         Property { name: "mainItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "list"; type: "QVariant" }
         Property { name: "currentItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
         Property { name: "currentType"; type: "string"; isReadonly: true }
         Property { name: "count"; type: "int"; isReadonly: true }

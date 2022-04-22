@@ -4,13 +4,15 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TARGET = QAsemanNetwork
-QT = core network asemancore asemangui asemanqml qml
+QT = core network asemancore asemangui qml
 
 MODULE = asemannetwork
 
 load(qt_module)
 
 DEFINES += LIBQTASEMAN_NETWORK_LIBRARY
+
+greaterThan(QT_MAJOR_VERSION, 5): DEFINES += ASEMAN_QT6
 
 HEADERS += \
     $$PWD/asemandownloader.h \
@@ -22,6 +24,7 @@ HEADERS += \
     $$PWD/asemansocketinterface.h \
     $$PWD/asemannetworkrequestobject.h \
     $$PWD/asemannetworkrequestmanager.h \
+    $$PWD/asemannetworkquickobject.h \
     $$PWD/asemannetworkrequestreply.h
 
 SOURCES += \
@@ -33,9 +36,10 @@ SOURCES += \
     $$PWD/asemansocketinterface.cpp \
     $$PWD/asemannetworkrequestobject.cpp \
     $$PWD/asemannetworkrequestmanager.cpp \
+    $$PWD/asemannetworkquickobject.cpp \
     $$PWD/asemannetworkrequestreply.cpp
 
-!wasm {
+!wasm: lessThan(QT_MAJOR_VERSION, 6) {
     HEADERS += \
         $$PWD/asemannetworkmanager.h \
         $$PWD/asemannetworksleepmanager.h \

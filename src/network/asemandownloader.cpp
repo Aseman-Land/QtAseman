@@ -136,8 +136,10 @@ void AsemanDownloader::start()
     init_manager();
 
     QNetworkRequest request = QNetworkRequest(QUrl(p->path));
-    for (auto [key, value]: p->header.toStdMap())
+    for (auto pair: p->header.toStdMap())
     {
+        auto key = pair.first;
+        auto value = pair.second;
         if (value.type() != QVariant::String)
             value.convert(QVariant::String);
 

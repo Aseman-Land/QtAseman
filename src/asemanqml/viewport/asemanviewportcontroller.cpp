@@ -24,6 +24,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+
 class AsemanViewportController::Private
 {
 public:
@@ -95,11 +96,9 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
 
     for (AsemanViewportControllerRoute *r: p->routes)
     {
-        QRegExp rx = r->route();
+        auto rx = r->route();
         rx.setPattern( "^" + rx.pattern() + "$" );
-        rx.setMinimal(false);
-
-        if (rx.indexIn(url) == 0)
+        if (url.indexOf(rx) == 0)
         {
             properties["properties"] = properties;
             properties["url"] = url;
@@ -125,7 +124,7 @@ QVariantMap AsemanViewportController::lookup(const QString &url, QVariantMap pro
     }
 
     AsemanViewportAttechedProperty attachProperty(p->viewport);
-    AsemanViewportController *parentController = attachProperty.controller();
+    AsemanViewportController *parentController = static_cast<AsemanViewportController*>(attachProperty.controller());
     if (parentController && p->allowRecursiveTrigger)
         return parentController->lookup(url, properties, viewport);
     else

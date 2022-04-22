@@ -37,20 +37,20 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Templates 2.12 as T
-import QtQuick.Controls.IOSStyle 2.12
+import QtQuick.Controls.IOSStyle 2.0
 
 T.ApplicationWindow {
     id: window
 
     color: IOSStyle.backgroundColor
 
-    overlay.modal: Rectangle {
-        color: window.IOSStyle.backgroundDimColor
-        Behavior on opacity { NumberAnimation { duration: 150 } }
-    }
+//    overlay.modal: Rectangle {
+//        color: window.IOSStyle.backgroundDimColor
+//        Behavior on opacity { NumberAnimation { duration: 150 } }
+//    }
 
-    overlay.modeless: Rectangle {
-        color: window.IOSStyle.backgroundDimColor
-        Behavior on opacity { NumberAnimation { duration: 150 } }
-    }
+//    overlay.modeless: Rectangle {
+//        color: window.IOSStyle.backgroundDimColor
+//        Behavior on opacity { NumberAnimation { duration: 150 } }
+//    }
 }
