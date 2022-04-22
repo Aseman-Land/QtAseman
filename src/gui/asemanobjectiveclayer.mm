@@ -63,3 +63,12 @@ void AsemanObjectiveCLayer::getContactList(std::function<void(const QVariantList
     }];
 }
 
+void AsemanObjectiveCLayer::sharePaper(const QString &text)
+{
+    UIViewController *controller = [UIApplication sharedApplication].keyWindow.rootViewController;
+    NSString *textToShare = text.toNSString();
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[textToShare] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll]; //Exclude whichever aren't relevant
+            [controller presentViewController:activityVC animated:YES completion:nil];
+}
+

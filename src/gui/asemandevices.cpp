@@ -1026,8 +1026,12 @@ void AsemanDevices::share(const QString &subject, const QString &message)
 #ifdef Q_OS_ANDROID
     p->java_layer->sharePaper( subject, message );
 #else
+#ifdef Q_OS_IOS
+    AsemanObjectiveCLayer::sharePaper((subject.length()? subject + '\n' : QString()) + message);
+#else
     QString adrs = QStringLiteral("mailto:%1?subject=%2&body=%3").arg(QString(),subject,message);
     QDesktopServices::openUrl( adrs );
+#endif
 #endif
 }
 
