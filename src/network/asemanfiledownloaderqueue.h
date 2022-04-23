@@ -54,6 +54,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void finishedSlt( const QByteArray & data );
+    void failedSlt();
     void recievedBytesChanged();
 
 private:

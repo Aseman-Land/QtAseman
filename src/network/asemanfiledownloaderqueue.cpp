@@ -129,6 +129,20 @@ void AsemanFileDownloaderQueue::finishedSlt(const QByteArray &data)
     next();
 }
 
+void AsemanFileDownloaderQueue::failedSlt()
+{
+    AsemanDownloader *downloader = static_cast<AsemanDownloader*>(sender());
+    if(!downloader)
+        return;
+
+    const QString &url = downloader->path();
+
+    p->names.remove(url);
+    p->activeItems.remove(downloader);
+    p->inactiveItems.push(downloader);
+    next();
+}
+
 void AsemanFileDownloaderQueue::recievedBytesChanged()
 {
     AsemanDownloader *downloader = static_cast<AsemanDownloader*>(sender());
@@ -176,6 +190,7 @@ AsemanDownloader *AsemanFileDownloaderQueue::getDownloader()
 
     connect(result, &AsemanDownloader::recievedBytesChanged, this, &AsemanFileDownloaderQueue::recievedBytesChanged);
     connect(result, &AsemanDownloader::finished, this, &AsemanFileDownloaderQueue::finishedSlt);
+    connect(result, &AsemanDownloader::failed, this, &AsemanFileDownloaderQueue::failedSlt);
 
     return result;
 }
