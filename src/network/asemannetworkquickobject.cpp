@@ -20,7 +20,7 @@
 
 #include <QSet>
 
-QSet<AsemanNetworkQuickObject*> aseman_quick_objs;
+QSet<AsemanNetworkQuickObject*> aseman_network_quick_objs;
 
 class AsemanNetworkQuickObjectPrivate
 {
@@ -32,7 +32,7 @@ AsemanNetworkQuickObject::AsemanNetworkQuickObject(QObject *parent) :
     QObject(parent)
 {
     p = new AsemanNetworkQuickObjectPrivate;
-    aseman_quick_objs.insert(this);
+    aseman_network_quick_objs.insert(this);
 }
 
 QQmlListProperty<QObject> AsemanNetworkQuickObject::items()
@@ -50,7 +50,7 @@ QList<QObject *> AsemanNetworkQuickObject::itemsList() const
 
 bool AsemanNetworkQuickObject::isValid(AsemanNetworkQuickObject *obj)
 {
-    return aseman_quick_objs.contains(obj);
+    return aseman_network_quick_objs.contains(obj);
 }
 
 void AsemanNetworkQuickObject::append(QQmlListProperty<QObject> *p, QObject *v)
@@ -81,6 +81,6 @@ void AsemanNetworkQuickObject::clear(QQmlListProperty<QObject> *p)
 
 AsemanNetworkQuickObject::~AsemanNetworkQuickObject()
 {
-    aseman_quick_objs.remove(this);
+    aseman_network_quick_objs.remove(this);
     delete p;
 }
