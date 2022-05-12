@@ -54,11 +54,15 @@ android: {
         $$PWD/asemanjavalayer.h
 }
 
-ios: {
+ios {
     SOURCES += \
         $$PWD/asemanobjectiveclayer.mm
     HEADERS += \
         $$PWD/asemanobjectiveclayer.h
 
-    LIBS +=  -framework Contacts -lobjc
+    disable-ios-contacts-support {
+        DEFINES += DISABLE_IOS_CONTACTS_SUPPORT
+    } else {
+        LIBS +=  -framework Contacts -lobjc
+    }
 }

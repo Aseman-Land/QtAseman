@@ -2,7 +2,9 @@
 #include "asemantools.h"
 
 #import <UIKit/UIKit.h>
+#ifndef DISABLE_IOS_CONTACTS_SUPPORT
 #import <Contacts/Contacts.h>
+#endif
 
 AsemanObjectiveCLayer::AsemanObjectiveCLayer()
 {
@@ -36,6 +38,7 @@ bool AsemanObjectiveCLayer::saveToCameraRoll(const QString &filePath)
 
 void AsemanObjectiveCLayer::getContactList(std::function<void(const QVariantList &res)> asyncCallback)
 {
+#ifndef DISABLE_IOS_CONTACTS_SUPPORT
     CNContactStore *store = [[CNContactStore alloc] init];
     [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable) {
         QVariantMap sorted;
@@ -61,6 +64,9 @@ void AsemanObjectiveCLayer::getContactList(std::function<void(const QVariantList
 
         asyncCallback(sorted.values());
     }];
+#else
+    asyncCallback(QVariantList());
+#endif
 }
 
 void AsemanObjectiveCLayer::sharePaper(const QString &text)
