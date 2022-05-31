@@ -46,7 +46,7 @@ import android.os.Handler;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.content.ContentResolver;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.InputStream;
