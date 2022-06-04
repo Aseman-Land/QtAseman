@@ -15,6 +15,7 @@ public:
     static bool saveToCameraRoll(const QString &filePath);
     static void getContactList(std::function<void(const QVariantList &res)> asyncCallback = Q_NULLPTR);
     static void sharePaper(const QString &text);
+    static QString deviceId();
 };
 
 typedef AsemanObjectiveCLayer QAsemanObjectiveCLayer;

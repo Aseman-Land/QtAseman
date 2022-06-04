@@ -34,6 +34,10 @@
 #include "asemanobjectiveclayer.h"
 #endif
 
+#ifdef Q_OS_MACX
+#include <IOKit/IOKitLib.h>
+#endif
+
 #include <QTimerEvent>
 #include <QGuiApplication>
 #include <QMimeType>
@@ -183,7 +187,7 @@ bool AsemanDevices::isDesktop()
 
 bool AsemanDevices::isMacX()
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACX
     return true;
 #else
     return false;
@@ -381,6 +385,16 @@ QString AsemanDevices::deviceId()
 {
 #if defined(Q_OS_ANDROID)
     return AsemanJavaLayer::instance()->deviceId();
+#elif defined(Q_OS_IOS)
+    return AsemanObjectiveCLayer::deviceId();
+#elif defined(Q_OS_MACX)
+    io_registry_entry_t ioRegistryRoot = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/");
+    CFStringRef uuidCf = (CFStringRef) IORegistryEntryCreateCFProperty(ioRegistryRoot, CFSTR(kIOPlatformUUIDKey), kCFAllocatorDefault, 0);
+    IOObjectRelease(ioRegistryRoot);
+    char buf[128];
+    CFStringGetCString(uuidCf, buf, sizeof(buf), kCFStringEncodingMacRoman);
+    CFRelease(uuidCf);
+    return QString::fromUtf8( QByteArray(buf, sizeof(buf)) );
 #elif defined(Q_OS_LINUX) || defined(Q_OS_WIN32)
     static QString cg_hostId;
     if(!cg_hostId.isEmpty())

@@ -78,3 +78,10 @@ void AsemanObjectiveCLayer::sharePaper(const QString &text)
             [controller presentViewController:activityVC animated:YES completion:nil];
 }
 
+QString AsemanObjectiveCLayer::deviceId()
+{
+    UIDevice *device = [UIDevice currentDevice];
+    NSString  *currentDeviceId = [[device identifierForVendor]UUIDString];
+    return QString::fromNSString(currentDeviceId);
+}
+
