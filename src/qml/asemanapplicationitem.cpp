@@ -21,6 +21,9 @@
 #include "asemannetworkproxy.h"
 #include "asemantools.h"
 #include "qtsingleapplication/qtlocalpeer.h"
+
+#include <asemanglobaltranslations.h>
+
 #ifdef Q_OS_ANDROID
 #include "asemanjavalayer.h"
 #endif
@@ -68,6 +71,9 @@ AsemanApplicationItem::AsemanApplicationItem(QQmlEngine *engine) :
     AsemanApplicationItem()
 {
     p->engine = engine;
+
+    auto trMgr = AsemanGlobalTranslations::instance();
+    connect(trMgr, &AsemanGlobalTranslations::refreshed, engine, &QQmlEngine::retranslate);
 }
 
 AsemanApplicationItem::AsemanApplicationItem() :
