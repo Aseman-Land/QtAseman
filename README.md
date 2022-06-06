@@ -48,6 +48,11 @@ sudo apt install qt5aseman
 ```
 
 and to install development files install `qt5aseman-dev` package.
+on Arch you can use [AUR](https://aur.archlinux.org/packages/qt-aseman) (Thanks [molaeiali](https://github.com/molaeiali)):
+
+```bash
+yay -S qt-aseman
+```
 
 ## How to build
 
