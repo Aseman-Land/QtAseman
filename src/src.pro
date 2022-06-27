@@ -14,7 +14,7 @@ lessThan(QT_MAJOR_VERSION, 6): { # Deprecated Modules
 
 exists($$PWD/httpserver/qhttp/qhttp.pro): SUBDIRS += httpserver
 
-qtHaveModule(geo): SUBDIRS += geo
+qtHaveModule(positioning): SUBDIRS += geo
 
 SUBDIRS += \
     asemanqml \
