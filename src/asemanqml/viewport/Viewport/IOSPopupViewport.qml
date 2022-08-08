@@ -89,8 +89,8 @@ AbstractViewportType {
     MouseArea {
         id: dragArea
         width: tabletMode? item.maximumWidth : item.width
-        x: item.width/2 - foreground.width/2
-        y: topPadSize * (1 - foregroundScale)
+        x: Math.floor(item.width/2 - foreground.width/2)
+        y: Math.floor(topPadSize * (1 - foregroundScale))
         height: item.gestureWidthIsNull? (item.height - topPadSize) : item.gestureWidth
         drag {
             target: item.foreground
