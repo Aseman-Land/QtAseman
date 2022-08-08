@@ -20,7 +20,7 @@ Item {
         maskSource: maskItem
         anchors.fill: parent
         cached: true
-        visible: false// maskItem.radius != 0
+        visible: maskItem.radius != 0
     }
 
     Item {
