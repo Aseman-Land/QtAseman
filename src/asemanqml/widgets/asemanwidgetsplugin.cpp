@@ -25,6 +25,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_widgets_plugin_registered = AsemanWidgetsPlugin::registerStaticTypes("AsemanQml.Widgets");
+#endif
+
 bool AsemanWidgetsPlugin::registerStaticTypes(const char *uri)
 {
     AsemanQtToolsItemWidgets::registerTypes(uri);

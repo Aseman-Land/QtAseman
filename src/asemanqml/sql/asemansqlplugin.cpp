@@ -24,6 +24,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_sql_plugin_registered = AsemanSqlPlugin::registerStaticTypes("AsemanQml.Sql");
+#endif
+
 bool AsemanSqlPlugin::registerStaticTypes(const char *uri)
 {
     AsemanQtToolsItemSql::registerTypes(uri);

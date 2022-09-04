@@ -24,6 +24,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_modern_plugin_registered = AsemanModernPlugin::registerStaticTypes("AsemanQml.Modern");
+#endif
+
 bool AsemanModernPlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemanmodern);

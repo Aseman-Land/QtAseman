@@ -25,6 +25,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_models_plugin_registered = AsemanModelsPlugin::registerStaticTypes("AsemanQml.Models");
+#endif
+
 bool AsemanModelsPlugin::registerStaticTypes(const char *uri)
 {
     AsemanQtToolsItemModels::registerTypes(uri);

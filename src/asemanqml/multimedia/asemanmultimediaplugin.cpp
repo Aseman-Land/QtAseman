@@ -25,6 +25,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_multimedia_plugin_registered = AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multimedia");
+#endif
+
 bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemanmultimedia);

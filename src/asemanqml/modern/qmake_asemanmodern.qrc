@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>Modern/FancyNavigationBar.qml</file>
+<file>Modern/FancyPage.qml</file>
+<file>Modern/FancySearchBar.qml</file>
+<file>Modern/FastDropShadow.qml</file>
+<file>Modern/FastRectengleShadow.qml</file>
+<file>Modern/LazyList.qml</file>
+<file>Modern/qmldir</file>
+</qresource>
+</RCC>

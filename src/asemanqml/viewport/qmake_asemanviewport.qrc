@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>Viewport/AbstractViewportType.qml</file>
+<file>Viewport/AndroidActivityViewport.qml</file>
+<file>Viewport/AndroidBottomDrawerViewport.qml</file>
+<file>Viewport/AndroidDefaultPagesViewport.qml</file>
+<file>Viewport/AndroidDialogViewport.qml</file>
+<file>Viewport/IOSBottomDrawerViewport.qml</file>
+<file>Viewport/IOSContextMenuViewport.qml</file>
+<file>Viewport/IOSDialogViewport.qml</file>
+<file>Viewport/IOSNormalViewport.qml</file>
+<file>Viewport/IOSPopupViewport.qml</file>
+<file>Viewport/NoneViewport.qml</file>
+<file>Viewport/SplitedViewport.qml</file>
+<file>Viewport/Viewport.qml</file>
+<file>Viewport/ViewportController.qml</file>
+<file>Viewport/ViewportPage.qml</file>
+<file>Viewport/qmldir</file>
+</qresource>
+</RCC>

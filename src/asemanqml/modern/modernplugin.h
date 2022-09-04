@@ -24,7 +24,10 @@
 class AsemanModernPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
+
+#ifndef QT_ASEMAN_EMBEDDED
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+#endif
 
 public:
     static bool registerStaticTypes(const char *uri);

@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>Multimedia/VideoPlayer.qml</file>
+<file>Multimedia/qmldir</file>
+</qresource>
+</RCC>

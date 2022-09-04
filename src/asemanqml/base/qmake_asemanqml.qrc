@@ -1,0 +1,30 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>Base/AsemanFlickable.qml</file>
+<file>Base/AsemanGridView.qml</file>
+<file>Base/AsemanListView.qml</file>
+<file>Base/BackAction.qml</file>
+<file>Base/CachedImage.qml</file>
+<file>Base/CoverList.qml</file>
+<file>Base/CrashController.qml</file>
+<file>Base/DelayPropertySwitch.qml</file>
+<file>Base/FileSystemView.qml</file>
+<file>Base/MaterialFrame.qml</file>
+<file>Base/NullMouseArea.qml</file>
+<file>Base/PointMapListener.qml</file>
+<file>Base/RoundedImage.qml</file>
+<file>Base/RoundedItem.qml</file>
+<file>Base/SelectableList.qml</file>
+<file>Base/ShadowRectangle.qml</file>
+<file>Base/qmldir</file>
+<file>Base/files/aseman-abstract.png</file>
+<file>Base/files/aseman-dark.png</file>
+<file>Base/files/aseman-logo-dark.png</file>
+<file>Base/files/aseman-logo.png</file>
+<file>Base/files/aseman-silver-shadowed.png</file>
+<file>Base/files/aseman-silver.png</file>
+<file>Base/files/asemanland-logo.png</file>
+<file>Base/files/folder.png</file>
+<file>Base/files/unknown.png</file>
+</qresource>
+</RCC>

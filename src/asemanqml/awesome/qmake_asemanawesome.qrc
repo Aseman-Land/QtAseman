@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/AsemanQml">
+        <file>Awesome/Awesome.qml</file>
+        <file>Awesome/fa-brands-400.ttf</file>
+        <file>Awesome/fa-regular-400.ttf</file>
+        <file>Awesome/fa-solid-900.ttf</file>
+        <file>Awesome/fontawesome-webfont.ttf</file>
+    </qresource>
+</RCC>

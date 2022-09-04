@@ -1,0 +1,28 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>Controls/AsemanApplication.qml</file>
+<file>Controls/AsemanWindow.qml</file>
+<file>Controls/CircularProgressBar.qml</file>
+<file>Controls/DateTimeChooser.qml</file>
+<file>Controls/Drawer.qml</file>
+<file>Controls/DynamicTabBar.qml</file>
+<file>Controls/ExtendedFab.qml</file>
+<file>Controls/Header.qml</file>
+<file>Controls/HeaderMenuButton.qml</file>
+<file>Controls/Helper.qml</file>
+<file>Controls/HelperPoint.qml</file>
+<file>Controls/HScrollBar.qml</file>
+<file>Controls/MenuIcon.qml</file>
+<file>Controls/PanelDrawer.qml</file>
+<file>Controls/PanelFlicker.qml</file>
+<file>Controls/Slider.qml</file>
+<file>Controls/TabView.qml</file>
+<file>Controls/TextArea.qml</file>
+<file>Controls/TextCursorArea.qml</file>
+<file>Controls/TextField.qml</file>
+<file>Controls/Tooltip.qml</file>
+<file>Controls/qmldir</file>
+<file>Controls/private/GlobalBusyDialog.qml</file>
+<file>Controls/files/text_select_handle_middle.png</file>
+</qresource>
+</RCC>

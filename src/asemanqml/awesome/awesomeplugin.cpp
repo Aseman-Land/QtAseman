@@ -23,6 +23,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_awesome_plugin_registered = AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome");
+#endif
+
 bool AsemanAwesomePlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemanawesome);

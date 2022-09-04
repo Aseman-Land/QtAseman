@@ -24,6 +24,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_network_plugin_registered = AsemanNetworkPlugin::registerStaticTypes("AsemanQml.Network");
+#endif
+
 bool AsemanNetworkPlugin::registerStaticTypes(const char *uri)
 {
     AsemanQtToolsItemNetwork::registerTypes(uri);

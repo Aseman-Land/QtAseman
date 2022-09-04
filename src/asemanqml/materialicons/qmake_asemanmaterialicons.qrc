@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/AsemanQml/">
+<file>MaterialIcons/materialdesignicons-webfont.ttf</file>
+<file>MaterialIcons/MaterialIcons-Regular.ttf</file>
+<file>MaterialIcons/MaterialIcons.qml</file>
+</qresource>
+</RCC>

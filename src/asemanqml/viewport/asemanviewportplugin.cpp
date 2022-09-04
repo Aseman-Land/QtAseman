@@ -25,6 +25,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_viewport_plugin_registered = AsemanViewportPlugin::registerStaticTypes("AsemanQml.Viewport");
+#endif
+
 bool AsemanViewportPlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemanviewport);

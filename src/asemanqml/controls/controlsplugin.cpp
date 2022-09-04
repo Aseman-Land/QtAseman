@@ -24,6 +24,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_controls_plugin_registered = AsemanControlsPlugin::registerStaticTypes("AsemanQml.Controls");
+#endif
+
 bool AsemanControlsPlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemancontrols);

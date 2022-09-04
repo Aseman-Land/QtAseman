@@ -23,6 +23,10 @@
 #include <QStringList>
 #include <QtQml>
 
+#ifdef QT_ASEMAN_EMBEDDED
+bool asemanqml_materialicons_plugin_registered = AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons");
+#endif
+
 bool AsemanMaterialIconsPlugin::registerStaticTypes(const char *uri)
 {
     Q_INIT_RESOURCE(qmake_asemanmaterialicons);
