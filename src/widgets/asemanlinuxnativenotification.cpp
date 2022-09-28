@@ -65,12 +65,12 @@ QColor AsemanLinuxNativeNotification::color() const
     return p->color;
 }
 
-uint AsemanLinuxNativeNotification::sendNotify(const QString &title, const QString &body, const QString &icon, uint replace_id, int timeOut, const QStringList &actions)
+uint AsemanLinuxNativeNotification::sendNotify(const QString &title, const QString &body, const QString &icon_path, uint replace_id, int timeOut, const QStringList &actions)
 {
     QVariantList args;
     args << QCoreApplication::applicationName();
     args << replace_id;
-    args << icon;
+    args << icon_path;
     args << title;
     args << body;
     args << QVariant::fromValue<QStringList>(actions) ;

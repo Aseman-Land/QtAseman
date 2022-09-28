@@ -1,5 +1,5 @@
 INCLUDEPATH += $$PWD
-QT += core gui
+QT += core gui qml
 
 qtHaveModule(sql): SUBDIRS += sql
 

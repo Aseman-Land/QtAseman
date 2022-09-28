@@ -1,5 +1,5 @@
 INCLUDEPATH += $$PWD
-QT += core gui network
+QT += core gui network qml
 
 HEADERS += \
     $$PWD/asemannetworkplugin.h \
