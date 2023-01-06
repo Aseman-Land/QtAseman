@@ -1,0 +1,20 @@
+#ifndef QT_QASEMANWIDGETS_MODULE_H
+#define QT_QASEMANWIDGETS_MODULE_H
+#include <QAsemanWidgets/QAsemanWidgetsDepends>
+#include "asemanabstracttaskbarbuttonengine.h"
+#include "asemanandroidnativenotification.h"
+#include "asemandesktoptools.h"
+#include "asemanfonthandler.h"
+#include "asemankdewallet.h"
+#include "asemanlinuxnativenotification.h"
+#include "asemanmacnativenotification.h"
+#include "asemanmactaskbarbuttonengine.h"
+#include "asemannativenotification.h"
+#include "asemannativenotificationitem.h"
+#include "asemannotification.h"
+#include "asemansystemtray.h"
+#include "asemantaskbarbutton.h"
+#include "asemanunitytaskbarbuttonengine.h"
+#include "asemanwintaskbarbuttonengine.h"
+#include "qasemanwidgetsversion.h"
+#endif

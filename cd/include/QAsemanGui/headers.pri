@@ -1,0 +1,6 @@
+SYNCQT.HEADER_FILES = asemanapplication.h asemandevices.h asemanglobaltranslations.h asemangui_global.h asemanimagecoloranalizor.h asemanjavalayer.h asemankeyhandler.h asemanmimeapps.h asemanmimedata.h asemanobjectiveclayer.h asemantexttools.h asemantitlebarcolorgrabber.h asemantools.h asemantranslationmanager.h asemanwindowdetails.h 
+SYNCQT.GENERATED_HEADER_FILES = QAsemanApplication QAsemanDevices QAsemanGlobalTranslations QAsemanImageColorAnalizor QAsemanJavaLayer QAsemanKeyHandler QAsemanMimeApps QAsemanMimeData QAsemanObjectiveCLayer QAsemanTextTools QAsemanTitleBarColorGrabber QAsemanTools QAsemanTranslationManager QAsemanWindowDetails qasemanguiversion.h QAsemanGuiVersion QAsemanGui 
+SYNCQT.PRIVATE_HEADER_FILES = 
+SYNCQT.QPA_HEADER_FILES = 
+SYNCQT.CLEAN_HEADER_FILES = asemanapplication.h asemandevices.h asemanglobaltranslations.h asemangui_global.h asemanimagecoloranalizor.h asemanjavalayer.h asemankeyhandler.h asemanmimeapps.h asemanmimedata.h asemanobjectiveclayer.h asemantexttools.h asemantitlebarcolorgrabber.h asemantools.h asemantranslationmanager.h asemanwindowdetails.h 
+SYNCQT.INJECTIONS = 

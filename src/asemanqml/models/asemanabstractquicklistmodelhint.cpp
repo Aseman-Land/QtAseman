@@ -1,6 +1,6 @@
 #include "asemanabstractquicklistmodelhint.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 
 AsemanAbstractQuickListModelHint::AsemanAbstractQuickListModelHint(QObject *parent) :
     QObject(parent)
@@ -16,11 +16,13 @@ QVariant AsemanAbstractQuickListModelHint::getPathValue(QVariant data, const QSt
     QStringList pathList = path.split(QStringLiteral("->"));
     for (const QString &pt: pathList)
     {
-        QRegExp rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
-        if (rx.indexIn(pt) >= 0)
+        QRegularExpression rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
+        auto i = rx.globalMatch(pt);
+        if (i.hasNext())
         {
-            QString key = rx.cap(1);
-            qint32 idx = rx.cap(2).toInt();
+            auto m = i.next();
+            QString key = m.captured(1);
+            qint32 idx = m.captured(2).toInt();
 
             QVariantList list = data.toMap().value(key).toList();
             if (idx < list.count())
@@ -56,11 +58,13 @@ QVariant AsemanAbstractQuickListModelHint::setPathValue(const QVariant &data, QS
 
     QVariantMap map = data.toMap();
 
-    QRegExp rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
-    if (rx.indexIn(pt) >= 0)
+    QRegularExpression rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
+    auto i = rx.globalMatch(pt);
+    if (i.hasNext())
     {
-        QString key = rx.cap(1);
-        qint32 idx = rx.cap(2).toInt();
+        auto m = i.next();
+        QString key = m.captured(1);
+        qint32 idx = m.captured(2).toInt();
 
         QVariantList list = map.value(key).toList();
         if (idx < list.count())
@@ -94,11 +98,13 @@ QVariant AsemanAbstractQuickListModelHint::deletePath(const QVariant &data, QStr
 
     QVariantMap map = data.toMap();
 
-    QRegExp rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
-    if (rx.indexIn(pt) >= 0)
+    QRegularExpression rx(QStringLiteral("(\\w+)\\s*\\[\\s*(\\d+)\\s*\\]$"));
+    auto i = rx.globalMatch(pt);
+    if (i.hasNext())
     {
-        QString key = rx.cap(1);
-        qint32 idx = rx.cap(2).toInt();
+        auto m = i.next();
+        QString key = m.captured(1);
+        qint32 idx = m.captured(2).toInt();
 
         QVariantList list = map.value(key).toList();
         if (idx < list.count())

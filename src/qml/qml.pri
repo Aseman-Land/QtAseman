@@ -2,7 +2,7 @@ INCLUDEPATH += $$PWD $$PWD/../core $$PWD/../gui $$PWD/../network $$PWD/../widget
 DEPENDPATH += $$PWD
 
 QT += core gui network qml quick
-ios: QT += widgets
+QT += widgets
 
 HEADERS += \
     $$PWD/asemanapplicationitem.h \

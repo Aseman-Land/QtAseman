@@ -47,6 +47,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanDevices : public QObject
     Q_PROPERTY(bool isIOS          READ isIOS          NOTIFY isIOSChanged          )
     Q_PROPERTY(bool isUbuntuTouch  READ isUbuntuTouch  NOTIFY isUbuntuTouchChanged  )
     Q_PROPERTY(bool isWindowsPhone READ isWindowsPhone NOTIFY isWindowsPhoneChanged )
+    Q_PROPERTY(bool isQt6          READ isQt6          NOTIFY isQt6Changed          )
 
     Q_PROPERTY(QObject* screen READ screenObj NOTIFY screenChanged )
 
@@ -126,6 +127,7 @@ public:
     static bool isUbuntuTouch();
     static bool isWindowsPhone();
     static bool isWindows8();
+    static bool isQt6();
 
     static QScreen *screen();
     QObject *screenObj() const;
@@ -233,6 +235,7 @@ Q_SIGNALS:
     void isIOSChanged();
     void isUbuntuTouchChanged();
     void isWindowsPhoneChanged();
+    void isQt6Changed();
 
     void deviceNameChanged();
     void deviceIdChanged();

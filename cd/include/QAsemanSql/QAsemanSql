@@ -1,0 +1,6 @@
+#ifndef QT_QASEMANSQL_MODULE_H
+#define QT_QASEMANSQL_MODULE_H
+#include <QAsemanSql/QAsemanSqlDepends>
+#include "asemansqlobject.h"
+#include "qasemansqlversion.h"
+#endif

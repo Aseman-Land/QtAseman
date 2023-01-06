@@ -1,0 +1,9 @@
+#ifndef QT_QASEMANGEO_MODULE_H
+#define QT_QASEMANGEO_MODULE_H
+#include <QAsemanGeo/QAsemanGeoDepends>
+#include "asemanabstractlocationlistenercore.h"
+#include "asemanandroidlocationlistenercore.h"
+#include "asemanlocationlistener.h"
+#include "asemanqtlocationlistenercore.h"
+#include "qasemangeoversion.h"
+#endif

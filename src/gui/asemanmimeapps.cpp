@@ -30,7 +30,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QFile>
-#include <QRegExp>
+#include <QRegularExpression>>
 #include <QDebug>
 #include <QRegularExpression>
 
@@ -75,30 +75,24 @@ QHash<QString,QString> readConfFile( const QString & file )
     const QString & data = QString::fromUtf8(f.readAll());
     f.close();
 
-    QRegExp mexr(QStringLiteral("\\[(.*)\\]\\s((?:\\s|.)*)\\s(?:\\[|$)"));
-    mexr.setMinimal(true);
-
-    int mpos = 0;
-    while ((mpos = mexr.indexIn(data, mpos)) != -1)
+    QRegularExpression mexr(QStringLiteral("\\[(.*)\\]\\s((?:\\s|.)*)\\s(?:\\[|$)"));
+    auto i = mexr.globalMatch(data);
+    while (i.hasNext())
     {
-        const QString & section    = mexr.cap(1);
-        const QString & properties = mexr.cap(2);
+        auto m = i.next();
+        const QString & section    = m.captured(1);
+        const QString & properties = m.captured(2);
 
-        QRegExp pexr(QStringLiteral("(?:\\r|\\n|^)(.*)\\=(.*)(?:\\r|\\n)"));
-        pexr.setMinimal(true);
-
-        int ppos = 0;
-        while ((ppos = pexr.indexIn(properties, ppos)) != -1)
+        QRegularExpression pexr(QStringLiteral("(?:\\r|\\n|^)(.*)\\=(.*)(?:\\r|\\n)"));
+        auto pi = pexr.globalMatch(properties);
+        while (pi.hasNext())
         {
-            const QString & key   = pexr.cap(1);
-            const QString & value = pexr.cap(2);
+            auto pm = pi.next();
+            const QString & key   = pm.captured(1);
+            const QString & value = pm.captured(2);
 
             res[ section + "/" + key ] = value;
-
-            ppos += pexr.matchedLength()-1;
         }
-
-        mpos += mexr.matchedLength()-1;
     }
 
     return res;

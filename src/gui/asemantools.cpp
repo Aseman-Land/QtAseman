@@ -31,7 +31,6 @@
 #include <QDir>
 #include <QStringList>
 #include <QTextDocument>
-#include <QRegExp>
 #include <QRegularExpression>
 #ifndef Q_OS_IOS
 #include <QProcess>
@@ -45,6 +44,7 @@
 #include <QImageWriter>
 
 #ifndef Q_OS_WASM
+#include <QRegularExpression>
 #include <QRunnable>
 #include <QThreadPool>
 #endif
@@ -378,16 +378,16 @@ QString AsemanTools::className(QObject *obj)
 QStringList AsemanTools::stringLinks(const QString &str)
 {
     QStringList links;
-    QRegExp links_rxp(QStringLiteral("((?:(?:\\w\\S*\\/\\S*|\\/\\S+|\\:\\/)(?:\\/\\S*\\w|\\w))|(?:\\w+\\.(?:com|org|co|net)))"));
-    int pos = 0;
-    while ((pos = links_rxp.indexIn(str, pos)) != -1)
+    QRegularExpression links_rxp(QStringLiteral("((?:(?:\\w\\S*\\/\\S*|\\/\\S+|\\:\\/)(?:\\/\\S*\\w|\\w))|(?:\\w+\\.(?:com|org|co|net)))"));
+    auto i = links_rxp.globalMatch(str);
+    while (i.hasNext())
     {
-        QString link = links_rxp.cap(1);
+        auto m = i.next();
+        QString link = m.captured(1);
         if(link.indexOf(QRegularExpression(QStringLiteral("\\w+\\:\\/\\/"))) == -1)
             link = QStringLiteral("http://") + link;
 
         links << link;
-        pos += links_rxp.matchedLength();
     }
 
     return links;
@@ -631,17 +631,15 @@ QString AsemanTools::stringReplace(QString str, const QString &text, const QStri
         return str.replace(text, replace);
 }
 
-QVariantList AsemanTools::stringRegExp(QString str, const QString &regExp, bool minimal)
+QVariantList AsemanTools::stringRegExp(QString str, const QString &regExp, bool)
 {
-    QRegExp rx(regExp);
-    rx.setMinimal(minimal);
+    QRegularExpression rx(regExp);
 
     QVariantList res;
-    int pos = 0;
-
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        res << rx.capturedTexts();
-        pos += rx.matchedLength();
+    auto i = rx.globalMatch(str);
+    while (i.hasNext()) {
+        auto m = i.next();
+        res << m.capturedTexts();
     }
 
     return res;

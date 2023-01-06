@@ -258,6 +258,15 @@ bool AsemanDevices::isWindows8()
 #endif
 }
 
+bool AsemanDevices::isQt6()
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return true;
+#else
+    return false;
+#endif
+}
+
 QScreen *AsemanDevices::screen()
 {
     const QList<QScreen*> & screens = QGuiApplication::screens();

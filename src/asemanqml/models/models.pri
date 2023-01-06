@@ -1,7 +1,7 @@
 INCLUDEPATH += $$PWD
 QT += core gui network quick
 
-greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
+#greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 
 HEADERS += \
     $$PWD/asemanmodelsplugin.h \

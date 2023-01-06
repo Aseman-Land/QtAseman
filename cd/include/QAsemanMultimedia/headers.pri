@@ -1,0 +1,6 @@
+SYNCQT.HEADER_FILES = asemanandroidmultimedia.h asemanaudioencodersettings.h asemanaudiorecorder.h asemancameracapture.h asemanmultimedia_global.h asemanmultimediadatabase.h private/asemanabstractcameracapturecore.h private/asemanandroidcameracapturecore.h private/asemannullcameracapturecore.h 
+SYNCQT.GENERATED_HEADER_FILES = QAsemanAndroidMultimedia QAsemanAudioEncoderSettings QAsemanAudioRecorder QAsemanCameraCapture QAsemanMultimediaDatabase qasemanmultimediaversion.h QAsemanMultimediaVersion QAsemanMultimedia 
+SYNCQT.PRIVATE_HEADER_FILES = 
+SYNCQT.QPA_HEADER_FILES = 
+SYNCQT.CLEAN_HEADER_FILES = asemanandroidmultimedia.h asemanaudioencodersettings.h asemanaudiorecorder.h asemancameracapture.h asemanmultimedia_global.h asemanmultimediadatabase.h private/asemanabstractcameracapturecore.h private/asemanandroidcameracapturecore.h private/asemannullcameracapturecore.h 
+SYNCQT.INJECTIONS = 

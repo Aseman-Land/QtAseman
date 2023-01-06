@@ -1,0 +1,18 @@
+#ifndef QT_QASEMANNETWORK_MODULE_H
+#define QT_QASEMANNETWORK_MODULE_H
+#include <QAsemanNetwork/QAsemanNetworkDepends>
+#include "asemandownloader.h"
+#include "asemanfiledownloaderqueue.h"
+#include "asemanfiledownloaderqueueitem.h"
+#include "asemanhostchecker.h"
+#include "asemannetworkmanager.h"
+#include "asemannetworkmanageritem.h"
+#include "asemannetworkproxy.h"
+#include "asemannetworkquickobject.h"
+#include "asemannetworkrequestmanager.h"
+#include "asemannetworkrequestobject.h"
+#include "asemannetworkrequestreply.h"
+#include "asemannetworksleepmanager.h"
+#include "asemansocketinterface.h"
+#include "qasemannetworkversion.h"
+#endif

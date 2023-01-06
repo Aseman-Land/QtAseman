@@ -4,13 +4,17 @@ SUBDIRS += \
     base \
     awesome \
     materialicons \
-    multimedia \
     widgets \
     modern \
     controls \
     network \
     viewport \
     models \
-    sql \
+    sql
 
-greaterThan(QT_MAJOR_VERSION, 5): SUBDIRS += graphicaleffects
+
+greaterThan(QT_MAJOR_VERSION, 5) {
+    SUBDIRS += graphicaleffects
+} else {
+    SUBDIRS += multimedia
+}

@@ -653,7 +653,7 @@ void AsemanFileSystemModel::reinit_buffer()
 
             bool founded = inf.isDir();
             for(const QString &sfx: suffixes)
-                if(p->nameFilters.contains("*."+sfx, Qt::CaseInsensitive))
+                if(p->nameFilters.contains(QStringLiteral("*.")+sfx, Qt::CaseInsensitive))
                 {
                     founded = true;
                     break;

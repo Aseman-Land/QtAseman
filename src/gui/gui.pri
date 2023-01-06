@@ -2,8 +2,6 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 QT += core gui
 
-greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
-
 static: DEFINES += ASEMAN_STATIC_BUILD
 
 HEADERS += \

@@ -25,7 +25,7 @@
 #include <QTranslator>
 #include <QDir>
 #include <QDebug>
-#include <QRegExp>
+#include <QRegularExpression>
 
 class AsemanTranslationManager::Private
 {
@@ -114,15 +114,15 @@ QMap<QString, QVariant> AsemanTranslationManager::translations() const
     QMap<QString, QVariant> res;
     QString path = AsemanTools::urlToLocalPath(p->sourceDirectory);
 
-    QRegExp rx(p->fileName + p->delimiters + QStringLiteral("(\\w+)\\.qm"));
+    QRegularExpression rx(p->fileName + p->delimiters + QStringLiteral("(\\w+)\\.qm"));
     QStringList files = QDir(path).entryList(QStringList()<<QStringLiteral("*.qm"), QDir::Files);
     for(const QString &file: files)
     {
-        int pos = rx.indexIn(file);
-        if (pos < 0)
+        auto i = rx.match(file);
+        if (!i.hasMatch())
             continue;
 
-        QString cap = rx.cap(1);
+        QString cap = i.captured(1);
         res[cap] = QLocale(cap).nativeLanguageName();
     }
 
