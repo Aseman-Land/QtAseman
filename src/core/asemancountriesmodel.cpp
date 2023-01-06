@@ -50,7 +50,9 @@
 #include <QStringList>
 #include <QHash>
 #include <QLocale>
+#ifndef Q_OS_WASM
 #include <QTimeZone>
+#endif
 #include <QDebug>
 
 /*!
@@ -300,7 +302,7 @@ void AsemanCountriesModel::init_buff()
     if( splits.isEmpty() )
         return;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)) && !defined(Q_OS_WASM)
     QString country = QLocale::countryToString(QTimeZone::systemTimeZone().country()).toLower().trimmed().remove(QStringLiteral(" "));
 #else
     QString country;

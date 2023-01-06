@@ -24,13 +24,13 @@
 #include <QDir>
 #include <QHash>
 #include <QSettings>
-#ifndef Q_OS_IOS
+#if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
 #include <QProcess>
 #endif
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QFile>
-#include <QRegularExpression>>
+#include <QRegularExpression>
 #include <QDebug>
 #include <QRegularExpression>
 
@@ -193,7 +193,7 @@ void AsemanMimeApps::openFiles(const QString &app, const QStringList &files)
     if( !mime_apps_items.contains(app) )
         return;
 
-#ifdef Q_OS_IOS
+#if defined(Q_OS_IOS) || defined(Q_OS_WASM)
     Q_UNUSED(files)
 #else
     const AsemanMimeAppsItem & item = mime_apps_items.value(app);

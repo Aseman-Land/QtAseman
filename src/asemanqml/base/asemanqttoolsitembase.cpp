@@ -58,7 +58,7 @@
 #include "asemanqmlimage.h"
 #include "asemantranslationmanager.h"
 #include "asemanitemgrabber.h"
-#ifndef Q_OS_IOS
+#if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
 #include "asemanprocess.h"
 #endif
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
@@ -150,7 +150,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanApplicationItem>(uri, 2,0, "AsemanApplicationBase", exportMode);
     registerType<AsemanKeyHandler>(uri, 2, 0, "KeyHandler", exportMode);
     registerType<AsemanQmlImage>(uri, 2, 0, "AsemanImage", exportMode);
-#ifndef Q_OS_IOS
+#if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
     registerType<AsemanProcess>(uri, 2, 0, "Process", exportMode);
 #endif
     registerType<AsemanTranslationManager>(uri, 2, 0, "TranslationManager", exportMode);

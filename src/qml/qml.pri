@@ -64,10 +64,12 @@ macx {
 ios {
     include(private/quickios/quickios.pri)
 } else {
-    HEADERS += \
-        $$PWD/asemanprocess.h
-    SOURCES += \
-        $$PWD/asemanprocess.cpp
+    !wasm {
+        HEADERS += \
+            $$PWD/asemanprocess.h
+        SOURCES += \
+            $$PWD/asemanprocess.cpp
+    }
 }
 
 DISTFILES +=

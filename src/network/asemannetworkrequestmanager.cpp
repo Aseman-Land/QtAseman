@@ -150,7 +150,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::postForm(AsemanNetworkRe
 #else
     QByteArray data = generateForm(formData).toUtf8();
     QVariantMap newHeaders = headers;
-    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    newHeaders["Content-Type"] = QVariant::fromValue<QString>("multipart/form-data; boundary=" + p->boundaryToken);
     return AsemanNetworkRequestManager::post(request, url, data, newHeaders);
 #endif
 }
@@ -216,7 +216,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethodForm(AsemanN
 #else
     QByteArray data = generateForm(formData).toUtf8();
     QVariantMap newHeaders = headers;
-    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    newHeaders["Content-Type"] = QVariant::fromValue<QString>("multipart/form-data; boundary=" + p->boundaryToken);
     return AsemanNetworkRequestManager::customMethod(request, method, url, data, newHeaders);
 #endif
 }
@@ -282,7 +282,7 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::putForm(AsemanNetworkReq
 #else
     QByteArray data = generateForm(formData).toUtf8();
     QVariantMap newHeaders = headers;
-    newHeaders["Content-Type"] = "multipart/form-data; boundary=" + p->boundaryToken;
+    newHeaders["Content-Type"] = QVariant::fromValue<QString>("multipart/form-data; boundary=" + p->boundaryToken);
     return AsemanNetworkRequestManager::put(request, url, data, newHeaders);
 #endif
 }

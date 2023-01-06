@@ -12,7 +12,7 @@ lessThan(QT_MAJOR_VERSION, 6): { # Deprecated Modules
     SUBDIRS += multimedia
 }
 
-exists($$PWD/httpserver/qhttp/qhttp.pro): SUBDIRS += httpserver
+exists($$PWD/httpserver/qhttp/qhttp.pro): !wasm: SUBDIRS += httpserver
 
 qtHaveModule(positioning): SUBDIRS += geo
 

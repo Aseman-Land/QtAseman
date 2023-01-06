@@ -32,7 +32,7 @@
 #include <QStringList>
 #include <QTextDocument>
 #include <QRegularExpression>
-#ifndef Q_OS_IOS
+#if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
 #include <QProcess>
 #endif
 #include <QTimerEvent>
@@ -486,7 +486,7 @@ QVariantMap AsemanTools::colorHsl(const QColor &clr)
 
 bool AsemanTools::createVideoThumbnail(const QString &video, const QString &output, QString ffmpegPath)
 {
-#ifdef Q_OS_IOS
+#if defined(Q_OS_IOS) || defined(Q_OS_WASM)
     Q_UNUSED(video)
     Q_UNUSED(output)
     Q_UNUSED(ffmpegPath)
