@@ -25,6 +25,7 @@
 #include <QDir>
 #include <QSettings>
 #include <QFileInfo>
+#include <QTimer>
 #include <QDebug>
 
 class AsemanSettingsPrivate
@@ -39,9 +40,25 @@ public:
 AsemanSettings::AsemanSettings(QObject *parent) : QObject(parent)
 {
     p = new AsemanSettingsPrivate;
+
+#ifdef Q_OS_WASM
+    p->settings = new QSettings;
+
+    std::function<void(void)> *testSettingsReady = new std::function<void(void)>();
+    *testSettingsReady = [=](){
+        if (p->settings->status() == QSettings::NoError) {
+            delete testSettingsReady;
+            initProperties();
+        } else {
+            QTimer::singleShot(10, this, *testSettingsReady);
+        }
+    };
+    (*testSettingsReady)();
+#else
     p->settings = 0;
 
     initProperties();
+#endif
 }
 
 void AsemanSettings::setCategory(const QString &category)
@@ -65,6 +82,7 @@ void AsemanSettings::setSource(const QString &source)
         return;
 
     p->source = source;
+#ifndef Q_OS_WASM
     if(p->settings)
         delete p->settings;
 
@@ -75,6 +93,7 @@ void AsemanSettings::setSource(const QString &source)
         p->settings = new QSettings(p->source, QSettings::IniFormat, this);
         initProperties();
     }
+#endif
 
     Q_EMIT sourceChanged();
 }
