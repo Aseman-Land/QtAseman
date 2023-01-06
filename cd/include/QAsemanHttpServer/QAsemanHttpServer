@@ -1,6 +1,0 @@
-#ifndef QT_QASEMANHTTPSERVER_MODULE_H
-#define QT_QASEMANHTTPSERVER_MODULE_H
-#include <QAsemanHttpServer/QAsemanHttpServerDepends>
-#include "asemanhttpserver.h"
-#include "qasemanhttpserverversion.h"
-#endif
