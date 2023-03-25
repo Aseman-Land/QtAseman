@@ -36,6 +36,7 @@
 
 #ifdef Q_OS_MACX
 #include <IOKit/IOKitLib.h>
+#include "asemanmacmanager.h"
 #endif
 
 #include <QTimerEvent>
@@ -63,6 +64,7 @@
 #include <QJsonDocument>
 #include <QThread>
 #include <QStandardPaths>
+#include <QInputMethodQueryEvent>
 
 #ifdef ASEMAN_MULTIMEDIA
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
@@ -82,6 +84,9 @@ public:
 #ifdef Q_OS_ANDROID
     AsemanJavaLayer *java_layer;
     qint32 androidKeyboardHeight;
+#endif
+#ifdef Q_OS_IOS
+    AsemanObjectiveCLayer *objc_layer;
 #endif
 
     bool transparentStatusBar;
@@ -127,6 +132,9 @@ AsemanDevices::AsemanDevices(QObject *parent) :
     });
 #endif
 #ifdef Q_OS_IOS
+   p->objc_layer = new AsemanObjectiveCLayer(this);
+   connect(p->objc_layer, &AsemanObjectiveCLayer::keyboardHeightChanged, this, &AsemanDevices::keyboard_changed);
+
    QTimer *intervalChecks = new QTimer(this);
    intervalChecks->setInterval(1000);
    intervalChecks->setSingleShot(false);
@@ -365,6 +373,9 @@ qreal AsemanDevices::keyboardHeight() const
 #ifdef DESKTOP_DEVICE
     return 0;
 #else
+#ifdef Q_OS_IOS
+    return p->objc_layer->keyboardHeight();
+#else
     const QSize & scr_size = screenSize();
     bool portrait = scr_size.width()<scr_size.height();
     if( portrait )
@@ -381,6 +392,7 @@ qreal AsemanDevices::keyboardHeight() const
         else
             return screenSize().height()*0.5;
     }
+#endif
 #endif
 #endif
 #endif
@@ -1032,6 +1044,36 @@ QStringList AsemanDevices::getLastImages(qint32 offset, qint32 count)
 #endif
 }
 
+void AsemanDevices::setupImEventFilter(QObject *item)
+{
+    class ImFixer: public QObject {
+    protected:
+        bool eventFilter(QObject *obj, QEvent *event) override {
+            if (event->type() == QEvent::InputMethodQuery) {
+                QInputMethodQueryEvent *imEvt = static_cast<QInputMethodQueryEvent *>(event);
+                if (imEvt->queries() == Qt::InputMethodQuery::ImCursorRectangle) {
+                    imEvt->setValue(Qt::InputMethodQuery::ImCursorRectangle, QRectF());
+                    return true;
+                }
+            }
+            return QObject::eventFilter(obj, event);
+        }
+    };
+    static thread_local ImFixer imf;
+    item->installEventFilter(&imf);
+}
+
+void AsemanDevices::setupWindowColor(QColor color)
+{
+#ifdef Q_OS_MACX
+    QTimer::singleShot(100, [color](){
+        AsemanMacManager::removeTitlebarFromWindow(color.redF(), color.greenF(), color.blueF());
+    });
+#else
+    Q_UNUSED(color)
+#endif
+}
+
 void AsemanDevices::hideKeyboard()
 {
     if( p->hide_keyboard_timer )
@@ -1224,6 +1266,7 @@ void AsemanDevices::activity_resumed()
 void AsemanDevices::keyboard_changed()
 {
     Q_EMIT keyboardChanged();
+    Q_EMIT geometryChanged();
 }
 
 void AsemanDevices::timerEvent(QTimerEvent *e)

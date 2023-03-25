@@ -23,6 +23,7 @@
 #include <QUrl>
 #include <QSize>
 #include <QVariantMap>
+#include <QColor>
 
 #include "asemangui_global.h"
 #include <functional>
@@ -214,6 +215,9 @@ public Q_SLOTS:
     void setClipboardData(AsemanMimeData *mime);
 
     QStringList getLastImages(qint32 offset, qint32 count);
+
+    void setupImEventFilter(QObject *item);
+    void setupWindowColor(QColor color);
 
     virtual QString startCameraPicture();
     virtual bool getOpenPictures();

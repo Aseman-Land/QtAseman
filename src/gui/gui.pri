@@ -47,9 +47,17 @@ ios {
     HEADERS += \
         $$PWD/asemanobjectiveclayer.h
 
+    LIBS += -framework SafariServices -lobjc
     disable-ios-contacts-support {
         DEFINES += DISABLE_IOS_CONTACTS_SUPPORT
     } else {
-        LIBS +=  -framework Contacts -lobjc
+        LIBS += -framework Contacts
     }
+}
+
+macx {
+    HEADERS += \
+        $$PWD/asemanmacmanager.h
+    SOURCES += \
+        $$PWD/asemanmacmanager.mm
 }

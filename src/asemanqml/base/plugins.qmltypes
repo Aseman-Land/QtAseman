@@ -685,6 +685,14 @@ Module {
             Parameter { name: "offset"; type: "int" }
             Parameter { name: "count"; type: "int" }
         }
+        Method {
+            name: "setupImEventFilter"
+            Parameter { name: "object"; type: "QObject"; isPointer: true }
+        }
+        Method {
+            name: "setupWindowColor"
+            Parameter { name: "color"; type: "QColor" }
+        }
         Method { name: "startCameraPicture"; type: "string" }
         Method { name: "getOpenPictures"; type: "bool" }
         Method {
@@ -1553,6 +1561,11 @@ Module {
             name: "dateFromSec"
             type: "QDateTime"
             Parameter { name: "date"; type: "qlonglong" }
+        }
+        Method {
+            name: "daysToDate"
+            type: "QDateTime"
+            Parameter { name: "date"; type: "int" }
         }
         Method {
             name: "dateToString"

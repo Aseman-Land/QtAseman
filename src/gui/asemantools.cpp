@@ -120,6 +120,11 @@ QDate AsemanTools::dateAddDays(const QDate &date, int days)
     return date.addDays(days);
 }
 
+QDateTime AsemanTools::daysToDate(qint32 days)
+{
+    return QDateTime(QDate::fromJulianDay(days), QTime(0,0,0));
+}
+
 QStringList AsemanTools::toStringList(const QVariant &value)
 {
     return value.toStringList();

@@ -2,13 +2,52 @@
 #include "asemantools.h"
 
 #import <UIKit/UIKit.h>
+#import <SafariServices/SafariServices.h>
+#import <Foundation/Foundation.h>
+
 #ifndef DISABLE_IOS_CONTACTS_SUPPORT
 #import <Contacts/Contacts.h>
 #endif
 
-AsemanObjectiveCLayer::AsemanObjectiveCLayer()
+#include <QSet>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QDebug>
+#include <QTimer>
+#include <QEventLoop>
+
+QSet<AsemanObjectiveCLayer*> ObjectiveCLayer_mObjects;
+
+@interface AsemanObjectiveCLayer_core : NSObject;
+@end
+
+@implementation AsemanObjectiveCLayer_core
+
+#pragma mark - Methods
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGFloat height = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    for (auto o: ObjectiveCLayer_mObjects)
+        o->setKeyboardHeight(height);
+}
+
+@end
+
+
+AsemanObjectiveCLayer::AsemanObjectiveCLayer(QObject *parent)
+    : QObject(parent)
 {
 
+    ObjectiveCLayer_mObjects.insert(this);
+    AsemanObjectiveCLayer_core *core = [AsemanObjectiveCLayer_core alloc];
+
+    [[NSNotificationCenter defaultCenter] addObserver:core selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+AsemanObjectiveCLayer::~AsemanObjectiveCLayer()
+{
+    ObjectiveCLayer_mObjects.remove(this);
 }
 
 qreal AsemanObjectiveCLayer::statusBarHeight()
@@ -85,3 +124,43 @@ QString AsemanObjectiveCLayer::deviceId()
     return QString::fromNSString(currentDeviceId);
 }
 
+bool AsemanObjectiveCLayer::openUrlInSafari(const QString &str)
+{
+    auto url = QUrl(str).toNSURL();
+
+    if ([SFSafariViewController class]) {
+
+        QEventLoop loop;
+
+        UIViewController *controller = [UIApplication sharedApplication].keyWindow.rootViewController;
+        SFSafariViewController *viewController = [[SFSafariViewController alloc] initWithURL:url];
+        [controller presentViewController:viewController animated:YES completion: nil];
+
+        auto t = new QTimer;
+        t->connect(t, &QTimer::timeout, [&](){
+            if (viewController.beingDismissed)
+                loop.exit();
+        });
+        t->start(100);
+
+        loop.exec();
+
+        delete t;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+qreal AsemanObjectiveCLayer::keyboardHeight() const
+{
+    return mKeyboardHeight;
+}
+
+void AsemanObjectiveCLayer::setKeyboardHeight(const qreal &keyboardHeight)
+{
+    if (mKeyboardHeight == keyboardHeight)
+        return;
+    mKeyboardHeight = keyboardHeight;
+    Q_EMIT keyboardHeightChanged();
+}

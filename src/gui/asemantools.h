@@ -67,6 +67,7 @@ public Q_SLOTS:
     static QDateTime datefromString(const QString &dt, const QString &format = QString());
     static QString msecToTimeString(qint32 msec, const QString &format = QString());
     static QDate dateAddDays(const QDate &date, int days);
+    static QDateTime daysToDate(qint32 days);
 
     static QStringList toStringList(const QVariant &value);
     static QVariantMap toVariantMap(const QVariant &value);
