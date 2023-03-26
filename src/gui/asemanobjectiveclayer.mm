@@ -152,6 +152,15 @@ bool AsemanObjectiveCLayer::openUrlInSafari(const QString &str)
     }
 }
 
+void AsemanObjectiveCLayer::triggerVibrateFeedback()
+{
+    // Create an instance of the feedback generator
+    auto generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+
+    // Trigger the feedback
+    [generator impactOccurred];
+}
+
 qreal AsemanObjectiveCLayer::keyboardHeight() const
 {
     return mKeyboardHeight;

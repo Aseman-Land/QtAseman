@@ -222,6 +222,8 @@ public Q_SLOTS:
     virtual QString startCameraPicture();
     virtual bool getOpenPictures();
 
+    void triggerVibrateFeedback();
+
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
     void incomingImage( const QString & path );

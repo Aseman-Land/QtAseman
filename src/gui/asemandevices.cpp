@@ -1204,6 +1204,13 @@ bool AsemanDevices::getOpenPictures()
 #endif
 }
 
+void AsemanDevices::triggerVibrateFeedback()
+{
+#ifdef Q_OS_IOS
+    p->objc_layer->triggerVibrateFeedback();
+#endif
+}
+
 QVariantList AsemanDevices::getContactList(std::function<void(const QVariantList &)> asyncCallback)
 {
     QVariantList res;

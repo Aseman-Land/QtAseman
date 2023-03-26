@@ -22,6 +22,7 @@ public:
     static void sharePaper(const QString &text);
     static QString deviceId();
     static bool openUrlInSafari(const QString &str);
+    static void triggerVibrateFeedback();
 
     qreal keyboardHeight() const;
     void setKeyboardHeight(const qreal &keyboardHeight);
