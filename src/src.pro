@@ -9,12 +9,14 @@ SUBDIRS = \
     sql
 
 lessThan(QT_MAJOR_VERSION, 6): { # Deprecated Modules
-    SUBDIRS += multimedia
+    SUBDIRS += \
+        multimedia \
+        geo
 }
 
 exists($$PWD/httpserver/qhttp/qhttp.pro): !wasm: SUBDIRS += httpserver
 
-qtHaveModule(positioning): SUBDIRS += geo
+qtHaveModule(positioning):
 
 SUBDIRS += \
     asemanqml \
