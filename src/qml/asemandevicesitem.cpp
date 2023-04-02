@@ -51,10 +51,10 @@ bool AsemanDevicesItem::getOpenPictures()
     p->java_layer->getOpenPictures();
     return true;
 #elif defined(Q_OS_IOS)
-    QIImagePicker *picker = new QIImagePicker(this);
+    auto picker = new QIImagePicker(this);
 
     connect(picker, &QIImagePicker::referenceUrlChanged, this, [picker](){
-        QString tempPath = AsemanApplication::tempPath() + QStringLiteral("/aseman-ios-picker");
+        QString tempPath = AsemanApplication::tempPath() + '/' + QUuid::createUuid().toString(QUuid::WithoutBraces);
         if (picker->referenceUrl().toLower().contains(QStringLiteral("png")))
             tempPath += QStringLiteral(".png");
         else
