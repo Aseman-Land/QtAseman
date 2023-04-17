@@ -35,13 +35,21 @@
 class AsemanNetworkRequestManager::Private
 {
 public:
+#ifdef Q_OS_WASM
+    static QNetworkAccessManager *accessManager;
+#else
     QNetworkAccessManager *accessManager;
+#endif
     QString boundaryToken;
     static int fullLog_env;
     bool ignoreSslErrors;
 };
 
 int AsemanNetworkRequestManager::Private::fullLog_env = -1;
+
+#ifdef Q_OS_WASM
+QNetworkAccessManager *AsemanNetworkRequestManager::Private::accessManager = nullptr;
+#endif
 
 AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
     QObject(parent)
@@ -58,7 +66,12 @@ AsemanNetworkRequestManager::AsemanNetworkRequestManager(QObject *parent) :
 
     p->boundaryToken = QStringLiteral("Aseman:292a15d1-64af-4ee2-82b5-2d42adb9fd43");
 
+#ifdef Q_OS_WASM
+    if (!p->accessManager)
+        p->accessManager = new QNetworkAccessManager;
+#else
     p->accessManager = new QNetworkAccessManager(this);
+#endif
 }
 
 AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequestObject *request, const QUrl &_url, const QVariantMap &keys, const QVariantMap &headers)
