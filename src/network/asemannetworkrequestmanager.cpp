@@ -96,6 +96,16 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::get(AsemanNetworkRequest
 
     addHeaderData(req, headers);
 
+    switch (request->contentType())
+    {
+    case AsemanNetworkRequestObject::TypeWWWForm:
+        req.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        break;
+    case AsemanNetworkRequestObject::TypeJson:
+        req.setRawHeader("Content-Type", "application/json");
+        break;
+    }
+
     QNetworkReply *reply = p->accessManager->get(req);
     AsemanNetworkRequestReply *reqReply = new AsemanNetworkRequestReply(p->ignoreSslErrors || request->ignoreSslErrors(), reply);
 
@@ -115,6 +125,16 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::post(AsemanNetworkReques
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
+
+    switch (request->contentType())
+    {
+    case AsemanNetworkRequestObject::TypeWWWForm:
+        req.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        break;
+    case AsemanNetworkRequestObject::TypeJson:
+        req.setRawHeader("Content-Type", "application/json");
+        break;
+    }
 
     if (Private::fullLog_env)
         qDebug() << "QtAseman::Network, POST url:" << url.toString() << "data-length:" << data.length();
@@ -182,6 +202,16 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::customMethod(AsemanNetwo
 
     addHeaderData(req, headers);
 
+    switch (request->contentType())
+    {
+    case AsemanNetworkRequestObject::TypeWWWForm:
+        req.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        break;
+    case AsemanNetworkRequestObject::TypeJson:
+        req.setRawHeader("Content-Type", "application/json");
+        break;
+    }
+
     if (Private::fullLog_env)
         qDebug() << "QtAseman::Network, " + method.toUpper().toUtf8() + " url:" << url.toString() << "data-length:" << data.length();
 
@@ -247,6 +277,16 @@ AsemanNetworkRequestReply *AsemanNetworkRequestManager::put(AsemanNetworkRequest
     req.setHeader(QNetworkRequest::ContentLengthHeader, QString::number(data.size()).toUtf8());
 
     addHeaderData(req, headers);
+
+    switch (request->contentType())
+    {
+    case AsemanNetworkRequestObject::TypeWWWForm:
+        req.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        break;
+    case AsemanNetworkRequestObject::TypeJson:
+        req.setRawHeader("Content-Type", "application/json");
+        break;
+    }
 
     if (Private::fullLog_env)
         qDebug() << "QtAseman::Network, PUT url:" << url.toString() << "data-length:" + QString::number(data.size());
