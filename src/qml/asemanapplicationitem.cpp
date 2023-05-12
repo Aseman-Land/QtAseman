@@ -109,6 +109,9 @@ AsemanApplicationItem::AsemanApplicationItem() :
         });
     }
 #endif
+
+    if (AsemanApplicationItemPrivate::peer)
+        connect(AsemanApplicationItemPrivate::peer, &QtLocalPeer::messageReceived, this, &AsemanApplicationItem::messageReceived);
 }
 
 bool AsemanApplicationItem::aseman_app_init()

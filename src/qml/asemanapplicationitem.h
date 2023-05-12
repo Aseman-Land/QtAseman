@@ -74,7 +74,7 @@ public:
     void setStatusBarStyle(int statusBarStyle);
 
 public Q_SLOTS:
-    void sendMessage(const QString &msg);
+    static void sendMessage(const QString &msg);
 
     bool checkPermissions(const QString &persmission);
     QVariantMap requestPermissions(QStringList persmissions, QJSValue callback);
