@@ -48,6 +48,7 @@ ios {
         $$PWD/asemanobjectiveclayer.h
 
     LIBS += -framework SafariServices -lobjc
+    LIBS += -framework LocalAuthentication
     disable-ios-contacts-support {
         DEFINES += DISABLE_IOS_CONTACTS_SUPPORT
     } else {
@@ -60,4 +61,5 @@ macx {
         $$PWD/asemanmacmanager.h
     SOURCES += \
         $$PWD/asemanmacmanager.mm
+    LIBS += -framework LocalAuthentication
 }

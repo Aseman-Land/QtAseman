@@ -88,6 +88,7 @@ class LIBQTASEMAN_GUI_EXPORT AsemanDevices : public QObject
     Q_PROPERTY(QList<QUrl> clipboardUrl READ clipboardUrl WRITE setClipboardUrl NOTIFY clipboardUrlChanged)
 
     Q_PROPERTY(bool keyboard READ keyboard NOTIFY keyboardChanged)
+    Q_PROPERTY(bool hasBiometric READ hasBiometric NOTIFY hasBiometricChanged)
 
     Q_PROPERTY(QString cameraLocation    READ cameraLocation    NOTIFY cameraLocationChanged    )
     Q_PROPERTY(QString picturesLocation  READ picturesLocation  NOTIFY picturesLocationChanged  )
@@ -200,6 +201,8 @@ public:
 
     QVariantMap deviceDetails();
 
+    bool hasBiometric();
+
     static QVariantList getContactList(std::function<void(const QVariantList &res)> asyncCallback = Q_NULLPTR);
 
 public Q_SLOTS:
@@ -223,6 +226,8 @@ public Q_SLOTS:
     virtual bool getOpenPictures();
 
     void triggerVibrateFeedback();
+
+    bool biometricCheck();
 
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
@@ -264,6 +269,7 @@ Q_SIGNALS:
     void lcdDpiYChanged();
 
     void geometryChanged();
+    void hasBiometricChanged();
 
     void transparentStatusBarChanged();
     void transparentNavigationBarChanged();

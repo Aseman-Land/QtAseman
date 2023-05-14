@@ -1035,6 +1035,28 @@ QVariantMap AsemanDevices::deviceDetails()
     return map;
 }
 
+bool AsemanDevices::hasBiometric()
+{
+#if defined(Q_OS_IOS)
+    return p->objc_layer->hasBiometric();
+#elif defined(Q_OS_MACOS)
+    return TonToolkitMacManager::hasBiometric();
+#else
+    return false;
+#endif
+}
+
+bool AsemanDevices::biometricCheck()
+{
+#if defined(Q_OS_IOS)
+    return p->objc_layer->biometricCheck();
+#elif defined(Q_OS_MACOS)
+    return TonToolkitMacManager::biometricCheck();
+#else
+    return false;
+#endif
+}
+
 QStringList AsemanDevices::getLastImages(qint32 offset, qint32 count)
 {
 #ifdef Q_OS_ANDROID

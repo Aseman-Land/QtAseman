@@ -4,6 +4,7 @@
 #import <UIKit/UIKit.h>
 #import <SafariServices/SafariServices.h>
 #import <Foundation/Foundation.h>
+#import <LocalAuthentication/LocalAuthentication.h>
 
 #ifndef DISABLE_IOS_CONTACTS_SUPPORT
 #import <Contacts/Contacts.h>
@@ -175,4 +176,44 @@ void AsemanObjectiveCLayer::setKeyboardHeight(const qreal &keyboardHeight)
         return;
     mKeyboardHeight = keyboardHeight;
     Q_EMIT keyboardHeightChanged();
+}
+
+bool AsemanObjectiveCLayer::hasBiometric()
+{
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool AsemanObjectiveCLayer::biometricCheck()
+{
+    LAContext *context = [[LAContext alloc] init];
+    NSError *error = nil;
+
+    if (![context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error])
+        return false;
+
+    auto res = new bool;
+    auto loop = new QEventLoop;
+    [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+              localizedReason:@"Authenticating"
+                        reply:^(BOOL success, NSError *error) {
+        if (success) {
+            *res = true;
+        } else {
+            *res = false;
+        }
+        loop->exit();
+    }];
+
+    loop->exec();
+    auto r = *res;
+    delete loop;
+    delete res;
+    return r;
 }

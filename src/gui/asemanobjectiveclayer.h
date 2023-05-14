@@ -24,6 +24,9 @@ public:
     static bool openUrlInSafari(const QString &str);
     static void triggerVibrateFeedback();
 
+    static bool hasBiometric();
+    static bool biometricCheck();
+
     qreal keyboardHeight() const;
     void setKeyboardHeight(const qreal &keyboardHeight);
 
