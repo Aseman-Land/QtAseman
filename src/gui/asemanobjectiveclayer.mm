@@ -15,7 +15,12 @@
 #include <QDesktopServices>
 #include <QDebug>
 #include <QTimer>
+
+#ifdef NONBLOCK_BIOMETRIC_METHOD
 #include <QEventLoop>
+#else
+#include <QSemaphore>
+#endif
 
 QSet<AsemanObjectiveCLayer*> ObjectiveCLayer_mObjects;
 
@@ -36,11 +41,59 @@ QSet<AsemanObjectiveCLayer*> ObjectiveCLayer_mObjects;
 @end
 
 
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@end
+
+class AsemanObjectiveCLayer::Private
+{
+public:
+    AppDelegate *appDelegate;
+};
+
+@implementation AppDelegate
+
+- (void)handleDeepLink:(NSURL *)deepLinkURL {
+    // Handle the deep link URL here
+
+    for (auto o: ObjectiveCLayer_mObjects) {
+        NSString *urlString = [deepLinkURL absoluteString];
+        auto str = QString::fromNSString(urlString);
+        QMetaObject::invokeMethod(o, "deepLinkReceived", Qt::QueuedConnection, Q_ARG(QString, str));
+    }
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Check if the app was launched from a deep link
+    NSURL *deepLinkURL = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    if (deepLinkURL) {
+        [self handleDeepLink:deepLinkURL];
+    }
+
+    // Other code...
+
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    // Handle the deep link
+    [self handleDeepLink:url];
+
+    // Return YES if the deep link was successfully handled, or NO otherwise
+    return YES;
+}
+
+@end
+
 AsemanObjectiveCLayer::AsemanObjectiveCLayer(QObject *parent)
     : QObject(parent)
 {
-
     ObjectiveCLayer_mObjects.insert(this);
+
+    p = new Private;
+    p->appDelegate = [[AppDelegate alloc] init];
+    [[UIApplication sharedApplication] setDelegate:p->appDelegate];
+
     AsemanObjectiveCLayer_core *core = [AsemanObjectiveCLayer_core alloc];
 
     [[NSNotificationCenter defaultCenter] addObserver:core selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -49,6 +102,7 @@ AsemanObjectiveCLayer::AsemanObjectiveCLayer(QObject *parent)
 AsemanObjectiveCLayer::~AsemanObjectiveCLayer()
 {
     ObjectiveCLayer_mObjects.remove(this);
+    delete p;
 }
 
 qreal AsemanObjectiveCLayer::statusBarHeight()
@@ -199,7 +253,11 @@ bool AsemanObjectiveCLayer::biometricCheck()
         return false;
 
     auto res = new bool;
+#ifdef NONBLOCK_BIOMETRIC_METHOD
     auto loop = new QEventLoop;
+#else
+    auto semaphore = new QSemaphore;
+#endif
     [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
               localizedReason:@"Authenticating"
                         reply:^(BOOL success, NSError *error) {
@@ -208,12 +266,21 @@ bool AsemanObjectiveCLayer::biometricCheck()
         } else {
             *res = false;
         }
+#ifdef NONBLOCK_BIOMETRIC_METHOD
         loop->exit();
+#else
+        semaphore->release(1);
+#endif
     }];
 
+#ifdef NONBLOCK_BIOMETRIC_METHOD
     loop->exec();
-    auto r = *res;
     delete loop;
+#else
+    semaphore->acquire(1);
+    delete semaphore;
+#endif
+    auto r = *res;
     delete res;
     return r;
 }

@@ -11,7 +11,10 @@ class AsemanObjectiveCLayer: public QObject
 {
     Q_OBJECT
     Q_PROPERTY(qreal keyboardHeight READ keyboardHeight WRITE setKeyboardHeight NOTIFY keyboardHeightChanged)
+
 public:
+    class Private;
+
     AsemanObjectiveCLayer(QObject *parent = nullptr);
     virtual ~AsemanObjectiveCLayer();
 
@@ -32,9 +35,11 @@ public:
 
 Q_SIGNALS:
     void keyboardHeightChanged();
+    void deepLinkReceived(const QString &link);
 
 private:
     qreal mKeyboardHeight = 0;
+    Private *p;
 };
 
 typedef AsemanObjectiveCLayer QAsemanObjectiveCLayer;

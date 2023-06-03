@@ -88,6 +88,9 @@ public:
 #ifdef Q_OS_IOS
     AsemanObjectiveCLayer *objc_layer;
 #endif
+#ifdef Q_OS_MACX
+    AsemanMacManager *mac_layer;
+#endif
 
     bool transparentStatusBar;
     bool transparentNavigationBar;
@@ -119,6 +122,7 @@ AsemanDevices::AsemanDevices(QObject *parent) :
 
     connect( p->java_layer, &AsemanJavaLayer::incomingShare, this, &AsemanDevices::incoming_share, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::incomingImage, this, &AsemanDevices::incomingImage, Qt::QueuedConnection );
+    connect( p->java_layer, &AsemanJavaLayer::deepLinkReceived, this, &AsemanDevices::deepLinkReceived, Qt::QueuedConnection);
     connect( p->java_layer, &AsemanJavaLayer::selectImageResult, this, &AsemanDevices::selectImageResult, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityPaused, this, &AsemanDevices::activity_paused, Qt::QueuedConnection );
     connect( p->java_layer, &AsemanJavaLayer::activityResumed, this, &AsemanDevices::activity_resumed, Qt::QueuedConnection );
@@ -134,6 +138,7 @@ AsemanDevices::AsemanDevices(QObject *parent) :
 #ifdef Q_OS_IOS
    p->objc_layer = new AsemanObjectiveCLayer(this);
    connect(p->objc_layer, &AsemanObjectiveCLayer::keyboardHeightChanged, this, &AsemanDevices::keyboard_changed);
+   connect(p->objc_layer, &AsemanObjectiveCLayer::deepLinkReceived, this, &AsemanDevices::deepLinkReceived);
 
    QTimer *intervalChecks = new QTimer(this);
    intervalChecks->setInterval(1000);
@@ -148,6 +153,10 @@ AsemanDevices::AsemanDevices(QObject *parent) :
        Q_EMIT statusBarHeightChanged();
    });
    intervalChecks->start();
+#endif
+#ifdef Q_OS_MACX
+   p->mac_layer = new AsemanMacManager(this);
+   connect(p->mac_layer, &AsemanMacManager::deepLinkReceived, this, &AsemanDevices::deepLinkReceived);
 #endif
 
     connect( QGuiApplication::inputMethod(), &QInputMethod::visibleChanged, this, &AsemanDevices::keyboard_changed);
@@ -1088,8 +1097,8 @@ void AsemanDevices::setupImEventFilter(QObject *item)
 void AsemanDevices::setupWindowColor(QColor color)
 {
 #ifdef Q_OS_MACX
-    QTimer::singleShot(100, [color](){
-        AsemanMacManager::removeTitlebarFromWindow(color.redF(), color.greenF(), color.blueF());
+    QTimer::singleShot(100, [color, this](){
+        p->mac_layer->removeTitlebarFromWindow(color.redF(), color.greenF(), color.blueF());
     });
 #else
     Q_UNUSED(color)

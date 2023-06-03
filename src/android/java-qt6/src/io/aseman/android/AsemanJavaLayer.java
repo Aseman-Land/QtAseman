@@ -67,6 +67,7 @@ public class AsemanJavaLayer
 {
     private static native void _sendNote( String title, String msg );
     private static native void _sendImage( String path );
+    private static native void _sendDeepLink(String link);
     private static native void _activityPaused();
     private static native void _activityStopped();
     private static native void _activityResumed();
@@ -113,6 +114,11 @@ public class AsemanJavaLayer
     public static void keyboardVisiblityChanged(int height){
         if(implemented)
             _keyboardVisiblityChanged(height);
+    }
+
+    public static void sendDeepLink(String link){
+        if(implemented)
+            _sendDeepLink(link);
     }
 
     public static void sendNote( String title, String msg ) {

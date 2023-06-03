@@ -232,6 +232,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void incomingShare( const QString & title, const QString & msg );
     void incomingImage( const QString & path );
+    void deepLinkReceived(const QString &link);
     void selectImageResult( const QString & path );
     void activityPaused();
     void activityResumed();

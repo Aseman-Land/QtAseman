@@ -46,6 +46,7 @@ typedef QJniObject QAndroidJniObject;
 static QSet<AsemanJavaLayer*> java_layers_objects;
 static QList< QPair<QString,QString> > java_layer_inc_share_buffer;
 static QList< QString > java_layer_inc_image_buffer;
+static QList< QString > java_layer_inc_deeplinks_buffer;
 
 static bool aseman_jlayer_registerNativeMethods();
 static bool aseman_jlayer_native_methods_registered = aseman_jlayer_registerNativeMethods();
@@ -380,6 +381,11 @@ void AsemanJavaLayer::load_buffer()
         const QPair<QString,QString> & pair = java_layer_inc_share_buffer.takeFirst();
         Q_EMIT incomingShare( pair.first, pair.second );
     }
+    while( !java_layer_inc_deeplinks_buffer.isEmpty() )
+    {
+        const auto & link = java_layer_inc_deeplinks_buffer.takeFirst();
+        Q_EMIT deepLinkReceived(link);
+    }
 }
 
 void AsemanJavaLayer::setImplemented(bool stt)
@@ -407,6 +413,19 @@ static void noteRecieved( JNIEnv *env, jobject obj ,jstring title, jstring msg )
 
     if( java_layers_objects.isEmpty() )
         java_layer_inc_share_buffer << QPair<QString,QString>( QString(t), QString(m) );
+}
+
+static void deepLinkReceived( JNIEnv *env, jobject obj ,jstring link)
+{
+    Q_UNUSED(obj)
+    jboolean a;
+    const char *l = env->GetStringUTFChars(link,&a);
+
+    for(AsemanToniumJavaLayer *sjl: java_layers_objects)
+        Q_EMIT sjl->deepLinkReceived(QString(l));
+
+    if( java_layers_objects.isEmpty() )
+        java_layer_inc_deeplinks_buffer << QString(l);
 }
 
 static void imageRecieved( JNIEnv *env, jobject obj ,jstring jpath )
@@ -497,6 +516,7 @@ bool aseman_jlayer_registerNativeMethods() {
 
     JNINativeMethod methods[] {{"_sendNote", "(Ljava/lang/String;Ljava/lang/String;)V", reinterpret_cast<void *>(noteRecieved)},
                                {"_sendImage", "(Ljava/lang/String;)V", reinterpret_cast<void *>(imageRecieved)},
+                               {"_sendDeepLink", "(Ljava/lang/String;)V", reinterpret_cast<void *>(deepLinkReceived)},
                                {"_selectImageResult", "(Ljava/lang/String;)V", reinterpret_cast<void *>(selectImageResult)},
                                {"_activityPaused", "()V", reinterpret_cast<void *>(activityPaused)},
                                {"_activityStopped", "()V", reinterpret_cast<void *>(activityStopped)},
