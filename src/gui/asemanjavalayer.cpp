@@ -421,7 +421,7 @@ static void deepLinkReceived( JNIEnv *env, jobject obj ,jstring link)
     jboolean a;
     const char *l = env->GetStringUTFChars(link,&a);
 
-    for(AsemanToniumJavaLayer *sjl: java_layers_objects)
+    for(AsemanJavaLayer *sjl: java_layers_objects)
         Q_EMIT sjl->deepLinkReceived(QString(l));
 
     if( java_layers_objects.isEmpty() )
