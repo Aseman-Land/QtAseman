@@ -38,7 +38,7 @@
 #include <QQmlEngine>
 #include <QGuiApplication>
 
-#ifdef Q_OS_ANDROID
+#if defined(Q_OS_ANDROID) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include <QtAndroid>
 #endif
 #ifdef Q_OS_IOS
@@ -226,7 +226,7 @@ void AsemanApplicationItem::sendMessage(const QString &msg)
 #ifdef QT_QML_LIB
 bool AsemanApplicationItem::checkPermissions(const QString &persmission)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     if (QtAndroid::checkPermission(persmission) == QtAndroid::PermissionResult::Granted)
         return true;
     else
@@ -243,7 +243,7 @@ QVariantMap AsemanApplicationItem::requestPermissions(QStringList persmissions, 
 {
     QVariantMap _res;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined (Q_OS_ANDROID) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     auto c_callback = [callback](const QtAndroid::PermissionResultMap &res) -> QVariantMap {
         QVariantMap map;
 

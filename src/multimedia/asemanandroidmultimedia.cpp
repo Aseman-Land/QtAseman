@@ -19,8 +19,6 @@
 #include "asemanandroidmultimedia.h"
 
 #include <QDebug>
-#include <QAndroidJniEnvironment>
-#include <QAndroidJniObject>
 #include <QSet>
 #include <QPair>
 #include <QList>
@@ -34,6 +32,16 @@
 #include <QColor>
 
 #include <jni.h>
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#include <QJniEnvironment>
+#include <QJniObject>
+typedef QJniEnvironment QAndroidJniEnvironment;
+typedef QJniObject QAndroidJniObject;
+#else
+#include <QAndroidJniEnvironment>
+#include <QAndroidJniObject>
+#endif
 
 static QSet<AsemanAndroidMultimedia*> android_multimedia_objects;
 static QList< QPair<QString,QString> > java_layer_inc_share_buffer;

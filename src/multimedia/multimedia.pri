@@ -21,7 +21,7 @@ SOURCES += \
     $$PWD/asemanmultimediadatabase.cpp
 
 android: {
-    QT += androidextras
+    lessThan(QT_MAJOR_VERSION, 6) QT += androidextras
     HEADERS += \
         $$PWD/private/asemanandroidcameracapturecore.h \
         $$PWD/asemanandroidmultimedia.h

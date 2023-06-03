@@ -19,14 +19,22 @@
 #include "asemanandroidlocationlistenercore.h"
 
 #include <QDebug>
-#include <QAndroidJniEnvironment>
-#include <QAndroidJniObject>
 #include <QPointer>
 #include <QString>
 #include <QThread>
 #include <QCoreApplication>
 
 #include <jni.h>
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#include <QJniEnvironment>
+#include <QJniObject>
+typedef QJniEnvironment QAndroidJniEnvironment;
+typedef QJniObject QAndroidJniObject;
+#else
+#include <QAndroidJniEnvironment>
+#include <QAndroidJniObject>
+#endif
 
 QHash<jobject, AsemanAndroidLocationListenerCore*> android_location_listener_objects;
 

@@ -1,6 +1,6 @@
 
 android {
-    QT += androidextras
+    lessThan(QT_MAJOR_VERSION, 6) QT += androidextras
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD
 
     OTHER_FILES += \

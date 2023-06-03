@@ -15,7 +15,7 @@ SOURCES += \
     $$PWD/private/asemanqtlocationlistenercore.cpp
 
 android: {
-    QT += androidextras
+    lessThan(QT_MAJOR_VERSION, 6) QT += androidextras
     HEADERS += \
         $$PWD/private/asemanandroidlocationlistenercore.h
     SOURCES += \

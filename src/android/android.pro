@@ -1,3 +1,8 @@
 TEMPLATE = subdirs
 CONFIG   += ordered
-SUBDIRS  = java 
+
+lessThan(QT_MAJOR_VERSION, 6) {
+    SUBDIRS  = java
+} else {
+    SUBDIRS  = java-qt6
+}
