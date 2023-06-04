@@ -1,0 +1,6 @@
+module AsemanQml.GraphicalEffects
+Colorize 2.0 Colorize.qml
+DropShadow 2.0 DropShadow.qml
+FastBlur 2.0 FastBlur.qml
+OpacityMask 2.0 OpacityMask.qml
+ThresholdMask 2.0 ThresholdMask.qml
