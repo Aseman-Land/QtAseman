@@ -93,7 +93,7 @@ AsemanObjectiveCLayer::AsemanObjectiveCLayer(QObject *parent)
     p->appDelegate = [[AppDelegate alloc] init];
     [[UIApplication sharedApplication] setDelegate:p->appDelegate];
 
-    AsemanObjectiveCLayer_core *core = [AsemanObjectiveCLayer_core alloc];
+    static AsemanObjectiveCLayer_core *core = [AsemanObjectiveCLayer_core alloc];
 
     [[NSNotificationCenter defaultCenter] addObserver:core selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
