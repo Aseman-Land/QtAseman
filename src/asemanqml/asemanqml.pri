@@ -1,5 +1,6 @@
 
 include(base/base.pri)
+include(graphicaleffects/graphicaleffects.pri)
 
 contains(ASEMAN_QML_MODULES, awesome) {
     include(awesome/awesome.pri)

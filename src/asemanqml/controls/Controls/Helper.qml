@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import AsemanQml.Base 2.0
-import QtGraphicalEffects 1.0
+import AsemanQml.GraphicalEffects 2.0
 import QtQuick.Controls 2.1 as QtControls
 import QtQuick.Layouts 1.2 as QtLayouts
 

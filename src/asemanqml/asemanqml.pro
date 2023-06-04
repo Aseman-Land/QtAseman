@@ -4,6 +4,7 @@ SUBDIRS += \
     base \
     awesome \
     materialicons \
+    graphicaleffects \
     widgets \
     modern \
     controls \
@@ -14,7 +15,6 @@ SUBDIRS += \
 
 
 greaterThan(QT_MAJOR_VERSION, 5) {
-    SUBDIRS += graphicaleffects
 } else {
     SUBDIRS += multimedia
 }
