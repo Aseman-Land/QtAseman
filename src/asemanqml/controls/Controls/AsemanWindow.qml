@@ -53,7 +53,7 @@ ApplicationWindow {
 
     Connections {
         target: AsemanApp
-        onBackRequest: {
+        function onBackRequest() {
             if(timer_delayer.running)
                 return
 

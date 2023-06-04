@@ -45,8 +45,6 @@ void AsemanQtToolsItemGraphicalEffects::registerFiles(const QString &filesLocati
         QStringList lines = QString::fromUtf8(file.readAll()).split(QStringLiteral("\n"), Qt::SkipEmptyParts);
         file.close();
 
-        qDebug() << lines << uri;
-
         for(const QString &l: lines)
         {
             QStringList parts = l.trimmed().split(QStringLiteral(" "), Qt::SkipEmptyParts);
@@ -68,8 +66,6 @@ void AsemanQtToolsItemGraphicalEffects::registerFiles(const QString &filesLocati
                                 uri, version.at(0).toInt(), version.at(1).toInt(), parts.at(0).toUtf8());
         }
     }
-    else
-        qDebug() << file.errorString();
 }
 
 template<typename T>

@@ -31,6 +31,7 @@ bool asemanqml_graphicaleffects_plugin_registered = AsemanGraphicalEffectsPlugin
 
 bool AsemanGraphicalEffectsPlugin::registerStaticTypes(const char *uri)
 {
+    Q_INIT_RESOURCE(qmake_asemangraphicaleffects);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     AsemanQtToolsItemGraphicalEffects::registerFiles(QStringLiteral(":/AsemanQml/GraphicalEffects/Qt5"), uri);
 #else
