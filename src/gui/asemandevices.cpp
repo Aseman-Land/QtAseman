@@ -1049,7 +1049,7 @@ bool AsemanDevices::hasBiometric()
 #if defined(Q_OS_IOS)
     return p->objc_layer->hasBiometric();
 #elif defined(Q_OS_MACOS)
-    return TonToolkitMacManager::hasBiometric();
+    return AsemanMacManager::hasBiometric();
 #else
     return false;
 #endif
@@ -1060,7 +1060,7 @@ bool AsemanDevices::biometricCheck()
 #if defined(Q_OS_IOS)
     return p->objc_layer->biometricCheck();
 #elif defined(Q_OS_MACOS)
-    return TonToolkitMacManager::biometricCheck();
+    return AsemanMacManager::biometricCheck();
 #else
     return false;
 #endif
