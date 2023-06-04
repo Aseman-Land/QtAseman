@@ -16,9 +16,8 @@
 #include <QDebug>
 #include <QTimer>
 
-#ifdef NONBLOCK_BIOMETRIC_METHOD
 #include <QEventLoop>
-#else
+#ifndef NONBLOCK_BIOMETRIC_METHOD
 #include <QSemaphore>
 #endif
 
