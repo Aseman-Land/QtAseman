@@ -57,6 +57,7 @@
 #include "asemanmouseeventlistener.h"
 #include "asemanqmlimage.h"
 #include "asemantranslationmanager.h"
+#include "asemanrefresherobject.h"
 #include "asemanitemgrabber.h"
 #if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
 #include "asemanprocess.h"
@@ -164,6 +165,7 @@ void AsemanQtToolsItemBase::registerTypes(const char *uri, bool exportMode)
     registerType<AsemanFileResourceManager>(uri, 2, 0, "FileResourceManager", exportMode);
     registerType<AsemanProxyComponent>(uri, 2, 0, "ProxyComponent", exportMode);
     registerType<AsemanDelegateSwitch>(uri, 2, 0, "DelegateSwitch", exportMode);
+    registerType<AsemanRefresherObject>(uri, 2, 0, "RefresherObject", exportMode);
 
 #ifndef Q_OS_WASM
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
