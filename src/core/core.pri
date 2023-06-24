@@ -25,6 +25,7 @@ HEADERS += \
     $$PWD/aseman_macros.h \
     $$PWD/private/serpent_sbox.h \
     $$PWD/asemanmapobject.h \
+    $$PWD/asemanrefresherobject.h \
     $$PWD/asemanlistmodel.h
 
 SOURCES += \
@@ -45,6 +46,7 @@ SOURCES += \
     $$PWD/asemansettings.cpp \
     $$PWD/asemansimpleqtcryptor.cpp \
     $$PWD/asemanmapobject.cpp \
+    $$PWD/asemanrefresherobject.cpp \
     $$PWD/asemanlistmodel.cpp
 
 RESOURCES += \
