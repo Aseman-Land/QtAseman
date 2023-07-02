@@ -31,8 +31,13 @@ ViewportCore {
     function append(component, properties, type) {
         var cmp = getComponent(type);
         if (!cmp) {
-            console.debug("There is no \"" + type + "\" viewportType. Available types are ", keys)
-            return null
+            var typeUrl = (type + "");
+            if (typeUrl.slice(typeUrl.length-4) == ".qml")
+                cmp = Qt.createComponent(Qt.resolvedUrl(typeUrl));
+            if (!cmp) {
+                console.debug("There is no \"" + type + "\" viewportType. Available types are ", keys)
+                return null
+            }
         }
 
         var comObj;
