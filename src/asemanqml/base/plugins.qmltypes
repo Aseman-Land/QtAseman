@@ -134,7 +134,7 @@ Module {
         Property { name: "proxy"; type: "AsemanNetworkProxy"; isPointer: true }
         Property { name: "applicationId"; type: "string" }
         Property { name: "isRunning"; type: "bool"; isReadonly: true }
-        Property { name: "statusBarStyle"; type: "int" }
+        Property { name: "statusBarStyle.qml"; type: "int" }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal {
             name: "messageReceived"
@@ -379,7 +379,7 @@ Module {
         Property { name: "titleBarIsDark"; type: "bool"; isReadonly: true }
         Property { name: "desktopSession"; type: "int"; isReadonly: true }
         Property { name: "fontFamilies"; type: "QStringList"; isReadonly: true }
-        Property { name: "menuStyle"; type: "string" }
+        Property { name: "menuStyle.qml"; type: "string" }
         Property { name: "currentMenuObject"; type: "QObject"; isReadonly: true; isPointer: true }
         Property { name: "tooltip"; type: "string" }
         Signal { name: "fakeSignal" }

@@ -44,6 +44,7 @@ class LIBQTASEMAN_QML_EXPORT AsemanQuickObject : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QQmlListProperty<QObject> items READ items NOTIFY itemsChanged)
+    Q_PROPERTY(QObject *parent READ parent NOTIFY parentChanged)
     Q_CLASSINFO("DefaultProperty", "items")
 
 public:
@@ -57,6 +58,7 @@ public:
 
 Q_SIGNALS:
     void itemsChanged();
+    void parentChanged();
 
 private:
     static void append(QQmlListProperty<QObject> *p, QObject *v);
