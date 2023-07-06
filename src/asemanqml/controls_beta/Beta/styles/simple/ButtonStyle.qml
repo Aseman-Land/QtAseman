@@ -104,7 +104,7 @@ AbstractStyle {
 
         Root.Label {
             id: mainText
-            color: control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
+            color: control.highlighted && control.flat? control.Style.accentColor : control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
             text: control.text
             visible: text.length
         }
