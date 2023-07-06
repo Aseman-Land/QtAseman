@@ -37,15 +37,62 @@ Some main features to use on QML are:
 - Some other tools like file read/write methods, type convert methods and ...
 - Process executer tools from QML
 
-## New in QtAseman 3.1.x
+## New in QtAseman 3.9.x
 
-- iOS style for QtQuickControls ☑
-- Viewport's context menu type ☑
-- AsemanQml.Models module ☑
-- AsemanQml.Sql module ☑
-- Rewrite Viewport's types ☑
-- Add Attached property to the Viewports ☑
-- QtCreator wizards to create Aseman Apps easily ☑
+- QtAseman's Control Beta.
+  It's a simple example:
+
+```js
+import QtQuick 2.15
+import AsemanQml.Controls.Beta 3.0
+import AsemanQml.MaterialIcons 2.0
+
+Window {
+    title: qsTr("Hello World")
+
+    Style.primaryColor: "#3f51b5"
+    Style.primaryTextColor: "#fff"
+    
+    Page {
+        id: page
+        anchors.fill: parent
+        title: "Home"
+        header: Header {
+            width: parent.width
+        }
+        
+        Button {
+            id: btn
+            anchors.centerIn: parent
+            highlighted: true
+            icon: MaterialIcons.mdi_dialpad
+            text: "Test Page"
+            onClicked: test_stack.open()
+        }
+    }
+
+    StackPage {
+        id: test_stack
+        Page {
+            id: testStack
+            header: Header {
+                height: 50
+                width: parent.width
+            }
+
+            Button {
+                anchors.centerIn: parent
+                highlighted: true
+                icon: MaterialIcons.mdi_chevron_left
+                text: "Back"
+                onClicked: test_stack.close()
+            }
+        }
+    }
+}
+```
+
+
 
 ## How to Install
 

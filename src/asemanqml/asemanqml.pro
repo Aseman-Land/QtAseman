@@ -8,6 +8,7 @@ SUBDIRS += \
     widgets \
     modern \
     controls \
+    controls_beta \
     network \
     viewport \
     models \

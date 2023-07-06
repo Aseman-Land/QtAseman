@@ -26,6 +26,10 @@ contains(ASEMAN_QML_MODULES, controls) {
     include(controls/controls.pri)
 }
 
+contains(ASEMAN_QML_MODULES, controls_beta) {
+    include(controls/controls_beta.pri)
+}
+
 contains(ASEMAN_QML_MODULES, network) {
     include(network/network.pri)
 }

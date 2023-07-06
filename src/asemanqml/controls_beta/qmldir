@@ -1,0 +1,6 @@
+module AsemanQml.Controls.Beta
+classname AsemanControlsBetaPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlcontrolsbeta
+depends QtQuick 2.0
+depends QtQuick.Window 2.2

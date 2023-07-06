@@ -12,6 +12,7 @@
 
 # Qt-es
 
+/build
 /old
 /.qmake.cache
 /.qmake.stash
