@@ -3,6 +3,7 @@ import AsemanQml.Viewport 2.0
 import AsemanQml.Controls.Beta 3.0
 
 AbstractViewportScene {
+    id: dis
     sceneComponent: freeSizeSceneItem
 
     Component {

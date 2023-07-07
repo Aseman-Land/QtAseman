@@ -4,6 +4,7 @@ import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
 
 AbstractViewportScene {
+    id: dis
     sceneComponent: freeSceneItem
 
     Component {

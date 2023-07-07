@@ -14,12 +14,6 @@ Item {
 
     property bool opened: false
 
-//    property real x
-//    property real y
-//    property real width
-//    property real height
-//    property int transformOrigin: Item.TopLeft
-
     property real gestureWidth: -1
     property real maximumWidth: 0
     property bool touchToClose: true
