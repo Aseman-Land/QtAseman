@@ -306,6 +306,19 @@ Module {
         Method { name: "close"; type: "QVariant" }
     }
     Component {
+        prototype: "AsemanQuickSceneItem"
+        name: "AsemanQml.Controls.Beta/DialogScene 3.0"
+        exports: ["AsemanQml.Controls.Beta/DialogScene 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "items"
+        Property { name: "title"; type: "string" }
+        Property { name: "buttons"; type: "QVariant" }
+        Property { name: "item"; type: "QQuickItem"; isPointer: true }
+        Property { name: "scene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+    }
+    Component {
         prototype: "QQuickItem"
         name: "AsemanQml.Controls.Beta/FloatPage 3.0"
         exports: ["AsemanQml.Controls.Beta/FloatPage 3.0"]
@@ -362,6 +375,18 @@ Module {
         Property { name: "title"; type: "string" }
         Property { name: "scene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Controls.Beta/HeaderMenuButton 3.0"
+        exports: ["AsemanQml.Controls.Beta/HeaderMenuButton 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "buttonColor"; type: "QColor" }
+        Property { name: "ratio"; type: "double" }
+        Property { name: "pressed"; type: "bool"; isReadonly: true }
+        Signal { name: "clicked" }
     }
     Component {
         prototype: "QQuickText"
@@ -433,6 +458,17 @@ Module {
         Property { name: "pressed"; type: "bool"; isReadonly: true }
         Property { name: "hovered"; type: "bool"; isReadonly: true }
         Signal { name: "clicked" }
+    }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.Controls.Beta/MenuIcon 3.0"
+        exports: ["AsemanQml.Controls.Beta/MenuIcon 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "color"; type: "QColor" }
+        Property { name: "ratio"; type: "double" }
+        Property { name: "_mirror"; type: "bool"; isReadonly: true }
     }
     Component {
         prototype: "QQuickItem"
@@ -669,7 +705,7 @@ Module {
         defaultProperty: "items"
         Property { name: "backController"; type: "bool" }
         Property { name: "try_close"; type: "bool" }
-        Property { name: "viewport"; type: "Viewport_QMLTYPE_53"; isReadonly: true; isPointer: true }
+        Property { name: "viewport"; type: "Viewport_QMLTYPE_61"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
