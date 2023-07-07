@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/AsemanQml/Controls/">
+    <qresource prefix="/AsemanQml/Controls">
         <file>Beta/Page.qml</file>
         <file>Beta/qmldir</file>
         <file>Beta/Label.qml</file>
@@ -74,5 +74,7 @@
         <file>Beta/ScrollBar.qml</file>
         <file>Beta/styles/simple/ScrollBarStyle.qml</file>
         <file>Beta/styles/simple/ScrollViewStyle.qml</file>
+        <file>Beta/DialogScene.qml</file>
+        <file>Beta/styles/simple/DialogSceneStyle.qml</file>
     </qresource>
 </RCC>

@@ -41,10 +41,14 @@ AbstractStyle {
             clip: true
             focusableUsingKeyboard: false
 
+
+            property Item backupParent
             Component.onCompleted: {
+                backupParent = modelData.parent;
                 modelData.parent = item;
                 modelData.anchors.fill = item;
             }
+            Component.onDestruction: modelData.parent = backupParent
         }
     }
 }

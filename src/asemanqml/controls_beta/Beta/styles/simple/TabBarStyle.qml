@@ -110,12 +110,15 @@ AbstractStyle {
                 }
             }
 
+            property Item backupParent
             Component.onCompleted: {
+                backupParent = modelData.parent;
                 modelData.parent = item;
                 modelData.anchors.left = item.left;
                 modelData.anchors.top = item.top;
                 modelData.anchors.bottom = item.bottom;
             }
+            Component.onDestruction: modelData.parent = backupParent
         }
     }
 }

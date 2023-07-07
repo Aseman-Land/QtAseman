@@ -1,13 +1,19 @@
 import QtQuick 2.0
+import AsemanQml.Base 2.0
 import AsemanQml.Controls.Beta 3.0
 import "../.." as Root
 
 AbstractStyle {
     id: dis
-    implicitHeight: 50
+    implicitHeight: Devices.standardTitleBarHeight + Devices.statusBarHeight
+
+    padding {
+        top: Devices.statusBarHeight
+    }
 
     Rectangle {
         anchors.fill: parent
+        anchors.topMargin: Devices.statusBarHeight
         color: control.Style.primaryColor
 
         Root.Label {

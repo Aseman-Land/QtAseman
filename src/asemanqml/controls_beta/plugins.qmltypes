@@ -291,6 +291,8 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "delegate"
+        Property { name: "title"; type: "string" }
+        Property { name: "buttons"; type: "QObject"; isList: true; isReadonly: true }
         Property { name: "styleFileName"; type: "string" }
         Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
         Property { name: "sceneComponent"; type: "QQmlComponent"; isPointer: true }
@@ -667,7 +669,7 @@ Module {
         defaultProperty: "items"
         Property { name: "backController"; type: "bool" }
         Property { name: "try_close"; type: "bool" }
-        Property { name: "viewport"; type: "Viewport_QMLTYPE_51"; isReadonly: true; isPointer: true }
+        Property { name: "viewport"; type: "Viewport_QMLTYPE_53"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }

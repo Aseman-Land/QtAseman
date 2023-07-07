@@ -2,7 +2,6 @@ import QtQuick 2.0
 import AsemanQml.GraphicalEffects 2.0
 import AsemanQml.Viewport 2.0
 import AsemanQml.Base 2.0
-import AsemanQml.Controls.Beta 3.0
 
 AbstractViewportType {
     id: item
@@ -50,12 +49,6 @@ AbstractViewportType {
             radius: 64
             cached: true
             source: item.background
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            opacity: 0.5
-            color: item.Style.baseColor
         }
     }
 }

@@ -1,10 +1,14 @@
 import QtQuick 2.0
 import AsemanQml.Controls.Beta 3.0
-import AsemanQml.Controls.Beta 3.0
+import AsemanQml.Base 2.0
 
 AbstractStyle {
     id: dis
-    implicitHeight: 60
+    implicitHeight: Devices.navigationBarHeight
+
+    padding {
+        bottom: Devices.navigationBarHeight
+    }
 
     Connections {
         target: control
@@ -32,6 +36,7 @@ AbstractStyle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: Devices.navigationBarHeight
 
         orientation: ListView.Horizontal
         snapMode: ListView.SnapToItem
@@ -87,13 +92,15 @@ AbstractStyle {
                     listv.currentIndex = model.index
                 }
             }
-
+            property Item backupParent
             Component.onCompleted: {
+                backupParent = modelData.parent;
                 modelData.parent = item;
                 modelData.anchors.left = item.left;
                 modelData.anchors.top = item.top;
                 modelData.anchors.bottom = item.bottom;
             }
+            Component.onDestruction: modelData.parent = backupParent
         }
     }
 }
