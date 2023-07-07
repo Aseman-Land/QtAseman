@@ -5,6 +5,7 @@
 #include <QtQml>
 #include <QStringList>
 #include <QColor>
+#include <QQuickItem>
 
 #include <optional>
 
@@ -82,6 +83,8 @@ protected:
     void invokeAllSignals();
     QObject *findParent(const QObject *obj) const;
 
+    void reconnectParents();
+
 private:
     std::optional<QStringList> mGeneralFontFamilies;
 
@@ -97,6 +100,7 @@ private:
     std::optional<QColor> mBaseColor;
     std::optional<QColor> mBaseTextColor;
 
+    QSet<QQuickItem*> mConnectedParents;
     static QHash<QString, QHash<QString, QString>> mThemePaths;
 };
 

@@ -38,27 +38,7 @@ QHash<QString, QHash<QString, QString>> AsemanQuickStyleAttachedProperty::mTheme
 AsemanQuickStyleAttachedProperty::AsemanQuickStyleAttachedProperty(QObject *parent)
     : QObject(parent)
 {
-    auto item = qobject_cast<QQuickItem*>(parent);
-    if (item)
-    {
-        connect(item, &QQuickItem::parentChanged, this, [item](){
-            std::function<void(QObject *obj)> callback;
-            callback = [&callback](QObject *obj) {
-                for (auto c: obj->children()) {
-                    auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(c, false));
-                    if (!attached) {
-                        callback(c);
-                        continue;
-                    }
-
-                    attached->invokeAllSignals();
-                }
-            };
-            callback(item);
-        });
-    }
-
-    invokeAllSignals();
+    reconnectParents();
 }
 
 AsemanQuickStyleAttachedProperty::~AsemanQuickStyleAttachedProperty()
@@ -90,6 +70,35 @@ QObject *AsemanQuickStyleAttachedProperty::findParent(const QObject *obj) const
         return item->parentItem();
 
     return obj->parent();
+}
+
+void AsemanQuickStyleAttachedProperty::reconnectParents()
+{
+    auto remianeds = mConnectedParents;
+    auto parentItem = qobject_cast<QQuickItem*>(parent());
+
+    while (parentItem)
+    {
+        if (!mConnectedParents.contains(parentItem))
+        {
+            connect(parentItem, &QQuickItem::parentChanged, this, &AsemanQuickStyleAttachedProperty::reconnectParents, Qt::QueuedConnection);
+            connect(parentItem, &QObject::destroyed, this, [this, parentItem](){
+                mConnectedParents.remove(parentItem);
+            });
+            mConnectedParents.insert(parentItem);
+        }
+
+        remianeds.remove(parentItem);
+        parentItem = qobject_cast<QQuickItem*>(findParent(parentItem));
+    }
+
+    for (auto obj: remianeds)
+    {
+        mConnectedParents.remove(obj);
+        obj->disconnect(this);
+    }
+
+    invokeAllSignals();
 }
 
 QStringList AsemanQuickStyleAttachedProperty::stylesSearchPath() const

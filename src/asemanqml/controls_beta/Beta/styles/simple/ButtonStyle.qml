@@ -42,12 +42,12 @@ AbstractStyle {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: control.flat? "transparent" : control.highlighted? control.Style.accentColor : "transparent"
+        color: control.flat? "transparent" : control.highlighted && control.enabled? control.Style.accentColor : "transparent"
         radius: control.radius
 
         Rectangle {
             anchors.fill: parent
-            opacity: (!control.flat && !control.highlighted? 0.2 : 0) + (control.pressed || control.focusedInUsingKeyboard || control.hovered? 0.1 : 0)
+            opacity: (!control.flat && !control.highlighted? 0.2 : !control.enabled? (control.highlighted? 0.3 : 0.2) : 0) + (control.pressed || control.focusedInUsingKeyboard || control.hovered? 0.1 : 0)
             color: control.Style.foregroundColor
             radius: control.radius
         }
