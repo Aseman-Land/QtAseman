@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import AsemanQml.Controls.Beta 3.0
-import AsemanQml.Controls.Beta 3.0
 
 TextInput {
     id: dis
+    persistentSelection: true
 
     property string styleFileName: "TextFieldStyle.qml"
 
