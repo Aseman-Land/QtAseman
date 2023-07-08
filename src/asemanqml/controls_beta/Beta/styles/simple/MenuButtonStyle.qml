@@ -88,6 +88,7 @@ AbstractStyle {
         id: contentRow
         anchors.centerIn: parent
         spacing: 4
+        opacity: control.enabled? 1 : 0.4
         scale: {
             if (!control.pressed)
                 return 1;
