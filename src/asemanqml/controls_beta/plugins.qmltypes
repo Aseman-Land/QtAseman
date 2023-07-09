@@ -258,16 +258,20 @@ Module {
         Property { name: "textRole"; type: "string" }
         Property { name: "displayText"; type: "string" }
         Property { name: "currentText"; type: "string"; isReadonly: true }
-        Property { name: "currentIndex"; type: "int"; isReadonly: true }
         Property { name: "count"; type: "int" }
         Property { name: "flat"; type: "bool" }
         Property { name: "model"; type: "QVariant" }
         Property { name: "radius"; type: "double" }
-        Property { name: "popup"; type: "MenuPopup_QMLTYPE_13"; isReadonly: true; isPointer: true }
+        Property { name: "currentIndex"; type: "int" }
+        Property { name: "popup"; type: "MenuPopup_QMLTYPE_14"; isReadonly: true; isPointer: true }
         Property { name: "pressedX"; type: "double"; isReadonly: true }
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
         Property { name: "hovered"; type: "bool"; isReadonly: true }
+        Signal {
+            name: "activated"
+            Parameter { name: "index"; type: "int" }
+        }
     }
     Component {
         prototype: "AsemanQuickControlItem"
@@ -414,7 +418,16 @@ Module {
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
         Property { name: "hovered"; type: "bool"; isReadonly: true }
-        Signal { name: "clicked" }
+        Property { name: "pressAndHoldInterval"; type: "int" }
+        Property { name: "acceptedButtons"; type: "int" }
+        Signal {
+            name: "clicked"
+            Parameter { name: "mouse"; type: "QVariant" }
+        }
+        Signal {
+            name: "pressAndHold"
+            Parameter { name: "mouse"; type: "QVariant" }
+        }
     }
     Component {
         prototype: "QQuickText"
