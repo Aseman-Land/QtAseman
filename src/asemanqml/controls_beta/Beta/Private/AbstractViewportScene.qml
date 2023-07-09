@@ -19,6 +19,8 @@ Item {
     property bool touchToClose: true
     property bool blockBack: false
 
+    property bool openToPrimaryViewport
+
     function open() {
         opened = true;
     }
@@ -32,7 +34,8 @@ Item {
         if (!opened)
             return;
 
-        prv.scene = Viewport.viewport.append(sceneComponent, {"prv": prv}, dis.Style.styleUrl + '/' + styleFileName)
+        var viewport = (openToPrimaryViewport? Viewport.primaryViewport : Viewport.viewport);
+        prv.scene = viewport.append(sceneComponent, {"prv": prv}, dis.Style.styleUrl + '/' + styleFileName)
     }
 
     onStyleFileNameChanged: {

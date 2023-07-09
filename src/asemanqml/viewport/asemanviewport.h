@@ -66,6 +66,7 @@ class AsemanViewportAttechedProperty : public QObject {
     Q_PROPERTY(QObject* controller READ controller NOTIFY controllersChanged)
     Q_PROPERTY(QList<QObject *> allControllers READ allControllers NOTIFY controllersChanged)
     Q_PROPERTY(AsemanViewport* viewport READ viewport NOTIFY controllersChanged)
+    Q_PROPERTY(AsemanViewport* primaryViewport READ primaryViewport NOTIFY controllersChanged)
 
 public:
     AsemanViewportAttechedProperty(QObject *parent);
@@ -74,8 +75,9 @@ public:
     QObject *controller() const;
     QList<QObject *> allControllers() const;
     AsemanViewport *viewport() const;
+    AsemanViewport *primaryViewport() const;
 
-    static AsemanViewport *viewport(QObject *obj);
+    static AsemanViewport *viewport(QObject *obj, bool primary = false);
 
 Q_SIGNALS:
     void controllersChanged();

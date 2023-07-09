@@ -7,6 +7,7 @@ AbstractViewportScene {
     id: dis
     sceneComponent: freeSizeSceneItem
     styleFileName: "DialogStyle.qml"
+    openToPrimaryViewport: true
 
     property string title
     property alias buttons: buttonsScene.data

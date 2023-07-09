@@ -173,6 +173,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }
@@ -262,7 +263,7 @@ Module {
         Property { name: "flat"; type: "bool" }
         Property { name: "model"; type: "QVariant" }
         Property { name: "radius"; type: "double" }
-        Property { name: "popup"; type: "MenuPopup_QMLTYPE_13"; isReadonly: true; isPointer: true }
+        Property { name: "popup"; type: "MenuPopup_QMLTYPE_14"; isReadonly: true; isPointer: true }
         Property { name: "pressedX"; type: "double"; isReadonly: true }
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
@@ -302,6 +303,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }
@@ -334,6 +336,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }
@@ -439,6 +442,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }
@@ -486,6 +490,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }
@@ -590,6 +595,7 @@ Module {
         Property { name: "maximumWidth"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
+        Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
     }

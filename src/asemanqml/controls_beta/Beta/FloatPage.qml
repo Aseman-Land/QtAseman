@@ -4,4 +4,5 @@ import "Private"
 SnappedViewportScene {
     id: dis
     styleFileName: "FloatPageStyle.qml"
+    openToPrimaryViewport: true
 }

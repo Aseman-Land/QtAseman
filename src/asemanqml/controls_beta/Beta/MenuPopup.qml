@@ -4,4 +4,5 @@ import "Private"
 FreeGeometryViewportScene {
     id: dis
     styleFileName: "MenuPopupStyle.qml"
+    openToPrimaryViewport: true
 }

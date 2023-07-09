@@ -193,24 +193,34 @@ QList<QObject *> AsemanViewportAttechedProperty::allControllers() const
 
 AsemanViewport *AsemanViewportAttechedProperty::viewport() const
 {
-    return AsemanViewportAttechedProperty::viewport( parent() );
+    return AsemanViewportAttechedProperty::viewport(parent());
 }
 
-AsemanViewport *AsemanViewportAttechedProperty::viewport(QObject *obj)
+AsemanViewport *AsemanViewportAttechedProperty::primaryViewport() const
 {
-    AsemanViewport *viewport = Q_NULLPTR;
+    return AsemanViewportAttechedProperty::viewport(parent(), true);
+}
+
+AsemanViewport *AsemanViewportAttechedProperty::viewport(QObject *obj, bool primary)
+{
+    AsemanViewport *last_viewport = Q_NULLPTR;
     do
     {
-        QQuickItem *item = qobject_cast<QQuickItem*>(obj);
+        auto item = qobject_cast<QQuickItem*>(obj);
         obj = item? item->parentItem() : obj->parent();
 
-        viewport = qobject_cast<AsemanViewport*>(obj);
+        auto viewport = qobject_cast<AsemanViewport*>(obj);
         if (viewport)
-            return viewport;
+        {
+            if (primary)
+                last_viewport = viewport;
+            else
+                return viewport;
+        }
 
     } while(obj);
 
-    return viewport;
+    return last_viewport;
 }
 
 AsemanViewportAttechedProperty::~AsemanViewportAttechedProperty()

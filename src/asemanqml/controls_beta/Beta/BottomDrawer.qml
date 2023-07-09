@@ -4,4 +4,5 @@ import "Private"
 FreeSizeViewportScene {
     id: dis
     styleFileName: "BottomDrawerStyle.qml"
+    openToPrimaryViewport: true
 }
