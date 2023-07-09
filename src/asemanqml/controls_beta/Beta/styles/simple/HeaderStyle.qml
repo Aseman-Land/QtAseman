@@ -30,6 +30,6 @@ AbstractStyle {
         anchors.bottom: parent.bottom
         color: control.Style.foregroundColor
         height: 1
-        opacity: 0.2
+        opacity: 0.1
     }
 }
