@@ -6,6 +6,7 @@ Text {
 
     property string styleFileName: "LabelStyle.qml"
 
+    color: dis.Style.foregroundColor
     font: styledItem.styleItem.font
     leftPadding: styledItem.styleItem.padding.left
     rightPadding: styledItem.styleItem.padding.right

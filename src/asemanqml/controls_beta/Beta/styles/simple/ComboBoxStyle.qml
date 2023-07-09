@@ -124,6 +124,7 @@ AbstractStyle {
         anchors.right: parent.right
         anchors.rightMargin: 5
         text: MaterialIcons.mdi_menu_down
+        color: control.Style.foregroundColor
         font.pixelSize: 20
     }
 }
