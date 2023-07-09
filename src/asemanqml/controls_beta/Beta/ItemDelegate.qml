@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import AsemanQml.Controls.Beta 3.0
 
 Control {
@@ -15,8 +15,11 @@ Control {
     property alias pressedY: marea.mouseY
     property alias pressed: marea.pressed
     property alias hovered: marea.containsMouse
+    property alias pressAndHoldInterval: marea.pressAndHoldInterval
+    property alias acceptedButtons: marea.acceptedButtons
 
-    signal clicked()
+    signal clicked(variant mouse)
+    signal pressAndHold(variant mouse)
 
     Keys.onReturnPressed: dis.clicked()
     Keys.onEnterPressed: dis.clicked()
@@ -26,11 +29,13 @@ Control {
         id: marea
         hoverEnabled: true
         anchors.fill: parent
+        pressAndHoldInterval: 800
         onPressed: {
             dis.focus = true;
             dis.forceActiveFocus();
         }
-        onClicked: dis.clicked()
+        onClicked: function(mouse) { dis.clicked(mouse) }
+        onPressAndHold: function(mouse) { dis.pressAndHold(mouse) }
     }
 
     Item {

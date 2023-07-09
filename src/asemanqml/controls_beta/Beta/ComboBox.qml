@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import AsemanQml.Controls.Beta 3.0
-import AsemanQml.Controls.Beta 3.0
 
 Control {
     id: dis
@@ -10,7 +9,7 @@ Control {
     property string textRole
     property string displayText: currentText
     readonly property string currentText: prv.currentText
-    readonly property int currentIndex: prv.currentIndex
+    property alias currentIndex: prv.currentIndex
     property int count: 0
 
     property bool flat
@@ -23,6 +22,8 @@ Control {
     property alias pressedY: marea.mouseY
     property alias pressed: marea.pressed
     property alias hovered: marea.containsMouse
+
+    signal activated(int index)
 
     Keys.onReturnPressed: popup.open()
     Keys.onEnterPressed: popup.open()
@@ -52,7 +53,7 @@ Control {
 
     MenuPopup {
         id: popup
-        width: dis.width
+        width: dis.width + 20
         height: item? Math.min(item.contentHeight, 200) : 200
         x: dis.width/2 - width/2
         transformOrigin: Item.Top
@@ -70,6 +71,7 @@ Control {
                 selected: prv.currentIndex == model.index
                 onClicked: {
                     prv.currentIndex = model.index;
+                    dis.activated(model.index);
                     popup.close();
                 }
             }

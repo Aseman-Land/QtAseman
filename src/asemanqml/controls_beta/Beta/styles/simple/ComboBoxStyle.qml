@@ -122,7 +122,7 @@ AbstractStyle {
     Root.Icon {
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 5
         text: MaterialIcons.mdi_menu_down
         font.pixelSize: 20
     }
