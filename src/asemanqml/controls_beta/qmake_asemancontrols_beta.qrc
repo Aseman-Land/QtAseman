@@ -78,5 +78,6 @@
         <file>Beta/styles/simple/DialogSceneStyle.qml</file>
         <file>Beta/MenuIcon.qml</file>
         <file>Beta/HeaderMenuButton.qml</file>
+        <file>Beta/ViewportContainer.qml</file>
     </qresource>
 </RCC>

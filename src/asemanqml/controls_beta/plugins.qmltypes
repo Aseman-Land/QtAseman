@@ -263,7 +263,7 @@ Module {
         Property { name: "flat"; type: "bool" }
         Property { name: "model"; type: "QVariant" }
         Property { name: "radius"; type: "double" }
-        Property { name: "popup"; type: "MenuPopup_QMLTYPE_14"; isReadonly: true; isPointer: true }
+        Property { name: "popup"; type: "MenuPopup_QMLTYPE_13"; isReadonly: true; isPointer: true }
         Property { name: "pressedX"; type: "double"; isReadonly: true }
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
@@ -701,6 +701,29 @@ Module {
             Parameter { name: "x"; type: "double" }
             Parameter { name: "y"; type: "double" }
         }
+    }
+    Component {
+        prototype: "AsemanViewport"
+        name: "AsemanQml.Controls.Beta/ViewportContainer 3.0"
+        exports: ["AsemanQml.Controls.Beta/ViewportContainer 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "sceneItems"
+        Property { name: "sceneItems"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "androidStyle"; type: "bool" }
+        Property { name: "mainItem"; type: "QQuickItem"; isPointer: true }
+        Property { name: "currentItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "currentType"; type: "string"; isReadonly: true }
+        Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "list"; type: "QVariantList" }
+        Method {
+            name: "append"
+            type: "QVariant"
+            Parameter { name: "component"; type: "QVariant" }
+            Parameter { name: "properties"; type: "QVariant" }
+            Parameter { name: "type"; type: "QVariant" }
+        }
+        Method { name: "closeLast"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickWindowQmlImpl"

@@ -37,3 +37,4 @@ Window 3.0 Window.qml
 DialogScene 3.0 DialogScene.qml
 HeaderMenuButton 3.0 HeaderMenuButton.qml
 MenuIcon 3.0 MenuIcon.qml
+ViewportContainer 3.0 ViewportContainer.qml

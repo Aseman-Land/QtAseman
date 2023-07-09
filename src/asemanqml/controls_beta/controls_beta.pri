@@ -54,4 +54,5 @@ contains(DEFINES, QT_ASEMAN_EMBEDDED) {
 
 DISTFILES += \
     $$PWD/Beta/DialogScene.qml \
+    $$PWD/Beta/ViewportContainer.qml \
     $$PWD/Beta/styles/simple/DialogSceneStyle.qml
