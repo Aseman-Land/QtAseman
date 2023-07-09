@@ -19,6 +19,7 @@ AbstractStyle {
         Root.Label {
             anchors.centerIn: parent
             font.bold: true
+            font.pixelSize: 10 * Devices.fontDensity
             text: control.title
             color: control.Style.primaryTextColor
         }
