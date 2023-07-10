@@ -30,6 +30,14 @@ Module {
         Property { name: "bottom"; type: "int" }
     }
     Component {
+        name: "AsemanQuickColumnLayout"
+        defaultProperty: "data"
+        prototype: "AsemanQuickLayout"
+        exports: ["AsemanQml.Controls.Beta/ColumnLayout 3.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "spacing"; type: "double" }
+    }
+    Component {
         name: "AsemanQuickControlItem"
         defaultProperty: "data"
         prototype: "AsemanQuickStyledItem"
@@ -40,6 +48,39 @@ Module {
         Property { name: "focusableUsingKeyboard"; type: "bool" }
         Method { name: "focusNextItem" }
         Method { name: "focusPreviousItem" }
+    }
+    Component {
+        name: "AsemanQuickLayout"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["AsemanQml.Controls.Beta/Layout 3.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        attachedType: "AsemanQuickLayoutProperty"
+        Property { name: "fillWidth"; type: "bool" }
+        Property { name: "fillHeight"; type: "bool" }
+        Property { name: "preferredWidth"; type: "double" }
+        Property { name: "preferredHeight"; type: "double" }
+        Property { name: "leftMargin"; type: "double" }
+        Property { name: "topMargin"; type: "double" }
+        Property { name: "rightMargin"; type: "double" }
+        Property { name: "bottomMargin"; type: "double" }
+        Property { name: "alignment"; type: "int" }
+        Method { name: "reload" }
+    }
+    Component {
+        name: "AsemanQuickLayoutProperty"
+        prototype: "QObject"
+        Property { name: "fillWidth"; type: "bool" }
+        Property { name: "fillHeight"; type: "bool" }
+        Property { name: "preferredWidth"; type: "double" }
+        Property { name: "preferredHeight"; type: "double" }
+        Property { name: "leftMargin"; type: "double" }
+        Property { name: "topMargin"; type: "double" }
+        Property { name: "rightMargin"; type: "double" }
+        Property { name: "bottomMargin"; type: "double" }
+        Property { name: "alignment"; type: "int" }
+        Signal { name: "changed" }
     }
     Component {
         name: "AsemanQuickMainPalette"
@@ -102,6 +143,15 @@ Module {
         Property { name: "group"; type: "AsemanQuickRadioButtonGroup"; isPointer: true }
     }
     Component {
+        name: "AsemanQuickRowLayout"
+        defaultProperty: "data"
+        prototype: "AsemanQuickLayout"
+        exports: ["AsemanQml.Controls.Beta/RowLayout 3.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "layoutDirection"; type: "int" }
+        Property { name: "spacing"; type: "double" }
+    }
+    Component {
         name: "AsemanQuickSceneItem"
         defaultProperty: "data"
         prototype: "AsemanQuickStyledItem"
@@ -140,6 +190,18 @@ Module {
         isCreatable: false
         exportMetaObjectRevisions: [0]
         attachedType: "AsemanQuickStyleAttachedProperty"
+        Property { name: "generalFontFamilies"; type: "QStringList" }
+        Property { name: "accentColor"; type: "QColor" }
+        Property { name: "accentTextColor"; type: "QColor" }
+        Property { name: "foregroundColor"; type: "QColor" }
+        Property { name: "backgroundColor"; type: "QColor" }
+        Property { name: "primaryColor"; type: "QColor" }
+        Property { name: "primaryTextColor"; type: "QColor" }
+        Property { name: "baseColor"; type: "QColor" }
+        Property { name: "baseTextColor"; type: "QColor" }
+        Property { name: "styleName"; type: "string" }
+        Property { name: "stylesSearchPath"; type: "QStringList" }
+        Property { name: "styleUrl"; type: "QUrl"; isReadonly: true }
     }
     Component {
         name: "AsemanQuickStyledItem"
@@ -240,14 +302,6 @@ Module {
         Method { name: "toggle"; type: "QVariant" }
     }
     Component {
-        prototype: "QQuickColumn"
-        name: "AsemanQml.Controls.Beta/ColumnLayout 3.0"
-        exports: ["AsemanQml.Controls.Beta/ColumnLayout 3.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
         prototype: "AsemanQuickControlItem"
         name: "AsemanQml.Controls.Beta/ComboBox 3.0"
         exports: ["AsemanQml.Controls.Beta/ComboBox 3.0"]
@@ -263,7 +317,7 @@ Module {
         Property { name: "model"; type: "QVariant" }
         Property { name: "radius"; type: "double" }
         Property { name: "currentIndex"; type: "int" }
-        Property { name: "popup"; type: "MenuPopup_QMLTYPE_14"; isReadonly: true; isPointer: true }
+        Property { name: "popup"; type: "MenuPopup_QMLTYPE_12"; isReadonly: true; isPointer: true }
         Property { name: "pressedX"; type: "double"; isReadonly: true }
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
@@ -548,14 +602,6 @@ Module {
         Method { name: "toggle"; type: "QVariant" }
     }
     Component {
-        prototype: "QQuickRow"
-        name: "AsemanQml.Controls.Beta/RowLayout 3.0"
-        exports: ["AsemanQml.Controls.Beta/RowLayout 3.0"]
-        exportMetaObjectRevisions: [0]
-        isComposite: true
-        defaultProperty: "data"
-    }
-    Component {
         prototype: "AsemanQuickControlItem"
         name: "AsemanQml.Controls.Beta/ScrollBar 3.0"
         exports: ["AsemanQml.Controls.Beta/ScrollBar 3.0"]
@@ -747,7 +793,7 @@ Module {
         defaultProperty: "items"
         Property { name: "backController"; type: "bool" }
         Property { name: "try_close"; type: "bool" }
-        Property { name: "viewport"; type: "Viewport_QMLTYPE_61"; isReadonly: true; isPointer: true }
+        Property { name: "viewport"; type: "Viewport_QMLTYPE_59"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }

@@ -5,10 +5,13 @@ HEADERS += \
     $$PWD/asemanquickabstractbutton.h \
     $$PWD/asemanquickabstractstyle.h \
     $$PWD/asemanquickboxsize.h \
+    $$PWD/asemanquickcolumnlayout.h \
     $$PWD/asemanquickcontrolitem.h \
+    $$PWD/asemanquicklayout.h \
     $$PWD/asemanquickmainpalette.h \
     $$PWD/asemanquickradiobuttoncontrol.h \
     $$PWD/asemanquickradiobuttongroup.h \
+    $$PWD/asemanquickrowlayout.h \
     $$PWD/asemanquicksceneitem.h \
     $$PWD/asemanquickscrollviewcore.h \
     $$PWD/asemanquickstyleattachedproperty.h \
@@ -21,10 +24,13 @@ SOURCES += \
     $$PWD/asemanquickabstractbutton.cpp \
     $$PWD/asemanquickabstractstyle.cpp \
     $$PWD/asemanquickboxsize.cpp \
+    $$PWD/asemanquickcolumnlayout.cpp \
     $$PWD/asemanquickcontrolitem.cpp \
+    $$PWD/asemanquicklayout.cpp \
     $$PWD/asemanquickmainpalette.cpp \
     $$PWD/asemanquickradiobuttoncontrol.cpp \
     $$PWD/asemanquickradiobuttongroup.cpp \
+    $$PWD/asemanquickrowlayout.cpp \
     $$PWD/asemanquicksceneitem.cpp \
     $$PWD/asemanquickscrollviewcore.cpp \
     $$PWD/asemanquickstyleattachedproperty.cpp \

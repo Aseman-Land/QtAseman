@@ -26,6 +26,8 @@
 #include "asemanquickradiobuttoncontrol.h"
 #include "asemanquickradiobuttongroup.h"
 #include "asemanquickscrollviewcore.h"
+#include "asemanquickcolumnlayout.h"
+#include "asemanquickrowlayout.h"
 
 #include <qqml.h>
 #include <QHash>
@@ -60,8 +62,11 @@ void AsemanQtToolsItemControlsBeta::registerTypes(const char *uri, bool exportMo
     registerType<AsemanQuickAbstractStyle>(uri, 3, 0, "AbstractStyle", exportMode);
     registerType<AsemanQuickRadioButtonGroup>(uri, 3, 0, "RadioButtonGroup", exportMode);
     registerType<AsemanQuickScrollViewCore>(uri, 3, 0, "ScrollViewCore", exportMode);
+    registerType<AsemanQuickColumnLayout>(uri, 3, 0, "ColumnLayout", exportMode);
+    registerType<AsemanQuickRowLayout>(uri, 3, 0, "RowLayout", exportMode);
     registerUncreatableType<AsemanQuickStyleProperty>(uri, 3, 0, "Style", "", exportMode);
     registerUncreatableType<AsemanQuickRadioButtonGroupAttachedCreator>(uri, 3, 0, "ButtonGroup", "", exportMode);
+    registerUncreatableType<AsemanQuickLayout>(uri, 3, 0, "Layout", "", exportMode);
     registerUncreatableType<AsemanQuickBoxSize>(uri, 3, 0, "BoxSize", "", exportMode);
     registerSingletonType<AsemanQuickMainPalette>(uri, 3, 0, "MainPalette", aseman_controls_mainpalette_singleton, exportMode);
 

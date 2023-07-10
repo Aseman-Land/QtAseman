@@ -57,8 +57,8 @@ AbstractStyle {
             }
             delegate: Item {
                 id: item
-                width: modelData.width
-                height: modelData.height
+                implicitWidth: modelData.width
+                implicitHeight: modelData.height
 
                 property Item backupParent
                 Component.onCompleted: {

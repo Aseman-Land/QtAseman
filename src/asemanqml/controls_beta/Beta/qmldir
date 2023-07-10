@@ -3,7 +3,6 @@ BusyIndicator 3.0 BusyIndicator.qml
 Button 3.0 Button.qml
 CheckBox 3.0 CheckBox.qml
 CheckBoxDelegate 3.0 CheckBoxDelegate.qml
-ColumnLayout 3.0 ColumnLayout.qml
 ComboBox 3.0 ComboBox.qml
 ComboBoxDelegate 3.0 ComboBoxDelegate.qml
 Dialog 3.0 Dialog.qml
@@ -21,7 +20,6 @@ Page 3.0 Page.qml
 Palette 3.0 Palette.qml
 ProgressBar 3.0 ProgressBar.qml
 RadioButton 3.0 RadioButton.qml
-RowLayout 3.0 RowLayout.qml
 ScrollBar 3.0 ScrollBar.qml
 ScrollView 3.0 ScrollView.qml
 Slider 3.0 Slider.qml
