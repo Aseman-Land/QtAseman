@@ -46,7 +46,7 @@ AbstractStyle {
             id: repeater
             model: {
                 var res = new Array;
-                for (var i=0 ;i<control.buttons.length; i++) {
+                for (var i=control.buttons.length-1 ;i>=0; i--) {
                     var item = control.buttons[i];
                     if (item.transformOrigin == undefined)
                         continue;
