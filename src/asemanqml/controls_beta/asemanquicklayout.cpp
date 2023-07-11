@@ -20,11 +20,19 @@ AsemanQuickLayoutProperty *AsemanQuickLayout::qmlAttachedProperties(QObject *obj
 
 void AsemanQuickLayout::reload()
 {
+    if (mReloadBlocker)
+        return;
+
+    mReloadBlocker = true;
     relocateChilds();
+    mReloadBlocker = false;
 }
 
 void AsemanQuickLayout::reloadDelayed()
 {
+    if (mReloadBlocker)
+        return;
+
     if (!mReloadTimer)
     {
         mReloadTimer = new QTimer(this);

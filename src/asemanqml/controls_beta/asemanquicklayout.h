@@ -27,6 +27,7 @@ protected:
 
 private:
     QTimer *mReloadTimer = nullptr;
+    bool mReloadBlocker = false;
 };
 
 class AsemanQuickLayoutProperty : public QObject

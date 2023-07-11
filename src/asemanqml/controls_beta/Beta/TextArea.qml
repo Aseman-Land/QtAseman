@@ -14,6 +14,7 @@ TextEdit {
     bottomPadding: styledItem.styleItem.padding.bottom
     clip: true
     height: Math.max(32, contentHeight + 18)
+    Layout.preferredHeight: Math.max(32, contentHeight + 18)
 
     selectedTextColor: dis.Style.accentTextColor
     selectionColor: dis.Style.accentColor

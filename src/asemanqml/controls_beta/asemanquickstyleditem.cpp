@@ -10,10 +10,6 @@ AsemanQuickStyledItem::AsemanQuickStyledItem(QQuickItem *parent)
     : QQuickItem(parent)
 {
     mStyleItem = new AsemanQuickAbstractStyle(this);
-
-    connect(this, &AsemanQuickStyledItem::widthChanged, this, &AsemanQuickStyledItem::reposItems);
-    connect(this, &AsemanQuickStyledItem::heightChanged, this, &AsemanQuickStyledItem::reposItems);
-    connect(this, &QQuickItem::parentChanged, this, &AsemanQuickStyledItem::reloadStyleTheme);
 }
 
 AsemanQuickStyledItem::~AsemanQuickStyledItem()
@@ -41,17 +37,17 @@ void AsemanQuickStyledItem::reposItems()
     {
         mStyleItem->setX(0);
         mStyleItem->setY(0);
-        mStyleItem->setWidth(width());
-        mStyleItem->setHeight(height());
+        mStyleItem->setWidth(mSourceItem? mSourceItem->width() : width());
+        mStyleItem->setHeight(mSourceItem? mSourceItem->height() : height());
     }
 }
 
 void AsemanQuickStyledItem::reinitImplicitSizes()
 {
-    if (mStyleItem)
+    if (mStyleItem && mSourceItem)
     {
-        setImplicitWidth(mStyleItem->implicitWidth());
-        setImplicitHeight(mStyleItem->implicitHeight());
+        mSourceItem->setImplicitWidth(mStyleItem->implicitWidth());
+        mSourceItem->setImplicitHeight(mStyleItem->implicitHeight());
     }
 }
 
@@ -127,6 +123,7 @@ void AsemanQuickStyledItem::setupStyleItem()
         connect(mStyleItem, &QQuickItem::implicitWidthChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
         connect(mStyleItem, &QQuickItem::implicitHeightChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
         reinitImplicitSizes();
+        reposItems();
     }
     else
         delete obj;
@@ -143,7 +140,21 @@ void AsemanQuickStyledItem::setSourceItem(QQuickItem *newSourceItem)
 {
     if (mSourceItem == newSourceItem)
         return;
+    if (mSourceItem)
+    {
+        disconnect(mSourceItem, &AsemanQuickStyledItem::widthChanged, this, &AsemanQuickStyledItem::reposItems);
+        disconnect(mSourceItem, &AsemanQuickStyledItem::heightChanged, this, &AsemanQuickStyledItem::reposItems);
+        disconnect(mSourceItem, &QQuickItem::parentChanged, this, &AsemanQuickStyledItem::reloadStyleTheme);
+    }
     mSourceItem = newSourceItem;
+    if (mSourceItem)
+    {
+        connect(mSourceItem, &AsemanQuickStyledItem::widthChanged, this, &AsemanQuickStyledItem::reposItems);
+        connect(mSourceItem, &AsemanQuickStyledItem::heightChanged, this, &AsemanQuickStyledItem::reposItems);
+        connect(mSourceItem, &QQuickItem::parentChanged, this, &AsemanQuickStyledItem::reloadStyleTheme);
+        reposItems();
+    }
+
     setupStyleItem();
     Q_EMIT sourceItemChanged();
 }

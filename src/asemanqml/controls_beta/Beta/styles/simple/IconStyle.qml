@@ -4,8 +4,8 @@ import AsemanQml.MaterialIcons 2.0
 
 AbstractStyle {
     id: dis
-    implicitHeight: control.height
-    implicitWidth: control.width
+    implicitHeight: control.contentHeight
+    implicitWidth: control.contentWidth
     font.family: MaterialIcons.family
     extra: {
         "lineHeight": 1,

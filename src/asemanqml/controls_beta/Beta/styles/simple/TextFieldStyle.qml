@@ -8,7 +8,7 @@ AbstractStyle {
     implicitWidth: control.width
 
     padding {
-        top: 8
+        top: 9
         bottom: 10
         left: 4
         right: 4

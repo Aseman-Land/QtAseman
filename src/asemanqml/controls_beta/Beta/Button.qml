@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import AsemanQml.Controls.Beta 3.0
-import AsemanQml.Controls.Beta 3.0
 
 Control {
     id: dis

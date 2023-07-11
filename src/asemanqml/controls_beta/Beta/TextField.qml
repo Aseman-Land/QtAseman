@@ -14,6 +14,7 @@ TextInput {
     bottomPadding: styledItem.styleItem.padding.bottom
     clip: true
     height: styledItem.implicitHeight
+    Layout.preferredHeight: styledItem.implicitHeight
 
     selectedTextColor: dis.Style.accentTextColor
     selectionColor: dis.Style.accentColor
