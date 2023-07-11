@@ -17,6 +17,9 @@ void AsemanQuickRowLayout::relocateChilds()
 
     const auto childs = childItems();
 
+    qreal width = AsemanQuickRowLayout::width();
+    const bool width_is_zero = (width <= 0);
+
     qreal static_width = 0, w;
     int autoFillCount = 0;
     int visibleCount = 0;
@@ -27,23 +30,26 @@ void AsemanQuickRowLayout::relocateChilds()
 
         visibleCount++;
         auto attached = qobject_cast<AsemanQuickLayoutProperty*>(qmlAttachedPropertiesObject<AsemanQuickLayout>(c, true));
+
+        w = c->implicitWidth();
+        if (attached->mPreferredWidth > 0)
+            w = attached->mPreferredWidth;
+        if (width_is_zero)
+            width += w + attached->mLeftMargin + attached->mRightMargin + mSpacing;
+
         if (attached->mFillWidth)
         {
             autoFillCount++;
             continue;
         }
 
-        w = c->implicitWidth();
-        if (attached->mPreferredWidth > 0)
-            w = attached->mPreferredWidth;
-
         c->setWidth(w);
-        static_width += w + attached->mTopMargin + attached->mBottomMargin;
+        static_width += w + attached->mLeftMargin + attached->mRightMargin;
     }
     static_width += (visibleCount-1)*mSpacing;
 
-    const qreal autoFillWidth = width() - static_width;
-    const qreal standardAutoFillWidth = autoFillWidth / autoFillCount;
+    const qreal autoFillWidth = width - static_width;
+    const qreal standardAutoFillWidth = (autoFillCount? autoFillWidth / autoFillCount : autoFillWidth);
 
     for (auto c: childs)
     {
@@ -67,7 +73,7 @@ void AsemanQuickRowLayout::relocateChilds()
 
         const auto newX = lastX + attached->mLeftMargin;
         if (mirrored)
-            c->setX(width() - newX - c->width());
+            c->setX(width - newX - c->width());
         else
             c->setX(newX);
 

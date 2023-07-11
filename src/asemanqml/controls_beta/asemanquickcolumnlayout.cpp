@@ -35,7 +35,7 @@ void AsemanQuickColumnLayout::relocateChilds()
             h = attached->mPreferredHeight;
 
         c->setHeight(h);
-        static_height += h + attached->mLeftMargin + attached->mRightMargin;
+        static_height += h + attached->mTopMargin + attached->mBottomMargin;
     }
     static_height += (visibleCount-1)*mSpacing;
 
