@@ -308,5 +308,14 @@ void AsemanQuickStyleAttachedProperty::setBaseTextColor(const QColor &newBaseTex
 
 AsemanQuickStyleAttachedProperty *AsemanQuickStyleProperty::qmlAttachedProperties(QObject *object)
 {
-    return new AsemanQuickStyleAttachedProperty(object);
+    auto res = new AsemanQuickStyleAttachedProperty(object);
+
+    auto style = qobject_cast<AsemanQuickAbstractStyle*>(object);
+    if (style)
+    {
+        connect(res, &AsemanQuickStyleAttachedProperty::generalFontFamiliesChanged
+                , style, &AsemanQuickAbstractStyle::fontChanged);
+    }
+
+    return res;
 }

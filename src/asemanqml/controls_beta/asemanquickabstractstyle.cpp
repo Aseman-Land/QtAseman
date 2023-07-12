@@ -34,7 +34,6 @@ QFont AsemanQuickAbstractStyle::font() const
 
     QFont font;
     font.setFamilies(attached->generalFontFamilies());
-    qDebug() << font.families();
     return font;
 }
 
