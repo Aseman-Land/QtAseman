@@ -1,6 +1,8 @@
 #include "asemanquickabstractstyle.h"
 #include "asemanquickstyleattachedproperty.h"
 
+#include <QGuiApplication>
+
 AsemanQuickAbstractStyle::AsemanQuickAbstractStyle(QQuickItem *parent)
     : QQuickItem(parent)
 {
@@ -27,13 +29,16 @@ void AsemanQuickAbstractStyle::setPadding(AsemanQuickBoxSize *newPadding)
 
 QFont AsemanQuickAbstractStyle::font() const
 {
-    if (mFont.has_value())
-        return mFont.value();
+    QFont font = mFont.value_or(QFont());
+    if (font.families().isEmpty())
+    {
+        auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
 
-    auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
+        font.setFamilies(attached->globalFontFamilies());
+        font.setPixelSize(attached->globalFontPixelSize());
+    }
 
-    QFont font;
-    font.setFamilies(attached->generalFontFamilies());
+    qApp->setFont(font);
     return font;
 }
 
@@ -42,6 +47,7 @@ void AsemanQuickAbstractStyle::setFont(const QFont &newFont)
     if (mFont == newFont)
         return;
     mFont = newFont;
+    qApp->setFont(newFont);
     Q_EMIT fontChanged();
 }
 

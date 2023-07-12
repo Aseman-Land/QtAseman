@@ -34,16 +34,20 @@
     callback(AsemanQuickStyleAttachedProperty::findParent(this));
 
 QHash<QString, QHash<QString, QString>> AsemanQuickStyleAttachedProperty::mThemePaths;
+std::optional<QStringList> AsemanQuickStyleAttachedProperty::mGlobalFontFamilies;
+std::optional<qint32> AsemanQuickStyleAttachedProperty::mGlobalFontPixelSize;
+QSet<AsemanQuickStyleAttachedProperty*> AsemanQuickStyleAttachedProperty::mObjects;
 
 AsemanQuickStyleAttachedProperty::AsemanQuickStyleAttachedProperty(QObject *parent)
     : QObject(parent)
 {
     reconnectParents();
+    mObjects.insert(this);
 }
 
 AsemanQuickStyleAttachedProperty::~AsemanQuickStyleAttachedProperty()
 {
-
+    mObjects.remove(this);
 }
 
 void AsemanQuickStyleAttachedProperty::invokeAllSignals()
@@ -57,7 +61,8 @@ void AsemanQuickStyleAttachedProperty::invokeAllSignals()
         Q_EMIT backgroundColorChanged();
         Q_EMIT baseColorChanged();
         Q_EMIT baseTextColorChanged();
-        Q_EMIT generalFontFamiliesChanged();
+        Q_EMIT globalFontFamiliesChanged();
+        Q_EMIT globalFontPixelSizeChanged();
         Q_EMIT styleNameChanged();
         Q_EMIT stylesSearchPathChanged();
     }, Qt::QueuedConnection);
@@ -99,6 +104,20 @@ void AsemanQuickStyleAttachedProperty::reconnectParents()
     }
 
     invokeAllSignals();
+}
+
+qint32 AsemanQuickStyleAttachedProperty::globalFontPixelSize() const
+{
+    return mGlobalFontPixelSize.value_or(12);
+}
+
+void AsemanQuickStyleAttachedProperty::setGlobalFontPixelSize(qint32 newGlobalFontPixelSize)
+{
+    if (mGlobalFontPixelSize == newGlobalFontPixelSize)
+        return;
+    mGlobalFontPixelSize = newGlobalFontPixelSize;
+    for (auto c: mObjects)
+        Q_EMIT c->globalFontPixelSizeChanged();
 }
 
 QStringList AsemanQuickStyleAttachedProperty::stylesSearchPath() const
@@ -170,20 +189,19 @@ void AsemanQuickStyleAttachedProperty::setStyleName(const QString &newStyleName)
     Q_EMIT styleNameChanged();
 }
 
-QStringList AsemanQuickStyleAttachedProperty::generalFontFamilies() const
+QStringList AsemanQuickStyleAttachedProperty::globalFontFamilies() const
 {
-    ASEMAN_READ_STYLE(mGeneralFontFamilies);
-    return res.value_or(QStringList());
+    return mGlobalFontFamilies.value_or(QStringList());
 }
 
-void AsemanQuickStyleAttachedProperty::setGeneralFontFamilies(const QStringList &newGeneralFontFamilies)
+void AsemanQuickStyleAttachedProperty::setGlobalFontFamilies(const QStringList &newGlobalFontFamilies)
 {
-    if (mGeneralFontFamilies == newGeneralFontFamilies)
+    if (mGlobalFontFamilies == newGlobalFontFamilies)
         return;
 
-    mGeneralFontFamilies = newGeneralFontFamilies;
-    ASEMAN_WRITE_STYLE(mGeneralFontFamilies, generalFontFamiliesChanged);
-    Q_EMIT generalFontFamiliesChanged();
+    mGlobalFontFamilies = newGlobalFontFamilies;
+    for (auto c: mObjects)
+        Q_EMIT c->globalFontFamiliesChanged();
 }
 
 QColor AsemanQuickStyleAttachedProperty::accentColor() const
@@ -313,7 +331,9 @@ AsemanQuickStyleAttachedProperty *AsemanQuickStyleProperty::qmlAttachedPropertie
     auto style = qobject_cast<AsemanQuickAbstractStyle*>(object);
     if (style)
     {
-        connect(res, &AsemanQuickStyleAttachedProperty::generalFontFamiliesChanged
+        connect(res, &AsemanQuickStyleAttachedProperty::globalFontFamiliesChanged
+                , style, &AsemanQuickAbstractStyle::fontChanged);
+        connect(res, &AsemanQuickStyleAttachedProperty::globalFontPixelSizeChanged
                 , style, &AsemanQuickAbstractStyle::fontChanged);
     }
 

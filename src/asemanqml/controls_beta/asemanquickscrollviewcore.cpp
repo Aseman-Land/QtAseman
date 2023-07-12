@@ -30,6 +30,7 @@ void AsemanQuickScrollViewCore::setFlickArea(QQuickItem *newFlickArea)
 
 bool AsemanQuickScrollViewCore::eventFilter(QObject *o, QEvent *e)
 {
+#if !defined(Q_OS_IOS) && !defined(Q_OS_ANDROID)
     if (o == mFlickArea)
     {
         switch (static_cast<int>(e->type()))
@@ -42,6 +43,7 @@ bool AsemanQuickScrollViewCore::eventFilter(QObject *o, QEvent *e)
             break;
         }
     }
+#endif
 
     return AsemanQuickControlItem::eventFilter(o, e);
 }

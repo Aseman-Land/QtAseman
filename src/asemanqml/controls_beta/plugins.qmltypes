@@ -170,7 +170,8 @@ Module {
     Component {
         name: "AsemanQuickStyleAttachedProperty"
         prototype: "QObject"
-        Property { name: "generalFontFamilies"; type: "QStringList" }
+        Property { name: "globalFontPixelSize"; type: "int" }
+        Property { name: "globalFontFamilies"; type: "QStringList" }
         Property { name: "accentColor"; type: "QColor" }
         Property { name: "accentTextColor"; type: "QColor" }
         Property { name: "foregroundColor"; type: "QColor" }
@@ -190,7 +191,8 @@ Module {
         isCreatable: false
         exportMetaObjectRevisions: [0]
         attachedType: "AsemanQuickStyleAttachedProperty"
-        Property { name: "generalFontFamilies"; type: "QStringList" }
+        Property { name: "globalFontPixelSize"; type: "int" }
+        Property { name: "globalFontFamilies"; type: "QStringList" }
         Property { name: "accentColor"; type: "QColor" }
         Property { name: "accentTextColor"; type: "QColor" }
         Property { name: "foregroundColor"; type: "QColor" }

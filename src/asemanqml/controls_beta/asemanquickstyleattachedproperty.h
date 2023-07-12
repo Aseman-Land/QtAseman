@@ -12,7 +12,7 @@
 class AsemanQuickStyleAttachedProperty : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList generalFontFamilies READ generalFontFamilies WRITE setGeneralFontFamilies NOTIFY generalFontFamiliesChanged)
+    Q_PROPERTY(QStringList globalFontFamilies READ globalFontFamilies WRITE setGlobalFontFamilies NOTIFY globalFontFamiliesChanged)
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged)
     Q_PROPERTY(QColor accentTextColor READ accentTextColor WRITE setAccentTextColor NOTIFY accentTextColorChanged)
     Q_PROPERTY(QColor foregroundColor READ foregroundColor WRITE setForegroundColor NOTIFY foregroundColorChanged)
@@ -23,14 +23,15 @@ class AsemanQuickStyleAttachedProperty : public QObject
     Q_PROPERTY(QColor baseTextColor READ baseTextColor WRITE setBaseTextColor NOTIFY baseTextColorChanged)
     Q_PROPERTY(QString styleName READ styleName WRITE setStyleName NOTIFY styleNameChanged)
     Q_PROPERTY(QStringList stylesSearchPath READ stylesSearchPath WRITE setStylesSearchPath NOTIFY stylesSearchPathChanged)
+    Q_PROPERTY(qint32 globalFontPixelSize READ globalFontPixelSize WRITE setGlobalFontPixelSize NOTIFY globalFontPixelSizeChanged)
     Q_PROPERTY(QUrl styleUrl READ styleUrl NOTIFY styleNameChanged)
 
 public:
     AsemanQuickStyleAttachedProperty(QObject *parent = nullptr);
     virtual ~AsemanQuickStyleAttachedProperty();
 
-    QStringList generalFontFamilies() const;
-    void setGeneralFontFamilies(const QStringList &newGeneralFontFamilies);
+    QStringList globalFontFamilies() const;
+    void setGlobalFontFamilies(const QStringList &newGlobalFontFamilies);
 
     QColor accentColor() const;
     void setAccentColor(const QColor &newHighlightColor);
@@ -65,8 +66,11 @@ public:
     static QString getStylePath(const QStringList &searchPaths, const QString &styleName);
     QUrl styleUrl() const;
 
+    qint32 globalFontPixelSize() const;
+    void setGlobalFontPixelSize(qint32 newGlobalFontPixelSize);
+
 Q_SIGNALS:
-    void generalFontFamiliesChanged();
+    void globalFontFamiliesChanged();
     void accentColorChanged();
     void accentTextColorChanged();
     void foregroundColorChanged();
@@ -78,6 +82,7 @@ Q_SIGNALS:
     void styleNameChanged();
     void stylesSearchPathChanged();
     void styleUrlChanged();
+    void globalFontPixelSizeChanged();
 
 protected:
     void invokeAllSignals();
@@ -86,7 +91,8 @@ protected:
     void reconnectParents();
 
 private:
-    std::optional<QStringList> mGeneralFontFamilies;
+    static std::optional<QStringList> mGlobalFontFamilies;
+    static std::optional<qint32> mGlobalFontPixelSize;
 
     std::optional<QString> mStyleName;
     std::optional<QStringList> mStylesSearchPath;
@@ -102,6 +108,7 @@ private:
 
     QSet<QQuickItem*> mConnectedParents;
     static QHash<QString, QHash<QString, QString>> mThemePaths;
+    static QSet<AsemanQuickStyleAttachedProperty*> mObjects;
 };
 
 class AsemanQuickStyleProperty : public QObject

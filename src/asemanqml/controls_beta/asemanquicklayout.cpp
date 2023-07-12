@@ -56,6 +56,7 @@ void AsemanQuickLayout::itemChange(ItemChange change, const ItemChangeData &valu
 
         connect(value.item, &QQuickItem::implicitWidthChanged, this, &AsemanQuickLayout::reload);
         connect(value.item, &QQuickItem::implicitHeightChanged, this, &AsemanQuickLayout::reload);
+        connect(value.item, &QQuickItem::visibleChanged, this, &AsemanQuickLayout::reload);
         connect(attached, &AsemanQuickLayoutProperty::changed, this, &AsemanQuickLayout::reload);
 
         reloadDelayed();
@@ -68,6 +69,7 @@ void AsemanQuickLayout::itemChange(ItemChange change, const ItemChangeData &valu
 
         disconnect(value.item, &QQuickItem::implicitWidthChanged, this, &AsemanQuickLayout::reload);
         disconnect(value.item, &QQuickItem::implicitHeightChanged, this, &AsemanQuickLayout::reload);
+        disconnect(value.item, &QQuickItem::visibleChanged, this, &AsemanQuickLayout::reload);
         disconnect(attached, &AsemanQuickLayoutProperty::changed, this, &AsemanQuickLayout::reload);
 
         reloadDelayed();

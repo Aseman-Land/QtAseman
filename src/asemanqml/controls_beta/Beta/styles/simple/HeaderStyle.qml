@@ -13,10 +13,10 @@ AbstractStyle {
 
     Rectangle {
         anchors.fill: parent
-        anchors.topMargin: Devices.statusBarHeight
         color: control.Style.primaryColor
 
         Root.Label {
+            anchors.verticalCenterOffset: Devices.statusBarHeight/2
             anchors.centerIn: parent
             font.bold: true
             font.pixelSize: 10 * Devices.fontDensity
