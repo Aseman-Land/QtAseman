@@ -128,6 +128,7 @@ void AsemanQuickStyleAttachedProperty::setGlobalFontPixelSize(qint32 newGlobalFo
     if (mGlobalFontPixelSize == newGlobalFontPixelSize)
         return;
     mGlobalFontPixelSize = newGlobalFontPixelSize;
+    resetGlobalFont();
     for (auto c: mObjects)
         Q_EMIT c->globalFontPixelSizeChanged();
 }
@@ -212,6 +213,7 @@ void AsemanQuickStyleAttachedProperty::setGlobalFontFamilies(const QStringList &
         return;
 
     mGlobalFontFamilies = newGlobalFontFamilies;
+    resetGlobalFont();
     for (auto c: mObjects)
         Q_EMIT c->globalFontFamiliesChanged();
 }
