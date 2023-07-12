@@ -106,7 +106,7 @@ AbstractStyle {
             color: control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
             text: control.text
             visible: text.length
-            font.bold: control.selected
+            font.weight: control.selected? Font.Medium : Font.Normal
         }
     }
 }

@@ -18,7 +18,7 @@ AbstractStyle {
         Root.Label {
             anchors.verticalCenterOffset: Devices.statusBarHeight/2
             anchors.centerIn: parent
-            font.bold: true
+            font.weight: Font.Medium
             font.pixelSize: 10 * Devices.fontDensity
             text: control.title
             color: control.Style.primaryTextColor
