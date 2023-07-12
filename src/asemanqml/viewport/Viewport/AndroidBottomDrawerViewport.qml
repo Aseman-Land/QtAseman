@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.3
 import AsemanQml.Base 2.0
 
 AbstractViewportType {
@@ -30,7 +29,7 @@ AbstractViewportType {
         duration: 300
     }
 
-    Page {
+    MouseArea {
         width: item.foreground.width
         height: item.height - dragArea.y - item.foreground.y
         anchors.bottom: parent.bottom

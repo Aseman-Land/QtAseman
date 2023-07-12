@@ -57,8 +57,3 @@ contains(DEFINES, QT_ASEMAN_EMBEDDED) {
 } else {
     RESOURCES += asemancontrols_beta
 }
-
-DISTFILES += \
-    $$PWD/Beta/DialogScene.qml \
-    $$PWD/Beta/ViewportContainer.qml \
-    $$PWD/Beta/styles/simple/DialogSceneStyle.qml
