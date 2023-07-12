@@ -54,9 +54,9 @@ void AsemanQuickLayout::itemChange(ItemChange change, const ItemChangeData &valu
     {
         auto attached = getAttached(value.item);
 
-        connect(value.item, &QQuickItem::implicitWidthChanged, this, &AsemanQuickLayout::reload);
-        connect(value.item, &QQuickItem::implicitHeightChanged, this, &AsemanQuickLayout::reload);
-        connect(value.item, &QQuickItem::visibleChanged, this, &AsemanQuickLayout::reload);
+        connect(value.item, &QQuickItem::implicitWidthChanged, this, &AsemanQuickLayout::reload, Qt::QueuedConnection);
+        connect(value.item, &QQuickItem::implicitHeightChanged, this, &AsemanQuickLayout::reload, Qt::QueuedConnection);
+        connect(value.item, &QQuickItem::visibleChanged, this, &AsemanQuickLayout::reload, Qt::QueuedConnection);
         connect(attached, &AsemanQuickLayoutProperty::changed, this, &AsemanQuickLayout::reload);
 
         reloadDelayed();
