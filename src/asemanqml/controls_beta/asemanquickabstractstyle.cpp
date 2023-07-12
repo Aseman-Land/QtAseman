@@ -29,17 +29,7 @@ void AsemanQuickAbstractStyle::setPadding(AsemanQuickBoxSize *newPadding)
 
 QFont AsemanQuickAbstractStyle::font() const
 {
-    QFont font = mFont.value_or(QFont());
-    if (font.families().isEmpty())
-    {
-        auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
-
-        font.setFamilies(attached->globalFontFamilies());
-        font.setPixelSize(attached->globalFontPixelSize());
-    }
-
-    qApp->setFont(font);
-    return font;
+    return mFont.value_or(qApp->font());
 }
 
 void AsemanQuickAbstractStyle::setFont(const QFont &newFont)
@@ -47,7 +37,6 @@ void AsemanQuickAbstractStyle::setFont(const QFont &newFont)
     if (mFont == newFont)
         return;
     mFont = newFont;
-    qApp->setFont(newFont);
     Q_EMIT fontChanged();
 }
 

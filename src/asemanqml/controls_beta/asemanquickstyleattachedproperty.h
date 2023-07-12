@@ -89,6 +89,7 @@ protected:
     QObject *findParent(const QObject *obj) const;
 
     void reconnectParents();
+    void resetGlobalFont();
 
 private:
     static std::optional<QStringList> mGlobalFontFamilies;

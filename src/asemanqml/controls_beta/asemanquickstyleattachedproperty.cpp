@@ -3,6 +3,7 @@
 
 #include <QQuickItem>
 #include <QDebug>
+#include <QGuiApplication>
 
 #define ASEMAN_READ_STYLE(PROPERTY) \
     auto parentObject = AsemanQuickStyleAttachedProperty::findParent(this); \
@@ -104,6 +105,17 @@ void AsemanQuickStyleAttachedProperty::reconnectParents()
     }
 
     invokeAllSignals();
+}
+
+void AsemanQuickStyleAttachedProperty::resetGlobalFont()
+{
+    auto font = qApp->font();
+    if (mGlobalFontFamilies.has_value())
+        font.setFamilies(mGlobalFontFamilies.value());
+    if (mGlobalFontPixelSize.has_value())
+        font.setPixelSize(mGlobalFontPixelSize.value());
+
+    qApp->setFont(font);
 }
 
 qint32 AsemanQuickStyleAttachedProperty::globalFontPixelSize() const
