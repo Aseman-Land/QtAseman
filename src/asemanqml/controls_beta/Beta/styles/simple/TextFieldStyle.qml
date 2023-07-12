@@ -4,7 +4,7 @@ import "../.." as Root
 
 AbstractStyle {
     id: dis
-    implicitHeight: control.contentHeight + 18
+    implicitHeight: (control.contentHeight <= 0? 33 : control.contentHeight + 18)
     implicitWidth: control.width
 
     padding {
