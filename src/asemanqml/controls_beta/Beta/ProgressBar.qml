@@ -9,4 +9,5 @@ Control {
     property real from: 0
     property real to: 100
     property real value: 0
+    property bool indeterminate
 }

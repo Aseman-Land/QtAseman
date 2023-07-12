@@ -22,6 +22,8 @@
 #include <QObject>
 #include <QQuickItem>
 
+#include <optional>
+
 #include "asemanviewportitem.h"
 
 class AsemanViewportAttechedProperty;
@@ -31,6 +33,7 @@ class AsemanViewport : public QQuickItem
     class Private;
     Q_PROPERTY(QQmlListProperty<AsemanViewportItem> items READ items NOTIFY itemsChanged)
     Q_PROPERTY(QStringList keys READ keys NOTIFY itemsChanged)
+    Q_PROPERTY(bool primaryViewport READ primaryViewport WRITE setPrimaryViewport NOTIFY primaryViewportChanged)
 
 public:
     AsemanViewport(QQuickItem *parent = Q_NULLPTR);
@@ -42,6 +45,10 @@ public:
 
     static AsemanViewportAttechedProperty *qmlAttachedProperties(QObject *object);
 
+    bool primaryViewport();
+    bool isPrimaryViewport() const;
+    void setPrimaryViewport(bool newPrimaryViewport);
+
 public Q_SLOTS:
     QVariant getComponent(const QString &name);
     QQmlComponent *createComponent(const QUrl &fileUrl, bool asyn = false);
@@ -49,6 +56,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void itemsChanged();
     void viewportChanged();
+    void primaryViewportChanged();
 
 private:
     static void append(QQmlListProperty<AsemanViewportItem> *p, AsemanViewportItem *v);
@@ -58,6 +66,7 @@ private:
 
 private:
     Private *p;
+    std::optional<bool> mPrimaryViewport;
 };
 
 class AsemanViewportController;

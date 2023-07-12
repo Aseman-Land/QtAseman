@@ -160,6 +160,27 @@ void AsemanViewport::clear(QQmlListProperty<AsemanViewportItem> *p)
     Q_EMIT aobj->itemsChanged();
 }
 
+bool AsemanViewport::primaryViewport()
+{
+    if (mPrimaryViewport.has_value())
+        return mPrimaryViewport.value();
+
+    return AsemanViewportAttechedProperty::viewport(this, true) == this;
+}
+
+bool AsemanViewport::isPrimaryViewport() const
+{
+    return mPrimaryViewport.value_or(false);
+}
+
+void AsemanViewport::setPrimaryViewport(bool newPrimaryViewport)
+{
+    if (mPrimaryViewport == newPrimaryViewport)
+        return;
+    mPrimaryViewport = newPrimaryViewport;
+    Q_EMIT primaryViewportChanged();
+}
+
 AsemanViewport::~AsemanViewport()
 {
     delete p;
@@ -213,7 +234,11 @@ AsemanViewport *AsemanViewportAttechedProperty::viewport(QObject *obj, bool prim
         if (viewport)
         {
             if (primary)
+            {
+                if (viewport->isPrimaryViewport())
+                    return viewport;
                 last_viewport = viewport;
+            }
             else
                 return viewport;
         }

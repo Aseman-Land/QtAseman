@@ -39,8 +39,11 @@ AbstractStyle {
         id: buttonsRow
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: 20 * Devices.density
         anchors.rightMargin: 20 * Devices.density
         anchors.bottomMargin: 10 * Devices.density
+        layoutDirection: Qt.RightToLeft
 
         Repeater {
             id: repeater
@@ -59,6 +62,10 @@ AbstractStyle {
                 id: item
                 implicitWidth: modelData.width
                 implicitHeight: modelData.height
+                Layout.fillWidth: modelData.Layout.fillWidth
+                Layout.fillHeight: modelData.Layout.fillHeight
+                Layout.preferredWidth: modelData.Layout.preferredWidth
+                Layout.preferredHeight: modelData.Layout.preferredHeight
 
                 property Item backupParent
                 Component.onCompleted: {

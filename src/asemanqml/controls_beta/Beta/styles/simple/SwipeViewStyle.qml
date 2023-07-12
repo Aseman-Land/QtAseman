@@ -17,7 +17,7 @@ AbstractStyle {
         anchors.fill: parent
         orientation: ListView.Horizontal
         highlightRangeMode: ListView.StrictlyEnforceRange
-        highlightMoveDuration: 200
+        highlightMoveDuration: 250
         snapMode: ListView.SnapOneItem
         currentIndex: control.currentIndex
         onCurrentIndexChanged: if (moving) control.currentIndex = currentIndex;
@@ -30,6 +30,7 @@ AbstractStyle {
                 if (item.transformOrigin == undefined)
                     continue;
 
+                item.visible = false;
                 res[res.length] = item;
             }
             return res;
@@ -47,8 +48,12 @@ AbstractStyle {
                 backupParent = modelData.parent;
                 modelData.parent = item;
                 modelData.anchors.fill = item;
+                modelData.visible = true;
             }
-            Component.onDestruction: modelData.parent = backupParent
+            Component.onDestruction: {
+                modelData.visible = false;
+                modelData.parent = backupParent
+            }
         }
     }
 }

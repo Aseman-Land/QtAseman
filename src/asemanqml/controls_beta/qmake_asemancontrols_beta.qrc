@@ -79,5 +79,7 @@
         <file>Beta/MenuIcon.qml</file>
         <file>Beta/HeaderMenuButton.qml</file>
         <file>Beta/ViewportContainer.qml</file>
+        <file>Beta/AsemanApplication.qml</file>
+        <file>Beta/AsemanWindow.qml</file>
     </qresource>
 </RCC>

@@ -79,7 +79,7 @@ void AsemanQuickRowLayout::relocateChilds()
 
         h = c->implicitHeight();
         if (attached->mFillHeight)
-            h = height();
+            h = height() - attached->mTopMargin - attached->mBottomMargin;
         else if (attached->mPreferredHeight > 0)
             h = attached->mPreferredHeight;
 
@@ -89,11 +89,12 @@ void AsemanQuickRowLayout::relocateChilds()
         switch (attached->mAlignment & Qt::AlignVertical_Mask)
         {
         case Qt::AlignTop:
-            c->setY(0);
+            c->setY(attached->mTopMargin);
             break;
         case Qt::AlignBottom:
-            c->setY(height() - c->height());
+            c->setY(height() - c->height() - attached->mBottomMargin);
             break;
+        default:
         case Qt::AlignVCenter:
             c->setY(height()/2 - c->height()/2);
             break;

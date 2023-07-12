@@ -66,7 +66,7 @@ void AsemanQuickColumnLayout::relocateChilds()
 
         w = c->implicitWidth();
         if (attached->mFillWidth)
-            w = width();
+            w = width() - attached->mLeftMargin - attached->mRightMargin;
         else if (attached->mPreferredWidth > 0)
             w = attached->mPreferredWidth;
 
@@ -75,11 +75,12 @@ void AsemanQuickColumnLayout::relocateChilds()
 
         switch (attached->mAlignment & Qt::AlignHorizontal_Mask)
         {
+        default:
         case Qt::AlignLeft:
-            c->setX(0);
+            c->setX(attached->mLeftMargin);
             break;
         case Qt::AlignRight:
-            c->setX(width() - c->width());
+            c->setX(width() - c->width() - attached->mRightMargin);
             break;
         case Qt::AlignHCenter:
             c->setX(width()/2 - c->width()/2);

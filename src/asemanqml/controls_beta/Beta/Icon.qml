@@ -6,6 +6,7 @@ Text {
 
     property string styleFileName: "IconStyle.qml"
 
+    color: dis.Style.foregroundColor
     font.family: styledItem.styleItem.font.family
     font.pixelSize: styledItem.styleItem.font.pixelSize
     leftPadding: styledItem.styleItem.padding.left

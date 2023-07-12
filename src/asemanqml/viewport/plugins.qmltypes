@@ -40,11 +40,7 @@ Module {
         attachedType: "AsemanViewportAttechedProperty"
         Property { name: "items"; type: "AsemanViewportItem"; isList: true; isReadonly: true }
         Property { name: "keys"; type: "QStringList"; isReadonly: true }
-        Property { name: "controller"; type: "QObject"; isReadonly: true; isPointer: true }
-        Property { name: "allControllers"; type: "QList<QObject*>"; isReadonly: true }
-        Property { name: "viewport"; type: "AsemanViewport"; isReadonly: true; isPointer: true }
-        Property { name: "primaryViewport"; type: "AsemanViewport"; isReadonly: true; isPointer: true }
-        Signal { name: "controllersChanged" }
+        Property { name: "primaryViewport"; type: "bool" }
         Signal { name: "viewportChanged" }
         Method {
             name: "getComponent"

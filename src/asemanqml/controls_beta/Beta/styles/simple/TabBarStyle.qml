@@ -54,18 +54,30 @@ AbstractStyle {
         clip: true
         model: {
             var res = new Array;
-            var width = 0;
             for (var i=0 ;i<control.list.length; i++) {
                 var item = control.list[i];
                 if (item.transformOrigin == undefined)
                     continue;
 
-                width += item.width;
+                item.widthChanged.connect(listv.recalculateWidth);
+                item.visibleChanged.connect(listv.recalculateWidth);
                 res[res.length] = item;
             }
 
-            listv.width = Qt.binding(function(){ return Math.min(dis.width - 12, width); });
             return res;
+        }
+
+        onModelChanged: recalculateWidth()
+
+        function recalculateWidth() {
+            var width = 0;
+            for (var i=0; i<listv.model.length; i++)
+            {
+                var item = model[i];
+                if (item && item.visible)
+                    width += item.width;
+            }
+            listv.width = Qt.binding(function(){ return Math.min(dis.width-18, width); });
         }
 
         highlight: Item {
@@ -99,8 +111,10 @@ AbstractStyle {
 
         delegate: Item {
             id: item
-            width: modelData.width
+            width: modelData.visible? modelData.width : 0
             height: listv.height
+            opacity: modelData.visible? 1 : 0
+            enabled: modelData.visible
             clip: true
 
             Connections {
@@ -117,6 +131,8 @@ AbstractStyle {
                 modelData.anchors.left = item.left;
                 modelData.anchors.top = item.top;
                 modelData.anchors.bottom = item.bottom;
+                if (modelData.clicked != undefined)
+                    modelData.clicked.connect(function(){listv.currentIndex = model.index});
             }
             Component.onDestruction: modelData.parent = backupParent
         }
