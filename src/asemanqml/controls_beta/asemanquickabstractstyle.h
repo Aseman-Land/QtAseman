@@ -4,6 +4,8 @@
 #include <QQuickItem>
 #include <QFont>
 
+#include <optional>
+
 #include "asemanquickboxsize.h"
 
 class AsemanQuickAbstractStyle : public QQuickItem
@@ -33,7 +35,7 @@ Q_SIGNALS:
 
 private:
     AsemanQuickBoxSize *mPadding;
-    QFont mFont;
+    std::optional<QFont> mFont;
     QVariantMap mExtra;
 };
 
