@@ -18,6 +18,8 @@
 
 import QtQuick 2.9
 import AsemanQml.Base 2.0
+import AsemanQml.Controls.Beta 3.0
+import "." as R
 
-Window {
+R.Window {
 }
