@@ -46,6 +46,7 @@ Module {
         Property { name: "nextTabOrder"; type: "AsemanQuickControlItem"; isPointer: true }
         Property { name: "focusedInUsingKeyboard"; type: "bool"; isReadonly: true }
         Property { name: "focusableUsingKeyboard"; type: "bool" }
+        Property { name: "focusable"; type: "bool" }
         Method { name: "focusNextItem" }
         Method { name: "focusPreviousItem" }
     }

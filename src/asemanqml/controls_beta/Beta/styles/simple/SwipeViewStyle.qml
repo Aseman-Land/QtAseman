@@ -41,6 +41,7 @@ AbstractStyle {
             height: listv.height
             clip: true
             focusableUsingKeyboard: false
+            focusable: false
 
 
             property Item backupParent

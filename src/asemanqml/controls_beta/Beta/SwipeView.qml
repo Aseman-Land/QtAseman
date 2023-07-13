@@ -5,6 +5,7 @@ Control {
     id: dis
     styleFileName: "SwipeViewStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
     data: [sceneItem, styleItem]
 
     default property alias list: sceneItem.data

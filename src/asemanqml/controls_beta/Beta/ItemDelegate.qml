@@ -31,6 +31,9 @@ Control {
         anchors.fill: parent
         pressAndHoldInterval: 800
         onPressed: {
+            if (!dis.focusable)
+                return;
+
             dis.focus = true;
             dis.forceActiveFocus();
         }

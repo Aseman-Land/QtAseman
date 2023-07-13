@@ -5,6 +5,7 @@ Control {
     id: dis
     styleFileName: "ProgressBarStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
 
     property real from: 0
     property real to: 100

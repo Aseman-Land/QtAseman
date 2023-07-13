@@ -5,6 +5,7 @@ import AsemanQml.Controls.Beta 3.0
 Control {
     id: dis
     styleFileName: "ComboBoxDelegateStyle.qml"
+    focusable: false
 
     property string text
     property bool selected
@@ -27,6 +28,9 @@ Control {
         hoverEnabled: true
         anchors.fill: parent
         onPressed: {
+            if (!dis.focusable)
+                return;
+
             dis.focus = true;
             dis.forceActiveFocus();
         }

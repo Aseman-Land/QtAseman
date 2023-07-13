@@ -6,6 +6,7 @@ Control {
     data: [scene, styleItem]
     styleFileName: "HeaderStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
 
     property alias scene: scene
     default property alias items: scene.data

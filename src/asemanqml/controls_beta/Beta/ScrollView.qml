@@ -6,6 +6,7 @@ ScrollViewCore {
     id: dis
     styleFileName: "ScrollViewStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
 
     onFlickAreaChanged: {
         if (!flickArea)

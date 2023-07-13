@@ -6,6 +6,7 @@ Control {
     styleFileName: "FooterStyle.qml"
     data: [sceneItem, styleItem]
     focusableUsingKeyboard: false
+    focusable: false
 
     default property alias list: sceneItem.data
     property int currentIndex

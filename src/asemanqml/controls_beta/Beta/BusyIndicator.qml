@@ -5,6 +5,7 @@ Control {
     id: dis
     styleFileName: "BusyIndicatorStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
 
     property bool running: true
 }

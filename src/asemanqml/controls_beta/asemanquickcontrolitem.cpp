@@ -107,6 +107,19 @@ void AsemanQuickControlItem::setFocusedInUsingKeyboard(bool newFocusedInUsingKey
     Q_EMIT focusedInUsingKeyboardChanged();
 }
 
+bool AsemanQuickControlItem::focusable() const
+{
+    return mFocusable;
+}
+
+void AsemanQuickControlItem::setFocusable(bool newFocusable)
+{
+    if (mFocusable == newFocusable)
+        return;
+    mFocusable = newFocusable;
+    Q_EMIT focusableChanged();
+}
+
 AsemanQuickControlItem *AsemanQuickControlItem::nextTabOrder() const
 {
     return mNextTabOrder;
@@ -146,7 +159,7 @@ QList<AsemanQuickControlItem *> AsemanQuickControlItem::findAllControls(const QQ
             continue;
 
         auto child = qobject_cast<AsemanQuickControlItem*>(obj);
-        if (child && (!focusablesOnly || child->mFocusableUsingKeyboard))
+        if (child && (!focusablesOnly || (child->mFocusableUsingKeyboard && child->mFocusable)))
             res << child;
         if (recursive)
             res << findAllControls(obj, true, focusablesOnly);

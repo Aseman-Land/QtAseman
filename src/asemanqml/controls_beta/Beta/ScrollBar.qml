@@ -6,6 +6,7 @@ Control {
     id: dis
     styleFileName: "ScrollBarStyle.qml"
     focusableUsingKeyboard: false
+    focusable: false
 
     property Flickable flickArea
     property int orientation: Qt.Vertical

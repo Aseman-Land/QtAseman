@@ -30,6 +30,9 @@ Control {
         hoverEnabled: true
         anchors.fill: parent
         onPressed: {
+            if (!dis.focusable)
+                return;
+
             dis.focus = true;
             dis.forceActiveFocus();
         }
