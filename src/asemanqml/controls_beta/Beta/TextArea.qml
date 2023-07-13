@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import AsemanQml.Base 2.0
 import AsemanQml.Controls.Beta 3.0
 
 TextEdit {
@@ -18,7 +19,7 @@ TextEdit {
 
     selectedTextColor: dis.Style.accentTextColor
     selectionColor: dis.Style.accentColor
-    selectByMouse: true
+    selectByMouse: Devices.isDesktop
     color: dis.Style.foregroundColor
 
     property string placeholderText
