@@ -2,4 +2,3 @@ module AsemanQml.GraphicalEffects
 classname AsemanGraphicalEffectsPlugin
 typeinfo plugins.qmltypes
 plugin declarative_asemanqmlgraphicalffects
-depends AsemanQml.Base 2.0
