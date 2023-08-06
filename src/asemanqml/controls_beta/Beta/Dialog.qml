@@ -12,6 +12,24 @@ AbstractViewportScene {
     property string title
     property alias buttons: buttonsScene.data
 
+    signal closed()
+    signal rejected()
+    signal accepted()
+
+    onOpenedChanged: {
+        if (!opened)
+            closed()
+    }
+
+    function reject() {
+        dialog.opened = false;
+        dialog.rejected();
+    }
+    function accept() {
+        dialog.opened = false;
+        dialog.accepted();
+    }
+
     data: [
         Item {
             id: buttonsScene

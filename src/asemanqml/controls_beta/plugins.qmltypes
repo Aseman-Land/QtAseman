@@ -367,6 +367,11 @@ Module {
         Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
+        Method { name: "accept"; type: "QVariant" }
+        Method { name: "reject"; type: "QVariant" }
+        Signal { name: "rejected" }
+        Signal { name: "accepted" }
+        Signal { name: "closed" }
     }
     Component {
         prototype: "AsemanQuickSceneItem"
