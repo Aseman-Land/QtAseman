@@ -259,6 +259,7 @@ Module {
         isComposite: true
         defaultProperty: "data"
         Property { name: "text"; type: "string" }
+        Property { name: "font"; type: "QFont" }
         Property { name: "icon"; type: "string" }
         Property { name: "iconPixelSize"; type: "double" }
         Property { name: "highlighted"; type: "bool" }

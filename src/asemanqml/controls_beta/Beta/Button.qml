@@ -7,6 +7,7 @@ Control {
 
     property string text
     property string icon
+    property font font
 
     property real iconPixelSize: 14
 

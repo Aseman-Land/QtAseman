@@ -22,10 +22,13 @@ AbstractStyle {
     }
 
     Root.Label {
+        anchors.fill: parent
         leftPadding: dis.padding.left
         topPadding: dis.padding.top
         rightPadding: dis.padding.right
         bottomPadding: dis.padding.bottom
+        horizontalAlignment: control.horizontalAlignment
+        verticalAlignment: control.horizontalAlignment
         font: control.font
         color: control.color
         opacity: 0.5

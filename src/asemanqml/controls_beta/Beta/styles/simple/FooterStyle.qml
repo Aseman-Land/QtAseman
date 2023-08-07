@@ -107,8 +107,11 @@ AbstractStyle {
                 modelData.anchors.left = item.left;
                 modelData.anchors.top = item.top;
                 modelData.anchors.bottom = item.bottom;
+
+                var index = model.index;
+                var list = listv;
                 if (modelData.clicked != undefined)
-                    modelData.clicked.connect(function(){listv.currentIndex = model.index});
+                    modelData.clicked.connect(function(){list.currentIndex = index});
             }
             Component.onDestruction: modelData.parent = backupParent
         }

@@ -22,6 +22,7 @@ AbstractStyle {
     }
 
     Root.Label {
+        anchors.fill: parent
         leftPadding: dis.padding.left
         topPadding: dis.padding.top
         rightPadding: dis.padding.right
@@ -29,6 +30,8 @@ AbstractStyle {
         font: control.font
         color: control.color
         opacity: 0.5
+        horizontalAlignment: control.horizontalAlignment
+        verticalAlignment: control.horizontalAlignment
         text: control.placeholderText
         visible: control.text.length == 0
     }

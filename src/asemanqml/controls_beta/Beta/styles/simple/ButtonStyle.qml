@@ -109,6 +109,7 @@ AbstractStyle {
             color: control.highlighted && control.flat? control.Style.accentColor : control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
             text: control.text
             visible: text.length
+            font: control.font
         }
     }
 }
