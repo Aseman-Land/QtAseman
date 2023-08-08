@@ -87,7 +87,10 @@ void AsemanQuickStyledItem::reloadStyleTheme()
                     component = nullptr;
                 }
                 else
-                    setStyleComponent(component);
+                {
+                    mFileStyleComponent = component;
+                    setupStyleItem();
+                }
             }
         }
         else
@@ -105,7 +108,9 @@ void AsemanQuickStyledItem::setupStyleItem()
 
     if (!mSourceItem)
         return;
-    if (!mStyleComponent || !mStyleComponent->isReady())
+
+    const auto component = (mStyleComponent? mStyleComponent : mFileStyleComponent);
+    if (!component || !component->isReady())
         return;
 
     auto context = qmlContext(this);
@@ -116,7 +121,7 @@ void AsemanQuickStyledItem::setupStyleItem()
         {"parent", QVariant::fromValue<QObject*>(this)}
     };
 
-    auto obj = mStyleComponent->createWithInitialProperties(properties, newContext);
+    auto obj = component->createWithInitialProperties(properties, newContext);
     mStyleItem = qobject_cast<AsemanQuickAbstractStyle*>(obj);
     if (mStyleItem)
     {

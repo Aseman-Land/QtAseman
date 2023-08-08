@@ -355,6 +355,8 @@ Module {
         isComposite: true
         defaultProperty: "delegate"
         Property { name: "title"; type: "string" }
+        Property { name: "sceneStyleFileName"; type: "string" }
+        Property { name: "sceneStyleComponent"; type: "QQmlComponent" }
         Property { name: "buttons"; type: "QObject"; isList: true; isReadonly: true }
         Property { name: "styleFileName"; type: "string" }
         Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
@@ -363,6 +365,10 @@ Module {
         Property { name: "opened"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "maximumWidth"; type: "double" }
+        Property { name: "leftPadding"; type: "double" }
+        Property { name: "rightPadding"; type: "double" }
+        Property { name: "topPadding"; type: "double" }
+        Property { name: "bottomPadding"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
         Property { name: "openToPrimaryViewport"; type: "bool" }
@@ -383,6 +389,10 @@ Module {
         defaultProperty: "items"
         Property { name: "title"; type: "string" }
         Property { name: "buttons"; type: "QVariant" }
+        Property { name: "leftPadding"; type: "double" }
+        Property { name: "rightPadding"; type: "double" }
+        Property { name: "topPadding"; type: "double" }
+        Property { name: "bottomPadding"; type: "double" }
         Property { name: "item"; type: "QQuickItem"; isPointer: true }
         Property { name: "scene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }

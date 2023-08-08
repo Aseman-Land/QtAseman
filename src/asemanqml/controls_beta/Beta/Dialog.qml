@@ -9,8 +9,16 @@ AbstractViewportScene {
     styleFileName: "DialogStyle.qml"
     openToPrimaryViewport: true
 
+    property Component sceneStyleComponent
+    property string sceneStyleFileName: "DialogSceneStyle.qml"
+
     property string title
     property alias buttons: buttonsScene.data
+
+    property variant leftPadding
+    property variant rightPadding
+    property variant topPadding
+    property variant bottomPadding
 
     signal closed()
     signal rejected()
@@ -43,6 +51,13 @@ AbstractViewportScene {
             id: scene
             title: dis.title
             buttons: dis.buttons
+            styleComponent: dis.sceneStyleComponent
+            styleFileName: dis.sceneStyleFileName
+
+            leftPadding: dis.leftPadding != null? dis.leftPadding : styleItem.padding.left
+            rightPadding: dis.rightPadding != null? dis.rightPadding : styleItem.padding.right
+            topPadding: dis.topPadding != null? dis.topPadding : styleItem.padding.top
+            bottomPadding: dis.bottomPadding != null? dis.bottomPadding : styleItem.padding.bottom
 
             property variant prv
 

@@ -46,6 +46,7 @@ protected:
 private:
     QPointer<QQuickItem> mSourceItem;
     QPointer<QQmlComponent> mStyleComponent;
+    QPointer<QQmlComponent> mFileStyleComponent;
     QString mStyleFileName;
     AsemanQuickAbstractStyle *mStyleItem = nullptr;
     QString mLastStylePath;
