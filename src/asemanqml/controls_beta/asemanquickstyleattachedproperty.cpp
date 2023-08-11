@@ -111,7 +111,14 @@ void AsemanQuickStyleAttachedProperty::resetGlobalFont()
 {
     auto font = qApp->font();
     if (mGlobalFontFamilies.has_value())
-        font.setFamilies(mGlobalFontFamilies.value());
+    {
+        const auto families = mGlobalFontFamilies.value();
+        if (families.size() >= 1)
+            font.setFamily(families.first());
+        else
+            font.setFamily(QString());
+        font.setFamilies(families);
+    }
     if (mGlobalFontPixelSize.has_value())
         font.setPixelSize(mGlobalFontPixelSize.value());
 
