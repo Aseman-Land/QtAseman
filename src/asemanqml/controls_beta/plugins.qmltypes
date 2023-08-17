@@ -175,6 +175,8 @@ Module {
         Property { name: "globalFontFamilies"; type: "QStringList" }
         Property { name: "accentColor"; type: "QColor" }
         Property { name: "accentTextColor"; type: "QColor" }
+        Property { name: "radius"; type: "double" }
+        Property { name: "hasRadius"; type: "bool" }
         Property { name: "foregroundColor"; type: "QColor" }
         Property { name: "backgroundColor"; type: "QColor" }
         Property { name: "primaryColor"; type: "QColor" }
@@ -196,6 +198,8 @@ Module {
         Property { name: "globalFontFamilies"; type: "QStringList" }
         Property { name: "accentColor"; type: "QColor" }
         Property { name: "accentTextColor"; type: "QColor" }
+        Property { name: "radius"; type: "double" }
+        Property { name: "hasRadius"; type: "bool" }
         Property { name: "foregroundColor"; type: "QColor" }
         Property { name: "backgroundColor"; type: "QColor" }
         Property { name: "primaryColor"; type: "QColor" }

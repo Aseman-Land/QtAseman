@@ -35,7 +35,13 @@ Item {
             return;
 
         var viewport = (openToPrimaryViewport? Viewport.primaryViewport : Viewport.viewport);
-        prv.scene = viewport.append(sceneComponent, {"prv": prv}, dis.Style.styleUrl + '/' + styleFileName)
+        var styleFilePath;
+        if (styleFileName.slice(0,5) == "qrc:/")
+            styleFilePath = styleFileName;
+        else
+            styleFilePath = dis.Style.styleUrl + '/' + styleFileName;
+
+        prv.scene = viewport.append(sceneComponent, {"prv": prv}, styleFilePath)
     }
 
     onStyleFileNameChanged: {

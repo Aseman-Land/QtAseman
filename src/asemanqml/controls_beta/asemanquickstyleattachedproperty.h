@@ -24,6 +24,8 @@ class AsemanQuickStyleAttachedProperty : public QObject
     Q_PROPERTY(QString styleName READ styleName WRITE setStyleName NOTIFY styleNameChanged)
     Q_PROPERTY(QStringList stylesSearchPath READ stylesSearchPath WRITE setStylesSearchPath NOTIFY stylesSearchPathChanged)
     Q_PROPERTY(qint32 globalFontPixelSize READ globalFontPixelSize WRITE setGlobalFontPixelSize NOTIFY globalFontPixelSizeChanged)
+    Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
+    Q_PROPERTY(bool hasRadius READ hasRadius NOTIFY radiusChanged)
     Q_PROPERTY(QUrl styleUrl READ styleUrl NOTIFY styleNameChanged)
 
 public:
@@ -69,6 +71,12 @@ public:
     qint32 globalFontPixelSize() const;
     void setGlobalFontPixelSize(qint32 newGlobalFontPixelSize);
 
+    qreal radius() const;
+    void setRadius(qreal newRadius);
+    bool hasRadius() const {
+        return mRadius.has_value() || mRadius.value() < 0;
+    }
+
 Q_SIGNALS:
     void globalFontFamiliesChanged();
     void accentColorChanged();
@@ -83,6 +91,7 @@ Q_SIGNALS:
     void stylesSearchPathChanged();
     void styleUrlChanged();
     void globalFontPixelSizeChanged();
+    void radiusChanged();
 
 protected:
     void invokeAllSignals();
@@ -106,6 +115,8 @@ private:
     std::optional<QColor> mBackgroundColor;
     std::optional<QColor> mBaseColor;
     std::optional<QColor> mBaseTextColor;
+
+    std::optional<qreal> mRadius;
 
     QSet<QQuickItem*> mConnectedParents;
     static QHash<QString, QHash<QString, QString>> mThemePaths;

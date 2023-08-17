@@ -49,10 +49,10 @@ ios {
 
     LIBS += -framework SafariServices -lobjc
     LIBS += -framework LocalAuthentication
-    disable-ios-contacts-support {
-        DEFINES += DISABLE_IOS_CONTACTS_SUPPORT
-    } else {
+    enable-ios-contacts-support {
         LIBS += -framework Contacts
+    } else {
+        DEFINES += DISABLE_IOS_CONTACTS_SUPPORT
     }
 }
 

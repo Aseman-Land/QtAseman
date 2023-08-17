@@ -125,6 +125,20 @@ void AsemanQuickStyleAttachedProperty::resetGlobalFont()
     qApp->setFont(font);
 }
 
+qreal AsemanQuickStyleAttachedProperty::radius() const
+{
+    return mRadius.value_or(-1);
+}
+
+void AsemanQuickStyleAttachedProperty::setRadius(qreal newRadius)
+{
+    if (mRadius.has_value() && qFuzzyCompare(mRadius.value(), newRadius))
+        return;
+    mRadius = newRadius;
+    ASEMAN_WRITE_STYLE(mRadius, radiusChanged);
+    Q_EMIT radiusChanged();
+}
+
 qint32 AsemanQuickStyleAttachedProperty::globalFontPixelSize() const
 {
     return mGlobalFontPixelSize.value_or(12);
