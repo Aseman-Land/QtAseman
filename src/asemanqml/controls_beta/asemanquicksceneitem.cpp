@@ -39,8 +39,11 @@ void AsemanQuickSceneItem::checkAndCaptureFocus()
     }
 
     auto c = itemToFocus? itemToFocus : controls.first();
-    c->setFocus(true);
-    c->forceActiveFocus();
+    if (c)
+    {
+        c->setFocus(true);
+        c->forceActiveFocus();
+    }
 }
 
 AsemanQuickSceneItem::~AsemanQuickSceneItem()

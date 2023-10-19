@@ -39,8 +39,8 @@ private:
     QFont mFont;
 
     struct PreviousFocus {
-        AsemanQuickSceneItem *scene = nullptr;
-        QQuickItem *item = nullptr;
+        QPointer<AsemanQuickSceneItem> scene;
+        QPointer<QQuickItem> item;
     };
 
     PreviousFocus mPreviousFocused;
