@@ -3,7 +3,7 @@
 
 #include <QtCore/qglobal.h>
 
-#ifndef QT_STATIC
+#if !defined(QT_STATIC) && !defined(QASEMAN_STATIC)
 #if defined(LIBQTASEMAN_WIDGETS_LIBRARY)
 #  define LIBQTASEMAN_WIDGETS_EXPORT Q_DECL_EXPORT
 #else

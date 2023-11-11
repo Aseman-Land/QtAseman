@@ -268,8 +268,12 @@ bool AsemanDevices::isWindowsPhone()
 bool AsemanDevices::isWindows8()
 {
 #ifdef Q_OS_WIN
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     return QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS8 ||
            QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS8_1;
+#else
+    return false;
+#endif
 #else
     return false;
 #endif

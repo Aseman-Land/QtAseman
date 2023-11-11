@@ -3,7 +3,7 @@
 
 #include <QtCore/qglobal.h>
 
-#ifndef QT_STATIC
+#if !defined(QT_STATIC) && !defined(QASEMAN_STATIC)
 #if defined(LIBQTASEMAN_GEO_LIBRARY)
 #  define LIBQTASEMAN_GEO_EXPORT Q_DECL_EXPORT
 #else
