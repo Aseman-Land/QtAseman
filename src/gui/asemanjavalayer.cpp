@@ -362,6 +362,11 @@ void AsemanJavaLayer::setKeepScreenOn(bool stt)
     p->object.callMethod<jboolean>(__FUNCTION__, "(Z)V", jstt );
 }
 
+void AsemanJavaLayer::reloadBuffer()
+{
+    load_buffer();
+}
+
 bool AsemanJavaLayer::setTransparentNavigationBar(bool stt)
 {
     jboolean jstt = stt;

@@ -78,6 +78,7 @@ public:
     void setKeepScreenOn(bool stt);
 
 public Q_SLOTS:
+    void reloadBuffer();
     bool startService();
     bool stopService();
     bool killService(const QString &serviceName);
