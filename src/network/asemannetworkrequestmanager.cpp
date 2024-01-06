@@ -446,7 +446,9 @@ QHttpMultiPart *AsemanNetworkRequestManager::generateFormData(const QVariantMap 
         if (var.type() == QVariant::Url)
         {
             QUrl source = var.toUrl();
-            const QString filePath = source.toLocalFile();
+            QString filePath = source.toLocalFile();
+            if (filePath.isEmpty() && !source.isEmpty())
+                filePath = source.toString();
 
             QFile *file = new QFile(filePath);
             file->open(QIODevice::ReadOnly);
