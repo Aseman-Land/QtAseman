@@ -44,7 +44,6 @@ Item {
     property alias paintedHeight: image.paintedHeight
     property alias paintedWidth: image.paintedWidth
     property alias progress: image.progress
-    property alias smooth: image.smooth
     property alias sourceSize: image.sourceSize
     property alias status: image.status
     property alias verticalAlignment: image.verticalAlignment

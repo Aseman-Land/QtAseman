@@ -58,15 +58,6 @@ Module {
         isCreatable: false
         exportMetaObjectRevisions: [0]
         attachedType: "AsemanQuickLayoutProperty"
-        Property { name: "fillWidth"; type: "bool" }
-        Property { name: "fillHeight"; type: "bool" }
-        Property { name: "preferredWidth"; type: "double" }
-        Property { name: "preferredHeight"; type: "double" }
-        Property { name: "leftMargin"; type: "double" }
-        Property { name: "topMargin"; type: "double" }
-        Property { name: "rightMargin"; type: "double" }
-        Property { name: "bottomMargin"; type: "double" }
-        Property { name: "alignment"; type: "int" }
         Method { name: "reload" }
     }
     Component {
@@ -171,12 +162,9 @@ Module {
     Component {
         name: "AsemanQuickStyleAttachedProperty"
         prototype: "QObject"
-        Property { name: "globalFontPixelSize"; type: "int" }
         Property { name: "globalFontFamilies"; type: "QStringList" }
         Property { name: "accentColor"; type: "QColor" }
         Property { name: "accentTextColor"; type: "QColor" }
-        Property { name: "radius"; type: "double" }
-        Property { name: "hasRadius"; type: "bool" }
         Property { name: "foregroundColor"; type: "QColor" }
         Property { name: "backgroundColor"; type: "QColor" }
         Property { name: "primaryColor"; type: "QColor" }
@@ -185,6 +173,9 @@ Module {
         Property { name: "baseTextColor"; type: "QColor" }
         Property { name: "styleName"; type: "string" }
         Property { name: "stylesSearchPath"; type: "QStringList" }
+        Property { name: "globalFontPixelSize"; type: "int" }
+        Property { name: "radius"; type: "double" }
+        Property { name: "hasRadius"; type: "bool"; isReadonly: true }
         Property { name: "styleUrl"; type: "QUrl"; isReadonly: true }
     }
     Component {
@@ -194,21 +185,6 @@ Module {
         isCreatable: false
         exportMetaObjectRevisions: [0]
         attachedType: "AsemanQuickStyleAttachedProperty"
-        Property { name: "globalFontPixelSize"; type: "int" }
-        Property { name: "globalFontFamilies"; type: "QStringList" }
-        Property { name: "accentColor"; type: "QColor" }
-        Property { name: "accentTextColor"; type: "QColor" }
-        Property { name: "radius"; type: "double" }
-        Property { name: "hasRadius"; type: "bool" }
-        Property { name: "foregroundColor"; type: "QColor" }
-        Property { name: "backgroundColor"; type: "QColor" }
-        Property { name: "primaryColor"; type: "QColor" }
-        Property { name: "primaryTextColor"; type: "QColor" }
-        Property { name: "baseColor"; type: "QColor" }
-        Property { name: "baseTextColor"; type: "QColor" }
-        Property { name: "styleName"; type: "string" }
-        Property { name: "stylesSearchPath"; type: "QStringList" }
-        Property { name: "styleUrl"; type: "QUrl"; isReadonly: true }
     }
     Component {
         name: "AsemanQuickStyledItem"
@@ -225,6 +201,28 @@ Module {
             isReadonly: true
             isPointer: true
         }
+    }
+    Component {
+        prototype: "AsemanApplicationItem"
+        name: "AsemanQml.Controls.Beta/AsemanApplication 3.0"
+        exports: ["AsemanQml.Controls.Beta/AsemanApplication 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "items"
+    }
+    Component {
+        prototype: "QQuickWindowQmlImpl"
+        name: "AsemanQml.Controls.Beta/AsemanWindow 3.0"
+        exports: ["AsemanQml.Controls.Beta/AsemanWindow 3.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "items"
+        Property { name: "backController"; type: "bool" }
+        Property { name: "try_close"; type: "bool" }
+        Property { name: "viewport"; type: "Viewport_QMLTYPE_1"; isReadonly: true; isPointer: true }
+        Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
+        Signal { name: "closeRequest" }
+        Method { name: "tryClose"; type: "QVariant" }
     }
     Component {
         prototype: "QQuickItem"
@@ -263,8 +261,8 @@ Module {
         isComposite: true
         defaultProperty: "data"
         Property { name: "text"; type: "string" }
-        Property { name: "font"; type: "QFont" }
         Property { name: "icon"; type: "string" }
+        Property { name: "font"; type: "QFont" }
         Property { name: "iconPixelSize"; type: "double" }
         Property { name: "highlighted"; type: "bool" }
         Property { name: "flat"; type: "bool" }
@@ -325,7 +323,7 @@ Module {
         Property { name: "model"; type: "QVariant" }
         Property { name: "radius"; type: "double" }
         Property { name: "currentIndex"; type: "int" }
-        Property { name: "popup"; type: "MenuPopup_QMLTYPE_12"; isReadonly: true; isPointer: true }
+        Property { name: "popup"; type: "MenuPopup_QMLTYPE_20"; isReadonly: true; isPointer: true }
         Property { name: "pressedX"; type: "double"; isReadonly: true }
         Property { name: "pressedY"; type: "double"; isReadonly: true }
         Property { name: "pressed"; type: "bool"; isReadonly: true }
@@ -358,10 +356,19 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "delegate"
-        Property { name: "title"; type: "string" }
+        Property { name: "sceneStyleComponent"; type: "QQmlComponent"; isPointer: true }
         Property { name: "sceneStyleFileName"; type: "string" }
-        Property { name: "sceneStyleComponent"; type: "QQmlComponent" }
+        Property { name: "title"; type: "string" }
+        Property { name: "leftPadding"; type: "QVariant" }
+        Property { name: "rightPadding"; type: "QVariant" }
+        Property { name: "topPadding"; type: "QVariant" }
+        Property { name: "bottomPadding"; type: "QVariant" }
         Property { name: "buttons"; type: "QObject"; isList: true; isReadonly: true }
+        Signal { name: "closed" }
+        Signal { name: "rejected" }
+        Signal { name: "accepted" }
+        Method { name: "reject"; type: "QVariant" }
+        Method { name: "accept"; type: "QVariant" }
         Property { name: "styleFileName"; type: "string" }
         Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
         Property { name: "sceneComponent"; type: "QQmlComponent"; isPointer: true }
@@ -369,20 +376,11 @@ Module {
         Property { name: "opened"; type: "bool" }
         Property { name: "gestureWidth"; type: "double" }
         Property { name: "maximumWidth"; type: "double" }
-        Property { name: "leftPadding"; type: "double" }
-        Property { name: "rightPadding"; type: "double" }
-        Property { name: "topPadding"; type: "double" }
-        Property { name: "bottomPadding"; type: "double" }
         Property { name: "touchToClose"; type: "bool" }
         Property { name: "blockBack"; type: "bool" }
         Property { name: "openToPrimaryViewport"; type: "bool" }
         Method { name: "open"; type: "QVariant" }
         Method { name: "close"; type: "QVariant" }
-        Method { name: "accept"; type: "QVariant" }
-        Method { name: "reject"; type: "QVariant" }
-        Signal { name: "rejected" }
-        Signal { name: "accepted" }
-        Signal { name: "closed" }
     }
     Component {
         prototype: "AsemanQuickSceneItem"
@@ -391,12 +389,12 @@ Module {
         exportMetaObjectRevisions: [0]
         isComposite: true
         defaultProperty: "items"
-        Property { name: "title"; type: "string" }
-        Property { name: "buttons"; type: "QVariant" }
         Property { name: "leftPadding"; type: "double" }
         Property { name: "rightPadding"; type: "double" }
         Property { name: "topPadding"; type: "double" }
         Property { name: "bottomPadding"; type: "double" }
+        Property { name: "title"; type: "string" }
+        Property { name: "buttons"; type: "QVariant" }
         Property { name: "item"; type: "QQuickItem"; isPointer: true }
         Property { name: "scene"; type: "QQuickItem"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
@@ -607,6 +605,7 @@ Module {
         Property { name: "from"; type: "double" }
         Property { name: "to"; type: "double" }
         Property { name: "value"; type: "double" }
+        Property { name: "indeterminate"; type: "bool" }
     }
     Component {
         prototype: "AsemanQuickRadioButtonControl"
@@ -816,7 +815,7 @@ Module {
         defaultProperty: "items"
         Property { name: "backController"; type: "bool" }
         Property { name: "try_close"; type: "bool" }
-        Property { name: "viewport"; type: "Viewport_QMLTYPE_59"; isReadonly: true; isPointer: true }
+        Property { name: "viewport"; type: "Viewport_QMLTYPE_1"; isReadonly: true; isPointer: true }
         Property { name: "items"; type: "QObject"; isList: true; isReadonly: true }
         Signal { name: "closeRequest" }
         Method { name: "tryClose"; type: "QVariant" }
