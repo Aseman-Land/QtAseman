@@ -4,4 +4,4 @@ DropShadow 2.0 DropShadow.qml
 FastBlur 2.0 FastBlur.qml
 OpacityMask 2.0 OpacityMask.qml
 ThresholdMask 2.0 ThresholdMask.qml
-Desaturate 2.0 Desaturate.qml
+LevelAdjust 2.0 LevelAdjust.qml
