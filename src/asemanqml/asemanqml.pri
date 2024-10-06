@@ -47,5 +47,5 @@ contains(QT_ASEMAN_MODULES, sql) {
 }
 
 contains(QT_ASEMAN_MODULES, graphicaleffects) {
-    greaterThan(QT_MAJOR_VERSION, 5): include(graphicaleffects/graphicaleffects.pri)
+    include(graphicaleffects/graphicaleffects.pri)
 }

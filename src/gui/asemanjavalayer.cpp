@@ -49,7 +49,7 @@ static QList< QString > java_layer_inc_image_buffer;
 static QList< QString > java_layer_inc_deeplinks_buffer;
 
 static bool aseman_jlayer_registerNativeMethods();
-static bool aseman_jlayer_native_methods_registered = aseman_jlayer_registerNativeMethods();
+static bool aseman_jlayer_native_methods_registered = false;
 
 class AsemanJavaLayerPrivate
 {
@@ -61,6 +61,9 @@ public:
 AsemanJavaLayer::AsemanJavaLayer() :
     QObject()
 {
+    if(!aseman_jlayer_native_methods_registered)
+        aseman_jlayer_registerNativeMethods();
+
     p = new AsemanJavaLayerPrivate;
     p->object = QAndroidJniObject("io/aseman/android/AsemanJavaLayer");
 
@@ -82,9 +85,6 @@ void AsemanJavaLayer::registerObject()
 
 AsemanJavaLayer *AsemanJavaLayer::instance()
 {
-    if(!aseman_jlayer_native_methods_registered)
-        aseman_jlayer_registerNativeMethods();
-
     static QPointer<AsemanJavaLayer> java_layer_instance;
     if( !java_layer_instance )
     {

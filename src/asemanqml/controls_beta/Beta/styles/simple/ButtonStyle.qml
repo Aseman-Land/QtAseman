@@ -5,7 +5,7 @@ import "../.." as Root
 
 AbstractStyle {
     id: dis
-    implicitHeight: 40
+    implicitHeight: 44
     implicitWidth: contentRow.width + 40
 
     Connections {

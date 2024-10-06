@@ -52,7 +52,9 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
     p->defaultItems << new AsemanViewportItem("activity", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("float", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "AndroidBottomDrawerViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("blurbottomdrawer", "IOSBottomDrawerViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("dialog", "AndroidDialogViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("blurdialog", "IOSDialogViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("menu", "IOSContextMenuViewport.qml", this);
 #else
     p->defaultItems << new AsemanViewportItem("page", "IOSNormalViewport.qml", this);
@@ -61,7 +63,9 @@ AsemanViewport::AsemanViewport(QQuickItem *parent) :
     p->defaultItems << new AsemanViewportItem("activity", "AndroidActivityViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("float", "IOSPopupViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("bottomdrawer", "IOSBottomDrawerViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("blurbottomdrawer", "IOSBottomDrawerViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("dialog", "IOSDialogViewport.qml", this);
+    p->defaultItems << new AsemanViewportItem("blurdialog", "IOSDialogViewport.qml", this);
     p->defaultItems << new AsemanViewportItem("menu", "IOSContextMenuViewport.qml", this);
 #endif
 
