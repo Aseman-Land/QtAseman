@@ -7,6 +7,8 @@
         <file>GraphicalEffects/Qt5/qmldir</file>
         <file>GraphicalEffects/Qt5/ThresholdMask.qml</file>
         <file>GraphicalEffects/Qt5/LevelAdjust.qml</file>
+        <file>GraphicalEffects/Qt5/RadialGradient.qml</file>
+        <file>GraphicalEffects/Qt5/Desaturate.qml</file>
         <file>GraphicalEffects/Qt6/Colorize.qml</file>
         <file>GraphicalEffects/Qt6/DropShadow.qml</file>
         <file>GraphicalEffects/Qt6/FastBlur.qml</file>
@@ -14,5 +16,7 @@
         <file>GraphicalEffects/Qt6/qmldir</file>
         <file>GraphicalEffects/Qt6/ThresholdMask.qml</file>
         <file>GraphicalEffects/Qt6/LevelAdjust.qml</file>
+        <file>GraphicalEffects/Qt6/RadialGradient.qml</file>
+        <file>GraphicalEffects/Qt6/Desaturate.qml</file>
     </qresource>
 </RCC>

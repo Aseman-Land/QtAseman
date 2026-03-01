@@ -78,4 +78,13 @@ Module {
         Property { name: "spread"; type: "double" }
         Property { name: "cached"; type: "bool" }
     }
+    Component {
+        prototype: "QQuickItem"
+        name: "AsemanQml.GraphicalEffects/RadialGradient 2.0"
+        exports: ["AsemanQml.GraphicalEffects/RadialGradient 2.0"]
+        exportMetaObjectRevisions: [0]
+        isComposite: true
+        defaultProperty: "data"
+        Property { name: "source"; type: "QVariant" }
+    }
 }

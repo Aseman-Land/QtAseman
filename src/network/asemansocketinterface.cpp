@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QPointer>
+#include <QAbstractSocket>
 
 class AsemanSocketInterface::Private
 {
@@ -94,7 +95,11 @@ void AsemanSocketInterface::readyRead()
             break;
 
         case AsemanSocketInterface::Private::MethodCall:
+        {
             p->device->write( call(hardData) );
+            if (qobject_cast<QAbstractSocket*>(p->device))
+                qobject_cast<QAbstractSocket*>(p->device)->flush();
+        }
             break;
         }
 
@@ -154,8 +159,13 @@ void AsemanSocketInterface::onResult(qint64 id, const QVariant &result)
         p->callbacks.take(id)(result);
 }
 
-qint64 AsemanSocketInterface::call(const QString &method, const QVariantList &args)
+qint64 AsemanSocketInterface::call(const QString &_method, const QVariantList &args)
 {
+    QString method = _method;
+    const auto idx = method.indexOf("::");
+    if (idx >= 0)
+        method = method.mid(idx+2);
+
     p->idPointer++;
 
     QByteArray hardData;
@@ -172,6 +182,8 @@ qint64 AsemanSocketInterface::call(const QString &method, const QVariantList &ar
     hardStream << hardData;
 
     p->device->write(res);
+    if (qobject_cast<QAbstractSocket*>(p->device))
+        qobject_cast<QAbstractSocket*>(p->device)->flush();
     return p->idPointer;
 }
 
