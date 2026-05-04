@@ -1,0 +1,51 @@
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+set(SOURCE
+    ${SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanabstractlistmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanautostartmanager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarconverter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarconvertercore.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancountriesmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemandebugobjectcounter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanencrypter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanfilesystemmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanglobals.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanhashobject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistobject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistrecord.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanmixedlistmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanqtlogger.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemansettings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemansimpleqtcryptor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancore_global.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/aseman_macros.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/private/serpent_sbox.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanmapobject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanrefresherobject.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistmodel.h
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanabstractlistmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanautostartmanager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarconverter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarconvertercore.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancalendarmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancountriesmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemandebugobjectcounter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanencrypter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanfilesystemmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanhashobject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistobject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistrecord.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanmixedlistmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanqtlogger.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemansettings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemansimpleqtcryptor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanmapobject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanrefresherobject.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemanlistmodel.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/asemancoreresource_lib.qrc
+    PARENT_SCOPE)
