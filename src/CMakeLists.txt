@@ -1,6 +1,10 @@
 
 add_compile_definitions(QT_ASEMAN_EMBEDDED)
 
+if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    SET(ASEMAN_COMPILE_DEFINITION ${ASEMAN_COMPILE_DEFINITION} ASEMAN_QT6)
+endif ()
+
 if (QT_ASEMAN_MODULES_CORE)
     add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/core)
 endif ()
@@ -21,8 +25,7 @@ if (QT_ASEMAN_MODULES_SQL)
     add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/sql)
 endif ()
 
-if (${QT_VERSION_MAJOR} GREATER_EQUAL 6) { # Deprecated Modules
-    add_compile_definitions(ASEMAN_QT6)
+if (${QT_VERSION_MAJOR} GREATER_EQUAL 6) # Deprecated Modules
 else ()
     if (QT_ASEMAN_MODULES_MULTIMEDIA)
         add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/multimedia)
@@ -34,3 +37,19 @@ if (Qt${QT_VERSION_MAJOR}::Positioning)
         add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/geo)
     endif ()
 endif ()
+
+set(SOURCE
+    ${SOURCE}
+    PARENT_SCOPE)
+
+set(ASEMAN_COMPILE_DEFINITION
+    ${ASEMAN_COMPILE_DEFINITION}
+    PARENT_SCOPE)
+
+set(ASEMAN_INCLUDE_DIRS
+    ${ASEMAN_INCLUDE_DIRS}
+    PARENT_SCOPE)
+
+set(ASEMAN_QML_IMPORT_PATH
+    ${ASEMAN_QML_IMPORT_PATH}
+    PARENT_SCOPE)

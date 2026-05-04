@@ -20,7 +20,7 @@
 #define ASEMANLISTMODEL_H
 
 #include <QObject>
-#include <asemanabstractlistmodel.h>
+#include "asemanabstractlistmodel.h"
 
 #include "asemancore_global.h"
 

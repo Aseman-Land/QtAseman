@@ -1,0 +1,5 @@
+module AsemanQml.Viewport
+classname AsemanViewportPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlviewport
+depends AsemanQml.Base 2.0

@@ -62,6 +62,8 @@ AbstractStyle {
         anchors.fill: parent
         radius: control.radius
         color: control.Style.foregroundColor
+        visible: control.hoverEnabled
+        scale: control.hoverEnabled? 1 : control.scene.scale
         opacity: control.focusedInUsingKeyboard || control.hovered? 0.1 : 0
     }
 
@@ -85,8 +87,9 @@ AbstractStyle {
     }
 
     OpacityMask {
-        anchors.fill: parent
+        anchors.fill: highlightScene
         maskSource: background
         source: highlightScene
+        scale: control.hoverEnabled? 1 : control.scene.scale
     }
 }

@@ -1,0 +1,4 @@
+module AsemanQml.Sql
+classname AsemanSqlPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlsql

@@ -10,6 +10,7 @@ Control {
     default property alias items: scene.data
 
     property real radius: 8
+    property alias hoverEnabled: marea.hoverEnabled
 
     property alias pressedX: marea.mouseX
     property alias pressedY: marea.mouseY

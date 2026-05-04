@@ -1,0 +1,5 @@
+module AsemanQml.Awesome
+classname AsemanAwesomePlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlawesome
+

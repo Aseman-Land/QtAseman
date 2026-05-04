@@ -1,6 +1,3 @@
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 set(SOURCE
     ${SOURCE}
     ${CMAKE_CURRENT_SOURCE_DIR}/asemanapplication.h
@@ -55,3 +52,8 @@ if (MACOS)
         $$PWD/asemanmacmanager.h
         PARENT_SCOPE)
 endif ()
+
+set(ASEMAN_INCLUDE_DIRS
+    ${ASEMAN_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    PARENT_SCOPE)

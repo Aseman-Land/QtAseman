@@ -1,0 +1,5 @@
+module AsemanQml.Models
+classname AsemanModelsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlmodels
+depends AsemanQml.Base 2.0

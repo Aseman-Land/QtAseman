@@ -1,0 +1,7 @@
+module AsemanQml.Multimedia
+classname AsemanMultimediaPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlmultimedia
+depends QtMultimedia 5.8
+depends AsemanQml.Base 2.0
+depends AsemanQml.Awesome 2.0

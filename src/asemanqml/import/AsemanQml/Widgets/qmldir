@@ -1,0 +1,4 @@
+module AsemanQml.Widgets
+classname AsemanWidgetsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlwidgets

@@ -1,6 +1,3 @@
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 set(SOURCE
     ${SOURCE}
     ${CMAKE_CURRENT_SOURCE_DIR}/asemanquickabstractbutton.h
@@ -38,4 +35,9 @@ set(SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/controlsbetaplugin.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/qmake_asemancontrols_beta.qrc
+    PARENT_SCOPE)
+
+set(ASEMAN_INCLUDE_DIRS
+    ${ASEMAN_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}
     PARENT_SCOPE)

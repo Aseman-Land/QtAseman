@@ -1,0 +1,4 @@
+module AsemanQml.GraphicalEffects
+classname AsemanGraphicalEffectsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlgraphicalffects

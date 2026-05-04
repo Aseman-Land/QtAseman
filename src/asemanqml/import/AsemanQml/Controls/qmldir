@@ -1,0 +1,9 @@
+module AsemanQml.Controls
+classname AsemanControlsPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlcontrols
+depends QtQuick 2.0
+depends QtGraphicalEffects 1.0
+depends QtQuick.Controls 2.0
+depends QtQuick.Window 2.2
+depends QtQuick.Layouts 1.2

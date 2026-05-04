@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ASEMANQUICKOBJECT_H
-#define ASEMANQUICKOBJECT_H
+#ifndef ASEMANNETWORKQUICKOBJECT_H
+#define ASEMANNETWORKQUICKOBJECT_H
 
 #include <QObject>
 #include <QQmlListProperty>
@@ -58,4 +58,4 @@ private:
 
 typedef AsemanNetworkQuickObject QAsemanNetworkQuickObject;
 
-#endif // ASEMANQUICKOBJECT_H
+#endif // ASEMANNETWORKQUICKOBJECT_H

@@ -1,0 +1,4 @@
+module AsemanQml.Controls.Beta
+classname AsemanControlsBetaPlugin
+typeinfo plugins.qmltypes
+plugin declarative_asemanqmlcontrolsbeta
