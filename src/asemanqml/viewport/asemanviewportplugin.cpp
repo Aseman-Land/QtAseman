@@ -26,7 +26,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_viewport_plugin_registered = AsemanViewportPlugin::registerStaticTypes("AsemanQml.Viewport");
+void asemanqml_viewport_plugin_registered() { AsemanViewportPlugin::registerStaticTypes("AsemanQml.Viewport"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_viewport_plugin_registered)
 #endif
 
 bool AsemanViewportPlugin::registerStaticTypes(const char *uri)

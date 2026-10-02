@@ -26,7 +26,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_multimedia_plugin_registered = AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multimedia");
+void asemanqml_multimedia_plugin_registered() { AsemanMultimediaPlugin::registerStaticTypes("AsemanQml.Multimedia"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_multimedia_plugin_registered)
 #endif
 
 bool AsemanMultimediaPlugin::registerStaticTypes(const char *uri)

@@ -24,7 +24,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_awesome_plugin_registered = AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome");
+void asemanqml_awesome_plugin_registered() { AsemanAwesomePlugin::registerStaticTypes("AsemanQml.Awesome"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_awesome_plugin_registered)
 #endif
 
 bool AsemanAwesomePlugin::registerStaticTypes(const char *uri)

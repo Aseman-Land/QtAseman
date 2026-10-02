@@ -25,7 +25,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_sql_plugin_registered = AsemanSqlPlugin::registerStaticTypes("AsemanQml.Sql");
+void asemanqml_sql_plugin_registered() { AsemanSqlPlugin::registerStaticTypes("AsemanQml.Sql"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_sql_plugin_registered)
 #endif
 
 bool AsemanSqlPlugin::registerStaticTypes(const char *uri)

@@ -25,7 +25,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_network_plugin_registered = AsemanNetworkPlugin::registerStaticTypes("AsemanQml.Network");
+void asemanqml_network_plugin_registered() { AsemanNetworkPlugin::registerStaticTypes("AsemanQml.Network"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_network_plugin_registered)
 #endif
 
 bool AsemanNetworkPlugin::registerStaticTypes(const char *uri)

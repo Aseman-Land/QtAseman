@@ -25,7 +25,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_controls_beta_plugin_registered = AsemanControlsBetaPlugin::registerStaticTypes("AsemanQml.Controls.Beta");
+void asemanqml_controls_beta_plugin_registered() { AsemanControlsBetaPlugin::registerStaticTypes("AsemanQml.Controls.Beta"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_controls_beta_plugin_registered)
 #endif
 
 bool AsemanControlsBetaPlugin::registerStaticTypes(const char *uri)

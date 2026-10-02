@@ -26,7 +26,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_graphicaleffects_plugin_registered = AsemanGraphicalEffectsPlugin::registerStaticTypes("AsemanQml.GraphicalEffects");
+void asemanqml_graphicaleffects_plugin_registered() { AsemanGraphicalEffectsPlugin::registerStaticTypes("AsemanQml.GraphicalEffects"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_graphicaleffects_plugin_registered)
 #endif
 
 bool AsemanGraphicalEffectsPlugin::registerStaticTypes(const char *uri)

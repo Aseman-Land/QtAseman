@@ -26,7 +26,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_models_plugin_registered = AsemanModelsPlugin::registerStaticTypes("AsemanQml.Models");
+void asemanqml_models_plugin_registered() { AsemanModelsPlugin::registerStaticTypes("AsemanQml.Models"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_models_plugin_registered)
 #endif
 
 bool AsemanModelsPlugin::registerStaticTypes(const char *uri)

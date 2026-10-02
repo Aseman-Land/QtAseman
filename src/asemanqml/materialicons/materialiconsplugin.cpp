@@ -24,7 +24,8 @@
 #include <QtQml>
 
 #ifdef QT_ASEMAN_EMBEDDED
-bool asemanqml_materialicons_plugin_registered = AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons");
+void asemanqml_materialicons_plugin_registered() { AsemanMaterialIconsPlugin::registerStaticTypes("AsemanQml.MaterialIcons"); }
+Q_COREAPP_STARTUP_FUNCTION(asemanqml_materialicons_plugin_registered)
 #endif
 
 bool AsemanMaterialIconsPlugin::registerStaticTypes(const char *uri)
